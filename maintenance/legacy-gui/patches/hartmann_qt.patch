@@ -1,0 +1,29 @@
+--- a/modes/xray/visualization/hartmann_designer_qt.py
++++ b/modes/xray/visualization/hartmann_designer_qt.py
+@@ -3399,18 +3399,24 @@
+             self.worker = WorkflowThread(action, payload)
+             self.worker.completed.connect(self._worker_completed)
+             self.worker.failed.connect(self._worker_failed)
++            self.worker.finished.connect(lambda: self._set_busy(False))
+             self.worker.start()
+ 
+         def _worker_completed(self, result: dict[str, Any]) -> None:
+-            self._set_busy(False)
+             if result.get("run_dir"):
+                 self.last_run_dir = str(result["run_dir"])
+             self.render_summary(result, stage=str(result.get("stage", "complete")))
+ 
+         def _worker_failed(self, message: str) -> None:
+-            self._set_busy(False)
+             self.status.setText(f"Workflow failed: {message}")
+             self.log.setPlainText(message)
++
++        def closeEvent(self, event) -> None:
++            if self._workflow_running():
++                self.status.setText("任务仍在运行，请等待完成后关闭窗口。")
++                event.ignore()
++                return
++            super().closeEvent(event)
+ 
+         def _set_busy(self, busy: bool) -> None:
+             self.sim_button.setEnabled((not busy) and self.full_optical_sim.isChecked())

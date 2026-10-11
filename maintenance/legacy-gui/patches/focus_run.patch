@@ -1,0 +1,42 @@
+--- a/focus_analysis/run_analysis.py
++++ b/focus_analysis/run_analysis.py
+@@ -15,7 +15,7 @@
+ from .utils.visualization import save_results
+ 
+ 
+-def run_analysis(cfg, progress_callback=None):
++def run_analysis(cfg, progress_callback=None, cancel_callback=None):
+     """
+     执行完整的焦点分析流程
+     
+@@ -44,7 +44,12 @@
+     Returns:
+         list[dict]: 分析结果列表
+     """
++    def check_cancelled():
++        if cancel_callback is not None and cancel_callback():
++            raise InterruptedError("Analysis cancelled.")
++
+     def log(msg):
++        check_cancelled()
+         print(msg)
+         if progress_callback:
+             progress_callback(msg)
+@@ -64,7 +69,8 @@
+     # 处理所有图像
+     threshold = cfg.get('threshold', 0)
+     log(f"正在处理图像 (阈值={threshold})...")
+-    results = process_all_images(data, cfg, threshold=threshold)
++    results = process_all_images(data, cfg, threshold=threshold,
++                                 cancel_callback=cancel_callback)
+     log(f"图像处理完成: {len(results)} 张图像")
+     
+     # 检测异常值
+@@ -75,6 +81,7 @@
+     # 保存结果
+     output_dir = cfg.get('output_dir', os.path.join(cfg['data_dir'], 'results'))
+     log(f"正在保存结果到: {output_dir}")
++    check_cancelled()
+     save_results(results, cfg, output_dir, show=cfg.get('show_plots', True))
+     log("分析完成!")
+     

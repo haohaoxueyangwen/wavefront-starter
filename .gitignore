@@ -17,3 +17,5 @@ demo_data/
 .env
 .env.*
 LOCAL_SOURCE_MAP*
+
+wavefront-runs/

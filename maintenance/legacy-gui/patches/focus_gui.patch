@@ -1,0 +1,109 @@
+--- a/focus_analysis/gui.py
++++ b/focus_analysis/gui.py
+@@ -197,7 +197,7 @@
+ class AnalysisWorker(QThread):
+     """后台分析线程"""
+     progress = pyqtSignal(str)
+-    finished = pyqtSignal(bool, str)
++    completed = pyqtSignal(bool, str)
+     
+     def __init__(self, cfg):
+         super().__init__()
+@@ -215,17 +215,20 @@
+             
+             results = run_analysis(
+                 self.cfg,
+-                progress_callback=self.progress.emit
++                progress_callback=self.progress.emit,
++                cancel_callback=lambda: self._is_cancelled
+             )
+             
+             output_dir = self.cfg.get('output_dir', 
+                 os.path.join(self.cfg['data_dir'], 'results'))
+-            self.finished.emit(True, 
++            self.completed.emit(True, 
+                 f"分析完成！\n共处理 {len(results)} 张图像\n结果保存至: {output_dir}")
+             
++        except InterruptedError:
++            self.completed.emit(False, "分析已停止；原有结果保留。")
+         except Exception as e:
+             import traceback
+-            self.finished.emit(False, f"分析失败: {str(e)}\n{traceback.format_exc()}")
++            self.completed.emit(False, f"分析失败: {str(e)}\n{traceback.format_exc()}")
+     
+     def cancel(self):
+         self._is_cancelled = True
+@@ -637,6 +640,9 @@
+     
+     def run_analysis(self):
+         """运行分析"""
++        if self.worker is not None and self.worker.isRunning():
++            self.log("任务仍在运行，请等待完成或停止。")
++            return
+         # 验证数据目录
+         data_dir = self.data_dir_edit.text().strip()
+         if not data_dir:
+@@ -649,10 +655,13 @@
+         # 验证暗场目录（如果启用）
+         if self.do_dark_check.isChecked():
+             dark_dir = self.dark_dir_edit.text().strip()
+-            if dark_dir and not os.path.isdir(dark_dir):
++            if not dark_dir or not os.path.isdir(dark_dir):
+                 QMessageBox.warning(self, "参数错误", f"暗场目录不存在:\n{dark_dir}")
+                 return
+         
++        if self.do_flat_check.isChecked() and not os.path.isdir(self.flat_dir_edit.text().strip()):
++            QMessageBox.warning(self, "参数错误", "启用平场时请选择存在的平场目录。")
++            return
+         # 获取配置
+         cfg = self.get_config()
+         
+@@ -678,27 +687,39 @@
+         # 启动后台线程
+         self.worker = AnalysisWorker(cfg)
+         self.worker.progress.connect(self.log)
+-        self.worker.finished.connect(self.on_analysis_finished)
++        self.worker.completed.connect(self.on_analysis_finished)
++        self.worker.finished.connect(self.on_worker_stopped)
+         self.worker.start()
+     
+     def stop_analysis(self):
+         """停止分析"""
+         if self.worker and self.worker.isRunning():
+             self.worker.cancel()
+-            self.log("⚠ 正在停止分析...")
++            self.stop_btn.setEnabled(False)
++            self.log("正在停止分析，等待当前处理步骤结束…")
+     
+     def on_analysis_finished(self, success, message):
+         """分析完成回调"""
++        if success:
++            self.log("\n✅ " + message)
++            QMessageBox.information(self, "分析完成", message)
++        elif message.startswith("分析已停止"):
++            self.log(message)
++        else:
++            self.log("\n❌ " + message)
++            QMessageBox.critical(self, "分析失败", message)
++
++    def on_worker_stopped(self):
+         self.run_btn.setEnabled(True)
+         self.stop_btn.setEnabled(False)
+         self.progress_bar.setVisible(False)
+-        
+-        if success:
+-            self.log("\n✅ " + message)
+-            QMessageBox.information(self, "分析完成", message)
+-        else:
+-            self.log("\n❌ " + message)
+-            QMessageBox.critical(self, "分析失败", message)
++
++    def closeEvent(self, event):
++        if self.worker is not None and self.worker.isRunning():
++            self.log("任务仍在运行，请先停止或等待完成，再关闭窗口。")
++            event.ignore()
++            return
++        super().closeEvent(event)
+ 
+ 
+ def main():

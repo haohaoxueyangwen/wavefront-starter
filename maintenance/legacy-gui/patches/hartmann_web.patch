@@ -1,0 +1,171 @@
+--- a/modes/xray/visualization/hartmann_designer.html
++++ b/modes/xray/visualization/hartmann_designer.html
+@@ -421,10 +421,10 @@
+             <input id="angleStep" type="number" value="0.5" min="0.1" step="0.1">
+           </label>
+           <label>Step min (um)
+-            <input id="stepMin" type="number" value="8" min="0.1" step="0.25">
++            <input id="stepMin" type="number" value="8" min="0.1" step="any">
+           </label>
+           <label>Step max (um)
+-            <input id="stepMax" type="number" value="18" min="0.1" step="0.25">
++            <input id="stepMax" type="number" value="18" min="0.1" step="any">
+           </label>
+           <label>Step quantum (um)
+             <input id="stepQuantum" type="number" value="0.25" min="0.01" step="0.01">
+@@ -433,7 +433,7 @@
+             <input id="currentAngle" type="number" value="19" min="0" step="0.5">
+           </label>
+           <label>Current step (um)
+-            <input id="currentStep" type="number" value="12" min="0.1" step="0.25">
++            <input id="currentStep" type="number" value="12" min="0.1" step="any">
+           </label>
+         </div>
+         <div class="actions">
+@@ -459,16 +459,16 @@
+             </select>
+           </label>
+           <label>Camera FPS (Hz)
+-            <input id="cameraFpsHz" type="number" value="1000" min="0.001" step="1">
++            <input id="cameraFpsHz" type="number" value="1000" min="0.001" step="any">
+           </label>
+           <label>Exposure override (ms)
+             <input id="cameraExposureMs" type="number" value="0" min="0" step="0.01">
+           </label>
+           <label>Light pulse rate (Hz)
+-            <input id="lightPulseRateHz" type="number" value="50000" min="0.001" step="100">
++            <input id="lightPulseRateHz" type="number" value="50000" min="0.001" step="any">
+           </label>
+           <label>Rotation radius (mm)
+-            <input id="rotationRadiusMm" type="number" value="50" min="0.001" step="0.1">
++            <input id="rotationRadiusMm" type="number" value="50" min="0.001" step="any">
+           </label>
+           <label>Rotation direction
+             <select id="rotationDirection">
+@@ -620,6 +620,8 @@
+       speedMode: "tuning", saveEachFrame: false, applyTrailToSimulation: false
+     };
+     let lastRunDir = "";
++    let workflowBusy = false;
++    let designBusy = false;
+ 
+     function num(id) {
+       const value = Number($(id).value);
+@@ -1007,12 +1009,20 @@
+     }
+ 
+     async function runDesign() {
++      if (designBusy) return false;
++      for (const input of document.querySelectorAll('input[type="number"]')) {
++        if (!input.disabled && (!input.reportValidity() || !Number.isFinite(Number(input.value)) || input.value === "")) {
++          $("designStatus").textContent = "请先检查数值参数和允许范围。";
++          return false;
++        }
++      }
+       const runRevision = parameterRevision;
+       const params = collectParams();
+       const motion = motionEstimate(params);
+       updateMotionControls(params, motion);
+       const spot = spotEstimate(params);
+       const requiredPx = requiredCenter(spot, params);
++      designBusy = true;
+       $("runButton").disabled = true;
+       $("designStatus").textContent = "Calculating design scan in background...";
+       try {
+@@ -1033,7 +1043,8 @@
+         $("designStatus").textContent = `Design scan failed: ${error.message}`;
+         throw error;
+       } finally {
+-        $("runButton").disabled = false;
++        designBusy = false;
++        $("runButton").disabled = workflowBusy;
+       }
+     }
+ 
+@@ -1247,9 +1258,20 @@
+       markDesignDirty();
+     }
+ 
+-    function copyJson() {
+-      $("jsonOut").select();
+-      document.execCommand("copy");
++    async function copyJson() {
++      const text = $("jsonOut").value;
++      try {
++        JSON.parse(text);
++        if (navigator.clipboard && window.isSecureContext) {
++          await navigator.clipboard.writeText(text);
++        } else {
++          $("jsonOut").select();
++          if (!document.execCommand("copy")) throw new Error("请选中 JSON 后手动复制。");
++        }
++        $("designStatus").textContent = "JSON 已复制。";
++      } catch (error) {
++        $("designStatus").textContent = `复制失败：${error.message}；请先更新设计。`;
++      }
+     }
+ 
+     function workflowRuntime() {
+@@ -1271,6 +1293,8 @@
+     }
+ 
+     function setWorkflowBusy(isBusy, text) {
++      workflowBusy = isBusy;
++      $("runButton").disabled = isBusy || designBusy;
+       $("simulateButton").disabled = isBusy;
+       $("recoverButton").disabled = isBusy;
+       $("refreshSummary").disabled = isBusy;
+@@ -1371,7 +1395,9 @@
+         headers: {"Content-Type": "application/json"},
+         body: JSON.stringify(payload)
+       });
+-      const data = await response.json().catch(() => ({}));
++      let data;
++      try { data = await response.json(); }
++      catch { throw new Error("服务返回的不是 JSON，请确认本地服务仍在运行。"); }
+       if (!response.ok || data.ok === false) {
+         const message = data.error || `HTTP ${response.status}`;
+         throw new Error(message);
+@@ -1380,9 +1406,11 @@
+     }
+ 
+     async function runSimulationWorkflow() {
+-      if (!(await runDesignNow())) return;
+-      setWorkflowBusy(true, "Running optical simulation...");
++      if (workflowBusy || designBusy) return;
++      setWorkflowBusy(true, "Updating design...");
+       try {
++        if (!(await runDesignNow())) return;
++        $("workflowStatus").textContent = "Running optical simulation...";
+         const payload = buildSimulationPayload();
+         const result = await postJson("/api/simulate", payload);
+         renderWorkflowResult(result);
+@@ -1395,6 +1423,7 @@
+     }
+ 
+     async function runRecoveryWorkflow() {
++      if (workflowBusy || designBusy) return;
+       if (!lastRunDir) {
+         $("workflowStatus").textContent = "Run optical simulation first.";
+         return;
+@@ -1415,6 +1444,7 @@
+     }
+ 
+     async function refreshSummary() {
++      if (workflowBusy || designBusy) return;
+       if (!lastRunDir) return;
+       setWorkflowBusy(true, "Refreshing summary...");
+       try {
+@@ -1438,6 +1468,12 @@
+         return false;
+       }
+     }
++
++    window.addEventListener("beforeunload", (event) => {
++      if (!workflowBusy) return;
++      event.preventDefault();
++      event.returnValue = "";
++    });
+ 
+     function markDesignDirty() {
+       parameterRevision += 1;

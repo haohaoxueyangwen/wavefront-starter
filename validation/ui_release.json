@@ -1,0 +1,52 @@
+{
+  "scientific_teaching_solvers_unchanged": true,
+  "local_document_links_checked": 84,
+  "original_files_repaired_and_patch_byte_verified": 11,
+  "wheel_contains_web_ui_and_assets": true,
+  "wheel_sha256": "f0414a25c5679677ca5303af91b0107b9436ff68e824d04e6203578da1e412dd",
+  "teaching_unit_checks_passed": 19,
+  "legacy_qt_windows_instantiated_and_close_guard_checked": 5,
+  "focus_cancellation_checks_passed": 3,
+  "existing_hartmann_tests": {
+    "initial_passed": 26,
+    "initial_failures": 1,
+    "initial_environment_errors": 2,
+    "affected_tests_passed_after_fix": 3,
+    "distinct_tests_passed": 29
+  },
+  "browser_triggered_synthetic_controls": {
+    "wsvt": {
+      "passed": true,
+      "median_ux_px": -1.9967000514322186,
+      "median_uy_px": 1.001218439135477,
+      "median_epe_px": 0.1192322824116176,
+      "p95_epe_px": 0.24850274992345173,
+      "control": "Known rigid texture translation; output interior trimmed 5 px further."
+    },
+    "grating": {
+      "passed": true,
+      "phase_rmse_rad": 1.3710777681940093e-13,
+      "control": "Analytic periodic carrier encoded with known phase derivatives."
+    },
+    "zernike": {
+      "passed": true,
+      "max_coefficient_error_rad": 3.3306690738754696e-16,
+      "residual_rms_rad": 4.946059818757184e-16,
+      "control": "Explicit orthonormal modes with known coefficients."
+    },
+    "hartmann": {
+      "passed": true,
+      "max_displacement_error_px": 2.6563187943564897e-13,
+      "control": "Known Gaussian centroid translation in fixed isolated cells."
+    },
+    "wxst": {
+      "passed": true,
+      "median_ux_px": -2.0008974522135645,
+      "median_uy_px": 0.998440756730776,
+      "median_epe_px": 0.07318563905597192,
+      "p95_epe_px": 0.15860516909480898,
+      "control": "Known rigid texture translation; output interior trimmed 5 px further."
+    }
+  },
+  "scope": "UI lifecycle, packaging and small CPU synthetic controls; no real-data accuracy, native C++ or GPU validation."
+}

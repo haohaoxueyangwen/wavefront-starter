@@ -1,0 +1,19 @@
+--- a/modes/xray/visualization/hartmann_designer_server.py
++++ b/modes/xray/visualization/hartmann_designer_server.py
+@@ -10,6 +10,7 @@
+ import subprocess
+ import sys
+ import traceback
++import uuid
+ from datetime import datetime
+ from http import HTTPStatus
+ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+@@ -206,7 +207,7 @@
+ 
+ def _new_run_dir(case_name: str) -> Path:
+     stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+-    run_dir = (RUN_ROOT / f"{stamp}_{_slugify(case_name)}").resolve()
++    run_dir = (RUN_ROOT / f"{stamp}_{uuid.uuid4().hex}_{_slugify(case_name)}").resolve()
+     if not _is_within(run_dir, RUN_ROOT):
+         raise WorkflowError("Refusing to create run outside UI run root")
+     return run_dir

@@ -1,0 +1,58 @@
+--- a/focus_analysis/core/batch_processor.py
++++ b/focus_analysis/core/batch_processor.py
+@@ -7,7 +7,7 @@
+ 
+ import time
+ import numpy as np
+-from multiprocessing import Pool, cpu_count
++from multiprocessing import Pool, cpu_count, TimeoutError
+ 
+ from .image_loader import load_image
+ from .preprocessing import preprocess
+@@ -68,7 +68,7 @@
+     }
+ 
+ 
+-def process_all_images(data, cfg, threshold=0):
++def process_all_images(data, cfg, threshold=0, cancel_callback=None):
+     """
+     处理所有图像并计算光斑大小（支持多进程并行）
+     
+@@ -80,6 +80,10 @@
+     Returns:
+         list[dict]: 每张图像的分析结果，包含z位置和序列索引
+     """
++    def check_cancelled():
++        if cancel_callback is not None and cancel_callback():
++            raise InterruptedError("Analysis cancelled.")
++    check_cancelled()
+     pixel_size = cfg.get('pixel_size_um', 1.0)
+     n_workers = cfg.get('n_workers', max(1, cpu_count() - 1))
+     
+@@ -114,11 +118,24 @@
+         with Pool(processes=n_workers, 
+                   initializer=_init_worker, 
+                   initargs=(dark, flat)) as pool:
+-            results = pool.map(_process_single_image, tasks)
++            if cancel_callback is None:
++                results = pool.map(_process_single_image, tasks)
++            else:
++                pending = pool.imap(_process_single_image, tasks, chunksize=1)
++                results = []
++                while len(results) < len(tasks):
++                    check_cancelled()
++                    try:
++                        results.append(pending.next(timeout=0.1))
++                    except TimeoutError:
++                        continue
+     else:
+         print(f"单进程处理 {len(tasks)} 张图像...")
+         _init_worker(dark, flat)
+-        results = [_process_single_image(t) for t in tasks]
++        results = []
++        for task in tasks:
++            check_cancelled()
++            results.append(_process_single_image(task))
+     
+     # 过滤掉加载失败的
+     results = [r for r in results if r is not None]

@@ -11,6 +11,7 @@
 | 从基础了解方向 | [学习路线](docs/06_learning_path.md) |
 | 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
 | 找完整文献 | [34 条分类文献与专著](docs/04_reading.md) / [BibTeX、RIS](literature/) |
+| 用网页界面操作 | [波前工作台：启动与界面指南](docs/08_interfaces.md) |
 | 跑通第一套数据 | [五案例操作指南](docs/01_first_run.md) |
 | 换成自己的实验数据 | [数据、单位与标定要求](docs/02_real_data.md) |
 | 找公开实验数据和原研究代码 | [软件与数据入口](docs/07_resources.md) |
@@ -25,7 +26,7 @@
 
 ## Windows 安装与第一遍运行
 
-先取得仓库访问权限，然后克隆到自己的电脑，在项目根目录运行。已实际验证 Python 3.12.7；包声明支持 3.11–3.12。使用独立环境，避免旧 Anaconda 中 NumPy/Numba 版本冲突。
+仓库已公开，直接克隆到自己的电脑，在项目根目录运行。已实际验证 Python 3.12.7；包声明支持 3.11–3.12。使用独立环境，避免旧 Anaconda 中 NumPy/Numba 版本冲突。
 
 ```powershell
 git clone https://github.com/haohaoxueyangwen/wavefront-starter.git
@@ -40,6 +41,18 @@ py -3.12 -m venv .venv
 如果系统没有 `py`，将创建虚拟环境的 `py -3.12 -m venv .venv` 一行替换为已安装的 Python 3.12 的 `python -m venv .venv`。每次输出目录必须是新目录，程序不会覆盖已有结果。
 
 Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `.venv/bin/python`。
+
+## 用网页界面操作
+
+完成上面的安装后运行：
+
+```powershell
+.\.venv\Scripts\python.exe -m wfs_starter ui
+```
+
+浏览器打开本机波前工作台，可选择 WXST、WSVT、光栅、Hartmann 和 Zernike，生成示例或填写实验配置，查看任务状态、日志、结果图和数值数组。网页界面随代码安装在本机运行；GitHub 页面提供资料和代码入口。
+
+完整操作见 [界面指南](docs/08_interfaces.md)，已有研究界面的本次增量修复见 [维护记录](maintenance/legacy-gui/README.md)。
 
 ## 单独跑一个示例或接入配置
 
@@ -72,9 +85,9 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 
 高性能 C++ 算法维护在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)，历史完整 Hartmann 仿真与恢复维护在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)。本仓库用于基础学习和轻量 CPU 示例；科研参数、冻结性能结果、深度学习训练与动态多脉冲研究仍在原工程中维护。
 
-2026-10-11：五个 CPU 合成控制通过，13 项接口检查通过。该验证确认代码入口与特定合成案例的数值行为，真实实验精度需要独立标定和验收。当前数据全部为合成数据。
+2026-10-11：五个 CPU 合成控制通过，19 项接口检查通过；新增工作台的运行、停止、记录恢复和结果预览已检查。已有研究界面的修复与检查记录见 [界面验证记录](validation/ui_release.json)。该验证确认代码入口与特定合成案例的数值行为，真实实验精度需要独立标定和验收。当前数据全部为合成数据。
 
 散斑参考实现保留 UChicago Argonne 的版权声明。教学整理为本地修改版，来源与变更见 [NOTICE](provenance/NOTICE.md)。其他提取函数来自作者已有代码；本次未另外授予整个仓库新的开源许可证。
 
 
-文献更新于 2026-10-11：34 条文献与专著，其中 10 条为综述、综述型研究论文或理论总览。DOI 与元数据已核对，完整作者引文可导入 Zotero。当前仓库保持私有，共享给师妹需先授予访问权限。
+文献更新于 2026-10-11：34 条文献与专著，其中 10 条为综述、综述型研究论文或理论总览。DOI 与元数据已核对，完整作者引文可导入 Zotero。仓库已公开，可直接把 GitHub 链接发给师妹。

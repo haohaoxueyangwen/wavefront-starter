@@ -1,0 +1,101 @@
+--- a/speckle_retriver - 副本/zernike_analysis_gui.py
++++ b/speckle_retriver - 副本/zernike_analysis_gui.py
+@@ -394,6 +394,7 @@
+     def __init__(self):
+         super().__init__()
+         self.phase_data = None
++        self.analysis_worker = None
+         self.roi_params = {'center_x': None, 'center_y': None, 'radius': None}
+         self.analysis_results = None
+         
+@@ -825,7 +826,15 @@
+             return
+             
+         try:
+-            self.phase_data = np.load(file_path)
++            phase = np.load(file_path, allow_pickle=False)
++            if (phase.ndim != 2 or min(phase.shape) < 3
++                    or not np.issubdtype(phase.dtype, np.number) or np.iscomplexobj(phase)):
++                raise ValueError("相位必须是至少 3×3 的二维实数数组。")
++            self.phase_data = phase
++            self.roi_params = {'center_x': None, 'center_y': None, 'radius': None}
++            self.analyze_btn.setEnabled(False)
++            self.analysis_results = None
++            self.view_results_btn.setEnabled(False)
+             self.status_bar.showMessage(f"Loaded phase data: {self.phase_data.shape}")
+             
+             # Enable ROI selection
+@@ -857,7 +866,7 @@
+         self.figure.colorbar(im, ax=ax, label='Phase (rad)')
+         
+         # Draw ROI if selected
+-        if all(self.roi_params.values()):
++        if all(v is not None for v in self.roi_params.values()) and self.roi_params['radius'] > 0:
+             from matplotlib.patches import Circle
+             center_x_display = self.roi_params['center_x']
+             center_y_display = self.roi_params['center_y']
+@@ -907,13 +916,24 @@
+         
+ 
+         
++    def closeEvent(self, event):
++        if self.analysis_worker is not None and self.analysis_worker.isRunning():
++            self.status_bar.showMessage("任务仍在运行，请等待完成后关闭窗口。")
++            event.ignore()
++            return
++        super().closeEvent(event)
++
+     def run_analysis(self):
+         """Run Zernike analysis"""
++        if self.analysis_worker is not None and self.analysis_worker.isRunning():
++            self.status_bar.showMessage("任务仍在运行，请等待完成。")
++            return
+         if self.phase_data is None:
+             QMessageBox.warning(self, "Warning", "Please load phase data first.")
+             return
+             
+-        if not all(self.roi_params.values()):
++        if (any(v is None for v in self.roi_params.values())
++                or self.roi_params.get('radius', 0) <= 0):
+             QMessageBox.warning(self, "Warning", "Please select ROI first.")
+             return
+             
+@@ -948,16 +968,17 @@
+             phase_data=self.phase_data,
+             pixel_size_um=self.pixel_size_spin.value(),
+             wavelength_um=self.get_wavelength_from_energy(),
+-            roi_params=self.roi_params,
++            roi_params=dict(self.roi_params),
+             zernike_terms=self.zernike_terms_spin.value(),
+             max_order_remove=self.max_order_remove_spin.value(),
+-            output_dir=self.output_dir_edit.text(),
++            output_dir=output_dir,
+             base_filename=base_filename
+         )
+         
+         self.analysis_worker.analysis_complete.connect(self.on_analysis_complete)
+         self.analysis_worker.analysis_error.connect(self.on_analysis_error)
+         self.analysis_worker.progress_update.connect(self.on_progress_update)
++        self.analysis_worker.finished.connect(lambda: self.analyze_btn.setEnabled(True))
+         self.analysis_worker.start()
+         
+     def on_progress_update(self, message):
+@@ -969,9 +990,8 @@
+         self.analysis_results = results
+         
+         # Re-enable UI
+-        self.analyze_btn.setEnabled(True)
+         self.progress_bar.setVisible(False)
+-        self.view_results_btn.setEnabled(True)
++        self.view_results_btn.setEnabled(results.get('status') == 'success')
+         
+         if results.get('status') == 'success':
+             self.status_bar.showMessage("Analysis completed successfully!")
+@@ -993,7 +1013,6 @@
+     def on_analysis_error(self, error_msg):
+         """Handle analysis error"""
+         # Re-enable UI
+-        self.analyze_btn.setEnabled(True)
+         self.progress_bar.setVisible(False)
+         
+         QMessageBox.critical(self, "Analysis Error", f"Analysis failed:\n{error_msg}")

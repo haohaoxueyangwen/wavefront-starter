@@ -5,3 +5,5 @@ recursive-include examples *.json *.md
 recursive-include literature *.json *.bib
 recursive-include validation *.json
 recursive-include tests *.py
+recursive-include src/wfs_starter/web *.html *.json
+recursive-include maintenance *.md *.json *.patch

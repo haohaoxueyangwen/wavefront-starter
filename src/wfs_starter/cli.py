@@ -41,12 +41,19 @@ def main():
     r=sub.add_parser('run',help='Run a JSON configuration on grayscale TIFF/NPY input.');r.add_argument('config');r.add_argument('--output',required=True)
     d=sub.add_parser('demo',help='Generate and process known synthetic controls; no real experiment data.');d.add_argument('--output',required=True);d.add_argument('--case',choices=['all','wxst','wsvt','grating','hartmann','zernike'],default='all')
     sub.add_parser('check-env',help='Import every dependency and report versions.')
+    u=sub.add_parser('ui',help='Open the local browser UI for all five methods.')
+    u.add_argument('--port',type=int,default=8790)
+    u.add_argument('--workspace',default='wavefront-runs')
+    u.add_argument('--no-browser',action='store_true')
     args=p.parse_args()
     try:
         if args.command=='run':run_config(args.config,args.output)
         elif args.command=='demo':
             from .demos import run_demos
             run_demos(args.output,args.case)
+        elif args.command=='ui':
+            from .ui import serve
+            serve(args.workspace,args.port,not args.no_browser)
         else:
             import importlib
             names=['numpy','scipy','matplotlib','pywt','numba','h5py','PIL','colorama']

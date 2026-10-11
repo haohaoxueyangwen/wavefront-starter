@@ -1,0 +1,35 @@
+--- a/speckle_retriver/speckle_tracker_gui.py
++++ b/speckle_retriver/speckle_tracker_gui.py
+@@ -1927,6 +1927,11 @@
+                 if not os.path.isdir(sample_path): errors.append(f"WSVT Sample path is not a valid directory: {sample_path}")
+             if not os.path.isdir(output_dir): errors.append(f"Output directory does not exist or is not a directory: {output_dir}")
+ 
++        for enabled, widget, label in [
++                (self.use_dark_check.isChecked(), self.dark_path_edit, "Dark field"),
++                (self.use_flat_check.isChecked(), self.flat_path_edit, "Flat field")]:
++            if enabled and not os.path.isfile(widget.text().strip()):
++                errors.append(f"{label} correction enabled: select an existing image file.")
+         if errors:
+             QMessageBox.warning(self, "Input Error", "\n".join(errors))
+             return False
+@@ -2773,17 +2778,9 @@
+ 
+     def closeEvent(self, event):
+         if self.analysis_worker and self.analysis_worker.isRunning():
+-            reply = QMessageBox.question(self, 'Confirm Exit',
+-                                        "Analysis is running. Quit anyway?",
+-                                        QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+-            if reply == QMessageBox.Yes:
+-                print("Attempting to stop analysis thread...")
+-                self.analysis_worker.quit()
+-                if not self.analysis_worker.wait(1500):
+-                    print("Warning: Analysis thread did not stop gracefully.")
+-                event.accept()
+-            else:
+-                event.ignore()
++            QMessageBox.information(self, "任务仍在运行",
++                                    "分析尚未结束，请等待完成后关闭窗口。结果会保留在输出目录。")
++            event.ignore()
+         else:
+             event.accept()
+ 

@@ -1,0 +1,15 @@
+--- a/zernike_ui/runner.py
++++ b/zernike_ui/runner.py
+@@ -36,7 +36,11 @@
+             log_cb(msg)
+ 
+     emit_log("加载相位数据")
+-    phase = np.load(phase_path)
++    phase = np.load(phase_path, allow_pickle=False)
++    if phase.ndim != 2 or min(phase.shape) < 3 or not np.issubdtype(phase.dtype, np.number):
++        raise ValueError("相位必须是至少 3×3 的二维数值数组。")
++    if np.iscomplexobj(phase) or not np.isfinite(phase).all():
++        raise ValueError("相位必须是有限实数；请先处理 NaN、Inf 或复数数据。")
+     emit_progress(5)
+ 
+     emit_log("步骤1 相位转高度/λ单位")

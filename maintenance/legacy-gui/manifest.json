@@ -1,0 +1,90 @@
+[
+  {
+    "id": "speckle_gui",
+    "project": "WSVT_project",
+    "path": "speckle_retriver/speckle_tracker_gui.py",
+    "baseline_sha256": "f498e56e08a8e6a6b9f0274cef75e9d7a5b3fea7f85f4a90855c4cf3f6abbca7",
+    "repaired_sha256": "c4d7f0b9475f7fa89ec79e6e94828073bcdf2ef4fea160b7a288e0bf78a9382a",
+    "patch": "patches/speckle_gui.patch"
+  },
+  {
+    "id": "hartmann_web",
+    "project": "wavefront_research",
+    "path": "modes/xray/visualization/hartmann_designer.html",
+    "baseline_sha256": "d42ae74a1d4b265e44169264ec7989ad76ad96fd27a80b72a3bba84d23e0d9cf",
+    "repaired_sha256": "9033b29f6681a09e7865c459abe001a681f6ac3c79d68e9f8e2fa4eb5232155a",
+    "patch": "patches/hartmann_web.patch"
+  },
+  {
+    "id": "rotation_web",
+    "project": "wavefront_research",
+    "path": "modes/xray/visualization/rotation_parameter_tester.html",
+    "baseline_sha256": "d9ad466da7e37c307cb18cfa42446bc752c33ab2559a95c72c280f60309c2ade",
+    "repaired_sha256": "7030956ce46db6097b196513764b68ac84b003af51df95afc613710b211170d2",
+    "patch": "patches/rotation_web.patch"
+  },
+  {
+    "id": "hartmann_qt",
+    "project": "wavefront_research",
+    "path": "modes/xray/visualization/hartmann_designer_qt.py",
+    "baseline_sha256": "2d173bda473888b2ff12e4242916b55d47a509c07d969d453afd9479df0d1839",
+    "repaired_sha256": "a914e6c9a48a968927554328d12a83eb6381dd445be84355df3e5a90566a2a53",
+    "patch": "patches/hartmann_qt.patch"
+  },
+  {
+    "id": "zernike_ui",
+    "project": "zernike",
+    "path": "zernike_ui/app.py",
+    "baseline_sha256": "065d80071928c4f633db7282179d543807857a91c432712eca37b0a68ec57f34",
+    "repaired_sha256": "86f59a3258b09b49d067fd30ae3a1a04e39dfa4be8acdd0e559f4d5251b9e4fb",
+    "patch": "patches/zernike_ui.patch"
+  },
+  {
+    "id": "zernike_runner",
+    "project": "zernike",
+    "path": "zernike_ui/runner.py",
+    "baseline_sha256": "4a2dec7675e278cab4a6248429fab2c6b7735cbbdfbc88b979963110fd474da6",
+    "repaired_sha256": "4ec3871904fbf0d81b6d3097efe5f004cdd398a40126d5726269edf44eefefb8",
+    "patch": "patches/zernike_runner.patch"
+  },
+  {
+    "id": "zernike_advanced",
+    "project": "WSVT_ST_legacy",
+    "path": "speckle_retriver - 副本/zernike_analysis_gui.py",
+    "baseline_sha256": "18e59021a16f194e1fa977a474cd1af1ae9e617d1f232d6972035ac83581eb41",
+    "repaired_sha256": "6942fbad398347ca38fb4ab5f670c25b1738affbeb250a2ec1013206b22f1873",
+    "patch": "patches/zernike_advanced.patch"
+  },
+  {
+    "id": "focus_gui",
+    "project": "zernike",
+    "path": "focus_analysis/gui.py",
+    "baseline_sha256": "030287bc278b841bdfebf7d6363a8dc16881e2078abe8edb864fb0fdf8db6d1f",
+    "repaired_sha256": "38f798dfec5d38aafe827920d860c7e20d38f728bef2a5e6b325aa6f4b186a8c",
+    "patch": "patches/focus_gui.patch"
+  },
+  {
+    "id": "focus_run",
+    "project": "zernike",
+    "path": "focus_analysis/run_analysis.py",
+    "baseline_sha256": "47361c3581e3782c8227227d9a6547ca536794bbbe46f82884a240950305cfbd",
+    "repaired_sha256": "6a341e20ced26f2a68cd12e0089d9af2bd5d55d6da72faf01aea8b66cbd4790f",
+    "patch": "patches/focus_run.patch"
+  },
+  {
+    "id": "focus_batch",
+    "project": "zernike",
+    "path": "focus_analysis/core/batch_processor.py",
+    "baseline_sha256": "9b9ea3fc209543ccb94c307fb7e3239d283127fe73d84b9e0a8bb6b1b69b9a6b",
+    "repaired_sha256": "d56fd368bbbb86248552298e550ee91a8b6f31aa4f4ac06fa71885f9c03541fb",
+    "patch": "patches/focus_batch.patch"
+  },
+  {
+    "id": "hartmann_server",
+    "project": "wavefront_research",
+    "path": "modes/xray/visualization/hartmann_designer_server.py",
+    "baseline_sha256": "ac23376e8082137908bb9e5e7f46cc66b8d07946be310b1f73a939b7d93ea473",
+    "repaired_sha256": "64e515e366be70addf8dc66631cc46fdec48730144b039eb60fc37da2b778c99",
+    "patch": "patches/hartmann_server.patch"
+  }
+]

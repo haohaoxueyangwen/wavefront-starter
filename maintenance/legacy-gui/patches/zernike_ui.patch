@@ -1,0 +1,165 @@
+--- a/zernike_ui/app.py
++++ b/zernike_ui/app.py
+@@ -1,5 +1,7 @@
+ import os
+ import sys
++import math
++from pathlib import Path
+ from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog, QFormLayout, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QTextEdit, QProgressBar, QComboBox, QCheckBox, QSplitter, QToolBar, QStatusBar, QTabWidget, QListWidget, QListWidgetItem, QSpinBox, QDoubleSpinBox
+ from PyQt6.QtGui import QPixmap, QAction, QIcon
+ from PyQt6.QtCore import Qt, QThread, pyqtSignal, QCoreApplication, QSize
+@@ -24,6 +26,7 @@
+             self.failed.emit(str(e))
+ 
+ class ImageViewer(QGraphicsView):
++    zoom_changed = pyqtSignal(int)
+     def __init__(self):
+         super().__init__()
+         self.setScene(QGraphicsScene())
+@@ -54,6 +57,7 @@
+         factor = 1.25 if delta > 0 else 0.8
+         self.scale(factor, factor)
+         self._zoom *= factor
++        self.zoom_changed.emit(self.zoomPercent())
+ 
+     def resetView(self):
+         if self._pix is None:
+@@ -71,14 +75,15 @@
+         self.setWindowTitle("Zernike Pixel Analysis UI")
+         self.images = []
+         self.idx = 0
++        self.thread = None
+ 
+         toolbar = QToolBar("Main")
+         self.addToolBar(toolbar)
+-        act_run = QAction("运行", self)
+-        act_run.triggered.connect(self.start_workflow)
++        self.act_run = QAction("运行", self)
++        self.act_run.triggered.connect(self.start_workflow)
+         act_open = QAction("打开目录", self)
+         act_open.triggered.connect(self.open_output_dir)
+-        toolbar.addAction(act_run)
++        toolbar.addAction(self.act_run)
+         toolbar.addAction(act_open)
+         self.setStatusBar(QStatusBar())
+ 
+@@ -86,6 +91,7 @@
+         self.setCentralWidget(splitter)
+ 
+         left = QWidget()
++        self.parameter_panel = left
+         left_layout = QFormLayout(left)
+         splitter.addWidget(left)
+ 
+@@ -133,7 +139,9 @@
+ 
+         self.use_delta = QCheckBox("Use δ conversion")
+         self.refit_residual = QCheckBox("Refit residual on re-crop")
+-        self.show_fig = QCheckBox("Show figures")
++        self.show_fig = QCheckBox("结果在右侧预览")
++        self.show_fig.setEnabled(False)
++        self.show_fig.setToolTip("后台线程保存图片；结果在界面内预览，避免弹出绘图窗口。")
+         left_layout.addRow(self.use_delta)
+         left_layout.addRow(self.refit_residual)
+         left_layout.addRow(self.show_fig)
+@@ -162,6 +170,7 @@
+         self.btn_reset = QPushButton("重置视图")
+         self.page_info = QLabel("0 / 0")
+         self.zoom_info = QLabel("100%")
++        self.viewer.zoom_changed.connect(lambda value: self.zoom_info.setText(f"{value}%"))
+         self.btn_prev.clicked.connect(self.prev_image)
+         self.btn_next.clicked.connect(self.next_image)
+         self.btn_reset.clicked.connect(self.reset_view)
+@@ -209,9 +218,35 @@
+                 os.startfile(p)
+ 
+     def start_workflow(self):
++        if self.thread is not None and self.thread.isRunning():
++            self.statusBar().showMessage("任务仍在运行，请等待完成。")
++            return
+         if not self.phase_path.text().strip() or not self.output_dir.text().strip() or not self.run_name.text().strip():
+             self.statusBar().showMessage("请填写相位文件/输出目录/运行名称")
+             return
++        phase = Path(self.phase_path.text().strip())
++        out = Path(self.output_dir.text().strip())
++        name = self.run_name.text().strip()
++        if not phase.is_file() or phase.suffix.lower() != '.npy':
++            self.statusBar().showMessage("请选择存在的 .npy 相位文件。")
++            return
++        if not out.is_dir():
++            self.statusBar().showMessage("输出目录不存在，请重新选择。")
++            return
++        if name in {'.', '..'} or any(c in name for c in '/\\:*?"<>|'):
++            self.statusBar().showMessage("运行名称不能包含路径或文件名禁用字符。")
++            return
++        if any(p.name.startswith(name) for p in out.iterdir()):
++            self.statusBar().showMessage("该运行名称已有输出，请使用新名称以保留原结果。")
++            return
++        if self.use_delta.isChecked():
++            try:
++                delta = float(self.delta.text())
++                if not math.isfinite(delta) or delta <= 0:
++                    raise ValueError
++            except ValueError:
++                self.statusBar().showMessage("启用 δ 换算时，请输入有限且大于零的 δ。")
++                return
+         thr_mode = self.threshold_mode.currentText()
+         thr_value = None if thr_mode != "custom" else float(self.threshold_value.value())
+         params = {
+@@ -234,17 +269,35 @@
+         self.progress.setValue(0)
+         self.log.clear()
+         self.viewer.scene().clear()
++        self.viewer._pix = None
++        self.gallery.clear()
++        self.parameter_panel.setEnabled(False)
++        self.act_run.setEnabled(False)
++        self.statusBar().showMessage("正在分析…")
+         self.thread = WorkflowThread(params)
+         self.thread.progress.connect(self.progress.setValue)
+         self.thread.log.connect(self.append_log)
+         self.thread.done.connect(self.on_done)
+         self.thread.failed.connect(self.on_failed)
++        self.thread.finished.connect(self.on_worker_finished)
+         self.thread.start()
++
++    def closeEvent(self, event):
++        if self.thread is not None and self.thread.isRunning():
++            self.statusBar().showMessage("任务仍在运行，请等待完成后关闭窗口。")
++            event.ignore()
++            return
++        super().closeEvent(event)
++
++    def on_worker_finished(self):
++        self.parameter_panel.setEnabled(True)
++        self.act_run.setEnabled(True)
+ 
+     def append_log(self, msg):
+         self.log.append(msg)
+ 
+     def on_done(self, images):
++        self.statusBar().showMessage(f"分析完成，生成 {len(images)} 张图片。")
+         self.images = images
+         self.populate_gallery()
+         self.idx = 0
+@@ -302,9 +355,11 @@
+                 self.update_page()
+         elif e.key() in (Qt.Key.Key_Plus, Qt.Key.Key_Equal):
+             self.viewer.scale(1.25, 1.25)
++            self.viewer._zoom *= 1.25
+             self.zoom_info.setText(f"{self.viewer.zoomPercent()}%")
+         elif e.key() == Qt.Key.Key_Minus:
+             self.viewer.scale(0.8, 0.8)
++            self.viewer._zoom *= 0.8
+             self.zoom_info.setText(f"{self.viewer.zoomPercent()}%")
+         elif e.key() == Qt.Key.Key_0:
+             self.reset_view()
+@@ -313,7 +368,7 @@
+ 
+     def resizeEvent(self, e):
+         super().resizeEvent(e)
+-        if self.images:
++        if self.images and self.viewer.zoomPercent() == 100:
+             self.viewer.fitInView(self.viewer.scene().itemsBoundingRect(), Qt.AspectRatioMode.KeepAspectRatio)
+         self.zoom_info.setText(f"{self.viewer.zoomPercent()}%")
+ 

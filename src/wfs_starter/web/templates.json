@@ -1,0 +1,60 @@
+{
+  "wxst": {
+    "mode": "wxst",
+    "energy_ev": null,
+    "pixel_size_m": null,
+    "distance_m": null,
+    "search_half_window": 3,
+    "template_half_window": 2,
+    "reference": "data/reference.npy",
+    "sample": "data/sample.npy"
+  },
+  "wsvt": {
+    "mode": "wsvt",
+    "energy_ev": null,
+    "pixel_size_m": null,
+    "distance_m": null,
+    "search_half_window": 3,
+    "pairs": [
+      {
+        "reference": "data/reference_000.tif",
+        "sample": "data/sample_000.tif"
+      },
+      {
+        "reference": "data/reference_001.tif",
+        "sample": "data/sample_001.tif"
+      }
+    ]
+  },
+  "grating": {
+    "mode": "grating",
+    "reference": "data/reference.npy",
+    "sample": "data/sample.npy",
+    "band_x_center_rc": null,
+    "band_y_center_rc": null,
+    "band_x_size_rc": [
+      9,
+      9
+    ],
+    "band_y_size_rc": [
+      9,
+      9
+    ],
+    "unwrap": true
+  },
+  "hartmann": {
+    "mode": "hartmann",
+    "reference": "data/reference.npy",
+    "sample": "data/sample.npy",
+    "grid_rows": null,
+    "grid_cols": null
+  },
+  "zernike": {
+    "mode": "zernike",
+    "phase": "data/phase_rad.npy",
+    "phase_unit": null,
+    "center_xy_px": null,
+    "radius_px": null,
+    "terms": 15
+  }
+}
