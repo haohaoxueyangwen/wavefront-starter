@@ -47,7 +47,7 @@ def prepare_config(config, base):
             return [visit(v, f'{key}[{i}]') for i, v in enumerate(value)]
         if isinstance(value, float) and not math.isfinite(value):
             raise ValueError(f'{key} 必须是有限数值。')
-        if key.rsplit('.',1)[-1] in {'data_dir','dark_dir','flat_dir','analysis_source_dir','gpu_source_dir'}:
+        if key.rsplit('.',1)[-1] in {'data_dir','dark_dir','flat_dir','analysis_source_dir','gpu_source_dir','zernike_source_dir','output_root'}:
             if not value and key.rsplit('.',1)[-1]!='data_dir':return value
             p=(base/value).resolve()
             if not p.is_dir():raise ValueError('找不到目录：'+str(p))
@@ -82,7 +82,9 @@ class JobStore:
                 job = json.loads(record.read_text(encoding='utf-8'))
                 if job['status'] not in {'succeeded', 'failed', 'cancelled'}:
                     continue
-                job.update(id=folder.name, output_dir=str(folder), process=None)
+                output=Path(job.get('output_dir') or folder).resolve()
+                if not output.is_dir():continue
+                job.update(id=folder.name, output_dir=str(output), process=None)
                 job['phase_output'] = phase_result(job)
                 self.jobs[folder.name] = job
             except (ValueError, KeyError, TypeError):
@@ -107,7 +109,11 @@ class JobStore:
                 raise RuntimeError('已有任务在运行，请等待完成或停止当前任务。')
             ident = secrets.token_hex(8)
             folder = self.workspace / ident
+            if config and config.get('output_root'):
+                from .advanced_zernike import run_name
+                folder=Path(config['output_root'])/(run_name(config.get('run_name') or Path(config.get('phase','analysis')).stem)+'_'+ident)
             folder.mkdir(exist_ok=False)
+            (self.workspace/ident).mkdir(exist_ok=True)
             job = dict(id=ident, mode=mode, action=action, status='queued',
                        started=time.time(), finished=None, output_dir=str(folder),
                        cancel_requested=False, process=None)
@@ -154,7 +160,10 @@ class JobStore:
                 job['finished'] = time.time()
                 job['process'] = None
                 self.active = None
-                (folder/'job.json').write_text(json.dumps(self.snapshot(job['id']), ensure_ascii=False, indent=2), encoding='utf-8')
+                record=json.dumps(self.snapshot(job['id']), ensure_ascii=False, indent=2)
+                (folder/'job.json').write_text(record,encoding='utf-8')
+                if folder!=self.workspace/job['id']:
+                    (self.workspace/job['id']/'job.json').write_text(record,encoding='utf-8')
 
     def cancel(self, ident):
         with self.lock:
@@ -178,9 +187,19 @@ class JobStore:
             folder = Path(job['output_dir'])
             log = folder/'run.log'
             out['log'] = log.read_bytes()[-24000:].decode('utf-8', errors='replace') if log.exists() else ''
+            events=[]
+            for line in out['log'].splitlines():
+                if line.startswith('WFS_PROGRESS '):
+                    try:events.append(json.loads(line.removeprefix('WFS_PROGRESS ')))
+                    except ValueError:pass
+            if events:
+                out['progress']={'percent':max(e['percent'] for e in events),'message':events[-1]['message']}
+            summary=folder/'results'/'summary.json'
+            if summary.is_file() and summary.stat().st_size<1024*1024:
+                out['summary']=json.loads(summary.read_text(encoding='utf-8'))
             out['elapsed_s'] = round((job['finished'] or time.time()) - job['started'], 1)
             out['files'] = [p.relative_to(folder).as_posix() for p in sorted(folder.rglob('*'))
-                            if p.is_file() and p.suffix.lower() in {'.png', '.json', '.npz', '.npy', '.csv', '.log', '.pdf', '.xlsx'}]
+                            if p.is_file() and p.suffix.lower() in {'.png', '.json', '.npz', '.npy', '.csv', '.log', '.pdf', '.xlsx','.tif','.tiff','.txt'}]
             return out
 
     def asset(self, ident, name):
@@ -188,7 +207,7 @@ class JobStore:
         path = (folder / name).resolve()
         if not path.is_relative_to(folder) or not path.is_file():
             raise FileNotFoundError('找不到该任务文件。')
-        if path.suffix.lower() not in {'.png', '.json', '.npz', '.npy', '.csv', '.log', '.pdf', '.xlsx'}:
+        if path.suffix.lower() not in {'.png', '.json', '.npz', '.npy', '.csv', '.log', '.pdf', '.xlsx','.tif','.tiff','.txt'}:
             raise FileNotFoundError('不可预览的文件类型。')
         return path
 
@@ -250,14 +269,14 @@ def make_server(workspace, port=0):
                     if name=='hartmann/design':name='hartmann-design'
                     if name=='hartmann/rotation':name='hartmann-rotation'
                     self.send((ASSETS/(name+'.html')).read_bytes(), content_type='text/html; charset=utf-8')
-                elif path in {'/app.js', '/style.css'}:
+                elif path in {'/app.js', '/wavefront.js','/style.css'}:
                     self.send((ASSETS/path[1:]).read_bytes(), content_type='text/javascript; charset=utf-8' if path.endswith('.js') else 'text/css; charset=utf-8')
                 elif path == '/api/session':
                     with store.lock:
                         jobs = [store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]
                     from .speckle_backends import catalog
                     from .legacy_tools import source_locations
-                    self.send({'application':'wavefront-frontends','version':'0.4.0','token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
+                    self.send({'application':'wavefront-frontends','version':'0.4.1','token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
                                'legacy_sources':source_locations(),
                                'templates':load_templates(),
                                'jobs':jobs})
@@ -306,6 +325,13 @@ def make_server(workspace, port=0):
                     self.send({'id':store.start(data)},202)
                 elif urlparse(self.path).path == '/api/cancel':
                     store.cancel(data['id']);self.send({'ok':True})
+                elif urlparse(self.path).path == '/api/open-output':
+                    folder=Path(store.jobs[data['id']]['output_dir']).resolve()
+                    if not folder.is_dir():raise FileNotFoundError('结果目录不存在。')
+                    if os.name=='nt':os.startfile(str(folder))
+                    else:
+                        subprocess.Popen(['open' if sys.platform=='darwin' else 'xdg-open',str(folder)])
+                    self.send({'ok':True})
                 elif urlparse(self.path).path == '/api/phase-input':
                     self.send(store.phase_input(data['id']))
                 elif urlparse(self.path).path == '/api/browse':
@@ -316,7 +342,7 @@ def make_server(workspace, port=0):
                     self.send(paired_directories(data['reference'],data['sample']))
                 elif urlparse(self.path).path == '/api/preview':
                     from .local_files import preview
-                    self.send(preview(data['path'],data.get('base',''),bool(data.get('spectrum',False))))
+                    self.send(preview(data['path'],data.get('base',''),bool(data.get('spectrum',False)),bool(data.get('allow_masked',False))))
                 elif urlparse(self.path).path in {'/api/simulate','/api/recover','/api/summary','/api/rotation/estimate','/api/rotation/run'}:
                     with store.lock:
                         if store.active or store.legacy_busy:raise RuntimeError('已有任务在运行，请等待完成。')

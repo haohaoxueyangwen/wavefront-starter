@@ -11,5 +11,7 @@
   "threshold_value": 0,
   "select_mode": "less",
   "refit_residual": false,
-  "analysis_source_dir": ""
+  "analysis_source_dir": "",
+  "output_root": "",
+  "run_name": "analysis"
 }

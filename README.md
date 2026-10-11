@@ -76,6 +76,7 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 | [docs/05_key_reviews.md](docs/05_key_reviews.md) | 7 篇核心综述与理论总览的中文导读 |
 | [docs/06_learning_path.md](docs/06_learning_path.md) | 从基础到接入实验数据 |
 | [docs/07_resources.md](docs/07_resources.md) | 配套软件、公开实验数据与原仓库 |
+| [docs/10_zernike_parity.md](docs/10_zernike_parity.md) | 原 Zernike 两套界面逐项对照、完整参数与已知波前示例 |
 | [examples/](examples/) | 实验配置模板，标定项为 null，必须先填写 |
 | [src/wfs_starter/core.py](src/wfs_starter/core.py) | 新的教学接口和输入检查 |
 | [src/wfs_starter/vendor/](src/wfs_starter/vendor/) | 从已有代码提取的核心实现 |
@@ -86,7 +87,7 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 
 高性能 C++ 算法维护在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)，历史完整 Hartmann 仿真与恢复维护在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)。本仓库提供学习示例、四个独立前端及原研究算法桥接；科研参数、冻结性能结果、深度学习训练与动态多脉冲研究仍在原工程中维护。
 
-0.4.0：四个独立前端替换旧统一工作台。接口、合成案例和原曲率 / 焦点流程的检查见 [独立前端验证](validation/independent_frontends.json)。C++ / CUDA 的执行需要对应平台构建产物；安装网页界面不会自动生成原生算法库。
+0.4.1：四个独立前端，波前分析默认提供原完整 Zernike（5–50 项、径向低阶去除、曲率、完整报告与 TIFF），手动算法随仓库打包；[完整示例与功能对照](docs/10_zernike_parity.md)。接口、合成案例和原曲率 / 焦点流程的检查见 [独立前端验证](validation/independent_frontends.json)。C++ / CUDA 的执行需要对应平台构建产物；安装网页界面不会自动生成原生算法库。
 
 散斑参考实现保留 UChicago Argonne 的版权声明。教学整理为本地修改版，来源与变更见 [NOTICE](provenance/NOTICE.md)。其他提取函数来自作者已有代码；本次未另外授予整个仓库新的开源许可证。
 

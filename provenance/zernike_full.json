@@ -1,0 +1,41 @@
+{
+  "version": "0.4.1",
+  "sources": [
+    {
+      "role": "manual_gui",
+      "source_basename": "zernike_analysis_gui.py",
+      "sha256": "6942fbad398347ca38fb4ab5f670c25b1738affbeb250a2ec1013206b22f1873"
+    },
+    {
+      "role": "manual_algorithm",
+      "source_basename": "analysis_zernike.py",
+      "sha256": "cfe1b76f68b83c42ea2dd8cef46c7220324f46fb99cb3106aa27ed4dccbb7b53"
+    },
+    {
+      "role": "automatic_gui_archive",
+      "source_basename": "app.py",
+      "sha256": "86f59a3258b09b49d067fd30ae3a1a04e39dfa4be8acdd0e559f4d5251b9e4fb"
+    },
+    {
+      "role": "automatic_runner",
+      "source_basename": "runner.py",
+      "sha256": "4ec3871904fbf0d81b6d3097efe5f004cdd398a40126d5726269edf44eefefb8"
+    }
+  ],
+  "bundled_scientific_source": "src/wfs_starter/vendor/advanced_zernike_original.py",
+  "bundled_bytes_equal_original": true,
+  "runtime_corrections": [
+    "Standard Noll indices (old j1=(0,2), duplicate/invalid modes).",
+    "Energy-derived wavelength in micrometres (old GUI nm value mislabeled um)."
+  ],
+  "scientific_workflow_preserved": [
+    "Original scipy least_squares fit",
+    "Original radial-order subtraction",
+    "Original fixed-axis j4/j6 ROC formula",
+    "Original complete report and 3D original-pupil view"
+  ],
+  "source_references": [
+    "https://aotools.readthedocs.io/en/latest/_modules/aotools/functions/zernike.html#zernIndex",
+    "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=920358"
+  ]
+}

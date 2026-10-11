@@ -36,7 +36,7 @@ def hartmann_file(relative):
     return path
 
 def source_locations():
-    return {'wavefront':os.environ.get('WFS_ANALYSIS_SOURCE',''), 'hartmann':os.environ.get('WFS_HARTMANN_PROJECT','')}
+    return {'wavefront':os.environ.get('WFS_ANALYSIS_SOURCE',''), 'zernike':os.environ.get('WFS_ZERNIKE_SOURCE',''), 'hartmann':os.environ.get('WFS_HARTMANN_PROJECT','')}
 
 def run_analysis(config,output):
     import json
@@ -51,7 +51,8 @@ def run_analysis(config,output):
         from .core import positive
         positive(config['energy_ev'],'energy_ev');positive(config['pixel_size_um'],'pixel_size_um')
         runner=importlib.import_module('zernike_ui.runner')
-        params=dict(phase_path=config['phase'],phase_unit='rad',output_dir=str(output),run_name='analysis',
+        from .advanced_zernike import progress,run_name
+        params=dict(phase_path=config['phase'],phase_unit='rad',output_dir=str(output),run_name=run_name(config.get('run_name')),
                     energy_ev=config['energy_ev'],delta=config['delta'],pixel_size_um=config['pixel_size_um'],
                     threshold=config['threshold_value'] if config['threshold_mode']=='custom' else config['threshold_mode'],
                     select_mode=config['select_mode'],use_delta=config['use_delta'],
@@ -67,7 +68,7 @@ def run_analysis(config,output):
                     savefig(figure,file.with_suffix('.png'),dpi=130,bbox_inches='tight')
             return result
         Figure.savefig=save_with_preview
-        try:runner.run_workflow(params,log_cb=print)
+        try:runner.run_workflow(params,log_cb=lambda msg:print(msg,flush=True),progress_cb=lambda value:progress(value,'原自动 ROI / 曲率 / 残差 Zernike 流程'))
         finally:Figure.savefig=savefig
         source=root/'zernike_ui'/'runner.py'
     elif mode=='focus':

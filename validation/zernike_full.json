@@ -1,0 +1,39 @@
+{
+  "version": "0.4.1",
+  "test_count": 35,
+  "test_result": "passed",
+  "numerical_control": "Independent Cartesian piston, x/y tilt, defocus, astigmatism, coma and spherical aberration",
+  "fitted_terms": 50,
+  "removed_radial_order": 2,
+  "max_coefficient_error_rad": 2.7755575615628914e-17,
+  "high_order_rms_rad": 0.08649887793353608,
+  "fitting_residual_rms_rad": 3.1908198470842033e-16,
+  "original_scientific_source_unchanged": true,
+  "synthetic_input_hash_unchanged": true,
+  "verified_png_count": 7,
+  "verified_tiff_count": 10,
+  "raw_float32_tiff_match_npz": true,
+  "browser_checks": [
+    "Directory picker and selected output folder",
+    "Masked input preview statistics",
+    "Drag pupil updates floating-point center and radius",
+    "50-term complete original report run",
+    "All 50 coefficients displayed",
+    "Original report viewer opened and zoomed to 130%",
+    "Separate center X/Y controls preserve decimals",
+    "External output history survives owned server restart",
+    "All original automatic ROI fields exposed; conditional fields enabled correctly",
+    "No browser console errors"
+  ],
+  "boundary": "Corrected original manual Noll indexing and energy units; retains original fixed-axis ROC formula. Synthetic numerical and UI validation, not experimental calibration.",
+  "automatic_roi_original_runner": {
+    "original_auto_surface_workflow": "passed",
+    "input_unchanged": true,
+    "run_name_forwarded": true,
+    "progress_reached_100": true,
+    "png_count": 19,
+    "pdf_count": 19
+  },
+  "documented_relative_path_cli_example": "passed",
+  "cli_matches_browser_arrays": true
+}

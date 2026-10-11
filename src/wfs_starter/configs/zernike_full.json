@@ -1,0 +1,15 @@
+{
+  "mode": "zernike_full",
+  "phase": "data/phase_rad.npy",
+  "phase_unit": "rad",
+  "pixel_size_um": 0.65,
+  "photon_energy_kev": 15,
+  "center_xy_px": null,
+  "radius_px": null,
+  "terms": 15,
+  "max_order_remove": 2,
+  "output_root": "",
+  "run_name": "",
+  "export_tiff": true,
+  "zernike_source_dir": ""
+}

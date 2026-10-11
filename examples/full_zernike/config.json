@@ -1,0 +1,18 @@
+{
+  "mode": "zernike_full",
+  "phase": "phase_rad.npy",
+  "phase_unit": "rad",
+  "pixel_size_um": 0.65,
+  "photon_energy_kev": 15,
+  "center_xy_px": [
+    31.5,
+    31.5
+  ],
+  "radius_px": 28,
+  "terms": 50,
+  "max_order_remove": 2,
+  "output_root": "",
+  "run_name": "known_wavefront",
+  "export_tiff": true,
+  "zernike_source_dir": ""
+}

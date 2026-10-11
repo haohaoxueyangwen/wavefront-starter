@@ -34,8 +34,8 @@ class UITests(unittest.TestCase):
         url=f'http://127.0.0.1:{server.server_port}'
         try:
             session=json.load(urllib.request.urlopen(url+'/api/session'))
-            self.assertEqual(len(session['templates']),7)
-            for asset,content_type in [('/app.js','text/javascript'),('/style.css','text/css')]:
+            self.assertEqual(len(session['templates']),8)
+            for asset,content_type in [('/app.js','text/javascript'),('/wavefront.js','text/javascript'),('/style.css','text/css')]:
                 with urllib.request.urlopen(url+asset) as response:
                     self.assertIn(content_type,response.headers['Content-Type'])
                     self.assertGreater(len(response.read()),100)
@@ -45,6 +45,16 @@ class UITests(unittest.TestCase):
             req=urllib.request.Request(url+'/api/start',data=b'[]',headers={'Content-Type':'application/json','X-WFS-Token':session['token']})
             with self.assertRaises(urllib.error.HTTPError) as caught:urllib.request.urlopen(req)
             self.assertEqual(caught.exception.code,400)
+            # Opening a result directory is token protected and limited to a known job.
+            import os
+            from unittest.mock import patch
+            folder=self.root/'aabbccddeeff0011';folder.mkdir()
+            server.store.jobs[folder.name]={'output_dir':str(folder)}
+            req=urllib.request.Request(url+'/api/open-output',data=json.dumps({'id':folder.name}).encode(),headers={'Content-Type':'application/json','X-WFS-Token':session['token']})
+            with patch('wfs_starter.ui.os.startfile',create=True) as open_folder,patch('wfs_starter.ui.subprocess.Popen') as spawn:
+                self.assertTrue(json.load(urllib.request.urlopen(req))['ok'])
+                if os.name=='nt':open_folder.assert_called_once_with(str(folder))
+                else:self.assertTrue(spawn.called)
         finally:
             server.shutdown();server.server_close();thread.join()
 

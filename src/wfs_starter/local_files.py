@@ -36,14 +36,19 @@ def paired_directories(reference,sample):
     return {'pairs':[{'reference':str(a),'sample':str(b)} for a,b in zip(*files)],
             'ordering':'自然文件名顺序；运行前请核对逐行对应，不推断扫描坐标。'}
 
-def preview(raw,base='',spectrum=False):
+def preview(raw,base='',spectrum=False,allow_masked=False):
     from .core import image
     import numpy as np
     from PIL import Image
     path=(Path(base or Path.cwd())/raw).resolve()
-    a=image(path);shape=list(a.shape)
+    a=np.load(path,allow_pickle=False) if allow_masked and path.suffix.lower()=='.npy' else image(path)
+    if a.ndim!=2 or min(a.shape)<8 or not np.isrealobj(a):raise ValueError('预览需要二维实数图像。')
+    finite=a[np.isfinite(a)]
+    if not finite.size:raise ValueError('输入没有有限采样值。')
+    stats={'minimum':float(finite.min()),'maximum':float(finite.max()),'mean':float(finite.mean()),'std':float(finite.std()),'finite_points':int(finite.size),'total_points':int(a.size)}
+    shape=list(a.shape)
     if spectrum:a=np.log1p(np.abs(np.fft.fftshift(np.fft.fft2(a))))
-    lo,hi=np.percentile(a,[1,99.8]);a=np.clip((a-lo)/(hi-lo if hi>lo else 1),0,1)
+    lo,hi=np.percentile(a[np.isfinite(a)],[1,99.8]);a=np.nan_to_num(np.clip((a-lo)/(hi-lo if hi>lo else 1),0,1),nan=0)
     picture=Image.fromarray(np.uint8(a*255),'L');picture.thumbnail((1000,1000))
     stream=io.BytesIO();picture.save(stream,format='PNG')
-    return {'shape_rc':shape,'image':'data:image/png;base64,'+base64.b64encode(stream.getvalue()).decode('ascii')}
+    return {'shape_rc':shape,'stats':stats,'image':'data:image/png;base64,'+base64.b64encode(stream.getvalue()).decode('ascii')}

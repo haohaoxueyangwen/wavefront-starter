@@ -14,6 +14,13 @@ def run_config(path,output):
         if isinstance(value,list):
             for i,v in enumerate(value):check_filled(v,f'{key}[{i}]')
     check_filled(config)
+    if config['mode'] in {'zernike_full','surface','focus'}:
+        for key in ('phase','data_dir','dark_dir','flat_dir','analysis_source_dir','zernike_source_dir'):
+            if config.get(key):config[key]=str((path.parent/Path(config[key])).resolve())
+    if config['mode']=='zernike_full':
+        from .advanced_zernike import run_full
+        run_full(config,output)
+        return
     if config['mode'] in {'surface','focus'}:
         from .legacy_tools import run_analysis
         run_analysis(config,output)

@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 
-MODES = ("wxst", "wsvt", "grating", "hartmann", "zernike", "surface", "focus")
+MODES = ("wxst", "wsvt", "grating", "hartmann", "zernike", "zernike_full", "surface", "focus")
 
 def load_templates():
     root = Path(__file__).with_name("configs")
