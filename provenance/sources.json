@@ -4,21 +4,21 @@
     "source_id": "local-wsvt-reference",
     "source_file": "WSVT.py",
     "source_sha256": "50fba73b5c5ad542aef52a690c375cf92a15dac4ab0cf65f081a3dd0a307d26a",
-    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized."
+    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized. In v0.3.1 unreferenced helpers and unused loader imports were removed; required solver bodies retained."
   },
   {
     "file": "src/wfs_starter/vendor/speckle/WXST.py",
     "source_id": "local-wsvt-reference",
     "source_file": "WXST.py",
     "source_sha256": "0ea96b73c07bd3fb7af6042f41e11a231d5d03cad834ab3384289f5231c89ce6",
-    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized."
+    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized. In v0.3.1 unreferenced helpers and unused loader imports were removed; required solver bodies retained."
   },
   {
     "file": "src/wfs_starter/vendor/speckle/func.py",
     "source_id": "local-wsvt-reference",
     "source_file": "func.py",
     "source_sha256": "e79b05cf58e3f0883f8b35616e6a4f7dd3cc81fc42cdc6f188f4dc88eaa7302e",
-    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized."
+    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized. In v0.3.1 unreferenced helpers and unused loader imports were removed; required solver bodies retained."
   },
   {
     "file": "src/wfs_starter/vendor/speckle/euclidean_dist.py",

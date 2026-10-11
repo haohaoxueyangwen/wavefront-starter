@@ -49,8 +49,6 @@ import pywt                           # PyWavelets library for wavelet transform
 import os                             # For file and directory operations
 import sys                            # For system-specific parameters and functions
 import time                           # For timing code execution
-from PIL import Image                 # For image processing
-import glob                           # For finding pathnames matching a pattern
 import scipy.constants as sc          # For scientific constants
 from .func import prColor, frankotchellappa, image_roi, Wavelet_transform, write_h5, write_json, find_disp  # Custom functions
 from .euclidean_dist import dist_numba  # Distance calculation function with Numba acceleration
@@ -65,54 +63,7 @@ import scipy.interpolate as sfit      # For interpolation
 import copy                           # For creating deep copies of objects
 
 
-def load_image(file_path):#加载图像的函数
-    """
-    Load an image from file path and convert to numpy array
-    
-    Args:
-        file_path (str): Path to the image file
-        
-    Returns:
-        numpy.ndarray: Image as a numpy array
-    """
-    if os.path.exists(file_path):
-        img = np.array(Image.open(file_path))
-    else:
-        prColor('Error: wrong data path. No data is loaded.', 'red')
-        sys.exit()
-    return np.array(img)
 
-def image_preprocess(image, have_dark, dark_img, have_flat, flat_img):# 图像预处理函数
-    '''
-    Perform flat field and dark field corrections on an image
-    
-    Args:
-        image (numpy.ndarray): Raw image to be corrected # 确认原始图像
-        have_dark (bool): Flag indicating if dark image is available # 确认是否存在暗场图像
-        dark_img (numpy.ndarray): Dark image for correction # 暗场图像
-        have_flat (bool): Flag indicating if flat image is available # 确认是否存在平场图像
-        flat_img (numpy.ndarray): Flat image for correction # 平场图像
-        暗场矫正：消除本底噪声和暗电流
-        平场矫正：补偿各像素不均匀性和x射线强度空间分布不均匀性
-        目的：消除系统误差
-    Returns:
-        numpy.ndarray: Corrected image # 返回校正后的图像
-    '''
-    if (have_flat != 0 and have_dark != 0): # 如果两个图像都存在
-        # Apply both dark and flat field corrections
-        numerator = (flat_img - dark_img).clip(0.00000001) # 分子
-        # numerator = numerator / np.amax(numerator)
-        image = ((image - dark_img) / numerator) * np.amax(image)
-    elif (have_dark != 0): # 如果只有暗场图像存在
-        # Apply only dark field correction
-        image = (image - dark_img).clip(0.00000001)
-    elif (have_flat != 0): # 如果只有平场图像存在
-        # Apply only flat field correction
-        flat_img[flat_img == 0] = 0.00000001 # 将平场图像中为0的像素值设置为0.00000001
-        # flat_img = flat_img / np.amax(flat_img)
-        image = (image / flat_img) * np.amax(image) # 校正图像
-
-    return image
 
 class WXST:
     """

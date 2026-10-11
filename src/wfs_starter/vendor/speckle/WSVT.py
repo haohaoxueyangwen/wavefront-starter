@@ -48,8 +48,6 @@ import pywt
 import os
 import sys
 import time
-from PIL import Image
-import glob
 import scipy.constants as sc
 from .func import prColor, frankotchellappa, image_roi, Wavelet_transform, write_h5, write_json, find_disp
 from .euclidean_dist import dist_numba
@@ -64,42 +62,7 @@ import scipy.interpolate as sfit
 import copy
 
 
-def load_images(Folder_path, filename_format='*.tif'):
-    f_list = glob.glob(os.path.join(Folder_path, filename_format))
-    f_list = sorted(f_list)
-    img = []
-    for f_single in f_list:
-        img.append(np.array(Image.open(f_single)))
-        # prColor('load image: {}'.format(f_single), 'green')
-    if len(img) == 0:
-        prColor(
-            'Error: wrong data path. No data is loaded. {}'.format(
-                Folder_path), 'red')
-        sys.exit()
 
-    return np.array(img)
-
-def image_preprocess(image, have_dark, dark_img, have_flat, flat_img):
-    '''
-        do the flat or dark correction for the images
-        img:            image to be corrected
-        have_dark:      if there is dark
-        dark_img:           dark image
-        have_flat:      if there is flat
-        flat_img:           flat image        
-    '''
-    if (have_flat != 0 and have_dark != 0):
-        numerator = (flat_img - dark_img).clip(0.00000001)
-        # numerator = numerator / np.amax(numerator)
-        image = ((image - dark_img) / numerator) * np.amax(image)
-    elif (have_dark != 0):
-        image = (image - dark_img).clip(0.00000001)
-    elif (have_flat != 0):
-        flat_img[flat_img == 0] = 0.00000001
-        # flat_img = flat_img / np.amax(flat_img)
-        image = (image / flat_img) * np.amax(image)
-
-    return image
 
 class WSVT:
     def __init__(self,

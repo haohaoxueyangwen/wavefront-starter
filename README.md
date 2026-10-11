@@ -12,6 +12,7 @@
 | 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
 | 找完整文献 | [34 条分类文献与专著](docs/04_reading.md) / [BibTeX、RIS](literature/) |
 | 用网页界面操作 | [波前工作台：启动与界面指南](docs/08_interfaces.md) |
+| 找唯一代码入口和清理记录 | [代码维护说明](docs/09_code_maintenance.md) |
 | 跑通第一套数据 | [五案例操作指南](docs/01_first_run.md) |
 | 换成自己的实验数据 | [数据、单位与标定要求](docs/02_real_data.md) |
 | 找公开实验数据和原研究代码 | [软件与数据入口](docs/07_resources.md) |

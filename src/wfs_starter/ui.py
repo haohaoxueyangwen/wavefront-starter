@@ -16,7 +16,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote, urlparse
 import webbrowser
 
-MODES = ('wxst', 'wsvt', 'grating', 'hartmann', 'zernike')
+from .config_templates import MODES, load_templates
 ASSETS = Path(__file__).with_name('web')
 
 def phase_result(job):
@@ -238,7 +238,7 @@ def make_server(workspace, port=0):
                     with store.lock:
                         jobs = [store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]
                     self.send({'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()),
-                               'templates':json.loads((ASSETS/'templates.json').read_text(encoding='utf-8')),
+                               'templates':load_templates(),
                                'jobs':jobs})
                 elif path.startswith('/api/job/'):
                     self.send(store.snapshot(path.rsplit('/', 1)[-1]))

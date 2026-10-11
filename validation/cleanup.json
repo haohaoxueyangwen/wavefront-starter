@@ -1,0 +1,43 @@
+{
+  "version": "0.3.1",
+  "unreferenced_definitions_removed": 33,
+  "func_lines_before": 2204,
+  "func_lines_after": 275,
+  "required_helper_bodies_ast_identical": 7,
+  "WXST_WSVT_solver_classes_ast_identical": true,
+  "unchanged_other_solver_files": true,
+  "canonical_config_templates": 5,
+  "duplicate_ui_template_bundle_removed": true,
+  "unit_checks_passed": 22,
+  "synthetic_result_array_comparison": {
+    "wxst": {
+      "arrays_compared": 6,
+      "all_values_exactly_equal": true
+    },
+    "wsvt": {
+      "arrays_compared": 6,
+      "all_values_exactly_equal": true
+    },
+    "grating": {
+      "arrays_compared": 5,
+      "all_values_exactly_equal": true
+    },
+    "hartmann": {
+      "arrays_compared": 6,
+      "all_values_exactly_equal": true
+    },
+    "zernike": {
+      "arrays_compared": 4,
+      "all_values_exactly_equal": true
+    }
+  },
+  "synthetic_array_count": 27,
+  "live_ui_template_endpoint_matches_single_source": true,
+  "local_document_links_checked": 101,
+  "wheel_contains_only_canonical_templates": true,
+  "wheel_sha256": "86f46638e282079b71201642a0eef79984a47ccbe66ffbe8c470c0394dd4320a",
+  "isolated_installed_wheel_startup_checked": true,
+  "generated_cache_action": "Four generated directories / 31 files archived with verified hashes; fresh build created for packaging.",
+  "original_research_directory_action": "Inventory only; unique files, dirty worktrees, compatibility links and frozen experiment snapshots retained.",
+  "scope": "Dead-code removal and exact synthetic-array equivalence; no new physical accuracy or native/GPU acceptance."
+}
