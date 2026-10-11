@@ -1,0 +1,18 @@
+{
+  "version": "0.4.0",
+  "hartmann_pages": [
+    {
+      "source_file": "hartmann_designer.html",
+      "source_sha256": "9033b29f6681a09e7865c459abe001a681f6ac3c79d68e9f8e2fa4eb5232155a",
+      "frontend": "src/wfs_starter/web/hartmann-design.html",
+      "changes": "Original controls and calculation JavaScript retained; independent navigation and local session-token transport added."
+    },
+    {
+      "source_file": "rotation_parameter_tester.html",
+      "source_sha256": "7030956ce46db6097b196513764b68ac84b003af51df95afc613710b211170d2",
+      "frontend": "src/wfs_starter/web/hartmann-rotation.html",
+      "changes": "Original controls and calculation JavaScript retained; independent navigation and local session-token transport added."
+    }
+  ],
+  "scientific_backends": "Original Hartmann, surface/focus, C++ and Edge CUDA workflows called via adapters; source repositories and experiment artifacts are maintained separately."
+}

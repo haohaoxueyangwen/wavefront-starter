@@ -1,4 +1,4 @@
-"""Loopback teaching UI; jobs call the existing CLI in an owned CPU subprocess."""
+"""Four independent loopback frontends, sharing only server and job utilities."""
 from __future__ import annotations
 
 import json
@@ -47,8 +47,13 @@ def prepare_config(config, base):
             return [visit(v, f'{key}[{i}]') for i, v in enumerate(value)]
         if isinstance(value, float) and not math.isfinite(value):
             raise ValueError(f'{key} 必须是有限数值。')
-        if key.rsplit('.', 1)[-1] in {'reference', 'sample', 'phase', 'dark', 'flat'}:
-            if not value and key.rsplit('.', 1)[-1] in {'dark', 'flat'}:
+        if key.rsplit('.',1)[-1] in {'data_dir','dark_dir','flat_dir','analysis_source_dir','gpu_source_dir'}:
+            if not value and key.rsplit('.',1)[-1]!='data_dir':return value
+            p=(base/value).resolve()
+            if not p.is_dir():raise ValueError('找不到目录：'+str(p))
+            return str(p)
+        if key.rsplit('.', 1)[-1] in {'reference', 'sample', 'phase', 'dark', 'flat', 'cpp_executable'}:
+            if not value and key.rsplit('.', 1)[-1] in {'dark', 'flat', 'cpp_executable'}:
                 return value
             if not isinstance(value, str) or not value:
                 raise ValueError(f'{key} 必须是文件路径。')
@@ -66,6 +71,7 @@ class JobStore:
         self.jobs = {}
         self.lock = threading.RLock()
         self.active = None
+        self.legacy_busy = False
         for folder in sorted(self.workspace.iterdir()):
             if not folder.is_dir() or not re.fullmatch('[a-f0-9]{16}', folder.name):
                 continue
@@ -93,8 +99,11 @@ class JobStore:
             config = prepare_config(payload.get('config'), payload.get('base_dir') or '')
             if config['mode'] != mode:
                 raise ValueError('配置 mode 与所选方法不一致。')
+            if mode in {'wxst','wsvt'}:
+                from .speckle_backends import validate_backend
+                validate_backend(config)
         with self.lock:
-            if self.active:
+            if self.active or self.legacy_busy:
                 raise RuntimeError('已有任务在运行，请等待完成或停止当前任务。')
             ident = secrets.token_hex(8)
             folder = self.workspace / ident
@@ -126,6 +135,7 @@ class JobStore:
                         return
                     job['process'] = subprocess.Popen(args, cwd=self.workspace,
                         stdout=log, stderr=subprocess.STDOUT, env=env,
+                        start_new_session=os.name!='nt',
                         creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
                     job['status'] = 'running'
                 code = job['process'].wait()
@@ -154,7 +164,12 @@ class JobStore:
             job['cancel_requested'] = True
             process = job['process']
             if process is not None:
-                process.terminate()
+                if os.name=='nt':
+                    subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],stdout=subprocess.DEVNULL,
+                                   stderr=subprocess.DEVNULL,creationflags=subprocess.CREATE_NO_WINDOW)
+                else:
+                    import signal
+                    os.killpg(process.pid,signal.SIGTERM)
 
     def snapshot(self, ident):
         with self.lock:
@@ -165,7 +180,7 @@ class JobStore:
             out['log'] = log.read_bytes()[-24000:].decode('utf-8', errors='replace') if log.exists() else ''
             out['elapsed_s'] = round((job['finished'] or time.time()) - job['started'], 1)
             out['files'] = [p.relative_to(folder).as_posix() for p in sorted(folder.rglob('*'))
-                            if p.is_file() and p.suffix.lower() in {'.png', '.json', '.npz', '.log'}]
+                            if p.is_file() and p.suffix.lower() in {'.png', '.json', '.npz', '.npy', '.csv', '.log', '.pdf', '.xlsx'}]
             return out
 
     def asset(self, ident, name):
@@ -173,7 +188,7 @@ class JobStore:
         path = (folder / name).resolve()
         if not path.is_relative_to(folder) or not path.is_file():
             raise FileNotFoundError('找不到该任务文件。')
-        if path.suffix.lower() not in {'.png', '.json', '.npz', '.npy', '.log'}:
+        if path.suffix.lower() not in {'.png', '.json', '.npz', '.npy', '.csv', '.log', '.pdf', '.xlsx'}:
             raise FileNotFoundError('不可预览的文件类型。')
         return path
 
@@ -230,14 +245,20 @@ def make_server(workspace, port=0):
                 if self.headers.get('Host') not in {f'127.0.0.1:{self.server.server_port}', f'localhost:{self.server.server_port}'}:
                     self.send({'error':'无效的本地地址。'}, 403); return
                 path = unquote(urlparse(self.path).path)
-                if path == '/':
-                    self.send((ASSETS/'index.html').read_bytes(), content_type='text/html; charset=utf-8')
+                if path in {'/','/speckle','/grating','/hartmann','/wavefront','/hartmann/design','/hartmann/rotation'}:
+                    name='index' if path=='/' else path[1:]
+                    if name=='hartmann/design':name='hartmann-design'
+                    if name=='hartmann/rotation':name='hartmann-rotation'
+                    self.send((ASSETS/(name+'.html')).read_bytes(), content_type='text/html; charset=utf-8')
                 elif path in {'/app.js', '/style.css'}:
                     self.send((ASSETS/path[1:]).read_bytes(), content_type='text/javascript; charset=utf-8' if path.endswith('.js') else 'text/css; charset=utf-8')
                 elif path == '/api/session':
                     with store.lock:
                         jobs = [store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]
-                    self.send({'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()),
+                    from .speckle_backends import catalog
+                    from .legacy_tools import source_locations
+                    self.send({'application':'wavefront-frontends','version':'0.4.0','token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
+                               'legacy_sources':source_locations(),
                                'templates':load_templates(),
                                'jobs':jobs})
                 elif path.startswith('/api/job/'):
@@ -246,13 +267,30 @@ def make_server(workspace, port=0):
                     _, _, ident, name = path.split('/', 3)
                     file = store.asset(ident, name)
                     self.send(file.read_bytes(), content_type=mimetypes.guess_type(str(file))[0] or 'application/octet-stream')
+                elif path.startswith('/files/'):
+                    from .legacy_tools import hartmann_file
+                    file=hartmann_file(path.removeprefix('/files/'))
+                    self.send(file.read_bytes(),content_type=mimetypes.guess_type(str(file))[0] or 'application/octet-stream')
+                elif path.startswith('/api/rotation/job/'):
+                    from .legacy_tools import hartmann_module
+                    hartmann_module()
+                    from modes.xray.visualization.rotation_parameter_service import job_status
+                    self.send(job_status(path.rsplit('/',1)[-1]))
+                elif path=='/api/health':
+                    from .legacy_tools import source_locations
+                    locations=source_locations()
+                    self.send({'ok':bool(locations['hartmann']),'root':locations['hartmann']})
                 else:
                     self.send({'error':'没有这个页面。'},404)
             except (KeyError, FileNotFoundError):
                 self.send({'error':'找不到任务或文件。'},404)
+            except (ValueError,OSError,ImportError) as exc:
+                self.send({'error':str(exc)},400)
 
         def do_POST(self):
             try:
+                if self.headers.get('Host') not in {f'127.0.0.1:{self.server.server_port}',f'localhost:{self.server.server_port}'}:
+                    self.send({'error':'无效的本地地址。'},403);return
                 if self.headers.get('X-WFS-Token') != token:
                     self.send({'error':'页面会话已失效，请刷新。'},403);return
                 origin = self.headers.get('Origin')
@@ -270,22 +308,40 @@ def make_server(workspace, port=0):
                     store.cancel(data['id']);self.send({'ok':True})
                 elif urlparse(self.path).path == '/api/phase-input':
                     self.send(store.phase_input(data['id']))
+                elif urlparse(self.path).path == '/api/browse':
+                    from .local_files import browse
+                    self.send(browse(data.get('path',''),data.get('kind','file'),data.get('base','')))
+                elif urlparse(self.path).path == '/api/pairs':
+                    from .local_files import paired_directories
+                    self.send(paired_directories(data['reference'],data['sample']))
+                elif urlparse(self.path).path == '/api/preview':
+                    from .local_files import preview
+                    self.send(preview(data['path'],data.get('base',''),bool(data.get('spectrum',False))))
+                elif urlparse(self.path).path in {'/api/simulate','/api/recover','/api/summary','/api/rotation/estimate','/api/rotation/run'}:
+                    with store.lock:
+                        if store.active or store.legacy_busy:raise RuntimeError('已有任务在运行，请等待完成。')
+                        store.legacy_busy=True
+                    try:
+                        from .legacy_tools import hartmann_operation
+                        self.send(hartmann_operation(urlparse(self.path).path,data))
+                    finally:
+                        with store.lock:store.legacy_busy=False
                 else:
                     self.send({'error':'没有这个操作。'},404)
             except RuntimeError as exc:
                 self.send({'error':str(exc)},409)
-            except (ValueError, TypeError, KeyError, OSError) as exc:
+            except (ValueError, TypeError, KeyError, OSError, ImportError) as exc:
                 self.send({'error':str(exc)},400)
     server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
     server.store = store
     return server
 
-def serve(workspace='wavefront-runs', port=8790, open_browser=True):
+def serve(workspace='wavefront-runs', port=8790, open_browser=True, app='home'):
     try:
         server = make_server(workspace, port)
     except OSError as exc:
         raise ValueError(f'无法启动本地工作台：{exc}；端口占用时请用 --port 8791。') from exc
-    url = f'http://127.0.0.1:{server.server_port}/'
+    url = f'http://127.0.0.1:{server.server_port}/'+('' if app=='home' else app)
     print(f'Wavefront UI: {url}\nOutputs: {server.store.workspace}', flush=True)
     if open_browser:
         webbrowser.open(url)

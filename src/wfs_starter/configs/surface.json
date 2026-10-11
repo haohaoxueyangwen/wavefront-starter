@@ -1,0 +1,15 @@
+{
+  "mode": "surface",
+  "phase": "data/phase_rad.npy",
+  "phase_unit": "rad",
+  "energy_ev": null,
+  "pixel_size_um": null,
+  "use_delta": false,
+  "delta": 0,
+  "surfaces": 2,
+  "threshold_mode": "auto",
+  "threshold_value": 0,
+  "select_mode": "less",
+  "refit_residual": false,
+  "analysis_source_dir": ""
+}

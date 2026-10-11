@@ -11,7 +11,7 @@
 | 从基础了解方向 | [学习路线](docs/06_learning_path.md) |
 | 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
 | 找完整文献 | [34 条分类文献与专著](docs/04_reading.md) / [BibTeX、RIS](literature/) |
-| 用网页界面操作 | [波前工作台：启动与界面指南](docs/08_interfaces.md) |
+| 用网页界面操作 | [四个独立前端：启动与界面指南](docs/08_interfaces.md) |
 | 找唯一代码入口和清理记录 | [代码维护说明](docs/09_code_maintenance.md) |
 | 跑通第一套数据 | [五案例操作指南](docs/01_first_run.md) |
 | 换成自己的实验数据 | [数据、单位与标定要求](docs/02_real_data.md) |
@@ -51,7 +51,7 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 .\.venv\Scripts\python.exe -m wfs_starter ui
 ```
 
-浏览器打开一个统一工作区，按“数据 → 算法 → 结果”调用 WXST、WSVT、光栅、Hartmann 和 Zernike。输入可共用，各算法参数分别保留；高级设置与日志默认折叠。恢复出的相位可直接接入 Zernike 分解。网页界面随代码安装在本机运行；GitHub 页面提供资料和代码入口。
+浏览器显示四个独立入口：散斑（WSVT / WXST）、光栅、Hartmann、波前分析。Windows 可直接双击 `start_speckle.cmd`、`start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd`。每个前端单独保存参数和历史；文件、目录通过浏览按钮选择。散斑参数包含小波、金字塔、迭代、线程和 ROI，可明确选择 Python CPU、C++ CPU 或指定的 GPU 优化版。原 Hartmann 设计 / 仿真和原曲率 / 焦点流程通过原工程桥接，配置方法见界面指南。网页在本机运行；GitHub 页面提供资料和代码。
 
 完整操作见 [界面指南](docs/08_interfaces.md)，已有研究界面的本次增量修复见 [维护记录](maintenance/legacy-gui/README.md)。
 
@@ -84,9 +84,9 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 
 ## 与原研究仓库的关系
 
-高性能 C++ 算法维护在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)，历史完整 Hartmann 仿真与恢复维护在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)。本仓库用于基础学习和轻量 CPU 示例；科研参数、冻结性能结果、深度学习训练与动态多脉冲研究仍在原工程中维护。
+高性能 C++ 算法维护在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)，历史完整 Hartmann 仿真与恢复维护在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)。本仓库提供学习示例、四个独立前端及原研究算法桥接；科研参数、冻结性能结果、深度学习训练与动态多脉冲研究仍在原工程中维护。
 
-2026-10-11：五个 CPU 合成控制通过，22 项接口检查通过；工作台的运行、停止、记录恢复与相位接续分析已检查，见 [统一界面验证](validation/unified_ui.json)。已有研究界面的修复与检查记录见 [界面维护验证](validation/ui_release.json)。该验证确认代码入口与特定合成案例的数值行为，真实实验精度需要独立标定和验收。当前数据全部为合成数据。
+0.4.0：四个独立前端替换旧统一工作台。接口、合成案例和原曲率 / 焦点流程的检查见 [独立前端验证](validation/independent_frontends.json)。C++ / CUDA 的执行需要对应平台构建产物；安装网页界面不会自动生成原生算法库。
 
 散斑参考实现保留 UChicago Argonne 的版权声明。教学整理为本地修改版，来源与变更见 [NOTICE](provenance/NOTICE.md)。其他提取函数来自作者已有代码；本次未另外授予整个仓库新的开源许可证。
 

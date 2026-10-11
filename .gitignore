@@ -3,6 +3,8 @@ __pycache__/
 *.pyc
 *.nbc
 *.nbi
+.local_runtime.json
+local-runs/
 .pytest_cache/
 *.egg-info/
 build/

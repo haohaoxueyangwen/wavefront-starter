@@ -34,7 +34,7 @@ class UITests(unittest.TestCase):
         url=f'http://127.0.0.1:{server.server_port}'
         try:
             session=json.load(urllib.request.urlopen(url+'/api/session'))
-            self.assertEqual(len(session['templates']),5)
+            self.assertEqual(len(session['templates']),7)
             for asset,content_type in [('/app.js','text/javascript'),('/style.css','text/css')]:
                 with urllib.request.urlopen(url+asset) as response:
                     self.assertIn(content_type,response.headers['Content-Type'])

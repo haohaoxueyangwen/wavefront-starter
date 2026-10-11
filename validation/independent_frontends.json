@@ -1,0 +1,80 @@
+{
+  "version": "0.4.0",
+  "independent_frontends": [
+    "speckle",
+    "grating",
+    "hartmann",
+    "wavefront"
+  ],
+  "legacy_unified_workspace_replaced": true,
+  "config_templates": 7,
+  "unit_tests_passed": 27,
+  "synthetic_controls": {
+    "wxst": {
+      "arrays_compared": 6,
+      "exactly_equal_to_previous_baseline": true
+    },
+    "wsvt": {
+      "arrays_compared": 6,
+      "exactly_equal_to_previous_baseline": true
+    },
+    "grating": {
+      "arrays_compared": 5,
+      "exactly_equal_to_previous_baseline": true
+    },
+    "hartmann": {
+      "arrays_compared": 6,
+      "exactly_equal_to_previous_baseline": true
+    },
+    "zernike": {
+      "arrays_compared": 4,
+      "exactly_equal_to_previous_baseline": true
+    }
+  },
+  "synthetic_arrays_compared": 27,
+  "advanced_original_workflow_controls": [
+    {
+      "mode": "surface",
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "png_outputs": 19,
+      "metadata_exists": true
+    },
+    {
+      "mode": "focus",
+      "exit_code": 0,
+      "inputs_unchanged": true,
+      "png_outputs": 4,
+      "metadata_exists": true
+    }
+  ],
+  "browser_checks": [
+    "native file and directory browse",
+    "Python WXST real CLI run succeeded",
+    "GPU fixed parameters visible",
+    "grating FFT preview and click-to-fill",
+    "phase handoff to separate wavefront page",
+    "original Hartmann design updated",
+    "original rotation analytic estimate returned",
+    "full surface and focus parameter forms"
+  ],
+  "wheel_isolated_install_checked": true,
+  "wheel_sha256": "34aa7812465faea82e68a045008dd96cdb2ef74a779c17346280b5017e807235",
+  "sdist_launchers_checked": true,
+  "relative_document_links_checked": 104,
+  "native_cpp_compute": "Not executed: no local wsvt_cli binary configured.",
+  "native_cuda_compute": "Not executed: current Windows environment has no matching edge_kernels CUDA library or PyTorch.",
+  "scope": "Frontend integration, original workflow synthetic runs and default numerical equivalence; native and physical acceptance remain separate.",
+  "retired_original_ui_bodies": 6,
+  "old_ui_unique_code_archived_and_import_compatibility_preserved": true,
+  "legacy_code_consolidation": {
+    "identical_groups": 25,
+    "duplicate_bodies_replaced_by_dispatchers": 52,
+    "unique_sources_preserved_exactly": 169,
+    "unique_sources_unchanged_in_place": 167,
+    "unique_gui_sources_preserved_in_archive": 2,
+    "other_files_size_mtime_unchanged": 78883,
+    "metadata_changes_are_two_retired_gui_sources": true
+  },
+  "stable_local_environment_installed": true
+}

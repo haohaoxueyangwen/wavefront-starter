@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>旋转孔板 · 平移参数试验</title>
+<style>
+:root{--bg:#f2f5f7;--ink:#20313a;--muted:#617781;--line:#d8e2e7;--accent:#087e8b}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Segoe UI","Microsoft YaHei",sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:2}
+h1{font-size:21px;margin:0}h2{font-size:15px;margin:0 0 12px}a{color:var(--accent)}small,.muted{color:var(--muted)}
+main{display:grid;grid-template-columns:340px minmax(0,1fr);max-width:1800px;margin:auto}
+aside{padding:16px;border-right:1px solid var(--line)}article{padding:16px;min-width:0}
+.card{background:white;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:grid;gap:4px;font-size:12px;color:#48616e}
+input,select,button{font:inherit;border:1px solid #c5d4dc;border-radius:6px;padding:7px;background:white;color:var(--ink);width:100%;min-width:0}
+input:focus,select:focus,button:focus-visible{outline:2px solid #6fc5d0;outline-offset:2px}
+button{cursor:pointer;min-height:36px}button:hover{background:#edf8fa}button.primary{background:var(--accent);border-color:var(--accent);color:white}
+button:disabled{opacity:.45;cursor:not-allowed}.wide{grid-column:1/-1}.buttons{display:flex;gap:6px;margin-top:10px}.buttons button{font-size:12px}
+.note{font-size:12px;color:var(--muted);margin-top:10px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.metric{background:white;border:1px solid var(--line);border-radius:9px;padding:12px}.metric strong{display:block;font-size:22px;font-variant-numeric:tabular-nums}.metric small{font-size:11px}
+.warning{font-size:12px;color:#875720;background:#fff9ea;border-radius:6px;padding:10px;margin:5px 0}
+#status{white-space:pre-wrap;border-left:3px solid var(--accent);padding:9px 12px;background:#edf7f8;overflow-wrap:anywhere}
+.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toolbar button,.toolbar select{width:auto}.toolbar label{display:flex;align-items:center;gap:4px}.toolbar input{width:auto}
+.views{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.view{min-width:0}.view b{font-size:13px;display:block;margin-bottom:6px}
+canvas{width:100%;height:300px;display:block;background:#150c20;border-radius:7px;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}
+.downloads{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:12px}.stale{color:#a06a1a;font-size:12px}
+table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:8px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted)}td button{width:auto;min-height:26px;padding:3px 8px}
+.scroll{overflow:auto}details summary{cursor:pointer;font-size:13px}pre{white-space:pre-wrap;font:12px/1.5 Consolas,monospace;max-height:300px;overflow:auto}
+.pose-grid{display:grid;grid-template-columns:minmax(280px,1fr) minmax(190px,.65fr);gap:18px;align-items:center}
+#plateDiagram{width:100%;max-height:380px;display:block;background:#f8fbfc;border-radius:8px;touch-action:none;cursor:crosshair}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px}.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--color);margin-right:5px}
+#beamAngleRange{padding:0;accent-color:#db553b}#poseReadout{white-space:pre-line;font-variant-numeric:tabular-nums}.pose-controls{display:grid;gap:9px}
+@media(min-width:1400px){canvas{height:350px}}@media(max-width:1000px){main{grid-template-columns:300px 1fr}.metrics{grid-template-columns:repeat(2,1fr)}canvas{height:240px}}
+@media(max-width:750px){main{display:block}aside{border-right:0}.views,.pose-grid{grid-template-columns:1fr}header{align-items:flex-start}h1{font-size:18px}canvas{height:320px}}
+</style></head>
+<body><script>
+(()=>{const original=window.fetch.bind(window);const session=original('/api/session').then(r=>r.json());window.fetch=async(url,options={})=>{const target=new URL(url,location.href);if((options.method||'GET').toUpperCase()==='POST'&&target.origin===location.origin){const headers=new Headers(options.headers||{});headers.set('X-WFS-Token',(await session).token);options={...options,headers};}return original(url,options);};})();
+</script><div style="padding:12px 24px;background:#fff;border-bottom:1px solid #ddd"><a href="/hartmann">Hartmann 光斑分析</a> · <a href="/hartmann/design">设计与仿真</a> · <a href="/hartmann/rotation">旋转时序</a> · <a href="/">其他独立工具</a></div>
+<header><div><h1>旋转孔板 · 平移参数试验</h1><small>同一孔图案，直接探测视场；先看轨迹，再测试移动信号。</small></div><div style="display:flex;align-items:center;gap:16px"><a href="/hartmann/design">原设计／恢复页</a><button id="runTop" class="primary" style="width:auto">运行试验</button></div></header>
+<main><aside>
+<section class="card"><h2>固定旋转孔板</h2>
+<div class="muted">外径 60 mm · 有效半径 15–25 mm<br>工作半径 20 mm · 孔径 10 μm<br>标称间距 100 μm · 62 个重复扇区</div>
+<p class="note">使用真实 phase-matched 孔坐标和圆周运动。100 μm 是标称间距，不是全板处处等距；硬件材料与厚度尚未定。</p>
+<div class="buttons"><button id="baseline">恢复起始参数</button><button id="export">导出参数</button></div>
+<div class="buttons"><button id="import">载入参数 JSON</button><input id="file" type="file" accept=".json,application/json" hidden></div>
+</section>
+<form id="parameters">
+<section class="card"><h2>1. 旋转与曝光</h2><div class="grid">
+<label>孔板实际转速 / rpm<input id="rpm" type="number" min="100" max="10000" step="any" value="100" required></label>
+<label>相机曝光 / ms<input id="exposure_ms" type="number" min="1" max="500" step="any" value="1" required></label>
+<label>孔板 → 探测器 / mm<input id="distance_mm" type="number" min="10" max="2000" step="any" value="500" required></label>
+<label>光子能量 / keV<input id="energy_kev" type="number" min="1" max="100" step="any" value="12.4" required></label></div>
+<div class="grid" style="margin-top:10px">
+<label>光束落点方位 α / °<input id="beam_azimuth_deg" type="number" step="any" value="107" required></label>
+<label>孔板旋转方向<select id="rotation_direction"><option value="clockwise">顺时针 CW</option><option value="counterclockwise">逆时针 CCW</option></select></label>
+<label class="wide">孔板曝光中点姿态 β / °<input id="plate_mount_angle_deg" type="number" step="any" value="107" required></label>
+</div><div class="note">α 决定光束相对圆心的位置与拖尾切线；β 只转动固定孔图案，不移动光束落点。右侧可拖动落点调 α。</div>
+<div class="buttons"><button type="button" data-distance="300">300 mm</button><button type="button" data-distance="500">500 mm</button><button id="compare" type="button">两距离对比</button></div>
+<div class="note">转速是孔板转速，不是电机转速。探测器 2048² × 3.25 μm，完整视场 6.656 mm；不引入放大率。</div>
+</section>
+<section class="card"><h2>2. 相位样品：刚性直线平移</h2><div class="grid">
+<label>样品有符号速度 / mm·s⁻¹<input id="speed_mm_s" type="number" step="any" value="50" required></label>
+<label>运动方向<select id="direction_mode"><option value="normal">垂直于中央拖尾 · 联动</option><option value="parallel">平行于中央拖尾 · 联动</option><option value="custom">自定义实验室方向</option></select></label>
+<label>方向角 / °<input id="direction_deg" type="number" step="any" value="107" required></label>
+<label>高斯相位峰值 / rad<input id="phase_rad" type="number" step="any" value="170" required></label>
+<label>特征宽度 σ / μm<input id="sigma_um" type="number" min="5" max="10000" step="any" value="250" required></label>
+<label>曝光中点位置 x / μm<input id="center_x_um" type="number" step="any" value="0" required></label>
+<label>曝光中点位置 y / μm<input id="center_y_um" type="number" step="any" value="0" required></label>
+</div><div class="buttons"><button type="button" id="zero">静止（0）</button><button type="button" id="reverse">速度反向</button></div>
+<div class="buttons"><button type="button" data-travel="20">移动 20 μm</button><button type="button" data-travel="50">移动 50 μm</button><button type="button" data-travel="100">移动 100 μm</button></div>
+<div class="note">位移按钮按当前曝光反推速度；速度不设设备上限。相位幅度是模型输入，尚不是材料厚度。</div>
+</section>
+<section class="card"><h2>3. 计算与检查</h2><div class="grid">
+<label>预览视场<select id="roi_pixels"><option value="256">中央 256² · 0.832 mm</option><option value="512" selected>中央 512² · 1.664 mm</option><option value="1024">中央 1024² · 3.328 mm</option><option value="2048">完整 2048² · 6.656 mm</option></select></label>
+<label>计算模式<select id="integration_mode"><option value="preview" selected>粗略预览 · 看大致形状</option><option value="precise">精细检查 · 检查数值精度</option></select></label>
+</div><details><summary>可选数值精度（不是实验参数）</summary><div class="grid">
+<label>精细模式最大积分步长<select id="step_px"><option value="0.5">0.5 px</option><option value="0.25" selected>0.25 px</option><option value="0.125">0.125 px · 收敛检查</option></select></label>
+<label class="wide">孔衍射网格（与探测器像素分开）<select id="subpixel_factor"><option value="4">0.8125 μm · 4×细采样＋像素面积积分</option><option value="8">0.40625 μm · 8×细采样＋像素面积积分</option></select></label>
+</div><div class="note">0.25 px 指相邻计算时刻孔像移动不超过约四分之一像素。粗略预览不受此要求限制，按约 2 px 的粗采样目标、最多 512 个时间节点计算；转速和曝光不变。</div></details>
+<div class="buttons"><button id="run" class="primary" type="submit">运行当前参数</button></div>
+<div class="note">默认只看拖尾和重叠的大致样子。改参数只更新解析估算，点击运行才算图；长曝光的粗预览可能有采样颗粒，不代表真实光斑细节。</div>
+</section></form>
+</aside><article>
+<section class="card"><h2>孔板俯视图 · 光束落点与圆周切线</h2>
+<div class="pose-grid"><svg id="plateDiagram" viewBox="-38 -36 76 72" role="img" aria-label="孔板、固定光束落点、圆周与拖尾切线示意图"></svg>
+<div class="pose-controls"><label>拖动落点／滑块改变方位 α<input id="beamAngleRange" type="range" min="0" max="359.9" step=".1" value="107"></label>
+<label>也可直接指定中央拖尾切线 θ / °<input id="tangent_deg" form="parameters" type="number" step="any" value="17" required></label>
+<div class="buttons"><button data-azimuth="0">右侧 0°</button><button data-azimuth="90">上方 90°</button><button data-azimuth="180">左侧 180°</button><button data-azimuth="270">下方 270°</button></div>
+<div id="poseReadout" class="muted" aria-live="polite"></div>
+<div class="legend"><span style="--color:#db553b">固定落点</span><span style="--color:#14976e">切线／运动</span><span style="--color:#a775db">样品速度</span><span style="--color:#e5a330">完整探测窗口</span></div>
+<div class="note">沿光轴看板面，实验室 x 向右、y 向上，角度从 +x 逆时针计。孔位不变；扇区线仅示意，未逐个绘制 10 μm 孔。虚线圆是 R=20 mm 工作圆，不是光束扫描。</div>
+<div class="note">顺时针：拖尾角 θ=α−90°；逆时针：θ=α+90°。橙色弧表示曝光期间经过落点的名义孔轨迹；光束固定。β 的蓝色基准仅指示孔图案姿态，不是板面倾斜角。</div>
+</div></div></section>
+<div class="metrics">
+<div class="metric"><small>中央孔完整弧长</small><strong id="arc">—</strong><small id="arcpx">—</small></div>
+<div class="metric"><small>当前视场内最长连续轨迹</small><strong id="visible">—</strong><small id="visits">—</small></div>
+<div class="metric"><small>样品曝光内有符号位移</small><strong id="travel">—</strong><small id="velocity">—</small></div>
+<div class="metric"><small>曝光 / 扇区重复周期</small><strong id="repeats">—</strong><small id="period">—</small></div>
+</div>
+<section class="card"><div id="status" role="status" aria-live="polite">准备解析估算…</div><div id="warnings"></div><div id="calc" class="note"></div></section>
+<section class="card"><div class="toolbar"><h2 style="margin:0;margin-right:auto">图像对照</h2>
+<button id="zoomIn">＋ 放大</button><button id="zoomOut">－ 缩小</button><button id="fit">完整视图</button><button id="central">中央 400 μm</button>
+<label><input id="overlay" type="checkbox">已知中央孔轨迹</label></div>
+<div id="resultLabel" class="note"></div><div id="stale" class="stale"></div><div id="viewInfo" class="note" style="margin:0 0 10px">运行后显示；滚轮缩放，拖动平移，四图同步。</div>
+<div class="views">
+<div class="view"><b>无样品 · 旋转参考</b><canvas id="reference_image" aria-label="无样品参考图"></canvas></div>
+<div class="view"><b>静止样品 · 固定在曝光中点</b><canvas id="static_image" aria-label="静止样品图"></canvas></div>
+<div class="view"><b>匀速平移样品</b><canvas id="moving_image" aria-label="移动样品图"></canvas></div>
+<div class="view"><b>移动 − 静止 · 单独对称色标</b><canvas id="motion_difference" aria-label="移动相对静止差异图"></canvas></div>
+</div><div class="note">前三图共用强度色标；差异图单独归一化，颜色明显不等于信号很强。轨迹是模型已知值，不是测量恢复值。</div>
+<div id="downloads" class="downloads"></div>
+</section>
+<section class="card"><h2>试验记录 · 点击“查看”可返回该次结果</h2><div class="scroll"><table><thead><tr><th>转速 / 曝光</th><th>α / β</th><th>距离</th><th>样品速度</th><th>移动−静止 L2</th><th>耗时</th><th></th></tr></thead><tbody id="history"></tbody></table></div>
+<div class="note">L2 是整幅前向图的相对差异，用于筛选参数，不是位移恢复误差或可检测性证明。所有结果保存在 result/xray/ui_runs/rotation/。</div></section>
+<section class="card"><details><summary>模型范围、相位图案口径与本次数据</summary>
+<p class="note">均匀照明；高斯相位直接定义在孔板平面，按局部相位梯度偏转单孔衍射强度。尚无样品到孔板传播、吸收、孔间相干干涉、探测器额外 PSF、光子噪声及反演。像素面积积分后用双线性轨迹沉积，是交互预览近似；定量结论需要细采样收敛及真实光斑／SNR 校准。</p>
+<p id="coverage" class="note"></p><pre id="summary">尚未运行。</pre></details></section>
+</article></main>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const defaults={rpm:100,exposure_ms:1,distance_mm:500,energy_kev:12.4,speed_mm_s:50,direction_deg:107,phase_rad:170,sigma_um:250,center_x_um:0,center_y_um:0,roi_pixels:512,step_px:.25,subpixel_factor:4,beam_azimuth_deg:107,plate_mount_angle_deg:107,rotation_direction:"clockwise",direction_mode:"normal",integration_mode:"preview"};
+const keys=Object.keys(defaults), storageKey="hartmann.rotation.parameters.v1";
+let estimateData=null, busy=false, estimateSequence=0, estimateTimer=null, current=null, history=[], pictures={}, zoom=1, pan=[0,0];
+const canvases=["reference_image","static_image","moving_image","motion_difference"];
+const wrap=a=>((a%360)+360)%360;
+function parameters(){return Object.fromEntries(keys.map(k=>[k,typeof defaults[k]==="string"?$(k).value:Number($(k).value)]));}
+function tangentAngle(){return wrap(Number($("beam_azimuth_deg").value)+($("rotation_direction").value==="clockwise"?-90:90));}
+function applyRelativeDirection(){const mode=$("direction_mode").value;if(mode!=="custom")$("direction_deg").value=wrap(tangentAngle()+(mode==="normal"?90:0));}
+function setParameters(p){for(const k of keys)if(Object.hasOwn(p,k))$(k).value=p[k];if(Object.hasOwn(p,"direction_deg")&&!Object.hasOwn(p,"direction_mode"))syncDirection();applyRelativeDirection();changed();}
+function syncDirection(){const a=wrap(Number($("direction_deg").value)),t=tangentAngle();$("direction_mode").value=Math.abs(a-wrap(t+90))<1e-8?"normal":Math.abs(a-t)<1e-8?"parallel":"custom";}
+function fmt(x,d=2){return Number(x).toLocaleString("zh-CN",{maximumFractionDigits:d});}
+function status(message){$("status").textContent=message;}
+let pendingJob=null;
+const resumeJob=document.createElement("button");resumeJob.textContent="重连当前任务";resumeJob.hidden=true;$("status").after(resumeJob);
+function updateButtons(){const disabled=busy||pendingJob!==null||!estimateData?.can_render;$("run").disabled=disabled;$("runTop").disabled=disabled;$("compare").disabled=disabled;$("run").textContent=busy?"计算中…":"运行当前参数";$("runTop").textContent=busy?"计算中…":"运行试验";}
+function markStale(){if(!current)return;const p=current.parameters,now=parameters();$("resultLabel").textContent="当前图像："+p.rpm+" rpm / "+p.exposure_ms+" ms · "+p.distance_mm+" mm · 样品 "+p.speed_mm_s+" mm/s，方向 "+p.direction_deg+"° · α "+(p.beam_azimuth_deg??107)+"° / β "+(p.plate_mount_angle_deg??107)+"° · "+p.roi_pixels+"² · "+(current.summary.preview_only?"粗略预览":"精细检查");$("stale").textContent=keys.every(k=>typeof now[k]==="number"?Math.abs(now[k]-(p[k]??defaults[k]))<1e-8:now[k]===(p[k]??defaults[k]))?"":"参数已修改：示意图是当前参数，下方图像仍是上一组结果，点击运行更新。";}
+function changed(){++estimateSequence;estimateData=null;$("step_px").disabled=$("integration_mode").value==="preview";updateButtons();markStale();drawPlateDiagram();if(!busy)status("解析估算更新中…");clearTimeout(estimateTimer);estimateTimer=setTimeout(refreshEstimate,250);try{localStorage.setItem(storageKey,JSON.stringify(parameters()));}catch{}}
+async function request(url,body){const res=await fetch(url,body===undefined?{cache:"no-store",signal:AbortSignal.timeout(20000)}:{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});let data;try{data=await res.json();}catch{throw Error("服务返回异常；确认启动窗口仍在运行。");}if(!res.ok||data.ok===false)throw Error(data.error||data.message||"请求失败");return data;}
+async function refreshEstimate(){const seq=++estimateSequence;try{if(!$("parameters").checkValidity())throw Error("请检查参数范围与必填数值。");const data=await request("/api/rotation/estimate",parameters());if(seq!==estimateSequence)return;estimateData=data;showEstimate(data);if(!busy)status(data.can_render?"参数估算已更新。点击运行生成对照图。":"该组合仅做解析估算；降低转速／曝光或调整精度后可生成图像。");}catch(e){if(seq!==estimateSequence)return;estimateData=null;if(!busy)status(e.message);}updateButtons();}
+function showEstimate(d){
+  const g=d.geometry,v=g.nominal_central_trajectory;
+  $("arc").textContent=fmt(g.arc_length_m*1000,3)+" mm";
+  $("arcpx").textContent=fmt(g.arc_length_px,1)+" px · 中央孔中心线";
+  $("visible").textContent=fmt(v.longest_visible_arc_m*1000,3)+" mm";
+  $("visits").textContent="可见 "+fmt(v.visible_fraction*100,1)+"% · "+v.visit_count+" 次经过";
+  $("travel").textContent=fmt(d.sample_travel_um)+" μm";
+  $("velocity").textContent="vx / vy = "+d.velocity_xy_mm_s.map(x=>fmt(x)).join(" / ")+" mm/s";
+  $("repeats").textContent=fmt(g.repeat_periods_in_exposure,3)+" 周期";
+  $("period").textContent="重复周期 "+fmt(g.repeat_period_s*1000,3)+" ms";
+  $("warnings").replaceChildren(...d.warnings.map(s=>{const e=document.createElement("div");e.className="warning";e.textContent=s;return e;}));
+  $("calc").textContent=d.preview_only
+    ? "粗略预览 · "+fmt(d.integration_nodes,0)+" 个时间采样（上限 512），不按精细积分步长限制运行。转速、曝光保持原值。"
+    : "精细检查 · 预计积分节点 "+fmt(d.integration_nodes,0)+" / "+d.node_budget+"；理论最大偏转上界 "+fmt(d.maximum_deflection_bound_px,3)+" px。";
+  $("coverage").textContent="完整探测器对应相位图案最小覆盖（不含对准裕量）：矩形 "+d.full_detector_pattern_span_xy_mm.map(x=>fmt(x,3)).join(" × ")+" mm；包含该矩形的圆直径 "+fmt(d.full_detector_circular_diameter_mm,3)+" mm。小视场预览不改变这个完整视场口径估算。";
+}
+function rememberJob(id){pendingJob=id;resumeJob.hidden=!id;try{if(id)localStorage.setItem(storageKey+":pendingJob",id);else localStorage.removeItem(storageKey+":pendingJob");}catch{}updateButtons();}
+async function waitForJob(id){const began=performance.now();for(;;){await new Promise(r=>setTimeout(r,650));const job=await request("/api/rotation/job/"+id);if(job.status==="error"){rememberJob(null);throw Error(job.message);}if(job.status==="done"){rememberJob(null);history.unshift(job.result);history=history.slice(0,12);await display(job.result);renderHistory();return;}status(job.message+"\n已等待 "+fmt((performance.now()-began)/1000,1)+" s；可以修改下一组参数。");}}
+async function trial(p){const design=await request("/api/rotation/estimate",p);if(!design.can_render)throw Error(design.warnings.find(w=>w.includes("交互预算"))||"当前参数不能生成图像，请检查估算提示。");const started=await request("/api/rotation/run",p);rememberJob(started.job_id);await waitForJob(started.job_id);}
+resumeJob.onclick=async()=>{if(!pendingJob||busy)return;busy=true;updateButtons();try{await waitForJob(pendingJob);status("当前任务已完成。");}catch(e){status("重连未完成："+e.message+"；任务可能仍在服务端运行。");}finally{busy=false;updateButtons();}};
+window.addEventListener("beforeunload",e=>{if(busy||pendingJob){e.preventDefault();e.returnValue="";}});
+try{const savedJob=localStorage.getItem(storageKey+":pendingJob");if(savedJob)rememberJob(savedJob);}catch{}
+async function run(compare=false){if(busy||pendingJob)return;if(!$("parameters").reportValidity())return;busy=true;updateButtons();const p=parameters();status("提交参数试验…");try{if(compare){await trial({...p,distance_mm:300});await trial({...p,distance_mm:500});status("300 / 500 mm 两组已完成，可在下方试验记录切换查看。");}else{await trial(p);status("完成 · "+fmt(current.elapsed_s,2)+" s\n"+current.run_dir);}}catch(e){status("未完成："+e.message+(pendingJob?"；可点击重连当前任务，服务端可能仍在计算。":""));}finally{busy=false;updateButtons();markStale();}}
+$("parameters").addEventListener("submit",e=>{e.preventDefault();run();});$("compare").onclick=()=>run(true);$("runTop").onclick=()=>run();
+for(const k of keys)$(k).addEventListener("input",()=>{if(k==="direction_deg")$("direction_mode").value="custom";if(["beam_azimuth_deg","rotation_direction","direction_mode"].includes(k))applyRelativeDirection();changed();});
+$("direction_mode").onchange=()=>{applyRelativeDirection();changed();};
+$("beamAngleRange").oninput=()=>{setParameters({beam_azimuth_deg:Number($("beamAngleRange").value)});};
+document.querySelectorAll("[data-azimuth]").forEach(b=>b.onclick=()=>setParameters({beam_azimuth_deg:Number(b.dataset.azimuth)}));
+$("baseline").onclick=()=>setParameters(defaults);$("zero").onclick=()=>setParameters({speed_mm_s:0});$("reverse").onclick=()=>setParameters({speed_mm_s:-Number($("speed_mm_s").value)});
+document.querySelectorAll("[data-distance]").forEach(b=>b.onclick=()=>setParameters({distance_mm:Number(b.dataset.distance)}));
+document.querySelectorAll("[data-travel]").forEach(b=>b.onclick=()=>{const t=Number($("exposure_ms").value);if(t>0)setParameters({speed_mm_s:Number(b.dataset.travel)/t});});
+$("export").onclick=()=>{const blob=new Blob([JSON.stringify(parameters(),null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="rotation_trial_parameters.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);};
+$("import").onclick=()=>$("file").click();$("file").onchange=async()=>{try{const f=$("file").files[0];if(!f)return;const p=JSON.parse(await f.text());if(!p||Array.isArray(p)||typeof p!=="object")throw Error("不是参数对象");const data=await request("/api/rotation/estimate",upgradeParameters(p));setParameters(data.parameters);}catch(e){status("载入失败："+e.message);}finally{$("file").value="";}};
+async function display(result){current=result;const loaded=await Promise.all(canvases.map(k=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve([k,im]);im.onerror=()=>reject(Error("结果图像载入失败"));im.src=result.images[k];})));pictures=Object.fromEntries(loaded);zoom=1;pan=[0,0];$("summary").textContent=JSON.stringify(result.summary,null,2);$("downloads").replaceChildren();for(const [label,url]of[["对照图 PNG",result.files.figure],["原始数组 NPZ",result.files.data],["结果 JSON",result.files.summary],["本次参数 JSON",result.parameters_url]]){const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener";a.textContent=label;$("downloads").append(a);}markStale();draw();}
+function renderHistory(){
+  $("history").replaceChildren();
+  history.forEach((r,i)=>{const tr=document.createElement("tr"),p=r.parameters;
+    for(const text of[p.rpm+" rpm / "+p.exposure_ms+" ms · "+(r.summary.preview_only?"粗略":"精细"),(p.beam_azimuth_deg??107)+"° / "+(p.plate_mount_angle_deg??107)+"°",p.distance_mm+" mm",p.speed_mm_s+" mm/s",fmt(r.summary.moving_vs_static_relative_l2*100,4)+"%",fmt(r.elapsed_s,2)+" s"]){const td=document.createElement("td");td.textContent=text;tr.append(td);}
+    const td=document.createElement("td"),b=document.createElement("button");b.textContent="查看";b.onclick=()=>display(history[i]).catch(e=>status(e.message));td.append(b);tr.append(td);$("history").append(tr);
+  });
+}
+function draw(){const n=current?.parameters.roi_pixels||512,span=n/zoom;pan=pan.map(x=>Math.max(-n/2+span/2,Math.min(n/2-span/2,x)));for(const key of canvases){const c=$(key),ratio=devicePixelRatio||1;c.width=Math.round(c.clientWidth*ratio);c.height=Math.round(c.clientHeight*ratio);const ctx=c.getContext("2d");ctx.scale(ratio,ratio);const w=c.clientWidth,h=c.clientHeight,size=Math.min(w,h)-28,left=(w-size)/2,top=(h-size)/2;ctx.fillStyle="#150c20";ctx.fillRect(0,0,w,h);const image=pictures[key];if(!image){ctx.fillStyle="#a9a3b1";ctx.textAlign="center";ctx.fillText("等待参数试验",w/2,h/2);continue;}ctx.imageSmoothingEnabled=zoom<3;const sx=n/2+pan[0]-span/2,sy=n/2+pan[1]-span/2;ctx.drawImage(image,sx,sy,span,span,left,top,size,size);ctx.save();ctx.beginPath();ctx.rect(left,top,size,size);ctx.clip();if($("overlay").checked){const trajectoryKey=key==="reference_image"?"reference_trajectory_xy_m":key==="static_image"?"static_trajectory_xy_m":"moving_trajectory_xy_m";const points=current.trajectories_um[trajectoryKey];ctx.strokeStyle="#65f6d9";ctx.lineWidth=1.5;ctx.beginPath();points.forEach((pt,i)=>{const x=left+(pt[0]/3.25+n/2-sx)/span*size,y=top+(-pt[1]/3.25+n/2-sy)/span*size;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();}ctx.restore();ctx.strokeStyle="#ffffff66";ctx.strokeRect(left,top,size,size);ctx.fillStyle="#ddd";ctx.font="11px Segoe UI";ctx.textAlign="left";ctx.fillText("x "+fmt((sx-n/2)*3.25,0)+" → "+fmt((sx+span-n/2)*3.25,0)+" μm",left,top+size+13);ctx.textAlign="right";ctx.fillText("y ↑",left+size,top+size+13);}if(current)$("viewInfo").textContent="显示范围 "+fmt(span*3.25,1)+" μm × "+fmt(span*3.25,1)+" μm · "+fmt(zoom,1)+"×；前三图色标 0–"+fmt(current.intensity_color_limit,5)+"，差异图 ±"+fmt(current.difference_color_limit,6)+"（任意强度）。";}
+function setZoom(z){zoom=Math.max(1,Math.min(32,z));draw();}$("zoomIn").onclick=()=>setZoom(zoom*2);$("zoomOut").onclick=()=>setZoom(zoom/2);$("fit").onclick=()=>{pan=[0,0];setZoom(1);};$("central").onclick=()=>{pan=[0,0];setZoom((current?.parameters.roi_pixels||512)*3.25/400);};$("overlay").onchange=draw;
+for(const key of canvases){const c=$(key);let drag=null;c.addEventListener("wheel",e=>{e.preventDefault();setZoom(zoom*(e.deltaY<0?1.2:1/1.2));},{passive:false});c.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,pan:[...pan]};c.setPointerCapture(e.pointerId);});c.addEventListener("pointermove",e=>{if(!drag)return;const n=current?.parameters.roi_pixels||512,size=Math.min(c.clientWidth,c.clientHeight)-28;pan=[drag.pan[0]-(e.clientX-drag.x)*n/zoom/size,drag.pan[1]-(e.clientY-drag.y)*n/zoom/size];draw();});c.addEventListener("pointerup",()=>drag=null);c.addEventListener("pointercancel",()=>drag=null);}
+new ResizeObserver(draw).observe(document.querySelector(".views"));
+function drawPlateDiagram(){
+  const p=parameters(),svg=$("plateDiagram");
+  if(keys.some(k=>typeof defaults[k]==="number"&&!Number.isFinite(p[k])))return;
+  const alpha=wrap(p.beam_azimuth_deg),beta=wrap(p.plate_mount_angle_deg),theta=tangentAngle();
+  const rad=d=>d*Math.PI/180,point=(a,r=20)=>[r*Math.cos(rad(a)),-r*Math.sin(rad(a))];
+  const [bx,by]=point(alpha),[tx,ty]=point(theta,1),[vx,vy]=point(p.direction_deg,Math.sign(p.speed_mm_s));
+  const full=6.656,roi=p.roi_pixels*3.25/1000,sign=p.rotation_direction==="clockwise"?-1:1;
+  const swept=p.rpm*2*Math.PI/60*p.exposure_ms/1000,arc=Math.min(swept,2*Math.PI);
+  let s='<defs><marker id="tangentArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#14976e"/></marker><marker id="sampleArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a775db"/></marker><marker id="poseArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#357ca2"/></marker></defs>';
+  s+='<circle r="30" fill="#e8eef1" stroke="#9aafb9" stroke-width=".25"/><circle r="20" fill="none" stroke="#c0dbe4" stroke-width="10"/><circle r="15" fill="none" stroke="#89aebb" stroke-width=".15"/><circle r="25" fill="none" stroke="#89aebb" stroke-width=".15"/>';
+  for(let i=0;i<62;i++){const a=beta+(i+.5)*360/62,[x1,y1]=point(a,15),[x2,y2]=point(a,25);s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#8aafb9" stroke-width=".12"/>`;}
+  s+='<path d="M-34 0H34M0 -33V33" stroke="#bdcbd2" stroke-width=".15" stroke-dasharray=".8 .7"/><circle r="20" fill="none" stroke="#4c8199" stroke-width=".22" stroke-dasharray="1 .7"/>';
+  let trajectory='';for(let i=0;i<=120;i++){const a=alpha+sign*(i/120-.5)*arc*180/Math.PI,[x,y]=point(a);trajectory+=(i?'L':'M')+x+' '+y+' ';}s+=`<path d="${trajectory}" stroke="#e5a330" stroke-width=".6" fill="none"/>`;
+  const [px,py]=point(beta,28);s+=`<line x1="0" y1="0" x2="${px}" y2="${py}" stroke="#357ca2" stroke-width=".23" stroke-dasharray="1 .7" marker-end="url(#poseArrow)"/>`;
+  s+=`<line x1="0" y1="0" x2="${bx}" y2="${by}" stroke="#db553b" stroke-width=".27"/><rect x="${bx-full/2}" y="${by-full/2}" width="${full}" height="${full}" fill="#ffe39b" fill-opacity=".3" stroke="#d28b20" stroke-width=".25"/><rect x="${bx-roi/2}" y="${by-roi/2}" width="${roi}" height="${roi}" fill="none" stroke="#1496b9" stroke-width=".23" stroke-dasharray=".5 .35"/>`;
+  s+=`<line x1="${bx-4*tx}" y1="${by-4*ty}" x2="${bx+7*tx}" y2="${by+7*ty}" stroke="#14976e" stroke-width=".5" marker-end="url(#tangentArrow)"/>`;
+  if(p.speed_mm_s!==0)s+=`<line x1="${bx}" y1="${by}" x2="${bx+6*vx}" y2="${by+6*vy}" stroke="#a775db" stroke-width=".38" marker-end="url(#sampleArrow)"/>`;
+  s+=`<circle cx="${bx}" cy="${by}" r=".7" fill="#db553b" stroke="white" stroke-width=".15"/><circle r=".45" fill="#405966"/><g font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="1.8" fill="#405966"><text x="1" y="2.5">圆心 O</text><text x="34" y="2">+x</text><text x="1" y="-33">+y</text><text x="${bx+1.5}" y="${by+2.2}" fill="#c1412a">固定光束</text><text x="-35" y="32">外径 60 mm · R=20 mm</text><text x="-35" y="-32">板面内几何示意（非孔位放大图）</text></g>`;
+  let alphaArc='';for(let i=0;i<=60;i++){const [x,y]=point(alpha*i/60,5);alphaArc+=(i?'L':'M')+x+' '+y+' ';}
+  const [ax,ay]=point(alpha/2,7),[qx,qy]=point(beta,29);
+  s+=`<path d="${alphaArc}" stroke="#db553b" stroke-width=".2" fill="none"/><text x="${ax}" y="${ay}" font-size="2.2" fill="#db553b">α</text><text x="${qx}" y="${qy}" font-size="2.2" fill="#357ca2">β</text>`;
+  svg.innerHTML=s;$("beamAngleRange").value=alpha;$("tangent_deg").value=theta;
+  $("poseReadout").textContent=`当前参数：α ${fmt(alpha,1)}° · β ${fmt(beta,1)}°\n光束落点 (x,y) = (${fmt(bx,3)}, ${fmt(-by,3)}) mm\n${sign<0?"顺时针":"逆时针"}中央切线 θ = ${fmt(theta,1)}°\n样品方向 = ${fmt(wrap(p.direction_deg),1)}°${p.direction_mode==="custom"?"（实验室方向固定）":"（跟随切线）"}\n完整窗口 6.656 mm · 蓝框为预览裁剪${swept>=2*Math.PI?"\n曝光超过一圈，橙弧仅画一圈。":""}`;
+}
+let draggingBeam=false;
+$("tangent_deg").oninput=$("tangent_deg").onchange=()=>{const value=$("tangent_deg").value,theta=Number(value);if(value===""||!Number.isFinite(theta)){status("拖尾角需要有限数值。");return;}setParameters({beam_azimuth_deg:wrap(theta+($("rotation_direction").value==="clockwise"?90:-90))});};
+function diagramAngle(e){const svg=$("plateDiagram"),point=svg.createSVGPoint();point.x=e.clientX;point.y=e.clientY;const local=point.matrixTransform(svg.getScreenCTM().inverse());if(Math.hypot(local.x,local.y)<.5)return;setParameters({beam_azimuth_deg:Math.round(wrap(Math.atan2(-local.y,local.x)*180/Math.PI)*10)/10});}
+$("plateDiagram").addEventListener("pointerdown",e=>{draggingBeam=true;$("plateDiagram").setPointerCapture(e.pointerId);diagramAngle(e);});
+$("plateDiagram").addEventListener("pointermove",e=>{if(draggingBeam)diagramAngle(e);});
+$("plateDiagram").addEventListener("pointerup",()=>draggingBeam=false);$("plateDiagram").addEventListener("pointercancel",()=>draggingBeam=false);
+function upgradeParameters(saved){const p={...defaults,...saved};if(saved.direction_mode===undefined&&saved.direction_deg!==undefined){p.direction_mode="custom";}return p;}
+try{const saved=JSON.parse(localStorage.getItem(storageKey)||"null");if(saved)setParameters(upgradeParameters(saved));else changed();}catch{changed();}draw();
+</script></body></html>

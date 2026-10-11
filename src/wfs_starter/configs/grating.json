@@ -12,5 +12,13 @@
     9,
     9
   ],
-  "unwrap": true
+  "unwrap": true,
+  "recover_wavefront": false,
+  "phase_gradient_scale_rad_per_m_per_fringe_rad": [
+    0,
+    0
+  ],
+  "pixel_size_x_m": 0,
+  "pixel_size_y_m": 0,
+  "calibration_source": ""
 }

@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X-ray Hartmann Designer</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #66788a;
+      --line: #d9e2ec;
+      --panel: #f8fafc;
+      --accent: #126e82;
+      --accent-dark: #0f5261;
+      --ok: #16803c;
+      --warn: #b7791f;
+      --bad: #b91c1c;
+      --info: #244b8f;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 24px 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      line-height: 1.25;
+      letter-spacing: 0;
+      color: #334e68;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(320px, 390px) minmax(0, 1fr);
+      min-height: calc(100vh - 75px);
+    }
+
+    .controls {
+      border-right: 1px solid var(--line);
+      background: var(--panel);
+      padding: 18px;
+      overflow: auto;
+    }
+
+    .workspace {
+      padding: 18px 20px 24px;
+      overflow: auto;
+    }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      font-size: 12px;
+      color: #334e68;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #bcccdc;
+      border-radius: 6px;
+      padding: 8px 9px;
+      font: inherit;
+      font-size: 13px;
+      color: var(--ink);
+      background: #ffffff;
+      min-height: 34px;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+    }
+
+    label.check {
+      display: flex;
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 158px;
+      resize: vertical;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      line-height: 1.45;
+    }
+
+    button {
+      border: 1px solid var(--accent-dark);
+      background: var(--accent);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 9px 11px;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      min-height: 36px;
+    }
+
+    button:disabled {
+      cursor: progress;
+      opacity: 0.65;
+    }
+
+    button.secondary {
+      background: #ffffff;
+      color: var(--accent-dark);
+      border-color: #9fb3c8;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #ffffff;
+      min-height: 82px;
+    }
+
+    .metric .label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .metric .value {
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .metric .sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .status-ok { color: var(--ok); }
+    .status-warn { color: var(--warn); }
+    .status-bad { color: var(--bad); }
+
+    .viz {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      min-height: 360px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 430px;
+      border: 1px solid #d9e2ec;
+      border-radius: 6px;
+      background: #f8fafc;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      border-radius: 3px;
+      vertical-align: -2px;
+      margin-right: 5px;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: #ffffff;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      padding: 8px 9px;
+      white-space: nowrap;
+    }
+
+    th {
+      color: #334e68;
+      background: #f0f4f8;
+      font-weight: 700;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-top: 8px;
+    }
+
+    .workflow-bar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .path {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      color: #334e68;
+      overflow-wrap: anywhere;
+      background: #f3f6f8;
+      border-radius: 6px;
+      padding: 8px;
+      margin-top: 8px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .image-tile {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .image-tile img {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: contain;
+      background: #0f172a;
+    }
+
+    .image-tile .caption {
+      font-size: 12px;
+      color: #334e68;
+      padding: 7px 9px;
+      border-top: 1px solid var(--line);
+    }
+
+    .metric-table td:first-child {
+      color: var(--muted);
+      width: 48%;
+    }
+
+    pre.log {
+      max-height: 220px;
+      overflow: auto;
+      margin: 10px 0 0;
+      white-space: pre-wrap;
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      main { grid-template-columns: 1fr; }
+      .controls { border-right: 0; border-bottom: 1px solid var(--line); }
+      .metrics { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+      .split { grid-template-columns: 1fr; }
+      .workflow-bar { grid-template-columns: 1fr; }
+      .image-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      header { padding: 14px 16px; }
+      .controls, .workspace { padding: 14px; }
+      .grid, .metrics, .actions { grid-template-columns: 1fr; }
+      canvas { height: 330px; }
+    }
+  </style>
+</head>
+<body><script>
+(()=>{const original=window.fetch.bind(window);const session=original('/api/session').then(r=>r.json());window.fetch=async(url,options={})=>{const target=new URL(url,location.href);if((options.method||'GET').toUpperCase()==='POST'&&target.origin===location.origin){const headers=new Headers(options.headers||{});headers.set('X-WFS-Token',(await session).token);options={...options,headers};}return original(url,options);};})();
+</script><div style="padding:12px 24px;background:#fff;border-bottom:1px solid #ddd"><a href="/hartmann">Hartmann 光斑分析</a> · <a href="/hartmann/design">设计与仿真</a> · <a href="/hartmann/rotation">旋转时序</a> · <a href="/">其他独立工具</a></div>
+  <header>
+    <h1>X-ray Hartmann 参数设计器</h1>
+    <nav style="margin-top:10px"><a href="/hartmann/rotation">旋转孔板＋平移相位板参数试验 →</a></nav>
+  </header>
+
+  <main>
+    <aside class="controls">
+      <section class="panel">
+        <h2>硬件与光斑</h2>
+        <div class="grid">
+          <label>Photon energy (keV)
+            <input id="energyKeV" type="number" value="15" min="1" step="0.1">
+          </label>
+          <label>Pixel (um)
+            <input id="pixelUm" type="number" value="1" min="0.05" step="0.05">
+          </label>
+          <label>Hole diameter (um)
+            <input id="holeUm" type="number" value="13" min="1" step="0.25">
+          </label>
+          <label>Fixed pitch (um)
+            <input id="pitchUm" type="number" value="40" min="1" step="0.25">
+          </label>
+          <label>Z eval (m)
+            <input id="zM" type="number" value="1.0" min="0.01" step="0.01">
+          </label>
+          <label>N pulses
+            <input id="nPulses" type="number" value="10" min="1" step="1">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>目标判据</h2>
+        <div class="grid">
+          <label>Target FWHM min (px)
+            <input id="targetFwhmMin" type="number" value="5.0" min="0.1" step="0.1">
+          </label>
+          <label>Target FWHM max (px)
+            <input id="targetFwhmMax" type="number" value="6.2" min="0.1" step="0.1">
+          </label>
+          <label>Core fraction max
+            <input id="coreFrac" type="number" value="0.65" min="0.05" step="0.05">
+          </label>
+          <label>Halo fraction max
+            <input id="haloFrac" type="number" value="1.30" min="0.1" step="0.05">
+          </label>
+          <label>Spot extension (px)
+            <input id="spotExtensionPx" type="number" value="0" min="0" step="0.25">
+          </label>
+          <label>FWHM factor K
+            <input id="fwhmK" type="number" value="0.91" min="0.1" step="0.01">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Angle / step 扫描</h2>
+        <div class="grid">
+          <label>Angle min (deg)
+            <input id="angleMin" type="number" value="5" min="0" step="0.5">
+          </label>
+          <label>Angle max (deg)
+            <input id="angleMax" type="number" value="45" min="0" step="0.5">
+          </label>
+          <label>Angle step (deg)
+            <input id="angleStep" type="number" value="0.5" min="0.1" step="0.1">
+          </label>
+          <label>Step min (um)
+            <input id="stepMin" type="number" value="8" min="0.1" step="any">
+          </label>
+          <label>Step max (um)
+            <input id="stepMax" type="number" value="18" min="0.1" step="any">
+          </label>
+          <label>Step quantum (um)
+            <input id="stepQuantum" type="number" value="0.25" min="0.01" step="0.01">
+          </label>
+          <label>Current angle (deg)
+            <input id="currentAngle" type="number" value="19" min="0" step="0.5">
+          </label>
+          <label>Current step (um)
+            <input id="currentStep" type="number" value="12" min="0.1" step="any">
+          </label>
+        </div>
+        <div class="actions">
+          <button id="runButton" type="button">Update design</button>
+          <button id="useTargetZ" class="secondary" type="button">Use Z Mid</button>
+        </div>
+        <div id="designStatus" class="note">Set parameters, then click Update design.</div>
+      </section>
+
+      <section class="panel">
+        <h2>运动与旋转计时</h2>
+        <div class="grid">
+          <label>Movement mode
+            <select id="movementMode">
+              <option value="translation" selected>translation stage</option>
+              <option value="rotation">rotating Hartmann</option>
+            </select>
+          </label>
+          <label>Rotation timing
+            <select id="rotationTimingMode">
+              <option value="pulse_frequency" selected>camera + pulse frequency</option>
+              <option value="legacy_step">legacy N pulses + step</option>
+            </select>
+          </label>
+          <label>Camera FPS (Hz)
+            <input id="cameraFpsHz" type="number" value="1000" min="0.001" step="any">
+          </label>
+          <label>Exposure override (ms)
+            <input id="cameraExposureMs" type="number" value="0" min="0" step="0.01">
+          </label>
+          <label>Light pulse rate (Hz)
+            <input id="lightPulseRateHz" type="number" value="50000" min="0.001" step="any">
+          </label>
+          <label>Rotation radius (mm)
+            <input id="rotationRadiusMm" type="number" value="50" min="0.001" step="any">
+          </label>
+          <label>Rotation direction
+            <select id="rotationDirection">
+              <option value="1" selected>forward (+)</option>
+              <option value="-1">reverse (-)</option>
+            </select>
+          </label>
+        </div>
+        <div id="rotationSummary" class="note">translation mode: N pulses uses the manual field above.</div>
+      </section>
+
+      <section class="panel">
+        <h2>JSON 参数片段</h2>
+        <textarea id="jsonOut" spellcheck="false"></textarea>
+        <div class="actions">
+          <button id="copyJson" type="button">Copy</button>
+          <button id="resetDefaults" class="secondary" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>实际模拟与恢复</h2>
+        <div class="grid">
+          <label>Case name
+            <input id="caseName" type="text" value="designer_trial">
+          </label>
+          <label>Speed
+            <select id="speedMode">
+              <option value="quick">quick / 1024</option>
+              <option value="tuning" selected>tuning / preset</option>
+              <option value="accurate">accurate / 4096</option>
+            </select>
+          </label>
+          <label>Recovery method
+            <select id="recoveryMethod">
+              <option value="cross_correlation" selected>cross_correlation</option>
+              <option value="centroid">centroid</option>
+              <option value="optimization">optimization</option>
+            </select>
+          </label>
+          <label>Timeout (s)
+            <input id="timeoutS" type="number" value="1800" min="30" step="30">
+          </label>
+          <label class="check">
+            <input id="saveEachFrame" type="checkbox">
+            Save per-pulse refs + eval-only target frames
+          </label>
+          <label class="check">
+            <input id="applyTrailToSimulation" type="checkbox">
+            Apply spot extension as trail in optical simulation
+          </label>
+        </div>
+        <div class="actions">
+          <button id="simulateButton" type="button">Run Optical Sim</button>
+          <button id="recoverButton" class="secondary" type="button">Recover Last Sim</button>
+        </div>
+        <div class="note">
+          本页调用已配置的原 Hartmann 工程；本机服务已连接后可运行仿真与恢复。保存逐帧时会同时写 ideal references
+          和仿真 target frames，后者只能用于评估，不能作为 recovery 输入。
+        </div>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="metrics">
+        <div class="metric">
+          <div class="label">Recommended</div>
+          <div id="recMain" class="value">-</div>
+          <div id="recSub" class="sub">-</div>
+        </div>
+        <div class="metric">
+          <div class="label">Current</div>
+          <div id="currentStatus" class="value">-</div>
+          <div id="currentSub" class="sub">-</div>
+        </div>
+        <div class="metric">
+          <div class="label">Spot</div>
+          <div id="spotMain" class="value">-</div>
+          <div id="spotSub" class="sub">-</div>
+        </div>
+        <div class="metric">
+          <div class="label">Z target</div>
+          <div id="zTarget" class="value">-</div>
+          <div id="zSub" class="sub">-</div>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div class="workflow-bar">
+          <div>
+            <h2>模拟 / 恢复结果</h2>
+            <div id="workflowStatus" class="note">Local workflow server not contacted yet.</div>
+            <div id="runPath" class="path">-</div>
+          </div>
+          <button id="refreshSummary" class="secondary" type="button">Refresh</button>
+        </div>
+        <table class="metric-table">
+          <tbody id="workflowMetricRows">
+            <tr><td>status</td><td>-</td></tr>
+          </tbody>
+        </table>
+        <pre id="workflowLog" class="log"></pre>
+        <div id="imageGrid" class="image-grid"></div>
+      </section>
+
+      <div class="split">
+        <section class="viz">
+          <h2>Angle × Step 可行域</h2>
+          <div class="canvas-wrap">
+            <canvas id="heatmap" width="900" height="520"></canvas>
+          </div>
+          <div class="legend">
+            <span><span class="swatch" style="background:#b91c1c"></span>unsafe</span>
+            <span><span class="swatch" style="background:#d97706"></span>tight</span>
+            <span><span class="swatch" style="background:#16803c"></span>usable</span>
+            <span><span class="swatch" style="background:#244b8f"></span>best</span>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Top candidates</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Angle</th>
+                <th>Step</th>
+                <th>Margin</th>
+                <th>Limiter</th>
+              </tr>
+            </thead>
+            <tbody id="candidateRows"></tbody>
+          </table>
+          <div id="dangerNote" class="note"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const DEFAULTS = {
+      energyKeV: 15, pixelUm: 1, holeUm: 13, pitchUm: 40, zM: 1.0, nPulses: 10,
+      targetFwhmMin: 5.0, targetFwhmMax: 6.2, coreFrac: 0.65, haloFrac: 1.30,
+      spotExtensionPx: 0, fwhmK: 0.91, angleMin: 5, angleMax: 45, angleStep: 0.5,
+      stepMin: 8, stepMax: 18, stepQuantum: 0.25, currentAngle: 19, currentStep: 12,
+      movementMode: "translation", rotationTimingMode: "pulse_frequency", cameraFpsHz: 1000,
+      cameraExposureMs: 0, lightPulseRateHz: 50000, rotationRadiusMm: 50, rotationDirection: "1",
+      speedMode: "tuning", saveEachFrame: false, applyTrailToSimulation: false
+    };
+    let lastRunDir = "";
+    let workflowBusy = false;
+    let designBusy = false;
+
+    function num(id) {
+      const value = Number($(id).value);
+      return Number.isFinite(value) ? value : DEFAULTS[id];
+    }
+
+    function setVal(id, value) {
+      $(id).value = value;
+    }
+
+    function wavelengthM(energyKeV) {
+      return 1.239841984e-9 / energyKeV;
+    }
+
+    function deg2rad(deg) {
+      return deg * Math.PI / 180;
+    }
+
+    function spotEstimate(params) {
+      const lambda = wavelengthM(params.energyKeV);
+      const holeM = params.holeUm * 1e-6;
+      const pixelM = params.pixelUm * 1e-6;
+      const z = params.zM;
+      const pitchM = params.pitchUm * 1e-6;
+      const radius = 0.5 * holeM;
+      const nf = radius * radius / (lambda * z);
+      const fwhmPx = params.fwhmK * lambda * z / (holeM * pixelM);
+      const firstZeroPx = 2.44 * lambda * z / (holeM * pixelM);
+      const pitchPx = pitchM / pixelM;
+      return {
+        lambda, nf, fwhmPx, firstZeroPx, pitchPx,
+        effectiveFwhmPx: fwhmPx + params.spotExtensionPx,
+        effectiveFirstZeroPx: firstZeroPx + params.spotExtensionPx,
+        zTargetLow: params.targetFwhmMin * holeM * pixelM / (params.fwhmK * lambda),
+        zTargetHigh: params.targetFwhmMax * holeM * pixelM / (params.fwhmK * lambda)
+      };
+    }
+
+    function requiredCenter(spot, params) {
+      return Math.max(
+        spot.effectiveFwhmPx / params.coreFrac,
+        spot.effectiveFirstZeroPx / params.haloFrac
+      );
+    }
+
+    function candidatePulseDeltas(realK, minK, maxK) {
+      function clip(k) {
+        return Math.max(minK, Math.min(maxK, k));
+      }
+      if (!Number.isFinite(realK)) return [clip(0)];
+      const lo = clip(Math.floor(realK));
+      const hi = clip(Math.ceil(realK));
+      return lo === hi ? [lo] : [lo, hi];
+    }
+
+    function nearestDistance(pitchPx, stepPx, angleDeg, nPulses, neighborOrder) {
+      const rad = deg2rad(angleDeg);
+      const ux = Math.cos(rad);
+      const uy = Math.sin(rad);
+      let best = {distancePx: Infinity, i: 0, j: 0, k: 0, dx: 0, dy: 0};
+      const minK = -(nPulses - 1);
+      const maxK = nPulses - 1;
+      const stepDenom = Math.max(Math.abs(stepPx), 1e-12);
+      for (let i = -neighborOrder; i <= neighborOrder; i += 1) {
+        for (let j = -neighborOrder; j <= neighborOrder; j += 1) {
+          if (i === 0 && j === 0) continue;
+          const lx = i * pitchPx;
+          const ly = j * pitchPx;
+          const projectedK = -(lx * ux + ly * uy) / stepDenom;
+          for (const k of candidatePulseDeltas(projectedK, minK, maxK)) {
+            const dx = lx + k * stepPx * ux;
+            const dy = ly + k * stepPx * uy;
+            const d = Math.hypot(dx, dy);
+            if (d < best.distancePx) {
+              best = {distancePx: d, i, j, k, dx, dy};
+            }
+          }
+        }
+      }
+      return best;
+    }
+
+    function marginFor(pitchPx, stepPx, angleDeg, nPulses, requiredPx, neighborOrder) {
+      const nearest = nearestDistance(pitchPx, stepPx, angleDeg, nPulses, neighborOrder);
+      const same = nPulses < 2 ? Infinity : stepPx;
+      const limiting = Math.min(nearest.distancePx, same);
+      return {
+        marginPx: limiting - requiredPx,
+        limitingDistancePx: limiting,
+        limiter: same <= nearest.distancePx ? "same" : "inter",
+        nearest
+      };
+    }
+
+    function computeDesignScan(params, spot, requiredPx, motion) {
+      const started = performance.now();
+      const angles = angleValues(params);
+      const steps = stepValues(params);
+      const maxStepPx = params.stepMax / params.pixelUm;
+      const nPulses = motion.effectiveNPulses;
+      const neighborOrder = Math.max(
+        2,
+        Math.ceil(
+          (maxStepPx * Math.max(1, nPulses - 1) + requiredPx) / Math.max(spot.pitchPx, 1e-9)
+        ) + 3
+      );
+      const workUnits = angles.length * steps.length * Math.max(1, (2 * neighborOrder + 1) ** 2 - 1);
+      const maxWorkUnits = 35_000_000;
+
+      if (workUnits > maxWorkUnits) {
+        const current = marginFor(
+          spot.pitchPx,
+          params.currentStep / params.pixelUm,
+          params.currentAngle,
+          nPulses,
+          requiredPx,
+          neighborOrder
+        );
+        return {
+          angles,
+          steps,
+          cells: [],
+          candidates: [],
+          selected: null,
+          current,
+          neighborOrder,
+          elapsedMs: performance.now() - started,
+          skippedFullScan: true,
+          workUnits,
+          maxWorkUnits
+        };
+      }
+
+      const cells = [];
+      const candidates = [];
+      let selected = null;
+      for (const angle of angles) {
+        let angleBest = null;
+        for (const stepUm of steps) {
+          const stepPx = stepUm / params.pixelUm;
+          const margin = marginFor(spot.pitchPx, stepPx, angle, nPulses, requiredPx, neighborOrder);
+          const cell = {angle, stepUm, stepPx, ...margin};
+          cells.push(cell);
+          if (margin.marginPx >= 0) {
+            if (!angleBest || margin.marginPx > angleBest.marginPx) angleBest = cell;
+            candidates.push(cell);
+            if (
+              !selected ||
+              margin.marginPx > selected.marginPx ||
+              (margin.marginPx === selected.marginPx && stepUm < selected.stepUm)
+            ) {
+              selected = cell;
+            }
+          }
+        }
+        if (angleBest) angleBest.angleBest = true;
+      }
+
+      const current = marginFor(
+        spot.pitchPx,
+        params.currentStep / params.pixelUm,
+        params.currentAngle,
+        nPulses,
+        requiredPx,
+        neighborOrder
+      );
+      candidates.sort((a, b) => b.marginPx - a.marginPx || a.stepUm - b.stepUm);
+
+      return {
+        angles,
+        steps,
+        cells,
+        candidates,
+        selected,
+        current,
+        neighborOrder,
+        elapsedMs: performance.now() - started,
+        skippedFullScan: false,
+        workUnits,
+        maxWorkUnits
+      };
+    }
+
+    function buildDesignWorkerSource() {
+      return [
+        deg2rad,
+        candidatePulseDeltas,
+        nearestDistance,
+        marginFor,
+        angleValues,
+        stepValues,
+        computeDesignScan,
+        function workerMain() {
+          self.onmessage = (event) => {
+            const {jobId, params, spot, requiredPx, motion} = event.data;
+            try {
+              const result = computeDesignScan(params, spot, requiredPx, motion);
+              self.postMessage({ok: true, jobId, result});
+            } catch (error) {
+              self.postMessage({
+                ok: false,
+                jobId,
+                error: error && error.message ? error.message : String(error)
+              });
+            }
+          };
+        }
+      ].map((fn) => fn.toString()).join("\n\n") + "\nworkerMain();\n";
+    }
+
+    function angleValues(params) {
+      const values = [];
+      const step = Math.max(params.angleStep, 0.1);
+      for (let a = params.angleMin; a <= params.angleMax + 1e-9; a += step) {
+        values.push(Number(a.toFixed(6)));
+      }
+      if (params.currentAngle >= params.angleMin && params.currentAngle <= params.angleMax) {
+        values.push(params.currentAngle);
+      }
+      return [...new Set(values)].sort((a, b) => a - b);
+    }
+
+    function stepValues(params) {
+      const values = [];
+      const quantum = Math.max(params.stepQuantum, 0.01);
+      for (let s = params.stepMin; s <= params.stepMax + 1e-9; s += quantum) {
+        values.push(Number(s.toFixed(6)));
+      }
+      if (params.currentStep >= params.stepMin && params.currentStep <= params.stepMax) {
+        values.push(params.currentStep);
+      }
+      return [...new Set(values)].sort((a, b) => a - b);
+    }
+
+    function collectParams() {
+      return {
+        energyKeV: num("energyKeV"),
+        pixelUm: num("pixelUm"),
+        holeUm: num("holeUm"),
+        pitchUm: num("pitchUm"),
+        zM: num("zM"),
+        nPulses: Math.max(1, Math.round(num("nPulses"))),
+        targetFwhmMin: num("targetFwhmMin"),
+        targetFwhmMax: num("targetFwhmMax"),
+        coreFrac: num("coreFrac"),
+        haloFrac: num("haloFrac"),
+        spotExtensionPx: Math.max(0, num("spotExtensionPx")),
+        fwhmK: num("fwhmK"),
+        angleMin: num("angleMin"),
+        angleMax: num("angleMax"),
+        angleStep: num("angleStep"),
+        stepMin: num("stepMin"),
+        stepMax: num("stepMax"),
+        stepQuantum: num("stepQuantum"),
+        currentAngle: num("currentAngle"),
+        currentStep: num("currentStep"),
+        movementMode: $("movementMode").value || "translation",
+        rotationTimingMode: $("rotationTimingMode").value || "pulse_frequency",
+        cameraFpsHz: Math.max(0.001, num("cameraFpsHz")),
+        cameraExposureMs: Math.max(0, num("cameraExposureMs")),
+        lightPulseRateHz: Math.max(0.001, num("lightPulseRateHz")),
+        rotationRadiusMm: Math.max(0.001, num("rotationRadiusMm")),
+        rotationDirection: Number($("rotationDirection").value) < 0 ? -1 : 1
+      };
+    }
+
+    function motionEstimate(params) {
+      const rotationMode = params.movementMode === "rotation";
+      const timeDriven = rotationMode && params.rotationTimingMode !== "legacy_step";
+      const exposureS = params.cameraExposureMs > 0
+        ? params.cameraExposureMs * 1e-3
+        : 1 / Math.max(params.cameraFpsHz, 1e-12);
+      if (!timeDriven) {
+        return {
+          rotationMode,
+          timeDriven,
+          effectiveNPulses: params.nPulses,
+          exposureS,
+          angularVelocityRadS: null,
+          dthetaRad: null,
+          exposureTravelM: null,
+          pulseCenterSpanM: (params.nPulses - 1) * params.currentStep * 1e-6,
+          streakLengthM: (params.nPulses - 1) * params.currentStep * 1e-6,
+          tangentErrorM: null
+        };
+      }
+      const radiusM = params.rotationRadiusMm * 1e-3;
+      const stepM = params.currentStep * 1e-6;
+      const pulses = Math.max(1, Math.floor(exposureS * params.lightPulseRateHz + 1e-12));
+      const signed = params.rotationDirection;
+      const dthetaRad = signed * stepM / radiusM;
+      const angularVelocityRadS = signed * stepM * params.lightPulseRateHz / radiusM;
+      const lastAngle = dthetaRad * Math.max(0, pulses - 1);
+      return {
+        rotationMode,
+        timeDriven,
+        effectiveNPulses: pulses,
+        exposureS,
+        angularVelocityRadS,
+        dthetaRad,
+        exposureTravelM: Math.abs(angularVelocityRadS) * radiusM * exposureS,
+        pulseCenterSpanM: Math.max(0, pulses - 1) * stepM,
+        streakLengthM: Math.max(0, pulses - 1) * stepM,
+        tangentErrorM: radiusM * (1 - Math.cos(lastAngle))
+      };
+    }
+
+    function updateMotionControls(params, motion) {
+      const rotationMode = params.movementMode === "rotation";
+      const timeDriven = rotationMode && params.rotationTimingMode !== "legacy_step";
+      $("rotationTimingMode").disabled = !rotationMode;
+      for (const id of ["rotationRadiusMm", "rotationDirection"]) {
+        $(id).disabled = !rotationMode;
+      }
+      for (const id of ["cameraFpsHz", "cameraExposureMs", "lightPulseRateHz"]) {
+        $(id).disabled = !timeDriven;
+      }
+      $("nPulses").disabled = timeDriven;
+      if (!rotationMode) {
+        $("rotationSummary").textContent = "translation mode: N pulses uses the manual field above.";
+      } else if (!timeDriven) {
+        $("rotationSummary").textContent = "legacy rotation: N pulses and STEP_M set the per-pulse angle.";
+      } else {
+        $("rotationSummary").textContent = [
+          `derived pulses ${motion.effectiveNPulses}`,
+          `exposure ${(motion.exposureS * 1e3).toFixed(3)} ms`,
+          `omega ${motion.angularVelocityRadS.toFixed(4)} rad/s`,
+          `pulse span ${(motion.pulseCenterSpanM * 1e6).toFixed(3)} um`,
+          `tangent error ${(motion.tangentErrorM * 1e9).toFixed(3)} nm`
+        ].join(" · ");
+      }
+    }
+
+    let activeDesignWorker = null;
+    let activeDesignWorkerUrl = null;
+    let designJobId = 0;
+    let parameterRevision = 0;
+
+    function disposeActiveDesignWorker() {
+      if (activeDesignWorker) {
+        activeDesignWorker.terminate();
+        activeDesignWorker = null;
+      }
+      if (activeDesignWorkerUrl) {
+        URL.revokeObjectURL(activeDesignWorkerUrl);
+        activeDesignWorkerUrl = null;
+      }
+    }
+
+    function runDesignScanAsync(params, spot, requiredPx, motion) {
+      const jobId = designJobId + 1;
+      designJobId = jobId;
+      disposeActiveDesignWorker();
+
+      if (!window.Worker || !window.Blob || !window.URL) {
+        return new Promise((resolve) => {
+          window.setTimeout(() => resolve(computeDesignScan(params, spot, requiredPx, motion)), 0);
+        });
+      }
+
+      const workerUrl = URL.createObjectURL(
+        new Blob([buildDesignWorkerSource()], {type: "text/javascript"})
+      );
+      const worker = new Worker(workerUrl);
+      activeDesignWorker = worker;
+      activeDesignWorkerUrl = workerUrl;
+
+      return new Promise((resolve, reject) => {
+        worker.onmessage = (event) => {
+          const {ok, jobId: returnedJobId, result, error} = event.data || {};
+          if (returnedJobId !== jobId) return;
+          disposeActiveDesignWorker();
+          if (ok) {
+            resolve(result);
+          } else {
+            reject(new Error(error || "design worker failed"));
+          }
+        };
+        worker.onerror = (event) => {
+          disposeActiveDesignWorker();
+          reject(new Error(event.message || "design worker failed"));
+        };
+        worker.postMessage({jobId, params, spot, requiredPx, motion});
+      });
+    }
+
+    async function runDesign() {
+      if (designBusy) return false;
+      for (const input of document.querySelectorAll('input[type="number"]')) {
+        if (!input.disabled && (!input.reportValidity() || !Number.isFinite(Number(input.value)) || input.value === "")) {
+          $("designStatus").textContent = "请先检查数值参数和允许范围。";
+          return false;
+        }
+      }
+      const runRevision = parameterRevision;
+      const params = collectParams();
+      const motion = motionEstimate(params);
+      updateMotionControls(params, motion);
+      const spot = spotEstimate(params);
+      const requiredPx = requiredCenter(spot, params);
+      designBusy = true;
+      $("runButton").disabled = true;
+      $("designStatus").textContent = "Calculating design scan in background...";
+      try {
+        const scan = await runDesignScanAsync(params, spot, requiredPx, motion);
+        if (runRevision !== parameterRevision) {
+          $("designStatus").textContent = "Parameters changed while scan was running. Click Update design when ready.";
+          return false;
+        }
+        renderMetrics(params, spot, requiredPx, scan.selected, scan.current, motion, scan.skippedFullScan);
+        renderHeatmap(params, spot, requiredPx, scan.angles, scan.steps, scan.cells, scan.selected);
+        renderCandidates(scan.candidates.slice(0, 12), scan.selected, scan.current, scan);
+        renderJson(params, scan.selected, spot, motion);
+        $("designStatus").textContent = scan.skippedFullScan
+          ? `Current design updated. Full scan skipped: ${(scan.workUnits / 1e6).toFixed(1)}M work units exceeds ${(scan.maxWorkUnits / 1e6).toFixed(1)}M.`
+          : `Design preview and JSON are up to date. Scan ${scan.elapsedMs.toFixed(0)} ms.`;
+        return true;
+      } catch (error) {
+        $("designStatus").textContent = `Design scan failed: ${error.message}`;
+        throw error;
+      } finally {
+        designBusy = false;
+        $("runButton").disabled = workflowBusy;
+      }
+    }
+
+    function fmt(value, digits = 2) {
+      if (!Number.isFinite(value)) return "-";
+      return value.toFixed(digits);
+    }
+
+    function renderMetrics(params, spot, requiredPx, selected, current, motion, scanSkipped = false) {
+      $("spotMain").textContent = `${fmt(spot.fwhmPx)} px`;
+      $("spotSub").textContent = `first-zero ${fmt(spot.firstZeroPx)} px, required ${fmt(requiredPx)} px`;
+      $("zTarget").textContent = `${fmt(spot.zTargetLow, 3)}..${fmt(spot.zTargetHigh, 3)} m`;
+      $("zSub").textContent = `lambda ${(spot.lambda * 1e10).toFixed(3)} A, NF ${fmt(spot.nf, 3)}`;
+
+      if (scanSkipped) {
+        $("recMain").textContent = "Current only";
+        $("recSub").textContent = "full angle/step scan skipped; narrow the scan grid to search recommendations";
+      } else if (selected) {
+        $("recMain").textContent = `${fmt(selected.angle, 1)} deg / ${fmt(selected.stepUm)} um`;
+        $("recSub").textContent = `margin ${fmt(selected.marginPx)} px, limiter ${selected.limiter}`;
+      } else {
+        $("recMain").textContent = "No feasible";
+        $("recSub").textContent = "increase pitch, reduce Z, enlarge hole, or relax halo";
+      }
+
+      const ok = current.marginPx >= 0;
+      $("currentStatus").textContent = ok ? "OK" : "Risk";
+      $("currentStatus").className = `value ${ok ? "status-ok" : "status-bad"}`;
+      $("currentSub").textContent = `${fmt(params.currentAngle, 1)} deg / ${fmt(params.currentStep)} um, N=${motion.effectiveNPulses}, margin ${fmt(current.marginPx)} px`;
+    }
+
+    function colorForMargin(margin, bestMargin) {
+      if (margin < 0) return "#b91c1c";
+      if (margin < 0.15) return "#d97706";
+      if (bestMargin > 0 && margin > 0.8 * bestMargin) return "#244b8f";
+      return "#16803c";
+    }
+
+    function renderHeatmap(params, spot, requiredPx, angles, steps, cells, selected) {
+      const canvas = $("heatmap");
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, W, H);
+
+      const padL = 58;
+      const padR = 18;
+      const padT = 18;
+      const padB = 46;
+      const plotW = W - padL - padR;
+      const plotH = H - padT - padB;
+      const bestMargin = Math.max(0, ...cells.map(c => c.marginPx));
+      const angleMin = Math.min(...angles);
+      const angleMax = Math.max(...angles);
+      const stepMin = Math.min(...steps);
+      const stepMax = Math.max(...steps);
+      const cellW = plotW / Math.max(angles.length, 1);
+      const cellH = plotH / Math.max(steps.length, 1);
+
+      for (const cell of cells) {
+        const x = padL + ((cell.angle - angleMin) / Math.max(angleMax - angleMin || 1, 1e-9)) * (plotW - cellW);
+        const y = padT + (1 - (cell.stepUm - stepMin) / Math.max(stepMax - stepMin || 1, 1e-9)) * (plotH - cellH);
+        ctx.fillStyle = colorForMargin(cell.marginPx, bestMargin);
+        ctx.fillRect(x, y, Math.max(1, cellW + 0.5), Math.max(1, cellH + 0.5));
+      }
+
+      if (selected) {
+        const x = padL + ((selected.angle - angleMin) / Math.max(angleMax - angleMin || 1, 1e-9)) * (plotW - cellW) + cellW / 2;
+        const y = padT + (1 - (selected.stepUm - stepMin) / Math.max(stepMax - stepMin || 1, 1e-9)) * (plotH - cellH) + cellH / 2;
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(x, y, 9, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.strokeStyle = "#111827";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(x, y, 9, 0, 2 * Math.PI);
+        ctx.stroke();
+      }
+
+      const currentX = padL + ((params.currentAngle - angleMin) / Math.max(angleMax - angleMin || 1, 1e-9)) * (plotW - cellW) + cellW / 2;
+      const currentY = padT + (1 - (params.currentStep - stepMin) / Math.max(stepMax - stepMin || 1, 1e-9)) * (plotH - cellH) + cellH / 2;
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(currentX - 8, currentY - 8, 16, 16);
+      ctx.strokeStyle = "#111827";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(currentX - 8, currentY - 8, 16, 16);
+
+      ctx.strokeStyle = "#334e68";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(padL, padT, plotW, plotH);
+      ctx.fillStyle = "#334e68";
+      ctx.font = "13px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      ctx.fillText("Angle (deg)", padL + plotW / 2 - 38, H - 12);
+      ctx.save();
+      ctx.translate(16, padT + plotH / 2 + 34);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText("Step (um)", 0, 0);
+      ctx.restore();
+
+      ctx.font = "12px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+      for (let i = 0; i <= 4; i += 1) {
+        const ax = angleMin + (angleMax - angleMin) * i / 4;
+        const x = padL + plotW * i / 4;
+        ctx.fillText(fmt(ax, 1), x - 12, H - 28);
+        const sy = stepMin + (stepMax - stepMin) * i / 4;
+        const y = padT + plotH - plotH * i / 4;
+        ctx.fillText(fmt(sy, 1), 18, y + 4);
+      }
+    }
+
+    function renderCandidates(candidates, selected, current, scan = null) {
+      const rows = $("candidateRows");
+      rows.innerHTML = "";
+      if (scan && scan.skippedFullScan) {
+        rows.innerHTML = `<tr><td colspan="4">Full scan skipped; current angle/step was checked only.</td></tr>`;
+        const danger = current.nearest;
+        $("dangerNote").textContent = `current nearest lattice (${danger.i}, ${danger.j}), pulse delta ${danger.k}, distance ${fmt(danger.distancePx)} px`;
+        return;
+      }
+      if (!candidates.length) {
+        rows.innerHTML = `<tr><td colspan="4">No feasible candidates</td></tr>`;
+        $("dangerNote").textContent = "";
+        return;
+      }
+      for (const c of candidates) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${fmt(c.angle, 1)} deg</td>
+          <td>${fmt(c.stepUm)} um</td>
+          <td>${fmt(c.marginPx)} px</td>
+          <td>${c.limiter}</td>
+        `;
+        rows.appendChild(tr);
+      }
+      const danger = selected ? selected.nearest : current.nearest;
+      $("dangerNote").textContent = `nearest lattice (${danger.i}, ${danger.j}), pulse delta ${danger.k}, distance ${fmt(danger.distancePx)} px`;
+    }
+
+    function renderJson(params, selected, spot, motion) {
+      const exposureS = params.cameraExposureMs > 0 ? params.cameraExposureMs * 1e-3 : null;
+      const payload = {
+        config_simulate: {
+          PHOTON_ENERGY_EV: Math.round(params.energyKeV * 1000),
+          DETECTOR_PIXEL_M: params.pixelUm * 1e-6,
+          DETECTOR_NX: 1024,
+          DETECTOR_NY: 1024,
+          HARTMANN_HOLE_DIAMETER_M: params.holeUm * 1e-6,
+          HARTMANN_PITCH_M: params.pitchUm * 1e-6,
+          Z_PROP_M: params.zM,
+          N_PULSES: motion.effectiveNPulses,
+          ANGLE_DEG: params.currentAngle,
+          STEP_M: Number((params.currentStep * 1e-6).toExponential(8)),
+          MOVEMENT_MODE: params.movementMode,
+          ROTATION_TIMING_MODE: params.rotationTimingMode,
+          CAMERA_FPS_HZ: params.cameraFpsHz,
+          CAMERA_EXPOSURE_TIME_S: exposureS,
+          LIGHT_PULSE_REP_RATE_HZ: params.lightPulseRateHz,
+          ROTATION_RADIUS_M: params.rotationRadiusMm * 1e-3,
+          ROTATION_ANGULAR_VELOCITY: null,
+          ROTATION_GRID_TILT_DEG: params.currentAngle,
+          ROTATION_DIRECTION: params.rotationDirection,
+          SPOT_TRAIL_ENABLE: $("applyTrailToSimulation").checked && params.spotExtensionPx > 0,
+          SPOT_TRAIL_LENGTH_PX: params.spotExtensionPx,
+          SPOT_TRAIL_APPLY_TO_IDEAL: true,
+          SAVE_EACH_FRAME: $("saveEachFrame").checked,
+          SAVE_ACCUMULATED_PNG: true
+        },
+        design_estimate: {
+          fwhm_px: Number(spot.fwhmPx.toFixed(3)),
+          first_zero_px: Number(spot.firstZeroPx.toFixed(3)),
+          selected_angle_deg: selected ? Number(selected.angle.toFixed(3)) : null,
+          selected_step_um: selected ? Number(selected.stepUm.toFixed(3)) : null,
+          selected_margin_px: selected ? Number(selected.marginPx.toFixed(3)) : null,
+          effective_n_pulses: motion.effectiveNPulses,
+          rotation_exposure_ms: Number((motion.exposureS * 1e3).toFixed(6)),
+          rotation_omega_rad_s: motion.angularVelocityRadS === null
+            ? null
+            : Number(motion.angularVelocityRadS.toFixed(8)),
+          rotation_exposure_travel_um: motion.exposureTravelM === null
+            ? null
+            : Number((motion.exposureTravelM * 1e6).toFixed(6)),
+          rotation_pulse_center_span_um: Number((motion.pulseCenterSpanM * 1e6).toFixed(6)),
+          rotation_streak_um: Number((motion.streakLengthM * 1e6).toFixed(6))
+        }
+      };
+      $("jsonOut").value = JSON.stringify(payload, null, 2);
+    }
+
+    function resetDefaults() {
+      for (const [key, value] of Object.entries(DEFAULTS)) {
+        const element = $(key);
+        if (!element) continue;
+        if (element.type === "checkbox") {
+          element.checked = Boolean(value);
+        } else {
+          element.value = value;
+        }
+      }
+      markDesignDirty();
+    }
+
+    function useTargetZ() {
+      const params = collectParams();
+      const spot = spotEstimate(params);
+      setVal("zM", ((spot.zTargetLow + spot.zTargetHigh) / 2).toFixed(3));
+      markDesignDirty();
+    }
+
+    async function copyJson() {
+      const text = $("jsonOut").value;
+      try {
+        JSON.parse(text);
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          $("jsonOut").select();
+          if (!document.execCommand("copy")) throw new Error("请选中 JSON 后手动复制。");
+        }
+        $("designStatus").textContent = "JSON 已复制。";
+      } catch (error) {
+        $("designStatus").textContent = `复制失败：${error.message}；请先更新设计。`;
+      }
+    }
+
+    function workflowRuntime() {
+      return {
+        case_name: $("caseName").value || "designer_trial",
+        speed_mode: $("speedMode").value || "tuning",
+        method: $("recoveryMethod").value || "cross_correlation",
+        save_each_frame: $("saveEachFrame").checked,
+        timeout_s: Math.max(30, Math.round(Number($("timeoutS").value) || 1800))
+      };
+    }
+
+    function buildSimulationPayload() {
+      const params = collectParams();
+      return {
+        ...JSON.parse($("jsonOut").value),
+        runtime: workflowRuntime()
+      };
+    }
+
+    function setWorkflowBusy(isBusy, text) {
+      workflowBusy = isBusy;
+      $("runButton").disabled = isBusy || designBusy;
+      $("simulateButton").disabled = isBusy;
+      $("recoverButton").disabled = isBusy;
+      $("refreshSummary").disabled = isBusy;
+      if (text) $("workflowStatus").textContent = text;
+    }
+
+    function formatMetricValue(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      if (typeof value === "number") {
+        if (!Number.isFinite(value)) return "-";
+        const abs = Math.abs(value);
+        if (abs !== 0 && (abs < 0.001 || abs > 10000)) return value.toExponential(3);
+        return value.toFixed(abs < 1 ? 4 : 3);
+      }
+      return String(value);
+    }
+
+    function renderWorkflowMetrics(payload) {
+      const rows = $("workflowMetricRows");
+      const metrics = payload.compact_metrics || {};
+      const contract = payload.recovery_input_contract || {};
+      const sim = payload.simulation_params || {};
+      const spot = sim.spot_size_estimate || {};
+      const design = sim.spot_design_estimate || {};
+      const accumulated = payload.accumulated_recovery || {};
+      const entries = [
+        ["stage", payload.stage || "-"],
+        ["method", payload.method || "-"],
+        ["FWHM px", spot.calibrated_fwhm_diameter_px],
+        ["first-zero px", spot.airy_first_zero_diameter_px],
+        ["spot design", design.status],
+        ["design score", design.design_score],
+        ["movement mode", sim.movement_mode],
+        ["rotation pulses/frame", sim.rotation_pulses_per_frame],
+        ["rotation omega rad/s", sim.rotation_angular_velocity_rad_s],
+        ["rotation exposure travel um", sim.rotation_exposure_travel_m === undefined ? undefined : sim.rotation_exposure_travel_m * 1e6],
+        ["pulse-center span um", sim.rotation_pulse_center_span_m === undefined ? undefined : sim.rotation_pulse_center_span_m * 1e6],
+        ["median abs err px", metrics.median_sample_abs_error_px],
+        ["p95 abs err px", metrics.p95_sample_abs_error_px],
+        ["median parallel err px", metrics.median_sample_abs_parallel_error_px],
+        ["p95 parallel err px", metrics.p95_sample_abs_parallel_error_px],
+        ["median perpendicular err px", metrics.median_sample_abs_perpendicular_error_px],
+        ["p95 perpendicular err px", metrics.p95_sample_abs_perpendicular_error_px],
+        ["frame p95 RMSE px", metrics.dpc_frame_p95_rmse_px ?? metrics.p95_frame_rmse_px],
+        ["spot p95 RMSE px", metrics.dpc_spot_p95_rmse_px ?? metrics.p95_spot_rmse_px],
+        ["scale", metrics.median_scale_vec],
+        ["angle err deg", metrics.median_mean_angle_deg],
+        ["condition number", metrics.linearized_median_condition_number],
+        ["residual ratio", metrics.linearized_median_residual_ratio || accumulated.median_residual_ratio],
+        ["reference source", metrics.reference_sequence_source],
+        ["recovery mode", metrics.recovery_mode],
+        ["one-image contract", contract.status],
+        ["used target frames for recovery", contract.used_per_frame_aberrated_for_recovery],
+        ["eval target frames present", contract.saved_aberrated_frame_files_present],
+        ["GT present, eval-only", contract.gt_displacements_present]
+      ];
+      rows.innerHTML = "";
+      for (const [label, value] of entries) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${label}</td><td>${formatMetricValue(value)}</td>`;
+        rows.appendChild(tr);
+      }
+    }
+
+    function renderImages(images) {
+      const grid = $("imageGrid");
+      grid.innerHTML = "";
+      for (const img of images || []) {
+        const tile = document.createElement("div");
+        tile.className = "image-tile";
+        tile.innerHTML = `
+          <img src="${img.url}" alt="${img.title}">
+          <div class="caption">${img.title}</div>
+        `;
+        grid.appendChild(tile);
+      }
+    }
+
+    function renderWorkflowResult(payload) {
+      lastRunDir = payload.run_dir || lastRunDir;
+      $("runPath").textContent = lastRunDir || "-";
+      $("workflowStatus").textContent = payload.ok === false
+        ? `Failed: ${payload.error || "unknown error"}`
+        : `${payload.stage || "summary"} complete`;
+      renderWorkflowMetrics(payload);
+      renderImages(payload.images || []);
+      const command = payload.command || {};
+      $("workflowLog").textContent = [
+        command.command ? `$ ${command.command.join(" ")}` : "",
+        command.stdout_tail || "",
+        command.stderr_tail ? `STDERR:\n${command.stderr_tail}` : ""
+      ].filter(Boolean).join("\n\n");
+    }
+
+    async function postJson(url, payload) {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      });
+      let data;
+      try { data = await response.json(); }
+      catch { throw new Error("服务返回的不是 JSON，请确认本地服务仍在运行。"); }
+      if (!response.ok || data.ok === false) {
+        const message = data.error || `HTTP ${response.status}`;
+        throw new Error(message);
+      }
+      return data;
+    }
+
+    async function runSimulationWorkflow() {
+      if (workflowBusy || designBusy) return;
+      setWorkflowBusy(true, "Updating design...");
+      try {
+        if (!(await runDesignNow())) return;
+        $("workflowStatus").textContent = "Running optical simulation...";
+        const payload = buildSimulationPayload();
+        const result = await postJson("/api/simulate", payload);
+        renderWorkflowResult(result);
+      } catch (error) {
+        $("workflowStatus").textContent = `Simulation failed: ${error.message}`;
+        $("workflowLog").textContent = "Start the local server with:\npython modes/xray/visualization/hartmann_designer_server.py";
+      } finally {
+        setWorkflowBusy(false);
+      }
+    }
+
+    async function runRecoveryWorkflow() {
+      if (workflowBusy || designBusy) return;
+      if (!lastRunDir) {
+        $("workflowStatus").textContent = "Run optical simulation first.";
+        return;
+      }
+      setWorkflowBusy(true, "Running recovery...");
+      try {
+        const result = await postJson("/api/recover", {
+          run_dir: lastRunDir,
+          method: $("recoveryMethod").value || "cross_correlation",
+          timeout_s: workflowRuntime().timeout_s
+        });
+        renderWorkflowResult(result);
+      } catch (error) {
+        $("workflowStatus").textContent = `Recovery failed: ${error.message}`;
+      } finally {
+        setWorkflowBusy(false);
+      }
+    }
+
+    async function refreshSummary() {
+      if (workflowBusy || designBusy) return;
+      if (!lastRunDir) return;
+      setWorkflowBusy(true, "Refreshing summary...");
+      try {
+        const result = await postJson("/api/summary", {
+          run_dir: lastRunDir,
+          method: $("recoveryMethod").value || "cross_correlation"
+        });
+        renderWorkflowResult(result);
+      } catch (error) {
+        $("workflowStatus").textContent = `Refresh failed: ${error.message}`;
+      } finally {
+        setWorkflowBusy(false);
+      }
+    }
+
+    async function runDesignNow() {
+      try {
+        return await runDesign();
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    }
+
+    window.addEventListener("beforeunload", (event) => {
+      if (!workflowBusy) return;
+      event.preventDefault();
+      event.returnValue = "";
+    });
+
+    function markDesignDirty() {
+      parameterRevision += 1;
+      const params = collectParams();
+      const motion = motionEstimate(params);
+      updateMotionControls(params, motion);
+      $("designStatus").textContent = "Parameters changed. Click Update design when ready.";
+    }
+
+    function initializeDesignEditor() {
+      const params = collectParams();
+      const motion = motionEstimate(params);
+      updateMotionControls(params, motion);
+      $("jsonOut").value = "Click Update design to generate the simulation JSON.";
+      $("designStatus").textContent = "Set parameters, then click Update design.";
+    }
+
+    document.querySelectorAll("input, select").forEach((el) => {
+      el.addEventListener("input", markDesignDirty);
+      el.addEventListener("change", markDesignDirty);
+    });
+    $("runButton").addEventListener("click", runDesignNow);
+    $("useTargetZ").addEventListener("click", useTargetZ);
+    $("resetDefaults").addEventListener("click", resetDefaults);
+    $("copyJson").addEventListener("click", copyJson);
+    $("simulateButton").addEventListener("click", runSimulationWorkflow);
+    $("recoverButton").addEventListener("click", runRecoveryWorkflow);
+    $("refreshSummary").addEventListener("click", refreshSummary);
+    initializeDesignEditor();
+  </script>
+</body>
+</html>

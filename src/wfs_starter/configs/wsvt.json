@@ -13,5 +13,25 @@
       "reference": "data/reference_001.tif",
       "sample": "data/sample_001.tif"
     }
-  ]
+  ],
+  "backend": "python",
+  "roi_size_px": 0,
+  "roi_center_xy_px": [
+    -1,
+    -1
+  ],
+  "extended_half_window": 2,
+  "n_cores": 1,
+  "n_group": 1,
+  "n_iter": 1,
+  "use_wavelet": true,
+  "wavelet_level_cut": 0,
+  "pyramid_level": 0,
+  "phase_cores": 1,
+  "cpp_executable": "",
+  "gpu_source_dir": "",
+  "gpu_device": 0,
+  "gpu_front": "auto",
+  "gpu_spline": "gpu",
+  "gpu_input_dtype": "auto"
 }

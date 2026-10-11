@@ -42,7 +42,7 @@ def speckle(sample,reference,config):
     if mode not in {'wxst','wsvt'}:raise ValueError('mode must be wxst or wsvt')
     ndim=2 if mode=='wxst' else 3
     if sample.shape!=reference.shape or sample.ndim!=ndim:raise ValueError('Sample/reference shapes or frame counts differ.')
-    if sample.shape[-2]!=sample.shape[-1]:raise ValueError('Select an identical square ROI for sample and reference; this adapter does not silently crop rectangles.')
+    if config.get('backend','python')=='python' and sample.shape[-2]!=sample.shape[-1]:raise ValueError('Select an identical square ROI for sample and reference; this adapter does not silently crop rectangles.')
     if mode=='wsvt' and sample.shape[0]<2:raise ValueError('WSVT requires a frame stack, not one image pair.')
     if not np.isfinite(sample).all() or not np.isfinite(reference).all():raise ValueError('Nonfinite speckle data.')
     if np.std(reference)==0 or np.std(sample)==0:raise ValueError('Speckle input has no contrast.')
@@ -55,9 +55,17 @@ def speckle(sample,reference,config):
     template=int(config.get('template_half_window',2))
     if half<1 or template<1 or min(sample.shape[-2:])<=2*(half+template)+8:
         raise ValueError('Image too small for the selected search/template windows.')
-    kwargs=dict(M_image=min(sample.shape[-2:]),cal_half_window=half,N_s_extend=2,
-                n_cores=1,n_group=1,energy=energy,p_x=pixel,z=distance,
-                wavelet_level_cut=0,pyramid_level=0,n_iter=1,use_wavelet=True)
+    from .speckle_backends import validate_backend, native_speckle
+    backend, parameters = validate_backend(config)
+    if backend != 'python':
+        fields, meta = native_speckle(sample, reference, config)
+        meta.update(case=mode, energy_ev=energy, pixel_size_m=pixel, distance_m=distance,
+                    coordinate='image[y,x]; displacement [ux,uy]', valid_input_crop_px=half)
+        return fields, meta
+    kwargs=dict(M_image=min(sample.shape[-2:]),cal_half_window=half,N_s_extend=parameters['extended_half_window'],
+                n_cores=parameters['n_cores'],n_group=parameters['n_group'],energy=energy,p_x=pixel,z=distance,
+                wavelet_level_cut=parameters['wavelet_level_cut'],pyramid_level=parameters['pyramid_level'],
+                n_iter=parameters['n_iter'],use_wavelet=parameters['use_wavelet'])
     if mode=='wxst':
         from .vendor.speckle.WXST import WXST
         solver=WXST(sample,reference,N_s=template,**kwargs)
@@ -69,7 +77,7 @@ def speckle(sample,reference,config):
     result['phase_rad']=result.pop('phase')
     result['angle_x_rad_demeaned']=result.pop('DPC_x')
     result['angle_y_rad_demeaned']=result.pop('DPC_y')
-    metadata=dict(case=mode,coordinate='image[y,x]; displacement [ux,uy]',
+    metadata=dict(case=mode,backend='python_cpu',parameters=parameters,coordinate='image[y,x]; displacement [ux,uy]',
                   valid_input_crop_px=half,energy_ev=energy,pixel_size_m=pixel,distance_m=distance,
                   phase_convention='Preserved reference solver; displacement mean removed before DPC; phase zero-frequency removed. Absolute tilt and piston are not recovered.')
     return result,metadata
@@ -93,7 +101,7 @@ def grating(sample,reference,config):
     meta=dict(case='grating',coordinate='Sideband centers [row,column] in fftshift spectrum',
               output='Differential fringe phase in radians; no automatic optical calibration.')
     scale=config.get('phase_gradient_scale_rad_per_m_per_fringe_rad')
-    if scale is not None:
+    if scale is not None and config.get('recover_wavefront',True):
         if len(scale)!=2 or not np.isfinite(scale).all() or any(float(s)==0 for s in scale):raise ValueError('Supply two finite nonzero calibrated signed gradient scales.')
         pixel_x=positive(config['pixel_size_x_m'],'pixel_size_x_m');pixel_y=positive(config['pixel_size_y_m'],'pixel_size_y_m')
         gx=fields['fringe_phase_x_rad']*float(scale[0]);gy=fields['fringe_phase_y_rad']*float(scale[1])
@@ -117,7 +125,7 @@ def hartmann(sample,reference,config):
     result=dict(reference_centers_xy_px=ref,sample_centers_xy_px=sam,ux_px=shifts[...,0],uy_px=shifts[...,1])
     meta=dict(case='hartmann',coordinate='centers[x,y]; target minus reference',
               model='Fixed uniform cells; one isolated spot per cell; no auto spot pairing or dynamic demixing.')
-    if 'distance_m' in config:
+    if 'distance_m' in config and config.get('convert_angles',True):
         pixel=positive(config['pixel_size_m'],'pixel_size_m');distance=positive(config['distance_m'],'distance_m')
         result.update(angle_x_rad=shifts[...,0]*pixel/distance,angle_y_rad=shifts[...,1]*pixel/distance)
         meta.update(pixel_size_m=pixel,distance_m=distance,angle='Paraxial detector shift relative to calibrated reference.')

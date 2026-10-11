@@ -1,0 +1,21 @@
+{
+  "mode": "focus",
+  "data_dir": "",
+  "dark_dir": "",
+  "flat_dir": "",
+  "images_per_pos": 3,
+  "start_z": null,
+  "step_z": null,
+  "pixel_size_um": null,
+  "z_ref_um": null,
+  "distance_ref_mm": null,
+  "threshold": 0,
+  "do_dark": false,
+  "do_flat": false,
+  "use_iterative_centroid": true,
+  "use_roi": true,
+  "use_morphological_roi": false,
+  "roi_scale": 3,
+  "n_workers": 1,
+  "analysis_source_dir": ""
+}
