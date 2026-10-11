@@ -2,82 +2,1862 @@
   {
     "id": "L1",
     "category": "全局入门",
-    "authors": "Seaberg et al. (2019)",
+    "authors": "Seaberg et al.",
     "title": "Wavefront sensing at X-ray free-electron lasers",
-    "doi": "10.1107/S1600577519005721",
+    "doi": "10.1107/s1600577519005721",
     "url": "https://journals.iucr.org/s/issues/2019/04/00/xl5031/index.html",
-    "reading_goal": "认识散斑与两种光栅测量的实验用途和取舍"
+    "reading_goal": "认识散斑与两种光栅测量的实验用途和取舍",
+    "article_kind": "方法比较论文",
+    "level": "核心",
+    "reading_focus": "对比同一束线的几种波前测量方法，先学实验用途与参考状态。",
+    "submitted_title": "Wavefront sensing at X-ray free-electron lasers",
+    "authors_full": [
+      {
+        "given": "Matthew",
+        "family": "Seaberg",
+        "name": ""
+      },
+      {
+        "given": "Ruxandra",
+        "family": "Cojocaru",
+        "name": ""
+      },
+      {
+        "given": "Sebastien",
+        "family": "Berujon",
+        "name": ""
+      },
+      {
+        "given": "Eric",
+        "family": "Ziegler",
+        "name": ""
+      },
+      {
+        "given": "Andreas",
+        "family": "Jaggi",
+        "name": ""
+      },
+      {
+        "given": "Juraj",
+        "family": "Krempasky",
+        "name": ""
+      },
+      {
+        "given": "Frank",
+        "family": "Seiboth",
+        "name": ""
+      },
+      {
+        "given": "Andrew",
+        "family": "Aquila",
+        "name": ""
+      },
+      {
+        "given": "Yanwei",
+        "family": "Liu",
+        "name": ""
+      },
+      {
+        "given": "Anne",
+        "family": "Sakdinawat",
+        "name": ""
+      },
+      {
+        "given": "Hae Ja",
+        "family": "Lee",
+        "name": ""
+      },
+      {
+        "given": "Uwe",
+        "family": "Flechsig",
+        "name": ""
+      },
+      {
+        "given": "Luc",
+        "family": "Patthey",
+        "name": ""
+      },
+      {
+        "given": "Frieder",
+        "family": "Koch",
+        "name": ""
+      },
+      {
+        "given": "Gediminas",
+        "family": "Seniutinas",
+        "name": ""
+      },
+      {
+        "given": "Christian",
+        "family": "David",
+        "name": ""
+      },
+      {
+        "given": "Diling",
+        "family": "Zhu",
+        "name": ""
+      },
+      {
+        "given": "Ladislav",
+        "family": "Mikeš",
+        "name": ""
+      },
+      {
+        "given": "Mikako",
+        "family": "Makita",
+        "name": ""
+      },
+      {
+        "given": "Takahisa",
+        "family": "Koyama",
+        "name": ""
+      },
+      {
+        "given": "Adrian P.",
+        "family": "Mancuso",
+        "name": ""
+      },
+      {
+        "given": "Henry N.",
+        "family": "Chapman",
+        "name": ""
+      },
+      {
+        "given": "Patrik",
+        "family": "Vagovič",
+        "name": ""
+      }
+    ],
+    "year": 2019,
+    "online_year": 2019,
+    "journal": "Journal of Synchrotron Radiation",
+    "volume": "26",
+    "issue": "4",
+    "page": "1115-1126",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600577519005721",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600577519005721",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L1",
+    "review_priority": null
   },
   {
     "id": "L2",
     "category": "散斑基础",
-    "authors": "Zdora (2018)",
+    "authors": "Zdora",
     "title": "State of the Art of X-ray Speckle-Based Phase-Contrast and Dark-Field Imaging",
     "doi": "10.3390/jimaging4050060",
     "url": "https://www.mdpi.com/2313-433X/4/5/60",
-    "reading_goal": "理解近场散斑、不同采集模式、相位与暗场"
+    "reading_goal": "理解近场散斑、不同采集模式、相位与暗场",
+    "article_kind": "综述",
+    "level": "核心",
+    "reading_focus": "第一篇散斑入门综述，先看分类、采集模式和相位/暗场的区别。",
+    "submitted_title": "State of the Art of X-ray Speckle-Based Phase-Contrast and Dark-Field Imaging",
+    "authors_full": [
+      {
+        "given": "Marie-Christine",
+        "family": "Zdora",
+        "name": ""
+      }
+    ],
+    "year": 2018,
+    "online_year": 2018,
+    "journal": "Journal of Imaging",
+    "volume": "4",
+    "issue": "5",
+    "page": "60",
+    "type": "journal-article",
+    "publisher": "MDPI AG",
+    "doi_url": "https://doi.org/10.3390/jimaging4050060",
+    "metadata_source": "https://api.crossref.org/works/10.3390%2Fjimaging4050060",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L2",
+    "review_priority": 1
   },
   {
     "id": "L3",
     "category": "第一套实操",
-    "authors": "Hu, Wang & Sawhney (2024)",
-    "title": "Spexwavepy: an open-source Python package for X-ray wavefront sensing using speckle-based techniques",
-    "doi": "10.1107/S1600577524005861",
+    "authors": "Hu et al.",
+    "title": "Spexwavepy : an open-source Python package for X-ray wavefront sensing using speckle-based techniques",
+    "doi": "10.1107/s1600577524005861",
     "url": "https://journals.iucr.org/s/issues/2024/05/00/xt5025/index.html",
-    "reading_goal": "论文、软件、文档、公开数据四者配套"
+    "reading_goal": "论文、软件、文档、公开数据四者配套",
+    "article_kind": "软件论文",
+    "level": "核心",
+    "reading_focus": "结合软件文档和公开示例学习真实数据组织。",
+    "submitted_title": "Spexwavepy: an open-source Python package for X-ray wavefront sensing using speckle-based techniques",
+    "authors_full": [
+      {
+        "given": "Lingfei",
+        "family": "Hu",
+        "name": ""
+      },
+      {
+        "given": "Hongchang",
+        "family": "Wang",
+        "name": ""
+      },
+      {
+        "given": "Kawal",
+        "family": "Sawhney",
+        "name": ""
+      }
+    ],
+    "year": 2024,
+    "online_year": 2024,
+    "journal": "Journal of Synchrotron Radiation",
+    "volume": "31",
+    "issue": "5",
+    "page": "1037-1042",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600577524005861",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600577524005861",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L3",
+    "review_priority": null
   },
   {
     "id": "L4",
     "category": "算法对照",
-    "authors": "Celestre et al. (2025期刊卷；2024 online)",
+    "authors": "Celestre et al.",
     "title": "Review and experimental comparison of speckle-tracking algorithms for X-ray phase contrast imaging",
-    "doi": "10.1107/S1600577524010117",
+    "doi": "10.1107/s1600577524010117",
     "url": "https://journals.iucr.org/s/issues/2025/01/00/tv5066/index.html",
-    "reading_goal": "比较算法条件及数据量，避免只以运行速度选方法"
+    "reading_goal": "比较算法条件及数据量，避免只以运行速度选方法",
+    "article_kind": "综述与实验比较论文",
+    "level": "核心",
+    "reading_focus": "用实验条件比较算法；正式期刊卷为 2025，收稿与接受时间为 2024。",
+    "submitted_title": "Review and experimental comparison of speckle-tracking algorithms for X-ray phase contrast imaging",
+    "authors_full": [
+      {
+        "given": "Rafael",
+        "family": "Celestre",
+        "name": ""
+      },
+      {
+        "given": "Laurène",
+        "family": "Quénot",
+        "name": ""
+      },
+      {
+        "given": "Christopher",
+        "family": "Ninham",
+        "name": ""
+      },
+      {
+        "given": "Emmanuel",
+        "family": "Brun",
+        "name": ""
+      },
+      {
+        "given": "Luca",
+        "family": "Fardin",
+        "name": ""
+      }
+    ],
+    "year": 2025,
+    "online_year": 2025,
+    "journal": "Journal of Synchrotron Radiation",
+    "volume": "32",
+    "issue": "1",
+    "page": "180-199",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600577524010117",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600577524010117",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L4",
+    "review_priority": 3
   },
   {
     "id": "L5",
     "category": "你的散斑工具",
-    "authors": "Qiao et al. (2020)",
+    "authors": "Qiao et al.",
     "title": "Wavelet-transform-based speckle vector tracking method for X-ray phase imaging",
-    "doi": "10.1364/OE.404606",
+    "doi": "10.1364/oe.404606",
     "url": "https://doi.org/10.1364/OE.404606",
-    "reading_goal": "连接小波描述子与本机WSVT实现"
+    "reading_goal": "连接小波描述子与本机WSVT实现",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "reading_focus": "对应本仓库保留的小波散斑参考实现。",
+    "submitted_title": "Wavelet-transform-based speckle vector tracking method for X-ray phase imaging",
+    "authors_full": [
+      {
+        "given": "Zhi",
+        "family": "Qiao",
+        "name": ""
+      },
+      {
+        "given": "Xianbo",
+        "family": "Shi",
+        "name": ""
+      },
+      {
+        "given": "Rafael",
+        "family": "Celestre",
+        "name": ""
+      },
+      {
+        "given": "Lahsen",
+        "family": "Assoufid",
+        "name": ""
+      }
+    ],
+    "year": 2020,
+    "online_year": 2020,
+    "journal": "Optics Express",
+    "volume": "28",
+    "issue": "22",
+    "page": "33053",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/oe.404606",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Foe.404606",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L5",
+    "review_priority": null
   },
   {
     "id": "L6",
     "category": "光栅路线",
-    "authors": "Liu et al. (2020)",
+    "authors": "Liu et al.",
     "title": "X-ray free-electron laser wavefront sensing using the fractional Talbot effect",
-    "doi": "10.1107/S1600577519017107",
+    "doi": "10.1107/s1600577519017107",
     "url": "https://journals.iucr.org/s/issues/2020/02/00/yi5084/index.html",
-    "reading_goal": "理解自成像、几何放大、条纹与相对/绝对标定"
+    "reading_goal": "理解自成像、几何放大、条纹与相对/绝对标定",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "reading_focus": "对应 XFEL 光栅波前传感，仔细区分相对/绝对标定。",
+    "submitted_title": "X-ray free-electron laser wavefront sensing using the fractional Talbot effect",
+    "authors_full": [
+      {
+        "given": "Yanwei",
+        "family": "Liu",
+        "name": ""
+      },
+      {
+        "given": "Matthew",
+        "family": "Seaberg",
+        "name": ""
+      },
+      {
+        "given": "Yiping",
+        "family": "Feng",
+        "name": ""
+      },
+      {
+        "given": "Kenan",
+        "family": "Li",
+        "name": ""
+      },
+      {
+        "given": "Yuantao",
+        "family": "Ding",
+        "name": ""
+      },
+      {
+        "given": "Gabriel",
+        "family": "Marcus",
+        "name": ""
+      },
+      {
+        "given": "David",
+        "family": "Fritz",
+        "name": ""
+      },
+      {
+        "given": "Xianbo",
+        "family": "Shi",
+        "name": ""
+      },
+      {
+        "given": "Walan",
+        "family": "Grizolli",
+        "name": ""
+      },
+      {
+        "given": "Lahsen",
+        "family": "Assoufid",
+        "name": ""
+      },
+      {
+        "given": "Peter",
+        "family": "Walter",
+        "name": ""
+      },
+      {
+        "given": "Anne",
+        "family": "Sakdinawat",
+        "name": ""
+      }
+    ],
+    "year": 2020,
+    "online_year": 2020,
+    "journal": "Journal of Synchrotron Radiation",
+    "volume": "27",
+    "issue": "2",
+    "page": "254-261",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600577519017107",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600577519017107",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L6",
+    "review_priority": null
   },
   {
     "id": "L7",
     "category": "Hartmann路线",
-    "authors": "de La Rochefoucauld et al. (2021)",
+    "authors": "de La Rochefoucauld et al.",
     "title": "EUV and Hard X-ray Hartmann Wavefront Sensing for Optical Metrology, Alignment and Phase Imaging",
     "doi": "10.3390/s21030874",
     "url": "https://www.mdpi.com/1424-8220/21/3/874",
-    "reading_goal": "理解孔阵列、质心、参考标定和斜率重建"
+    "reading_goal": "理解孔阵列、质心、参考标定和斜率重建",
+    "article_kind": "技术总览与仪器论文",
+    "level": "核心",
+    "reading_focus": "Hartmann 必读，但不把仪器介绍和实验案例标作纯文献综述。",
+    "submitted_title": "EUV and Hard X-ray Hartmann Wavefront Sensing for Optical Metrology, Alignment and Phase Imaging",
+    "authors_full": [
+      {
+        "given": "Ombeline",
+        "family": "de La Rochefoucauld",
+        "name": ""
+      },
+      {
+        "given": "Guillaume",
+        "family": "Dovillaire",
+        "name": ""
+      },
+      {
+        "given": "Fabrice",
+        "family": "Harms",
+        "name": ""
+      },
+      {
+        "given": "Mourad",
+        "family": "Idir",
+        "name": ""
+      },
+      {
+        "given": "Lei",
+        "family": "Huang",
+        "name": ""
+      },
+      {
+        "given": "Xavier",
+        "family": "Levecq",
+        "name": ""
+      },
+      {
+        "given": "Martin",
+        "family": "Piponnier",
+        "name": ""
+      },
+      {
+        "given": "Philippe",
+        "family": "Zeitoun",
+        "name": ""
+      }
+    ],
+    "year": 2021,
+    "online_year": 2021,
+    "journal": "Sensors",
+    "volume": "21",
+    "issue": "3",
+    "page": "874",
+    "type": "journal-article",
+    "publisher": "MDPI AG",
+    "doi_url": "https://doi.org/10.3390/s21030874",
+    "metadata_source": "https://api.crossref.org/works/10.3390%2Fs21030874",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L7",
+    "review_priority": null
   },
   {
     "id": "L8",
     "category": "进阶深度学习",
-    "authors": "Qiao et al. (2022)",
+    "authors": "Qiao et al.",
     "title": "Real-time X-ray phase-contrast imaging using SPINNet—a speckle-based phase-contrast imaging neural network",
-    "doi": "10.1364/OPTICA.453748",
+    "doi": "10.1364/optica.453748",
     "url": "https://doi.org/10.1364/OPTICA.453748",
-    "reading_goal": "原始监督SPINNet与本机后续研究模型分别介绍"
+    "reading_goal": "原始监督SPINNet与本机后续研究模型分别介绍",
+    "article_kind": "研究论文",
+    "level": "进阶",
+    "reading_focus": "原始 SPINNet 是监督模型，和本地后续训练路线分别理解。",
+    "submitted_title": "Real-time X-ray phase-contrast imaging using SPINNet—a speckle-based phase-contrast imaging neural network",
+    "authors_full": [
+      {
+        "given": "Zhi",
+        "family": "Qiao",
+        "name": ""
+      },
+      {
+        "given": "Xianbo",
+        "family": "Shi",
+        "name": ""
+      },
+      {
+        "given": "Yudong",
+        "family": "Yao",
+        "name": ""
+      },
+      {
+        "given": "Michael J.",
+        "family": "Wojcik",
+        "name": ""
+      },
+      {
+        "given": "Luca",
+        "family": "Rebuffi",
+        "name": ""
+      },
+      {
+        "given": "Mathew J.",
+        "family": "Cherukara",
+        "name": ""
+      },
+      {
+        "given": "Lahsen",
+        "family": "Assoufid",
+        "name": ""
+      }
+    ],
+    "year": 2022,
+    "online_year": 2022,
+    "journal": "Optica",
+    "volume": "9",
+    "issue": "4",
+    "page": "391",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/optica.453748",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Foptica.453748",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L8",
+    "review_priority": null
   },
   {
     "id": "L9",
     "category": "进阶传统基线",
-    "authors": "De Marco et al. (2023)",
+    "authors": "De Marco et al.",
     "title": "High-speed processing of X-ray wavefront marking data with the Unified Modulated Pattern Analysis (UMPA) model",
-    "doi": "10.1364/OE.474794",
+    "doi": "10.1364/oe.474794",
     "url": "https://eprints.soton.ac.uk/473889/",
-    "reading_goal": "连接透射、位移与暗场联合拟合以及工程实现"
+    "reading_goal": "连接透射、位移与暗场联合拟合以及工程实现",
+    "article_kind": "软件与算法论文",
+    "level": "进阶",
+    "reading_focus": "读 UMPA 原理 L19 后再看高速处理；2022 预印本与 2023 正式版分开。",
+    "submitted_title": "High-speed processing of X-ray wavefront marking data with the Unified Modulated Pattern Analysis (UMPA) model",
+    "authors_full": [
+      {
+        "given": "Fabio",
+        "family": "De Marco",
+        "name": ""
+      },
+      {
+        "given": "Sara",
+        "family": "Savatović",
+        "name": ""
+      },
+      {
+        "given": "Ronan",
+        "family": "Smith",
+        "name": ""
+      },
+      {
+        "given": "Vittorio",
+        "family": "Di Trapani",
+        "name": ""
+      },
+      {
+        "given": "Marco",
+        "family": "Margini",
+        "name": ""
+      },
+      {
+        "given": "Ginevra",
+        "family": "Lautizi",
+        "name": ""
+      },
+      {
+        "given": "Pierre",
+        "family": "Thibault",
+        "name": ""
+      }
+    ],
+    "year": 2023,
+    "online_year": 2022,
+    "journal": "Optics Express",
+    "volume": "31",
+    "issue": "1",
+    "page": "635",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/oe.474794",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Foe.474794",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L9",
+    "review_priority": null
+  },
+  {
+    "id": "L10",
+    "category": "基础综述",
+    "doi": "10.1016/bs.aiep.2021.04.002",
+    "title": "X-ray phase-contrast imaging: a broad overview of some fundamentals",
+    "url": "https://arxiv.org/abs/2011.05146",
+    "reading_goal": "理解复振幅、相位、Fresnel 传播与相位恢复的基础关系。",
+    "reading_focus": "先读场与传播的基础段落；推导可留到第二遍。",
+    "article_kind": "理论总览/书章",
+    "level": "基础",
+    "submitted_title": "X-ray phase-contrast imaging: a broad overview of some fundamentals",
+    "authors_full": [
+      {
+        "given": "David M.",
+        "family": "Paganin",
+        "name": ""
+      },
+      {
+        "given": "Daniele",
+        "family": "Pelliccia",
+        "name": ""
+      }
+    ],
+    "authors": "Paganin & Pelliccia",
+    "year": 2021,
+    "online_year": null,
+    "journal": "Advances in Imaging and Electron Physics",
+    "page": "63-158",
+    "type": "book-chapter",
+    "publisher": "Elsevier",
+    "doi_url": "https://doi.org/10.1016/bs.aiep.2021.04.002",
+    "metadata_source": "https://api.crossref.org/works/10.1016%2Fbs.aiep.2021.04.002",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/publication metadata verified against Crossref; missing chapter authors supplied by the author-submitted arXiv record; reading guidance from primary-source material.",
+    "citation_key": "wfs_L10",
+    "author_metadata_source": "https://arxiv.org/abs/2011.05146",
+    "review_priority": 5
+  },
+  {
+    "id": "L11",
+    "category": "基础综述",
+    "doi": "10.1098/rsta.2013.0021",
+    "title": "On the evolution and relative merits of hard X-ray phase-contrast imaging methods",
+    "url": "https://doi.org/10.1098/rsta.2013.0021",
+    "reading_goal": "比较不同相位成像路线及光源、探测器与动态测量约束。",
+    "reading_focus": "回答为什么选散斑或光栅；这篇覆盖相位成像，比波前计量范围更广。",
+    "article_kind": "综述",
+    "level": "基础",
+    "submitted_title": "On the evolution and relative merits of hard X-ray phase-contrast imaging methods",
+    "authors_full": [
+      {
+        "given": "S. W.",
+        "family": "Wilkins",
+        "name": ""
+      },
+      {
+        "given": "Ya. I.",
+        "family": "Nesterets",
+        "name": ""
+      },
+      {
+        "given": "T. E.",
+        "family": "Gureyev",
+        "name": ""
+      },
+      {
+        "given": "S. C.",
+        "family": "Mayo",
+        "name": ""
+      },
+      {
+        "given": "A.",
+        "family": "Pogany",
+        "name": ""
+      },
+      {
+        "given": "A. W.",
+        "family": "Stevenson",
+        "name": ""
+      }
+    ],
+    "authors": "Wilkins et al.",
+    "year": 2014,
+    "online_year": null,
+    "journal": "Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+    "volume": "372",
+    "issue": "2010",
+    "article_number": "20130021",
+    "type": "journal-article",
+    "publisher": "The Royal Society",
+    "doi_url": "https://doi.org/10.1098/rsta.2013.0021",
+    "metadata_source": "https://api.crossref.org/works/10.1098%2Frsta.2013.0021",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L11",
+    "review_priority": null
+  },
+  {
+    "id": "L12",
+    "category": "散斑综述",
+    "doi": "10.1107/s1600577520000491",
+    "title": "X-ray optics and beam characterization using random modulation: theory",
+    "url": "https://journals.iucr.org/s/issues/2020/02/00/gb5096/index.html",
+    "reading_goal": "厘清差分/绝对计量，以及 XST、XSVT、XSS 的采集与处理区别。",
+    "reading_focus": "先画出两种计量几何，再把参考数据的定义写清。",
+    "article_kind": "理论综述型研究论文",
+    "level": "核心",
+    "submitted_title": "X-ray optics and beam characterization using random modulation: theory",
+    "authors_full": [
+      {
+        "given": "Sebastien",
+        "family": "Berujon",
+        "name": ""
+      },
+      {
+        "given": "Ruxandra",
+        "family": "Cojocaru",
+        "name": ""
+      },
+      {
+        "given": "Pierre",
+        "family": "Piault",
+        "name": ""
+      },
+      {
+        "given": "Rafael",
+        "family": "Celestre",
+        "name": ""
+      },
+      {
+        "given": "Thomas",
+        "family": "Roth",
+        "name": ""
+      },
+      {
+        "given": "Raymond",
+        "family": "Barrett",
+        "name": ""
+      },
+      {
+        "given": "Eric",
+        "family": "Ziegler",
+        "name": ""
+      }
+    ],
+    "authors": "Berujon et al.",
+    "year": 2020,
+    "online_year": 2020,
+    "journal": "Journal of Synchrotron Radiation",
+    "volume": "27",
+    "issue": "2",
+    "page": "284-292",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600577520000491",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600577520000491",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L12",
+    "review_priority": 2
+  },
+  {
+    "id": "L13",
+    "category": "光栅综述",
+    "doi": "10.1016/j.zemedi.2013.02.002",
+    "title": "Grating-based X-ray phase contrast for biomedical imaging applications",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0939388913000263",
+    "reading_goal": "认识光栅系统的吸收、差分相位和暗场三个通道。",
+    "reading_focus": "应用面向生物医学；先学信号形成，再回到 XFEL 波前测量的几何。",
+    "article_kind": "综述",
+    "level": "核心",
+    "submitted_title": "Grating-based X-ray phase contrast for biomedical imaging applications",
+    "authors_full": [
+      {
+        "given": "Franz",
+        "family": "Pfeiffer",
+        "name": ""
+      },
+      {
+        "given": "Julia",
+        "family": "Herzen",
+        "name": ""
+      },
+      {
+        "given": "Marian",
+        "family": "Willner",
+        "name": ""
+      },
+      {
+        "given": "Michael",
+        "family": "Chabior",
+        "name": ""
+      },
+      {
+        "given": "Sigrid",
+        "family": "Auweter",
+        "name": ""
+      },
+      {
+        "given": "Maximilian",
+        "family": "Reiser",
+        "name": ""
+      },
+      {
+        "given": "Fabian",
+        "family": "Bamberg",
+        "name": ""
+      }
+    ],
+    "authors": "Pfeiffer et al.",
+    "year": 2013,
+    "online_year": null,
+    "journal": "Zeitschrift für Medizinische Physik",
+    "volume": "23",
+    "issue": "3",
+    "page": "176-185",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "doi_url": "https://doi.org/10.1016/j.zemedi.2013.02.002",
+    "metadata_source": "https://api.crossref.org/works/10.1016%2Fj.zemedi.2013.02.002",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L13",
+    "review_priority": 6
+  },
+  {
+    "id": "L14",
+    "category": "基础综述",
+    "doi": "10.1093/jmicro/dfx013",
+    "title": "Development toward high-resolution X-ray phase imaging",
+    "url": "https://doi.org/10.1093/jmicro/dfx013",
+    "reading_goal": "理解定量相位成像与显微成像、断层成像的联系。",
+    "reading_focus": "作为视野扩展阅读，区分波前计量与样品相位成像。",
+    "article_kind": "综述",
+    "level": "扩展",
+    "submitted_title": "Development toward high-resolution X-ray phase imaging",
+    "authors_full": [
+      {
+        "given": "Atsushi",
+        "family": "Momose",
+        "name": ""
+      }
+    ],
+    "authors": "Momose",
+    "year": 2017,
+    "online_year": 2017,
+    "journal": "Journal of Electron Microscopy",
+    "volume": "66",
+    "issue": "3",
+    "page": "155-166",
+    "type": "journal-article",
+    "publisher": "Oxford University Press (OUP)",
+    "doi_url": "https://doi.org/10.1093/jmicro/dfx013",
+    "metadata_source": "https://api.crossref.org/works/10.1093%2Fjmicro%2Fdfx013",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L14",
+    "review_priority": null
+  },
+  {
+    "id": "L15",
+    "category": "光栅综述",
+    "doi": "10.3390/photonics12030222",
+    "title": "Research Progress of Grating-Based X-Ray Phase-Contrast Imaging and Key Devices",
+    "url": "https://www.mdpi.com/2304-6732/12/3/222",
+    "reading_goal": "了解光栅器件、制造和系统路线的新近进展。",
+    "reading_focus": "补充器件背景；不把其临床/产业判断直接当作束线波前计量结论。",
+    "article_kind": "综述",
+    "level": "扩展",
+    "submitted_title": "Research Progress of Grating-Based X-Ray Phase-Contrast Imaging and Key Devices",
+    "authors_full": [
+      {
+        "given": "Fangke",
+        "family": "Zong",
+        "name": ""
+      },
+      {
+        "given": "Jun",
+        "family": "Yang",
+        "name": ""
+      },
+      {
+        "given": "Jinchuan",
+        "family": "Guo",
+        "name": ""
+      },
+      {
+        "given": "Jingjin",
+        "family": "Zhang",
+        "name": ""
+      },
+      {
+        "given": "Yang",
+        "family": "Du",
+        "name": ""
+      },
+      {
+        "given": "Chenggong",
+        "family": "Zhang",
+        "name": ""
+      }
+    ],
+    "authors": "Zong et al.",
+    "year": 2025,
+    "online_year": 2025,
+    "journal": "Photonics",
+    "volume": "12",
+    "issue": "3",
+    "page": "222",
+    "type": "journal-article",
+    "publisher": "MDPI AG",
+    "doi_url": "https://doi.org/10.3390/photonics12030222",
+    "metadata_source": "https://api.crossref.org/works/10.3390%2Fphotonics12030222",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L15",
+    "review_priority": null
+  },
+  {
+    "id": "L16",
+    "category": "散斑实验",
+    "doi": "10.1107/s1600577520000508",
+    "title": "X-ray optics and beam characterization using random modulation: experiments",
+    "url": "https://doi.org/10.1107/S1600577520000508",
+    "reading_goal": "把 L12 的理论与折射、反射光学元件的实验计量对应。",
+    "reading_focus": "与 L12 成对阅读，检查数据采集条件及在线优化示例。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "X-ray optics and beam characterization using random modulation: experiments",
+    "authors_full": [
+      {
+        "given": "Sebastien",
+        "family": "Berujon",
+        "name": ""
+      },
+      {
+        "given": "Ruxandra",
+        "family": "Cojocaru",
+        "name": ""
+      },
+      {
+        "given": "Pierre",
+        "family": "Piault",
+        "name": ""
+      },
+      {
+        "given": "Rafael",
+        "family": "Celestre",
+        "name": ""
+      },
+      {
+        "given": "Thomas",
+        "family": "Roth",
+        "name": ""
+      },
+      {
+        "given": "Raymond",
+        "family": "Barrett",
+        "name": ""
+      },
+      {
+        "given": "Eric",
+        "family": "Ziegler",
+        "name": ""
+      }
+    ],
+    "authors": "Berujon et al.",
+    "year": 2020,
+    "online_year": 2020,
+    "journal": "Journal of Synchrotron Radiation",
+    "volume": "27",
+    "issue": "2",
+    "page": "293-304",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600577520000508",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600577520000508",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L16",
+    "review_priority": null
+  },
+  {
+    "id": "L17",
+    "category": "散斑奠基",
+    "doi": "10.1103/physrevlett.108.158102",
+    "title": "Two-Dimensional X-Ray Beam Phase Sensing",
+    "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.158102",
+    "reading_goal": "理解二维散斑相关怎样给出局部位移和相位信息。",
+    "reading_focus": "先看测量装置和图像对应关系，再读相关峰的含义。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "Two-Dimensional X-Ray Beam Phase Sensing",
+    "authors_full": [
+      {
+        "given": "Sébastien",
+        "family": "Bérujon",
+        "name": ""
+      },
+      {
+        "given": "Eric",
+        "family": "Ziegler",
+        "name": ""
+      },
+      {
+        "given": "Roberto",
+        "family": "Cerbino",
+        "name": ""
+      },
+      {
+        "given": "Luca",
+        "family": "Peverini",
+        "name": ""
+      }
+    ],
+    "authors": "Bérujon et al.",
+    "year": 2012,
+    "online_year": 2012,
+    "journal": "Physical Review Letters",
+    "volume": "108",
+    "issue": "15",
+    "article_number": "158102",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "doi_url": "https://doi.org/10.1103/physrevlett.108.158102",
+    "metadata_source": "https://api.crossref.org/works/10.1103%2Fphysrevlett.108.158102",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L17",
+    "review_priority": null
+  },
+  {
+    "id": "L18",
+    "category": "散斑奠基",
+    "doi": "10.1063/1.3694918",
+    "title": "X-ray phase imaging with a paper analyzer",
+    "url": "https://research.monash.edu/en/publications/x-ray-phase-imaging-with-a-paper-analyzer/",
+    "reading_goal": "认识纸/砂纸分析器的单样品曝光散斑测量。",
+    "reading_focus": "与 L17 同读，区分二维位移观测和波前积分。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "X-ray phase imaging with a paper analyser",
+    "authors_full": [
+      {
+        "given": "Kaye S.",
+        "family": "Morgan",
+        "name": ""
+      },
+      {
+        "given": "David M.",
+        "family": "Paganin",
+        "name": ""
+      },
+      {
+        "given": "Karen K. W.",
+        "family": "Siu",
+        "name": ""
+      }
+    ],
+    "authors": "Morgan et al.",
+    "year": 2012,
+    "online_year": 2012,
+    "journal": "Applied Physics Letters",
+    "volume": "100",
+    "issue": "12",
+    "article_number": "124102",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "doi_url": "https://doi.org/10.1063/1.3694918",
+    "metadata_source": "https://api.crossref.org/works/10.1063%2F1.3694918",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L18",
+    "review_priority": null
+  },
+  {
+    "id": "L19",
+    "category": "散斑与暗场",
+    "doi": "10.1103/physrevlett.118.203903",
+    "title": "X-ray Phase-Contrast Imaging and Metrology through Unified Modulated Pattern Analysis",
+    "url": "https://discovery.ucl.ac.uk/id/eprint/10119386/",
+    "reading_goal": "理解 UMPA 的调制/解调框架及信号灵敏度、分辨率与扫描时间权衡。",
+    "reading_focus": "为传输/位移/暗场的联合模型建立概念，再读加速实现 L9。",
+    "article_kind": "研究论文",
+    "level": "进阶",
+    "submitted_title": "X-ray Phase-Contrast Imaging and Metrology through Unified Modulated Pattern Analysis",
+    "authors_full": [
+      {
+        "given": "Marie-Christine",
+        "family": "Zdora",
+        "name": ""
+      },
+      {
+        "given": "Pierre",
+        "family": "Thibault",
+        "name": ""
+      },
+      {
+        "given": "Tunhe",
+        "family": "Zhou",
+        "name": ""
+      },
+      {
+        "given": "Frieder J.",
+        "family": "Koch",
+        "name": ""
+      },
+      {
+        "given": "Jenny",
+        "family": "Romell",
+        "name": ""
+      },
+      {
+        "given": "Simone",
+        "family": "Sala",
+        "name": ""
+      },
+      {
+        "given": "Arndt",
+        "family": "Last",
+        "name": ""
+      },
+      {
+        "given": "Christoph",
+        "family": "Rau",
+        "name": ""
+      },
+      {
+        "given": "Irene",
+        "family": "Zanette",
+        "name": ""
+      }
+    ],
+    "authors": "Zdora et al.",
+    "year": 2017,
+    "online_year": 2017,
+    "journal": "Physical Review Letters",
+    "volume": "118",
+    "issue": "20",
+    "article_number": "203903",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "doi_url": "https://doi.org/10.1103/physrevlett.118.203903",
+    "metadata_source": "https://api.crossref.org/works/10.1103%2Fphysrevlett.118.203903",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L19",
+    "review_priority": null
+  },
+  {
+    "id": "L20",
+    "category": "散斑扫描",
+    "doi": "10.1103/physreva.92.013837",
+    "title": "Near-field speckle-scanning-based x-ray imaging",
+    "url": "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.013837",
+    "reading_goal": "理解扫描方案、二维相位梯度和随机步扫描的处理。",
+    "reading_focus": "与 WSVT 的显式配对时间栈比较，避免混用采集模式。",
+    "article_kind": "研究论文",
+    "level": "进阶",
+    "submitted_title": "Near-field speckle-scanning-based x-ray imaging",
+    "authors_full": [
+      {
+        "given": "Sebastien",
+        "family": "Berujon",
+        "name": ""
+      },
+      {
+        "given": "Eric",
+        "family": "Ziegler",
+        "name": ""
+      }
+    ],
+    "authors": "Berujon et al.",
+    "year": 2015,
+    "online_year": 2015,
+    "journal": "Physical Review A",
+    "volume": "92",
+    "issue": "1",
+    "article_number": "013837",
+    "type": "journal-article",
+    "publisher": "American Physical Society (APS)",
+    "doi_url": "https://doi.org/10.1103/physreva.92.013837",
+    "metadata_source": "https://api.crossref.org/works/10.1103%2Fphysreva.92.013837",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L20",
+    "review_priority": null
+  },
+  {
+    "id": "L21",
+    "category": "散斑进阶",
+    "doi": "10.1107/s1600576720005567",
+    "title": "Ptychographic X-ray speckle tracking",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7312131/",
+    "reading_goal": "认识发散波场下的 PXST 及参考图像问题。",
+    "reading_focus": "理解这是一条独立的联合恢复路线，不是本仓库 WXST 示例的别名。",
+    "article_kind": "研究论文",
+    "level": "进阶",
+    "submitted_title": "Ptychographic X-ray speckle tracking",
+    "authors_full": [
+      {
+        "given": "Andrew J.",
+        "family": "Morgan",
+        "name": ""
+      },
+      {
+        "given": "Harry M.",
+        "family": "Quiney",
+        "name": ""
+      },
+      {
+        "given": "Saša",
+        "family": "Bajt",
+        "name": ""
+      },
+      {
+        "given": "Henry N.",
+        "family": "Chapman",
+        "name": ""
+      }
+    ],
+    "authors": "Morgan et al.",
+    "year": 2020,
+    "online_year": 2020,
+    "journal": "Journal of Applied Crystallography",
+    "volume": "53",
+    "issue": "3",
+    "page": "760-780",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600576720005567",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600576720005567",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L21",
+    "review_priority": null
+  },
+  {
+    "id": "L22",
+    "category": "光栅奠基",
+    "doi": "10.1063/1.1516611",
+    "title": "Differential x-ray phase contrast imaging using a shearing interferometer",
+    "url": "https://www.esrf.fr/UsersAndScience/Publications/Highlights/2002/Methods/MET4",
+    "reading_goal": "理解光栅剪切干涉测得的差分相位。",
+    "reading_focus": "先追踪相位梯度到强度变化的测量链。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "Differential x-ray phase contrast imaging using a shearing interferometer",
+    "authors_full": [
+      {
+        "given": "C.",
+        "family": "David",
+        "name": ""
+      },
+      {
+        "given": "B.",
+        "family": "Nöhammer",
+        "name": ""
+      },
+      {
+        "given": "H. H.",
+        "family": "Solak",
+        "name": ""
+      },
+      {
+        "given": "E.",
+        "family": "Ziegler",
+        "name": ""
+      }
+    ],
+    "authors": "David et al.",
+    "year": 2002,
+    "online_year": null,
+    "journal": "Applied Physics Letters",
+    "volume": "81",
+    "issue": "17",
+    "page": "3287-3289",
+    "type": "journal-article",
+    "publisher": "AIP Publishing",
+    "doi_url": "https://doi.org/10.1063/1.1516611",
+    "metadata_source": "https://api.crossref.org/works/10.1063%2F1.1516611",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L22",
+    "review_priority": null
+  },
+  {
+    "id": "L23",
+    "category": "光栅奠基",
+    "doi": "10.1143/jjap.42.l866",
+    "title": "Demonstration of X-Ray Talbot Interferometry",
+    "url": "https://doi.org/10.1143/JJAP.42.L866",
+    "reading_goal": "认识 X 射线 Talbot 干涉的早期实现。",
+    "reading_focus": "画出光栅、传播距离和探测器；不要照搬论文参数作为本机实验值。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "Demonstration of X-Ray Talbot Interferometry",
+    "authors_full": [
+      {
+        "given": "Atsushi",
+        "family": "Momose",
+        "name": ""
+      },
+      {
+        "given": "Shinya",
+        "family": "Kawamoto",
+        "name": ""
+      },
+      {
+        "given": "Ichiro",
+        "family": "Koyama",
+        "name": ""
+      },
+      {
+        "given": "Yoshitaka",
+        "family": "Hamaishi",
+        "name": ""
+      },
+      {
+        "given": "Kengo",
+        "family": "Takai",
+        "name": ""
+      },
+      {
+        "given": "Yoshio",
+        "family": "Suzuki",
+        "name": ""
+      }
+    ],
+    "authors": "Momose et al.",
+    "year": 2003,
+    "online_year": null,
+    "journal": "Japanese Journal of Applied Physics",
+    "volume": "42",
+    "issue": "Part 2, No. 7B",
+    "page": "L866-L868",
+    "type": "journal-article",
+    "publisher": "IOP Publishing",
+    "doi_url": "https://doi.org/10.1143/jjap.42.l866",
+    "metadata_source": "https://api.crossref.org/works/10.1143%2Fjjap.42.l866",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L23",
+    "review_priority": null
+  },
+  {
+    "id": "L24",
+    "category": "光栅方法",
+    "doi": "10.1364/opex.13.006296",
+    "title": "X-ray phase imaging with a grating interferometer",
+    "url": "https://opg.optica.org/abstract.cfm?uri=oe-13-16-6296",
+    "reading_goal": "理解 phase stepping、吸收和相位信号的提取。",
+    "reading_focus": "与教学版单图 Fourier 边带法比较采集方式。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "X-ray phase imaging with a grating interferometer",
+    "authors_full": [
+      {
+        "given": "Timm",
+        "family": "Weitkamp",
+        "name": ""
+      },
+      {
+        "given": "Ana",
+        "family": "Diaz",
+        "name": ""
+      },
+      {
+        "given": "Christian",
+        "family": "David",
+        "name": ""
+      },
+      {
+        "given": "Franz",
+        "family": "Pfeiffer",
+        "name": ""
+      },
+      {
+        "given": "Marco",
+        "family": "Stampanoni",
+        "name": ""
+      },
+      {
+        "given": "Peter",
+        "family": "Cloetens",
+        "name": ""
+      },
+      {
+        "given": "Eric",
+        "family": "Ziegler",
+        "name": ""
+      }
+    ],
+    "authors": "Weitkamp et al.",
+    "year": 2005,
+    "online_year": 2005,
+    "journal": "Optics Express",
+    "volume": "13",
+    "issue": "16",
+    "page": "6296",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/opex.13.006296",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Fopex.13.006296",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L24",
+    "review_priority": null
+  },
+  {
+    "id": "L25",
+    "category": "光栅与光源",
+    "doi": "10.1038/nphys265",
+    "title": "Phase retrieval and differential phase-contrast imaging with low-brilliance X-ray sources",
+    "url": "https://www.nature.com/articles/nphys265",
+    "reading_goal": "理解使用低亮度光源的光栅差分相位测量路线。",
+    "reading_focus": "分析实验室光源方案与同步辐射/XFEL 几何的区别。",
+    "article_kind": "研究论文",
+    "level": "进阶",
+    "submitted_title": "Phase retrieval and differential phase-contrast imaging with low-brilliance X-ray sources",
+    "authors_full": [
+      {
+        "given": "Franz",
+        "family": "Pfeiffer",
+        "name": ""
+      },
+      {
+        "given": "Timm",
+        "family": "Weitkamp",
+        "name": ""
+      },
+      {
+        "given": "Oliver",
+        "family": "Bunk",
+        "name": ""
+      },
+      {
+        "given": "Christian",
+        "family": "David",
+        "name": ""
+      }
+    ],
+    "authors": "Pfeiffer et al.",
+    "year": 2006,
+    "online_year": 2006,
+    "journal": "Nature Physics",
+    "volume": "2",
+    "issue": "4",
+    "page": "258-261",
+    "type": "journal-article",
+    "publisher": "Springer Science and Business Media LLC",
+    "doi_url": "https://doi.org/10.1038/nphys265",
+    "metadata_source": "https://api.crossref.org/works/10.1038%2Fnphys265",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L25",
+    "review_priority": null
+  },
+  {
+    "id": "L26",
+    "category": "XFEL 光栅",
+    "doi": "10.1364/oe.22.009004",
+    "title": "Wavefront metrology measurements at SACLA by means of X-ray grating interferometry",
+    "url": "https://www.psi.ch/en/lxn/grating-based-wavefront-metrology",
+    "reading_goal": "阅读 SACLA 光栅波前计量的实验案例。",
+    "reading_focus": "与 L6 的 fractional Talbot 测量配对看，核对距离和标定定义。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "Wavefront metrology measurements at SACLA by means of x-ray grating interferometry",
+    "authors_full": [
+      {
+        "given": "Yves",
+        "family": "Kayser",
+        "name": ""
+      },
+      {
+        "given": "Simon",
+        "family": "Rutishauser",
+        "name": ""
+      },
+      {
+        "given": "Tetsuo",
+        "family": "Katayama",
+        "name": ""
+      },
+      {
+        "given": "Haruhiko",
+        "family": "Ohashi",
+        "name": ""
+      },
+      {
+        "given": "Takashi",
+        "family": "Kameshima",
+        "name": ""
+      },
+      {
+        "given": "Uwe",
+        "family": "Flechsig",
+        "name": ""
+      },
+      {
+        "given": "Makina",
+        "family": "Yabashi",
+        "name": ""
+      },
+      {
+        "given": "Christian",
+        "family": "David",
+        "name": ""
+      }
+    ],
+    "authors": "Kayser et al.",
+    "year": 2014,
+    "online_year": 2014,
+    "journal": "Optics Express",
+    "volume": "22",
+    "issue": "8",
+    "page": "9004",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/oe.22.009004",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Foe.22.009004",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L26",
+    "review_priority": null
+  },
+  {
+    "id": "L27",
+    "category": "光栅计量",
+    "doi": "10.1107/s1600577516017562",
+    "title": "X-ray grating interferometer for in situ and at-wavelength wavefront metrology",
+    "url": "https://journals.iucr.org/s/issues/2017/01/00/yi5026/index.html",
+    "reading_goal": "认识可移动光栅计量仪的硬件、数据分析及束线应用。",
+    "reading_focus": "重点学习实验几何和从条纹到波前的标定流程。",
+    "article_kind": "研究论文",
+    "level": "核心",
+    "submitted_title": "X-ray grating interferometer for in situ and at-wavelength wavefront metrology",
+    "authors_full": [
+      {
+        "given": "Yves",
+        "family": "Kayser",
+        "name": ""
+      },
+      {
+        "given": "Christian",
+        "family": "David",
+        "name": ""
+      },
+      {
+        "given": "Uwe",
+        "family": "Flechsig",
+        "name": ""
+      },
+      {
+        "given": "Juraj",
+        "family": "Krempasky",
+        "name": ""
+      },
+      {
+        "given": "Volker",
+        "family": "Schlott",
+        "name": ""
+      },
+      {
+        "given": "Rafael",
+        "family": "Abela",
+        "name": ""
+      }
+    ],
+    "authors": "Kayser et al.",
+    "year": 2017,
+    "online_year": 2017,
+    "journal": "Journal of Synchrotron Radiation",
+    "volume": "24",
+    "issue": "1",
+    "page": "150-162",
+    "type": "journal-article",
+    "publisher": "International Union of Crystallography (IUCr)",
+    "doi_url": "https://doi.org/10.1107/s1600577516017562",
+    "metadata_source": "https://api.crossref.org/works/10.1107%2Fs1600577516017562",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L27",
+    "review_priority": null
+  },
+  {
+    "id": "L28",
+    "category": "Hartmann 建模",
+    "doi": "10.3390/s20226469",
+    "title": "Modelling of Phase Contrast Imaging with X-ray Wavefront Sensor and Partial Coherence Beams",
+    "url": "https://www.mdpi.com/1424-8220/20/22/6469",
+    "reading_goal": "理解 Hartmann 相位成像的传播与部分相干建模。",
+    "reading_focus": "解释为何简单 Gaussian 质心平移只能是算法控制。",
+    "article_kind": "研究论文",
+    "level": "进阶",
+    "submitted_title": "Modelling of Phase Contrast Imaging with X-ray Wavefront Sensor and Partial Coherence Beams",
+    "authors_full": [
+      {
+        "given": "Ginevra",
+        "family": "Begani Provinciali",
+        "name": ""
+      },
+      {
+        "given": "Alessia",
+        "family": "Cedola",
+        "name": ""
+      },
+      {
+        "given": "Ombeline de La",
+        "family": "Rochefoucauld",
+        "name": ""
+      },
+      {
+        "given": "Philippe",
+        "family": "Zeitoun",
+        "name": ""
+      }
+    ],
+    "authors": "Begani Provinciali et al.",
+    "year": 2020,
+    "online_year": 2020,
+    "journal": "Sensors",
+    "volume": "20",
+    "issue": "22",
+    "page": "6469",
+    "type": "journal-article",
+    "publisher": "MDPI AG",
+    "doi_url": "https://doi.org/10.3390/s20226469",
+    "metadata_source": "https://api.crossref.org/works/10.3390%2Fs20226469",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L28",
+    "review_priority": null
+  },
+  {
+    "id": "L29",
+    "category": "Zernike 基础",
+    "doi": "10.1364/josa.66.000207",
+    "title": "Zernike polynomials and atmospheric turbulence*",
+    "url": "https://opg.optica.org/josa/abstract.cfm?uri=josa-66-3-207",
+    "reading_goal": "追溯 Zernike 模式、归一化与常用序号体系。",
+    "reading_focus": "先对照 (n,m) 和单位；大气湍流应用不是 X 射线实验验收依据。",
+    "article_kind": "基础方法论文",
+    "level": "核心",
+    "submitted_title": "Zernike polynomials and atmospheric turbulence",
+    "authors_full": [
+      {
+        "given": "Robert J.",
+        "family": "Noll",
+        "name": ""
+      }
+    ],
+    "authors": "Noll",
+    "year": 1976,
+    "online_year": 1976,
+    "journal": "Journal of the Optical Society of America",
+    "volume": "66",
+    "issue": "3",
+    "page": "207",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/josa.66.000207",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Fjosa.66.000207",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L29",
+    "review_priority": null
+  },
+  {
+    "id": "L30",
+    "category": "梯度积分",
+    "doi": "10.1109/34.3909",
+    "title": "A method for enforcing integrability in shape from shading algorithms",
+    "url": "https://webdocs.cs.ualberta.ca/~vis/courses/CompVis/readings/photometric/FrankotIntegrpami88.pdf",
+    "reading_goal": "理解梯度场的可积性及 Fourier 投影积分。",
+    "reading_focus": "看清周期边界和常数项自由度，解释教学代码为何去掉 piston。",
+    "article_kind": "基础方法论文",
+    "level": "核心",
+    "submitted_title": "A method for enforcing integrability in shape from shading algorithms",
+    "authors_full": [
+      {
+        "given": "R.T.",
+        "family": "Frankot",
+        "name": ""
+      },
+      {
+        "given": "R.",
+        "family": "Chellappa",
+        "name": ""
+      }
+    ],
+    "authors": "Frankot et al.",
+    "year": 1988,
+    "online_year": null,
+    "journal": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "volume": "10",
+    "issue": "4",
+    "page": "439-451",
+    "type": "journal-article",
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "doi_url": "https://doi.org/10.1109/34.3909",
+    "metadata_source": "https://api.crossref.org/works/10.1109%2F34.3909",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L30",
+    "review_priority": null
+  },
+  {
+    "id": "L31",
+    "category": "条纹分析",
+    "doi": "10.1364/josa.72.000156",
+    "title": "Fourier-transform method of fringe-pattern analysis for computer-based topography and interferometry",
+    "url": "https://opg.optica.org/josa/abstract.cfm?uri=josa-72-1-156",
+    "reading_goal": "追溯载频、边带分离和复包络相位提取。",
+    "reading_focus": "对应 grating.py 的 FFT、选带、移到 DC、ifft 和 angle 链路。",
+    "article_kind": "基础方法论文",
+    "level": "核心",
+    "submitted_title": "Fourier-transform method of fringe-pattern analysis for computer-based topography and interferometry",
+    "authors_full": [
+      {
+        "given": "Mitsuo",
+        "family": "Takeda",
+        "name": ""
+      },
+      {
+        "given": "Hideki",
+        "family": "Ina",
+        "name": ""
+      },
+      {
+        "given": "Seiji",
+        "family": "Kobayashi",
+        "name": ""
+      }
+    ],
+    "authors": "Takeda et al.",
+    "year": 1982,
+    "online_year": 1982,
+    "journal": "Journal of the Optical Society of America",
+    "volume": "72",
+    "issue": "1",
+    "page": "156",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/josa.72.000156",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Fjosa.72.000156",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L31",
+    "review_priority": null
+  },
+  {
+    "id": "L32",
+    "category": "条纹综述",
+    "doi": "10.1364/ao.52.000020",
+    "title": "Fourier fringe analysis and its application to metrology of extreme physical phenomena: a review [Invited]",
+    "url": "https://opg.optica.org/ao/abstract.cfm?uri=ao-52-1-20",
+    "reading_goal": "系统理解 Fourier 条纹分析及其计量应用。",
+    "reading_focus": "补齐单次条纹分析的算法基础；这篇是通用光学计量综述。",
+    "article_kind": "综述",
+    "level": "核心",
+    "submitted_title": "Fourier fringe analysis and its application to metrology of extreme physical phenomena: a review [Invited]",
+    "authors_full": [
+      {
+        "given": "Mitsuo",
+        "family": "Takeda",
+        "name": ""
+      }
+    ],
+    "authors": "Takeda",
+    "year": 2013,
+    "online_year": 2012,
+    "journal": "Applied Optics",
+    "volume": "52",
+    "issue": "1",
+    "page": "20",
+    "type": "journal-article",
+    "publisher": "Optica Publishing Group",
+    "doi_url": "https://doi.org/10.1364/ao.52.000020",
+    "metadata_source": "https://api.crossref.org/works/10.1364%2Fao.52.000020",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L32",
+    "review_priority": 7
+  },
+  {
+    "id": "L33",
+    "category": "系统参考书",
+    "doi": "10.1007/978-3-030-66329-2",
+    "title": "X-ray Phase-Contrast Imaging Using Near-Field Speckles",
+    "url": "https://link.springer.com/book/10.1007/978-3-030-66329-2",
+    "reading_goal": "用较长篇幅学习散斑、单光栅和 UMPA 的完整研究脉络。",
+    "reading_focus": "重点看 Principles / Single-Grating / UMPA / At-Wavelength 章节，作为查阅书。",
+    "article_kind": "博士论文出版专著",
+    "level": "扩展",
+    "submitted_title": "X-ray Phase-Contrast Imaging Using Near-Field Speckles",
+    "authors_full": [
+      {
+        "given": "Marie-Christine",
+        "family": "Zdora",
+        "name": ""
+      }
+    ],
+    "authors": "Zdora",
+    "year": 2021,
+    "online_year": null,
+    "journal": "Springer Theses",
+    "type": "book",
+    "publisher": "Springer International Publishing",
+    "doi_url": "https://doi.org/10.1007/978-3-030-66329-2",
+    "metadata_source": "https://api.crossref.org/works/10.1007%2F978-3-030-66329-2",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L33",
+    "review_priority": null
+  },
+  {
+    "id": "L34",
+    "category": "基础综述",
+    "doi": "10.1016/j.nima.2017.07.036",
+    "title": "X-ray phase-contrast imaging",
+    "url": "https://discovery.ucl.ac.uk/id/eprint/1570214/",
+    "reading_goal": "建立主要 X 射线相位成像方法的总体分类。",
+    "reading_focus": "先识别不同方法的观测量，再将波前计量放进整个领域中。",
+    "article_kind": "综述",
+    "level": "核心",
+    "submitted_title": "X-ray phase-contrast imaging",
+    "authors_full": [
+      {
+        "given": "Marco",
+        "family": "Endrizzi",
+        "name": ""
+      }
+    ],
+    "authors": "Endrizzi",
+    "year": 2018,
+    "online_year": null,
+    "journal": "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment",
+    "volume": "878",
+    "page": "88-98",
+    "type": "journal-article",
+    "publisher": "Elsevier BV",
+    "doi_url": "https://doi.org/10.1016/j.nima.2017.07.036",
+    "metadata_source": "https://api.crossref.org/works/10.1016%2Fj.nima.2017.07.036",
+    "verified_on": "2026-10-11",
+    "verification_scope": "DOI/title/authors/publication metadata checked against publisher-deposited Crossref record; reading guidance from primary-source abstract/available text, not a full-text critical review.",
+    "citation_key": "wfs_L34",
+    "review_priority": 4
   }
 ]

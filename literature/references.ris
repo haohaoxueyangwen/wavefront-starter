@@ -1,0 +1,588 @@
+TY  - JOUR
+ID  - wfs_L1
+TI  - Wavefront sensing at X-ray free-electron lasers
+AU  - Seaberg, Matthew
+AU  - Cojocaru, Ruxandra
+AU  - Berujon, Sebastien
+AU  - Ziegler, Eric
+AU  - Jaggi, Andreas
+AU  - Krempasky, Juraj
+AU  - Seiboth, Frank
+AU  - Aquila, Andrew
+AU  - Liu, Yanwei
+AU  - Sakdinawat, Anne
+AU  - Lee, Hae Ja
+AU  - Flechsig, Uwe
+AU  - Patthey, Luc
+AU  - Koch, Frieder
+AU  - Seniutinas, Gediminas
+AU  - David, Christian
+AU  - Zhu, Diling
+AU  - Mikeš, Ladislav
+AU  - Makita, Mikako
+AU  - Koyama, Takahisa
+AU  - Mancuso, Adrian P.
+AU  - Chapman, Henry N.
+AU  - Vagovič, Patrik
+PY  - 2019
+DO  - 10.1107/s1600577519005721
+UR  - https://journals.iucr.org/s/issues/2019/04/00/xl5031/index.html
+JO  - Journal of Synchrotron Radiation
+VL  - 26
+IS  - 4
+SP  - 1115
+EP  - 1126
+ER  -
+
+TY  - JOUR
+ID  - wfs_L2
+TI  - State of the Art of X-ray Speckle-Based Phase-Contrast and Dark-Field Imaging
+AU  - Zdora, Marie-Christine
+PY  - 2018
+DO  - 10.3390/jimaging4050060
+UR  - https://www.mdpi.com/2313-433X/4/5/60
+JO  - Journal of Imaging
+VL  - 4
+IS  - 5
+SP  - 60
+ER  -
+
+TY  - JOUR
+ID  - wfs_L3
+TI  - Spexwavepy : an open-source Python package for X-ray wavefront sensing using speckle-based techniques
+AU  - Hu, Lingfei
+AU  - Wang, Hongchang
+AU  - Sawhney, Kawal
+PY  - 2024
+DO  - 10.1107/s1600577524005861
+UR  - https://journals.iucr.org/s/issues/2024/05/00/xt5025/index.html
+JO  - Journal of Synchrotron Radiation
+VL  - 31
+IS  - 5
+SP  - 1037
+EP  - 1042
+ER  -
+
+TY  - JOUR
+ID  - wfs_L4
+TI  - Review and experimental comparison of speckle-tracking algorithms for X-ray phase contrast imaging
+AU  - Celestre, Rafael
+AU  - Quénot, Laurène
+AU  - Ninham, Christopher
+AU  - Brun, Emmanuel
+AU  - Fardin, Luca
+PY  - 2025
+DO  - 10.1107/s1600577524010117
+UR  - https://journals.iucr.org/s/issues/2025/01/00/tv5066/index.html
+JO  - Journal of Synchrotron Radiation
+VL  - 32
+IS  - 1
+SP  - 180
+EP  - 199
+ER  -
+
+TY  - JOUR
+ID  - wfs_L5
+TI  - Wavelet-transform-based speckle vector tracking method for X-ray phase imaging
+AU  - Qiao, Zhi
+AU  - Shi, Xianbo
+AU  - Celestre, Rafael
+AU  - Assoufid, Lahsen
+PY  - 2020
+DO  - 10.1364/oe.404606
+UR  - https://doi.org/10.1364/OE.404606
+JO  - Optics Express
+VL  - 28
+IS  - 22
+SP  - 33053
+ER  -
+
+TY  - JOUR
+ID  - wfs_L6
+TI  - X-ray free-electron laser wavefront sensing using the fractional Talbot effect
+AU  - Liu, Yanwei
+AU  - Seaberg, Matthew
+AU  - Feng, Yiping
+AU  - Li, Kenan
+AU  - Ding, Yuantao
+AU  - Marcus, Gabriel
+AU  - Fritz, David
+AU  - Shi, Xianbo
+AU  - Grizolli, Walan
+AU  - Assoufid, Lahsen
+AU  - Walter, Peter
+AU  - Sakdinawat, Anne
+PY  - 2020
+DO  - 10.1107/s1600577519017107
+UR  - https://journals.iucr.org/s/issues/2020/02/00/yi5084/index.html
+JO  - Journal of Synchrotron Radiation
+VL  - 27
+IS  - 2
+SP  - 254
+EP  - 261
+ER  -
+
+TY  - JOUR
+ID  - wfs_L7
+TI  - EUV and Hard X-ray Hartmann Wavefront Sensing for Optical Metrology, Alignment and Phase Imaging
+AU  - de La Rochefoucauld, Ombeline
+AU  - Dovillaire, Guillaume
+AU  - Harms, Fabrice
+AU  - Idir, Mourad
+AU  - Huang, Lei
+AU  - Levecq, Xavier
+AU  - Piponnier, Martin
+AU  - Zeitoun, Philippe
+PY  - 2021
+DO  - 10.3390/s21030874
+UR  - https://www.mdpi.com/1424-8220/21/3/874
+JO  - Sensors
+VL  - 21
+IS  - 3
+SP  - 874
+ER  -
+
+TY  - JOUR
+ID  - wfs_L8
+TI  - Real-time X-ray phase-contrast imaging using SPINNet—a speckle-based phase-contrast imaging neural network
+AU  - Qiao, Zhi
+AU  - Shi, Xianbo
+AU  - Yao, Yudong
+AU  - Wojcik, Michael J.
+AU  - Rebuffi, Luca
+AU  - Cherukara, Mathew J.
+AU  - Assoufid, Lahsen
+PY  - 2022
+DO  - 10.1364/optica.453748
+UR  - https://doi.org/10.1364/OPTICA.453748
+JO  - Optica
+VL  - 9
+IS  - 4
+SP  - 391
+ER  -
+
+TY  - JOUR
+ID  - wfs_L9
+TI  - High-speed processing of X-ray wavefront marking data with the Unified Modulated Pattern Analysis (UMPA) model
+AU  - De Marco, Fabio
+AU  - Savatović, Sara
+AU  - Smith, Ronan
+AU  - Di Trapani, Vittorio
+AU  - Margini, Marco
+AU  - Lautizi, Ginevra
+AU  - Thibault, Pierre
+PY  - 2023
+DO  - 10.1364/oe.474794
+UR  - https://eprints.soton.ac.uk/473889/
+JO  - Optics Express
+VL  - 31
+IS  - 1
+SP  - 635
+ER  -
+
+TY  - CHAP
+ID  - wfs_L10
+TI  - X-ray phase-contrast imaging: a broad overview of some fundamentals
+AU  - Paganin, David M.
+AU  - Pelliccia, Daniele
+PY  - 2021
+DO  - 10.1016/bs.aiep.2021.04.002
+UR  - https://arxiv.org/abs/2011.05146
+T2  - Advances in Imaging and Electron Physics
+SP  - 63
+EP  - 158
+ER  -
+
+TY  - JOUR
+ID  - wfs_L11
+TI  - On the evolution and relative merits of hard X-ray phase-contrast imaging methods
+AU  - Wilkins, S. W.
+AU  - Nesterets, Ya. I.
+AU  - Gureyev, T. E.
+AU  - Mayo, S. C.
+AU  - Pogany, A.
+AU  - Stevenson, A. W.
+PY  - 2014
+DO  - 10.1098/rsta.2013.0021
+UR  - https://doi.org/10.1098/rsta.2013.0021
+JO  - Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences
+VL  - 372
+IS  - 2010
+ER  -
+
+TY  - JOUR
+ID  - wfs_L12
+TI  - X-ray optics and beam characterization using random modulation: theory
+AU  - Berujon, Sebastien
+AU  - Cojocaru, Ruxandra
+AU  - Piault, Pierre
+AU  - Celestre, Rafael
+AU  - Roth, Thomas
+AU  - Barrett, Raymond
+AU  - Ziegler, Eric
+PY  - 2020
+DO  - 10.1107/s1600577520000491
+UR  - https://journals.iucr.org/s/issues/2020/02/00/gb5096/index.html
+JO  - Journal of Synchrotron Radiation
+VL  - 27
+IS  - 2
+SP  - 284
+EP  - 292
+ER  -
+
+TY  - JOUR
+ID  - wfs_L13
+TI  - Grating-based X-ray phase contrast for biomedical imaging applications
+AU  - Pfeiffer, Franz
+AU  - Herzen, Julia
+AU  - Willner, Marian
+AU  - Chabior, Michael
+AU  - Auweter, Sigrid
+AU  - Reiser, Maximilian
+AU  - Bamberg, Fabian
+PY  - 2013
+DO  - 10.1016/j.zemedi.2013.02.002
+UR  - https://www.sciencedirect.com/science/article/pii/S0939388913000263
+JO  - Zeitschrift für Medizinische Physik
+VL  - 23
+IS  - 3
+SP  - 176
+EP  - 185
+ER  -
+
+TY  - JOUR
+ID  - wfs_L14
+TI  - Development toward high-resolution X-ray phase imaging
+AU  - Momose, Atsushi
+PY  - 2017
+DO  - 10.1093/jmicro/dfx013
+UR  - https://doi.org/10.1093/jmicro/dfx013
+JO  - Journal of Electron Microscopy
+VL  - 66
+IS  - 3
+SP  - 155
+EP  - 166
+ER  -
+
+TY  - JOUR
+ID  - wfs_L15
+TI  - Research Progress of Grating-Based X-Ray Phase-Contrast Imaging and Key Devices
+AU  - Zong, Fangke
+AU  - Yang, Jun
+AU  - Guo, Jinchuan
+AU  - Zhang, Jingjin
+AU  - Du, Yang
+AU  - Zhang, Chenggong
+PY  - 2025
+DO  - 10.3390/photonics12030222
+UR  - https://www.mdpi.com/2304-6732/12/3/222
+JO  - Photonics
+VL  - 12
+IS  - 3
+SP  - 222
+ER  -
+
+TY  - JOUR
+ID  - wfs_L16
+TI  - X-ray optics and beam characterization using random modulation: experiments
+AU  - Berujon, Sebastien
+AU  - Cojocaru, Ruxandra
+AU  - Piault, Pierre
+AU  - Celestre, Rafael
+AU  - Roth, Thomas
+AU  - Barrett, Raymond
+AU  - Ziegler, Eric
+PY  - 2020
+DO  - 10.1107/s1600577520000508
+UR  - https://doi.org/10.1107/S1600577520000508
+JO  - Journal of Synchrotron Radiation
+VL  - 27
+IS  - 2
+SP  - 293
+EP  - 304
+ER  -
+
+TY  - JOUR
+ID  - wfs_L17
+TI  - Two-Dimensional X-Ray Beam Phase Sensing
+AU  - Bérujon, Sébastien
+AU  - Ziegler, Eric
+AU  - Cerbino, Roberto
+AU  - Peverini, Luca
+PY  - 2012
+DO  - 10.1103/physrevlett.108.158102
+UR  - https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.158102
+JO  - Physical Review Letters
+VL  - 108
+IS  - 15
+ER  -
+
+TY  - JOUR
+ID  - wfs_L18
+TI  - X-ray phase imaging with a paper analyzer
+AU  - Morgan, Kaye S.
+AU  - Paganin, David M.
+AU  - Siu, Karen K. W.
+PY  - 2012
+DO  - 10.1063/1.3694918
+UR  - https://research.monash.edu/en/publications/x-ray-phase-imaging-with-a-paper-analyzer/
+JO  - Applied Physics Letters
+VL  - 100
+IS  - 12
+ER  -
+
+TY  - JOUR
+ID  - wfs_L19
+TI  - X-ray Phase-Contrast Imaging and Metrology through Unified Modulated Pattern Analysis
+AU  - Zdora, Marie-Christine
+AU  - Thibault, Pierre
+AU  - Zhou, Tunhe
+AU  - Koch, Frieder J.
+AU  - Romell, Jenny
+AU  - Sala, Simone
+AU  - Last, Arndt
+AU  - Rau, Christoph
+AU  - Zanette, Irene
+PY  - 2017
+DO  - 10.1103/physrevlett.118.203903
+UR  - https://discovery.ucl.ac.uk/id/eprint/10119386/
+JO  - Physical Review Letters
+VL  - 118
+IS  - 20
+ER  -
+
+TY  - JOUR
+ID  - wfs_L20
+TI  - Near-field speckle-scanning-based x-ray imaging
+AU  - Berujon, Sebastien
+AU  - Ziegler, Eric
+PY  - 2015
+DO  - 10.1103/physreva.92.013837
+UR  - https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.013837
+JO  - Physical Review A
+VL  - 92
+IS  - 1
+ER  -
+
+TY  - JOUR
+ID  - wfs_L21
+TI  - Ptychographic X-ray speckle tracking
+AU  - Morgan, Andrew J.
+AU  - Quiney, Harry M.
+AU  - Bajt, Saša
+AU  - Chapman, Henry N.
+PY  - 2020
+DO  - 10.1107/s1600576720005567
+UR  - https://pmc.ncbi.nlm.nih.gov/articles/PMC7312131/
+JO  - Journal of Applied Crystallography
+VL  - 53
+IS  - 3
+SP  - 760
+EP  - 780
+ER  -
+
+TY  - JOUR
+ID  - wfs_L22
+TI  - Differential x-ray phase contrast imaging using a shearing interferometer
+AU  - David, C.
+AU  - Nöhammer, B.
+AU  - Solak, H. H.
+AU  - Ziegler, E.
+PY  - 2002
+DO  - 10.1063/1.1516611
+UR  - https://www.esrf.fr/UsersAndScience/Publications/Highlights/2002/Methods/MET4
+JO  - Applied Physics Letters
+VL  - 81
+IS  - 17
+SP  - 3287
+EP  - 3289
+ER  -
+
+TY  - JOUR
+ID  - wfs_L23
+TI  - Demonstration of X-Ray Talbot Interferometry
+AU  - Momose, Atsushi
+AU  - Kawamoto, Shinya
+AU  - Koyama, Ichiro
+AU  - Hamaishi, Yoshitaka
+AU  - Takai, Kengo
+AU  - Suzuki, Yoshio
+PY  - 2003
+DO  - 10.1143/jjap.42.l866
+UR  - https://doi.org/10.1143/JJAP.42.L866
+JO  - Japanese Journal of Applied Physics
+VL  - 42
+IS  - Part 2, No. 7B
+SP  - L866
+EP  - L868
+ER  -
+
+TY  - JOUR
+ID  - wfs_L24
+TI  - X-ray phase imaging with a grating interferometer
+AU  - Weitkamp, Timm
+AU  - Diaz, Ana
+AU  - David, Christian
+AU  - Pfeiffer, Franz
+AU  - Stampanoni, Marco
+AU  - Cloetens, Peter
+AU  - Ziegler, Eric
+PY  - 2005
+DO  - 10.1364/opex.13.006296
+UR  - https://opg.optica.org/abstract.cfm?uri=oe-13-16-6296
+JO  - Optics Express
+VL  - 13
+IS  - 16
+SP  - 6296
+ER  -
+
+TY  - JOUR
+ID  - wfs_L25
+TI  - Phase retrieval and differential phase-contrast imaging with low-brilliance X-ray sources
+AU  - Pfeiffer, Franz
+AU  - Weitkamp, Timm
+AU  - Bunk, Oliver
+AU  - David, Christian
+PY  - 2006
+DO  - 10.1038/nphys265
+UR  - https://www.nature.com/articles/nphys265
+JO  - Nature Physics
+VL  - 2
+IS  - 4
+SP  - 258
+EP  - 261
+ER  -
+
+TY  - JOUR
+ID  - wfs_L26
+TI  - Wavefront metrology measurements at SACLA by means of X-ray grating interferometry
+AU  - Kayser, Yves
+AU  - Rutishauser, Simon
+AU  - Katayama, Tetsuo
+AU  - Ohashi, Haruhiko
+AU  - Kameshima, Takashi
+AU  - Flechsig, Uwe
+AU  - Yabashi, Makina
+AU  - David, Christian
+PY  - 2014
+DO  - 10.1364/oe.22.009004
+UR  - https://www.psi.ch/en/lxn/grating-based-wavefront-metrology
+JO  - Optics Express
+VL  - 22
+IS  - 8
+SP  - 9004
+ER  -
+
+TY  - JOUR
+ID  - wfs_L27
+TI  - X-ray grating interferometer for in situ and at-wavelength wavefront metrology
+AU  - Kayser, Yves
+AU  - David, Christian
+AU  - Flechsig, Uwe
+AU  - Krempasky, Juraj
+AU  - Schlott, Volker
+AU  - Abela, Rafael
+PY  - 2017
+DO  - 10.1107/s1600577516017562
+UR  - https://journals.iucr.org/s/issues/2017/01/00/yi5026/index.html
+JO  - Journal of Synchrotron Radiation
+VL  - 24
+IS  - 1
+SP  - 150
+EP  - 162
+ER  -
+
+TY  - JOUR
+ID  - wfs_L28
+TI  - Modelling of Phase Contrast Imaging with X-ray Wavefront Sensor and Partial Coherence Beams
+AU  - Begani Provinciali, Ginevra
+AU  - Cedola, Alessia
+AU  - Rochefoucauld, Ombeline de La
+AU  - Zeitoun, Philippe
+PY  - 2020
+DO  - 10.3390/s20226469
+UR  - https://www.mdpi.com/1424-8220/20/22/6469
+JO  - Sensors
+VL  - 20
+IS  - 22
+SP  - 6469
+ER  -
+
+TY  - JOUR
+ID  - wfs_L29
+TI  - Zernike polynomials and atmospheric turbulence*
+AU  - Noll, Robert J.
+PY  - 1976
+DO  - 10.1364/josa.66.000207
+UR  - https://opg.optica.org/josa/abstract.cfm?uri=josa-66-3-207
+JO  - Journal of the Optical Society of America
+VL  - 66
+IS  - 3
+SP  - 207
+ER  -
+
+TY  - JOUR
+ID  - wfs_L30
+TI  - A method for enforcing integrability in shape from shading algorithms
+AU  - Frankot, R.T.
+AU  - Chellappa, R.
+PY  - 1988
+DO  - 10.1109/34.3909
+UR  - https://webdocs.cs.ualberta.ca/~vis/courses/CompVis/readings/photometric/FrankotIntegrpami88.pdf
+JO  - IEEE Transactions on Pattern Analysis and Machine Intelligence
+VL  - 10
+IS  - 4
+SP  - 439
+EP  - 451
+ER  -
+
+TY  - JOUR
+ID  - wfs_L31
+TI  - Fourier-transform method of fringe-pattern analysis for computer-based topography and interferometry
+AU  - Takeda, Mitsuo
+AU  - Ina, Hideki
+AU  - Kobayashi, Seiji
+PY  - 1982
+DO  - 10.1364/josa.72.000156
+UR  - https://opg.optica.org/josa/abstract.cfm?uri=josa-72-1-156
+JO  - Journal of the Optical Society of America
+VL  - 72
+IS  - 1
+SP  - 156
+ER  -
+
+TY  - JOUR
+ID  - wfs_L32
+TI  - Fourier fringe analysis and its application to metrology of extreme physical phenomena: a review [Invited]
+AU  - Takeda, Mitsuo
+PY  - 2013
+DO  - 10.1364/ao.52.000020
+UR  - https://opg.optica.org/ao/abstract.cfm?uri=ao-52-1-20
+JO  - Applied Optics
+VL  - 52
+IS  - 1
+SP  - 20
+ER  -
+
+TY  - BOOK
+ID  - wfs_L33
+TI  - X-ray Phase-Contrast Imaging Using Near-Field Speckles
+AU  - Zdora, Marie-Christine
+PY  - 2021
+DO  - 10.1007/978-3-030-66329-2
+UR  - https://link.springer.com/book/10.1007/978-3-030-66329-2
+JO  - Springer Theses
+ER  -
+
+TY  - JOUR
+ID  - wfs_L34
+TI  - X-ray phase-contrast imaging
+AU  - Endrizzi, Marco
+PY  - 2018
+DO  - 10.1016/j.nima.2017.07.036
+UR  - https://discovery.ucl.ac.uk/id/eprint/1570214/
+JO  - Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment
+VL  - 878
+SP  - 88
+EP  - 98
+ER  -

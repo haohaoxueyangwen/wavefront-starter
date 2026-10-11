@@ -1,0 +1,24 @@
+{
+  "checked_on": "2026-10-11",
+  "records": 34,
+  "reviews_and_overviews": 10,
+  "priority_reviews": [
+    "L2",
+    "L12",
+    "L4",
+    "L34",
+    "L10",
+    "L13",
+    "L32"
+  ],
+  "unique_dois": 34,
+  "source": "Publisher-deposited Crossref DOI metadata plus linked publisher/author-institution/arXiv source material",
+  "missing_metadata_resolved": [
+    {
+      "id": "L10",
+      "field": "authors",
+      "source": "https://arxiv.org/abs/2011.05146"
+    }
+  ],
+  "scope": "Curated teaching reading list; metadata verification and short reading guides, not a systematic search or full-text audit of all papers."
+}

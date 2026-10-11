@@ -1,6 +1,19 @@
-# wavefront-starter：X 射线波前传感教学工具
+# wavefront-starter：X 射线波前传感学习与代码入口
 
 面向刚入门的同学：先看懂输入输出，再跑通已知答案的合成数据，最后接入标定完整的实验数据。这里整理了已有研究代码的核心函数，提供统一的配置入口、五个小示例及中文操作文档。
+
+所有学习资料以本 GitHub 仓库为主入口：在线阅读文献导读与操作文档，克隆后生成示例数据并运行代码。面向刚开始做 X 射线波前传感的同学，原算法仓库分别维护。
+
+## 先从这里开始
+
+| 想做什么 | 入口 |
+|---|---|
+| 从基础了解方向 | [学习路线](docs/06_learning_path.md) |
+| 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
+| 找完整文献 | [34 条分类文献与专著](docs/04_reading.md) / [BibTeX、RIS](literature/) |
+| 跑通第一套数据 | [五案例操作指南](docs/01_first_run.md) |
+| 换成自己的实验数据 | [数据、单位与标定要求](docs/02_real_data.md) |
+| 找公开实验数据和原研究代码 | [软件与数据入口](docs/07_resources.md) |
 
 | 模块 | 输入 | 输出 / 范围 |
 |---|---|---|
@@ -12,9 +25,11 @@
 
 ## Windows 安装与第一遍运行
 
-在解压或克隆后的项目根目录运行。已实际验证 Python 3.12.7；包声明支持 3.11–3.12。使用独立环境，避免旧 Anaconda 中 NumPy/Numba 版本冲突。
+先取得仓库访问权限，然后克隆到自己的电脑，在项目根目录运行。已实际验证 Python 3.12.7；包声明支持 3.11–3.12。使用独立环境，避免旧 Anaconda 中 NumPy/Numba 版本冲突。
 
 ```powershell
+git clone https://github.com/haohaoxueyangwen/wavefront-starter.git
+cd wavefront-starter
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
 .\.venv\Scripts\python.exe -m pip install --no-deps --no-build-isolation -e .
@@ -22,7 +37,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m wfs_starter demo --output outputs\first_demo
 ```
 
-如果系统没有 `py`，将第一行替换为已安装的 Python 3.12 的 `python -m venv .venv`。每次输出目录必须是新目录，程序不会覆盖已有结果。
+如果系统没有 `py`，将创建虚拟环境的 `py -3.12 -m venv .venv` 一行替换为已安装的 Python 3.12 的 `python -m venv .venv`。每次输出目录必须是新目录，程序不会覆盖已有结果。
 
 Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `.venv/bin/python`。
 
@@ -34,24 +49,19 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-ZIP 交付版额外附带 `example_data/`，其中包含生成好的合成输入、配置、已知答案和预期输出。GitHub 只保存生成器与小型验证摘要；克隆后运行 `demo` 即可生成相同输入。
+`demo` 会生成输入、配置、已知答案和结果，克隆后即可使用。每种案例的种子固定，单独运行与 `all` 产生相同输入；无需寻找另外的资料包。真实实验数据入口见 [软件与数据](docs/07_resources.md)。
 
-离线 ZIP 解压后可以直接执行：
-
-```powershell
-.\.venv\Scripts\python.exe -m wfs_starter run example_data\grating\config.json --output outputs\grating_rerun
-```
-
-安装仍需要联网获取 Python 依赖；ZIP 不捆绑虚拟环境或解释器。
-
-## 文件导航
+## 仓库导航
 
 | 文件 | 用途 |
 |---|---|
 | [docs/01_first_run.md](docs/01_first_run.md) | 示例步骤、结果检查、失败排查 |
 | [docs/02_real_data.md](docs/02_real_data.md) | 数据组织、单位、坐标、几何与标定要求 |
 | [docs/03_methods.md](docs/03_methods.md) | 四类方法的物理量与算法边界 |
-| [docs/04_reading.md](docs/04_reading.md) | 9 篇文献与建议阅读顺序 |
+| [docs/04_reading.md](docs/04_reading.md) | 34 条分类文献、正式出版信息与阅读用途 |
+| [docs/05_key_reviews.md](docs/05_key_reviews.md) | 7 篇核心综述与理论总览的中文导读 |
+| [docs/06_learning_path.md](docs/06_learning_path.md) | 从基础到接入实验数据 |
+| [docs/07_resources.md](docs/07_resources.md) | 配套软件、公开实验数据与原仓库 |
 | [examples/](examples/) | 实验配置模板，标定项为 null，必须先填写 |
 | [src/wfs_starter/core.py](src/wfs_starter/core.py) | 新的教学接口和输入检查 |
 | [src/wfs_starter/vendor/](src/wfs_starter/vendor/) | 从已有代码提取的核心实现 |
@@ -65,3 +75,6 @@ ZIP 交付版额外附带 `example_data/`，其中包含生成好的合成输入
 2026-10-11：五个 CPU 合成控制通过，13 项接口检查通过。该验证确认代码入口与特定合成案例的数值行为，真实实验精度需要独立标定和验收。当前数据全部为合成数据。
 
 散斑参考实现保留 UChicago Argonne 的版权声明。教学整理为本地修改版，来源与变更见 [NOTICE](provenance/NOTICE.md)。其他提取函数来自作者已有代码；本次未另外授予整个仓库新的开源许可证。
+
+
+文献更新于 2026-10-11：34 条文献与专著，其中 10 条为综述、综述型研究论文或理论总览。DOI 与元数据已核对，完整作者引文可导入 Zotero。当前仓库保持私有，共享给师妹需先授予访问权限。
