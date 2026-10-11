@@ -50,7 +50,7 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 .\.venv\Scripts\python.exe -m wfs_starter ui
 ```
 
-浏览器打开本机波前工作台，可选择 WXST、WSVT、光栅、Hartmann 和 Zernike，生成示例或填写实验配置，查看任务状态、日志、结果图和数值数组。网页界面随代码安装在本机运行；GitHub 页面提供资料和代码入口。
+浏览器打开一个统一工作区，按“数据 → 算法 → 结果”调用 WXST、WSVT、光栅、Hartmann 和 Zernike。输入可共用，各算法参数分别保留；高级设置与日志默认折叠。恢复出的相位可直接接入 Zernike 分解。网页界面随代码安装在本机运行；GitHub 页面提供资料和代码入口。
 
 完整操作见 [界面指南](docs/08_interfaces.md)，已有研究界面的本次增量修复见 [维护记录](maintenance/legacy-gui/README.md)。
 
@@ -85,7 +85,7 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 
 高性能 C++ 算法维护在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)，历史完整 Hartmann 仿真与恢复维护在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)。本仓库用于基础学习和轻量 CPU 示例；科研参数、冻结性能结果、深度学习训练与动态多脉冲研究仍在原工程中维护。
 
-2026-10-11：五个 CPU 合成控制通过，19 项接口检查通过；新增工作台的运行、停止、记录恢复和结果预览已检查。已有研究界面的修复与检查记录见 [界面验证记录](validation/ui_release.json)。该验证确认代码入口与特定合成案例的数值行为，真实实验精度需要独立标定和验收。当前数据全部为合成数据。
+2026-10-11：五个 CPU 合成控制通过，22 项接口检查通过；工作台的运行、停止、记录恢复与相位接续分析已检查，见 [统一界面验证](validation/unified_ui.json)。已有研究界面的修复与检查记录见 [界面维护验证](validation/ui_release.json)。该验证确认代码入口与特定合成案例的数值行为，真实实验精度需要独立标定和验收。当前数据全部为合成数据。
 
 散斑参考实现保留 UChicago Argonne 的版权声明。教学整理为本地修改版，来源与变更见 [NOTICE](provenance/NOTICE.md)。其他提取函数来自作者已有代码；本次未另外授予整个仓库新的开源许可证。
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wavefront-starter"
-version = "0.2.0"
+version = "0.3.0"
 description = "Source-traceable X-ray wavefront sensing teaching adapters"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
@@ -17,4 +17,4 @@ wfs-starter = "wfs_starter.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-wfs_starter = ["web/*.html", "web/*.json"]
+wfs_starter = ["web/*.html", "web/*.json", "web/*.js", "web/*.css"]

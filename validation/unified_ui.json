@@ -1,0 +1,37 @@
+{
+  "version": "0.3.0",
+  "unit_checks_passed": 22,
+  "scientific_solvers_unchanged": true,
+  "wheel_web_assets_byte_verified": true,
+  "wheel_sha256": "143363ca8f19e14da86b13771d5b1b5b278bcbf28d6ac66b350543bcd0515ca2",
+  "browser_checks": [
+    "shared image inputs across WXST/grating/Hartmann",
+    "form drafts restored after reload",
+    "WSVT pair row add/remove",
+    "required calibration expands and focuses",
+    "WXST synthetic demo",
+    "calibrated grating synthetic demo",
+    "Hartmann synthetic demo",
+    "WXST phase to Zernike completed in one workspace",
+    "WSVT owned job stopped from shared toolbar",
+    "shared history selection"
+  ],
+  "browser_phase_analysis_chain": [
+    {
+      "source_algorithm": "wxst",
+      "next_algorithm": "zernike",
+      "phase_unit": "rad",
+      "phase_shape_rc": [
+        42,
+        42
+      ],
+      "center_xy_px": [
+        20.5,
+        20.5
+      ],
+      "radius_px": 17.0
+    }
+  ],
+  "local_document_links_checked": 29,
+  "scope": "Unified operation flow and small CPU synthetic controls; no new real-data accuracy or native/GPU acceptance."
+}

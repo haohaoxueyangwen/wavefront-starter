@@ -19,6 +19,18 @@ import webbrowser
 MODES = ('wxst', 'wsvt', 'grating', 'hartmann', 'zernike')
 ASSETS = Path(__file__).with_name('web')
 
+def phase_result(job):
+    """Advertise only an actual reconstructed phase, never a fringe phase."""
+    import numpy as np
+    folder = Path(job['output_dir'])
+    result = folder/'demo'/job['mode']/'results'/'results.npz' if job['action'] == 'demo' else folder/'results'/'results.npz'
+    if job['status'] != 'succeeded' or not result.is_file():
+        return None
+    with np.load(result, allow_pickle=False) as arrays:
+        if 'phase_rad' not in arrays.files:
+            return None
+    return {'file':result.relative_to(folder).as_posix(), 'field':'phase_rad', 'unit':'rad'}
+
 def prepare_config(config, base):
     """Resolve user-declared input paths; never infer physical calibration."""
     if not isinstance(config, dict) or config.get('mode') not in MODES:
@@ -65,6 +77,7 @@ class JobStore:
                 if job['status'] not in {'succeeded', 'failed', 'cancelled'}:
                     continue
                 job.update(id=folder.name, output_dir=str(folder), process=None)
+                job['phase_output'] = phase_result(job)
                 self.jobs[folder.name] = job
             except (ValueError, KeyError, TypeError):
                 continue
@@ -122,6 +135,7 @@ class JobStore:
             with self.lock:
                 job['status'] = 'cancelled' if job['cancel_requested'] else 'succeeded' if code == 0 else 'failed'
                 job['exit_code'] = code
+                job['phase_output'] = phase_result(job)
         except Exception as exc:
             job['status'] = 'failed'
             job['error'] = str(exc)
@@ -163,6 +177,35 @@ class JobStore:
             raise FileNotFoundError('不可预览的文件类型。')
         return path
 
+    def phase_input(self, ident):
+        """Copy a completed phase into an explicit, traceable analysis input."""
+        import numpy as np
+        with self.lock:
+            job = self.jobs[ident]
+            candidate = phase_result(job)
+            if candidate is None:
+                raise ValueError('该结果没有可供分解的相位 rad；条纹相位和光斑位移需先完成波前恢复。')
+            source = self.asset(ident, candidate['file'])
+            with np.load(source, allow_pickle=False) as arrays:
+                phase = arrays['phase_rad']
+                if phase.ndim != 2 or min(phase.shape) < 8 or not np.isrealobj(phase) or not np.isfinite(phase).all():
+                    raise ValueError('相位必须是至少 8×8 的有限实数二维数组。')
+                destination = source.parent/'analysis-input'
+                destination.mkdir(exist_ok=True)
+                target = destination/'phase_rad.npy'
+                if target.exists():
+                    if not np.array_equal(np.load(target, allow_pickle=False), phase):
+                        raise ValueError('已有相位接续文件与本次结果不同，请检查原输出。')
+                else:
+                    np.save(target, phase, allow_pickle=False)
+                provenance = {'source_job':ident, 'source_mode':job['mode'],
+                              'source_result':candidate['file'], 'field':'phase_rad',
+                              'unit':'rad', 'shape_rc':list(phase.shape)}
+                (destination/'source.json').write_text(json.dumps(provenance, ensure_ascii=False, indent=2), encoding='utf-8')
+        return {'config':{'mode':'zernike', 'phase':str(target), 'phase_unit':'rad',
+                          'center_xy_px':None, 'radius_px':None, 'terms':15,
+                          'phase_source':provenance}, 'shape_rc':provenance['shape_rc']}
+
 def make_server(workspace, port=0):
     store = JobStore(workspace)
     token = secrets.token_urlsafe(32)
@@ -189,10 +232,14 @@ def make_server(workspace, port=0):
                 path = unquote(urlparse(self.path).path)
                 if path == '/':
                     self.send((ASSETS/'index.html').read_bytes(), content_type='text/html; charset=utf-8')
+                elif path in {'/app.js', '/style.css'}:
+                    self.send((ASSETS/path[1:]).read_bytes(), content_type='text/javascript; charset=utf-8' if path.endswith('.js') else 'text/css; charset=utf-8')
                 elif path == '/api/session':
+                    with store.lock:
+                        jobs = [store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]
                     self.send({'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()),
                                'templates':json.loads((ASSETS/'templates.json').read_text(encoding='utf-8')),
-                               'jobs':[store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]})
+                               'jobs':jobs})
                 elif path.startswith('/api/job/'):
                     self.send(store.snapshot(path.rsplit('/', 1)[-1]))
                 elif re.fullmatch(r'/assets/[a-f0-9]{16}/.+', path):
@@ -221,6 +268,8 @@ def make_server(workspace, port=0):
                     self.send({'id':store.start(data)},202)
                 elif urlparse(self.path).path == '/api/cancel':
                     store.cancel(data['id']);self.send({'ok':True})
+                elif urlparse(self.path).path == '/api/phase-input':
+                    self.send(store.phase_input(data['id']))
                 else:
                     self.send({'error':'没有这个操作。'},404)
             except RuntimeError as exc:
