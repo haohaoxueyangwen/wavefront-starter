@@ -21,7 +21,7 @@ def browse(raw='',kind='file',base=''):
         if p.name.startswith('.') or p.is_symlink():continue
         try:
             if p.is_dir():entries.append({'name':p.name,'path':str(p),'directory':True})
-            elif kind=='file' and (p.suffix.lower() in IMAGE_SUFFIXES|{'.exe','.json','.npz','.h5','.hdf5'} or p.name=='wsvt_cli'):
+            elif kind=='file' and (p.suffix.lower() in IMAGE_SUFFIXES|{'.exe','.json','.npz','.h5','.hdf5'} or p.name in {'wsvt_cli','speckle_gpu'}):
                 entries.append({'name':p.name,'path':str(p),'directory':False})
         except OSError:continue
     drives=[f'{letter}:/' for letter in 'CDEFGHIJKLMNOPQRSTUVWXYZ' if Path(f'{letter}:/').is_dir()] if os.name=='nt' else ['/']

@@ -32,19 +32,19 @@ def settings(config):
 
 def catalog():
     cpp = os.environ.get('WFS_CPP_EXE', '')
-    gpu = os.environ.get('WFS_GPU_SOURCE', '')
-    gpu_lib = Path(gpu) / ('edge_kernels.dll' if os.name == 'nt' else 'libedge_kernels.so')
+    gpu = os.environ.get('WFS_GPU_EXE', '')
     return {
         'python': {'name': 'Python CPU · 参考算法', 'available': True, 'reason': '完整原参数'},
         'cpp': {'name': 'C++ CPU · WSVT_CPP', 'available': bool(cpp and Path(cpp).is_file()),
                 'path': cpp, 'reason': '已指定可执行文件' if cpp and Path(cpp).is_file() else '请选择本机 wsvt_cli 可执行文件'},
-        'gpu': {'name': 'CUDA GPU · Edge 优化版',
-                'available': bool(gpu and (Path(gpu)/'edge_runtime.py').is_file() and gpu_lib.is_file() and importlib.util.find_spec('torch')),
-                'path': gpu, 'reason': '需要匹配本机的 CUDA 库及 PyTorch；Orin ARM 库不能直接在 Windows 使用',
+        'gpu': {'name': 'GPU · 原生 C++ / CUDA / cuFFT 速度版',
+                'available': bool(gpu and Path(gpu).is_file()), 'path': gpu,
+                'reason': '请选择当前主机编译的 speckle_gpu；Linux Ada / Orin 已验证，无需 PyTorch；Windows 原生构建未验收',
                 'constraints': {'search_half_window':10, 'template_half_window':3, 'extended_half_window':4,
                                 'pyramid_level':1, 'wavelet_level_cut':1, 'n_iter':1, 'use_wavelet':True},
                 'wsvt_frames':100},
     }
+
 
 def validate_backend(config):
     backend = config.get('backend', 'python')
@@ -62,12 +62,14 @@ def validate_backend(config):
             actual = p.get(key)
             if actual != expected:
                 raise ValueError(f'Edge GPU 固定 {key}={expected}；收到 {actual}，不会静默忽略该参数。')
-        if config.get('gpu_front', 'auto') not in {'auto', 'fused', 'materialized', 'baseline'}:
+        if config.get('gpu_front', 'auto') not in {'auto', 'fused', 'baseline'}:
             raise ValueError('重排实验未通过全图门限，当前前端不启用 reordered。')
-        if config.get('gpu_spline', 'gpu') not in {'cpu', 'gpu'}:
-            raise ValueError('gpu_spline must be cpu or gpu')
+        if config.get('gpu_spline', 'gpu') != 'gpu':
+            raise ValueError('原生速度版固定 GPU 样条；旧 CPU 样条配置请改为 gpu。')
         if config.get('gpu_input_dtype', 'auto') not in {'auto', 'uint16', 'float32'}:
             raise ValueError('Invalid GPU input dtype')
+        from .native_gpu import policies
+        policies(config)
     return backend, p
 
 def normalize(result):
@@ -82,7 +84,10 @@ def cpp_arguments(executable, source, output, config):
               'n_group':p['n_group'], 'energy':config['energy_ev'], 'p_x':config['pixel_size_m'],
               'z':config['distance_m'], 'wavelet_level_cut':p['wavelet_level_cut'],
               'pyramid_level':p['pyramid_level'], 'n_iter':p['n_iter'],
-              'use_wavelet':p['use_wavelet'], 'use_gpu':False, 'save_img':False, 'h5_deflate':0}
+              'use_wavelet':p['use_wavelet'], 'use_gpu':False, 'save_img':False, 'h5_deflate':0, 'calc_darkfield':False}
+    if config['mode'] == 'wsvt':
+        mapped.pop('m_image'); mapped.pop('n_s')
+        mapped.update(crop=0, n_template=0)
     # Arrays have already undergone an explicit ROI selection. CLI 0 = complete supplied image.
     args = [str(executable),config['mode'],str(source),'sample',str(source),'reference',str(output)]
     for key,value in mapped.items():
@@ -106,48 +111,8 @@ def native_speckle(sample, reference, config):
                 result = {key:np.asarray(f[key]) for key in f if f[key].ndim == 2}
         meta = {'backend':'cpp_cpu', 'executable_sha256':hashlib.sha256(executable.read_bytes()).hexdigest(), 'parameters':p}
     else:
-        folder = Path(config.get('gpu_source_dir') or os.environ.get('WFS_GPU_SOURCE','')).resolve()
-        source = folder/'edge_runtime.py'
-        if not source.is_file():raise ValueError('请浏览选择包含 edge_runtime.py 的 GPU 源目录。')
-        library = folder/('edge_kernels.dll' if os.name=='nt' else 'libedge_kernels.so')
-        if not library.is_file():raise ValueError('GPU 源码已找到，但缺少当前系统编译的 CUDA 库：'+str(library))
-        if importlib.util.find_spec('torch') is None:raise ValueError('当前 Python 环境缺少 CUDA PyTorch。')
-        import torch
-        if not torch.cuda.is_available():raise ValueError('当前 Python 环境未检测到可用 CUDA GPU。')
-        if p['gpu_device'] >= torch.cuda.device_count():raise ValueError('GPU 设备编号超出范围。')
-        spec=importlib.util.spec_from_file_location('_wfs_edge_runtime',source)
-        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-        # The measured source loads .so. Windows builds can supply the same ABI as a DLL.
-        if os.name=='nt':
-            original_native=module.Native
-            class WindowsNative(original_native):
-                def __init__(self):
-                    import ctypes as C
-                    original_loader=module.C.CDLL
-                    def loader(path,*args,**kwargs):
-                        if str(path)==str(folder/'libedge_kernels.so'):path=library
-                        return original_loader(path,*args,**kwargs)
-                    module.C.CDLL=loader
-                    try:super().__init__()
-                    finally:module.C.CDLL=original_loader
-            module.Native=WindowsNative
-        front=config.get('gpu_front','auto')
-        if front=='auto':front='fused' if config['mode']=='wxst' else 'baseline'
-        allowed={'fused','materialized'} if config['mode']=='wxst' else {'baseline'}
-        if front not in allowed:raise ValueError('GPU front 与当前方法不匹配。')
-        if config['mode']=='wsvt' and sample.shape[0]!=100:raise ValueError('当前 Edge WSVT GPU 版本要求恰好 100 对帧。')
-        dtype=config.get('gpu_input_dtype','auto')
-        if dtype=='auto':dtype='uint16' if config['mode']=='wsvt' and sample.dtype==reference.dtype==np.uint16 else 'float32'
-        if dtype=='uint16' and (config['mode']!='wsvt' or sample.dtype!=np.uint16 or reference.dtype!=np.uint16):
-            raise ValueError('uint16 入口只接受真实 uint16 WSVT 图像；不量化浮点数据。')
-        sample=np.ascontiguousarray(sample,dtype=dtype);reference=np.ascontiguousarray(reference,dtype=dtype)
-        torch.set_num_threads(p['n_cores'])
-        cls=module.WXSTEdgeSession if config['mode']=='wxst' else module.WSVTEdgeSession
-        with cls(sample.shape[-2:],front=front,spline=config.get('gpu_spline','gpu'),device=p['gpu_device'],
-                 cpu_threads=p['n_cores'],pixel=config['pixel_size_m'],distance=config['distance_m'],energy=config['energy_ev'],input_dtype=dtype) as session:
-            session.prepare_reference(reference);result,info=session.solve(sample)
-        meta={'backend':'cuda_edge', 'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),
-              'library_sha256':hashlib.sha256(library.read_bytes()).hexdigest(),'device':torch.cuda.get_device_name(p['gpu_device']), 'runtime':info}
+        from .native_gpu import solve
+        result,meta = solve(sample, reference, config)
     fields=normalize(result)
     required={'ux_px','uy_px','phase_rad','angle_x_rad_demeaned','angle_y_rad_demeaned'}
     if not required.issubset(fields):raise ValueError('Native backend missing required output fields: '+str(required-set(fields)))

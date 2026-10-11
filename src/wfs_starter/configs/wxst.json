@@ -22,9 +22,11 @@
   "pyramid_level": 0,
   "phase_cores": 1,
   "cpp_executable": "",
-  "gpu_source_dir": "",
   "gpu_device": 0,
-  "gpu_front": "auto",
-  "gpu_spline": "gpu",
-  "gpu_input_dtype": "auto"
+  "gpu_input_dtype": "auto",
+  "gpu_executable": "",
+  "gpu_platform": "auto",
+  "gpu_workspace": "speed",
+  "gpu_input_policy": "auto",
+  "gpu_chunk": 16
 }

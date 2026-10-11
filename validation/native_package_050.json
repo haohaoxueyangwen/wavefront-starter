@@ -1,0 +1,73 @@
+{
+  "source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+  "checks": [
+    {
+      "device": "server",
+      "mode": "wsvt",
+      "profile": "cli_wsvt_speed_copy",
+      "trials": 5,
+      "pass_recomputed_statistics": true
+    },
+    {
+      "device": "server",
+      "mode": "wsvt",
+      "profile": "cli_wsvt_low_memory_copy",
+      "trials": 5,
+      "pass_recomputed_statistics": true
+    },
+    {
+      "device": "server",
+      "mode": "wxst",
+      "profile": "cli_wxst_speed_copy",
+      "trials": 5,
+      "pass_recomputed_statistics": true
+    },
+    {
+      "device": "orin",
+      "mode": "wsvt",
+      "profile": "cli_wsvt_speed_mapped",
+      "trials": 5,
+      "pass_recomputed_statistics": true
+    },
+    {
+      "device": "orin",
+      "mode": "wsvt",
+      "profile": "cli_wsvt_low_memory_mapped",
+      "trials": 5,
+      "pass_recomputed_statistics": true
+    },
+    {
+      "device": "orin",
+      "mode": "wxst",
+      "profile": "cli_wxst_speed_copy",
+      "trials": 5,
+      "pass_recomputed_statistics": true
+    }
+  ],
+  "upstream_acceptance": {
+    "server": "PASS",
+    "orin": "PASS"
+  },
+  "local_gpu_execution": false,
+  "source_hashes_verified": 147,
+  "python_files_parsed": 27,
+  "cmake_missing_source_files": [],
+  "local_tests": {
+    "count": 41,
+    "status": "PASS",
+    "encoding": "UTF-8",
+    "note": "Initial GBK stdout run failed two existing Zernike tests; UTF-8 rerun passed all 41 without changing that algorithm."
+  },
+  "native_demo_conversion": {
+    "wsvt": "100x64x64 uint16",
+    "wxst": "64x64 float32",
+    "status": "PASS"
+  },
+  "browser": {
+    "gpu_executable_picker": true,
+    "speed_default": true,
+    "low_memory_chunk_control": true,
+    "deprecated_source_fields_removed": true
+  },
+  "execution_scope": "Windows source/package/interface/bridge checks. No local CUDA build or new full GPU experiment."
+}

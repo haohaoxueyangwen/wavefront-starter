@@ -14,6 +14,8 @@ def run_config(path,output):
         if isinstance(value,list):
             for i,v in enumerate(value):check_filled(v,f'{key}[{i}]')
     check_filled(config)
+    for key in ('cpp_executable', 'gpu_executable'):
+        if config.get(key):config[key]=str((path.parent/Path(config[key])).resolve())
     if config['mode'] in {'zernike_full','surface','focus'}:
         for key in ('phase','data_dir','dark_dir','flat_dir','analysis_source_dir','zernike_source_dir'):
             if config.get(key):config[key]=str((path.parent/Path(config[key])).resolve())

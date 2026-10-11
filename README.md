@@ -4,10 +4,24 @@
 
 所有学习资料以本 GitHub 仓库为主入口：在线阅读文献导读与操作文档，克隆后生成示例数据并运行代码。面向刚开始做 X 射线波前传感的同学，原算法仓库分别维护。
 
+## 最新高速散斑版 · 0.5.0
+
+WSVT / WXST 的原生 C++ / CUDA / cuFFT 速度配置已随仓库打包：Linux Ada 与 Jetson Orin 各自提供构建 / 启动入口，无需 PyTorch。网页 GPU 入口已接入新版，默认速度优先，保留 WSVT 低内存选项；CPU 和完整 Python 参考参数继续保留。
+
+**先看 [高速散斑完整操作文档](docs/11_speckle_fast.md)**：版本选择、依赖与构建、小数据示例、100 帧配对、参数、结果单位和坐标、性能证据及排错。需要一次下载全部代码，使用 [v0.5.0 发布包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.5.0)。完整版包含本资料包全部源码；native 包只含原生部署源码与配套说明。不带实验数据或平台二进制。
+
+| 实测设备 | WSVT 速度配置 solver / 七项返回 | WXST solver / 七项返回 |
+|---|---:|---:|
+| RTX5880 Ada | 0.161 / 0.165 s | 0.056 / 0.064 s |
+| AGX Orin64GB | 1.191 / 1.195 s | 0.596 / 0.610 s |
+
+BB11 2048²，WSVT100 uint16 / WXST单对float32，固定 half10 / cut1 / 两层 / I1 / 无暗场；预热1次、正式5次、每对重建参考。以上不含文件IO、初始化和网页图表开销。服务器 WXST 纯求解器并非旧 GPU 对照中最快；推荐配置按完整结果返回和部署选取。均值±SD、完整对照和源码哈希见操作文档。
+
 ## 先从这里开始
 
 | 想做什么 | 入口 |
 |---|---|
+| 最新 WSVT / WXST 高速版 | [安装、示例、全参数和性能证据](docs/11_speckle_fast.md) |
 | 从基础了解方向 | [学习路线](docs/06_learning_path.md) |
 | 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
 | 找完整文献 | [34 条分类文献与专著](docs/04_reading.md) / [BibTeX、RIS](literature/) |
@@ -23,7 +37,7 @@
 | WSVT | 逐帧对应的参考/样品栈 | 时间向量追踪；教学示例 32 帧 |
 | 光栅 | 一对图像、两个人工确认的频域边带 | 差分条纹相位；有显式标定系数后才能积分波前 |
 | Hartmann | 同一固定网格内的参考/样品光斑 | 质心位移；有像元和传播距离后可换算偏折角 |
-| Zernike | 波前数组、圆瞳位置、输入单位 | 15 个明确阶次的拟合、RMS、PV、残差 |
+| Zernike | 波前数组、圆瞳位置、输入单位 | 完整圆瞳分析5–50项、曲率、低阶去除、完整报告；保留15项教学示例 |
 
 ## Windows 安装与第一遍运行
 
@@ -77,6 +91,7 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 | [docs/06_learning_path.md](docs/06_learning_path.md) | 从基础到接入实验数据 |
 | [docs/07_resources.md](docs/07_resources.md) | 配套软件、公开实验数据与原仓库 |
 | [docs/10_zernike_parity.md](docs/10_zernike_parity.md) | 原 Zernike 两套界面逐项对照、完整参数与已知波前示例 |
+| [native/speckle/](native/speckle/PACKAGE_GUIDE.md) | 固定来源的 C++ CPU / CUDA GPU 部署源码与原始计时 |
 | [examples/](examples/) | 实验配置模板，标定项为 null，必须先填写 |
 | [src/wfs_starter/core.py](src/wfs_starter/core.py) | 新的教学接口和输入检查 |
 | [src/wfs_starter/vendor/](src/wfs_starter/vendor/) | 从已有代码提取的核心实现 |

@@ -52,8 +52,8 @@ def prepare_config(config, base):
             p=(base/value).resolve()
             if not p.is_dir():raise ValueError('找不到目录：'+str(p))
             return str(p)
-        if key.rsplit('.', 1)[-1] in {'reference', 'sample', 'phase', 'dark', 'flat', 'cpp_executable'}:
-            if not value and key.rsplit('.', 1)[-1] in {'dark', 'flat', 'cpp_executable'}:
+        if key.rsplit('.', 1)[-1] in {'reference', 'sample', 'phase', 'dark', 'flat', 'cpp_executable', 'gpu_executable'}:
+            if not value and key.rsplit('.', 1)[-1] in {'dark', 'flat', 'cpp_executable', 'gpu_executable'}:
                 return value
             if not isinstance(value, str) or not value:
                 raise ValueError(f'{key} 必须是文件路径。')

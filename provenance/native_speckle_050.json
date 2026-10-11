@@ -1,0 +1,890 @@
+{
+  "upstream_repository": "https://github.com/haohaoxueyangwen/WSVT_CPP",
+  "upstream_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+  "upstream_directory": "speckle_four_editions/",
+  "selection": "Frozen CPU and native GPU sources; no input/output arrays, binaries, experiment images or machine logs. Python reference remains in upstream and teaching adapter.",
+  "files": [
+    {
+      "path": "native/speckle/UPSTREAM_README.md",
+      "upstream_path": "speckle_four_editions/README.md",
+      "sha256": "727b1e6899e6d9cef683071839a1770a8c9c6119b76c4380b3ceb8e64b002cef",
+      "bytes": 7165
+    },
+    {
+      "path": "native/speckle/benchmarks/RESULTS.md",
+      "upstream_path": "speckle_four_editions/benchmarks/RESULTS.md",
+      "sha256": "746f7717f78435e9bc11cf19fed5ea09ecbecb4a7e73694589f17e654ac1860b",
+      "bytes": 6109
+    },
+    {
+      "path": "native/speckle/benchmarks/recommended.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/recommended.csv",
+      "sha256": "0ba9bb6774dc0ecd07b4ce3705cd261b5f069cc0d1d992741a55cfbcf613d1b9",
+      "bytes": 1073
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/analysis/acceptance.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/analysis/acceptance.json",
+      "sha256": "2f7eb9be4bd026b5c60864e76eb0139a87dfbd096a8bf11e4fe6dfae3b625360",
+      "bytes": 345
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_copy/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_copy/report.json",
+      "sha256": "8e1a5d7172c3844bb254790823814aa0c239e8ff5721f632a25e17686418bfe5",
+      "bytes": 1550
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_copy/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_copy/timing.csv",
+      "sha256": "ad7996c9e196266d796af82894fd1153a8c91a8b5ca27abc8fc1a536a903252a",
+      "bytes": 555
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_mapped/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_mapped/report.json",
+      "sha256": "f0992b46dd503e5598d5b9b4440010d9db54fbddf0bfb5c3672db40a48928801",
+      "bytes": 1553
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_mapped/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_low_memory_mapped/timing.csv",
+      "sha256": "b4c60dac7ded2e83be1354949d053370b8e66e7b44c56a3b17f9c784be269eb7",
+      "bytes": 558
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_speed_copy/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_speed_copy/report.json",
+      "sha256": "895506d376cdb2f72d4dbf15628fb34b63a24947154b1f47ec1e7150903c9adb",
+      "bytes": 1542
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_speed_copy/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_speed_copy/timing.csv",
+      "sha256": "b317879188c2f0400e7a34f0bf8ef12ad18a7ec205b79efe6317b5c718eb7cc3",
+      "bytes": 564
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_speed_mapped/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_speed_mapped/report.json",
+      "sha256": "c6f94424036197143549788453839f2d8501e4244b0007228cf053e9f00bee6f",
+      "bytes": 1547
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/cli_wsvt_speed_mapped/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/cli_wsvt_speed_mapped/timing.csv",
+      "sha256": "092cbe79f7d30bc970199df01237e804da8b936e9ec999d8050d75100099ac56",
+      "bytes": 562
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_memory/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_memory/report.json",
+      "sha256": "05f5802df9449d367bef74ab7c8d2ce695a314560fdca6d3c571cbafe9ab507c",
+      "bytes": 8201
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_memory/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_memory/timing.csv",
+      "sha256": "9e803c2a5b6dbd087c59ab99c8944fbe9bc56472ebac456f4629390a8ef96b5f",
+      "bytes": 551
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_memory_mapped/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_memory_mapped/report.json",
+      "sha256": "f7a006552f3ec8d9cbaa7e56f429be2670e8c2ec8ad8c5cc1e29b73e653b26b5",
+      "bytes": 8224
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_memory_mapped/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_memory_mapped/timing.csv",
+      "sha256": "a8276abd3c31cfa2d3672374871a5d291baab79b5405f5235a8be60ae494a660",
+      "bytes": 549
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_speed/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_speed/report.json",
+      "sha256": "659641cdbfe09e44529e99be016e08a06d8768b5e7cdc14ebe1dc53dee59c40e",
+      "bytes": 8206
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_speed/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_speed/timing.csv",
+      "sha256": "a633ec74835a145b297c9e4553daa3d06da91ad417919b9720c90c8febd1002e",
+      "bytes": 549
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_speed_mapped/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_speed_mapped/report.json",
+      "sha256": "4235f604479964aaacb00622a92d7ce5476fa98d957b7d52cf7398aa6ad264e3",
+      "bytes": 8241
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_speed_mapped/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_speed_mapped/timing.csv",
+      "sha256": "f16f98c69e4d124476bf072be9fe796b38f26690e98a5d56618e6aa85038275a",
+      "bytes": 550
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_speed_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_speed_pinned/report.json",
+      "sha256": "91abdd14c5044f4462e9ed4b8ce1ff9b65f40e14c87028d73e1ebb2b3b666154",
+      "bytes": 8219
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/native_speed_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/native_speed_pinned/timing.csv",
+      "sha256": "faf14b7841170621f82cf31e5a64bf2682c4a9287184544ef1d32f9d0b16fe7d",
+      "bytes": 549
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/original/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/original/report.json",
+      "sha256": "d65fe59d40568b006ea24f7e8744b11e62fc86b9870693de7a7aace8dd0291fb",
+      "bytes": 10738
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/original/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/original/timing.csv",
+      "sha256": "cdab30f502f00881114ec1c278dc79bda155a38b24937f4bd484a4ba9df7bbb2",
+      "bytes": 554
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/original_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/original_pinned/report.json",
+      "sha256": "363b512b74326ec8a3512e1287ab3afe957bb200207709e01650540c3dda0be8",
+      "bytes": 10753
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wsvt/original_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wsvt/original_pinned/timing.csv",
+      "sha256": "bff2c60cfba4cf30165ec15debdc67d51b1c71705e2fb378c802eb729adcf945",
+      "bytes": 551
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/cli_wxst_speed_copy/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/cli_wxst_speed_copy/report.json",
+      "sha256": "9a49ac8c8b3b9d055810fd0f8b7fb855da1416c8f65e9269d49e2ad0258fb996",
+      "bytes": 1540
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/cli_wxst_speed_copy/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/cli_wxst_speed_copy/timing.csv",
+      "sha256": "6f0fa0e6f07ed54556c97c009d447abe3d2b32e9e71ed02178582e6412154591",
+      "bytes": 579
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/cli_wxst_speed_mapped/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/cli_wxst_speed_mapped/report.json",
+      "sha256": "3b396cd3a5786222cb6bf2c7316158fac511508707b698df7075622f5b3e2cd2",
+      "bytes": 1544
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/cli_wxst_speed_mapped/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/cli_wxst_speed_mapped/timing.csv",
+      "sha256": "9120364f849a8ea71d36ec2fc86acad116bd6c6e2959b9a4dd819b43ae43cb06",
+      "bytes": 579
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/native_speed/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/native_speed/report.json",
+      "sha256": "4fb52060106795b4f92dc824ac121849b359b4a68f70e1035ef2bd53faa8e7b3",
+      "bytes": 8072
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/native_speed/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/native_speed/timing.csv",
+      "sha256": "fe0c7133bcd3fd1b5f14a090eb2b48046166d3b7a795b445c62da43258a529ca",
+      "bytes": 559
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/native_speed_mapped/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/native_speed_mapped/report.json",
+      "sha256": "35fae59f2e7aedf48dc09fd40f756c897a94666d41d557aa61b8fe6c84f56a55",
+      "bytes": 8080
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/native_speed_mapped/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/native_speed_mapped/timing.csv",
+      "sha256": "0ce0a88fdd3b0b4af3b0af347b68d4d726ca7413e173b465d365d30572de91cb",
+      "bytes": 553
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/native_speed_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/native_speed_pinned/report.json",
+      "sha256": "7a9e056138c3a3cf87efe14f145985dae309f3596f0b429799c8b977e66f6b37",
+      "bytes": 8066
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/native_speed_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/native_speed_pinned/timing.csv",
+      "sha256": "77676fc1ef1ec228e629250a5187df941ba4a815890447d6be2bfe7f05b6434c",
+      "bytes": 562
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/original/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/original/report.json",
+      "sha256": "3f3ef01929cbd77d231ac39a943add62c3461cbd402bfed11f5307c288b1d40f",
+      "bytes": 10591
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/original/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/original/timing.csv",
+      "sha256": "ae0e586ad639749f614a00481aa890b65644009360d99e07fc629082d8196908",
+      "bytes": 557
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/original_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/original_pinned/report.json",
+      "sha256": "6f653802cce04ce05406c4732abf703573c7c7986e4df8a40a5f266cf049026f",
+      "bytes": 10605
+    },
+    {
+      "path": "native/speckle/benchmarks/results/orin/wxst/original_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/orin/wxst/original_pinned/timing.csv",
+      "sha256": "458abc759d4c64226b20099b87ea3c8ea1d4871e500a0f664f3d6bb324c6af8b",
+      "bytes": 559
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/analysis/acceptance.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/analysis/acceptance.json",
+      "sha256": "2f7eb9be4bd026b5c60864e76eb0139a87dfbd096a8bf11e4fe6dfae3b625360",
+      "bytes": 345
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/cli_wsvt_low_memory_copy/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/cli_wsvt_low_memory_copy/report.json",
+      "sha256": "4288cd674a180962b97807e776f759a61feecffa499e2ccbf46ddc1290b7572a",
+      "bytes": 1586
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/cli_wsvt_low_memory_copy/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/cli_wsvt_low_memory_copy/timing.csv",
+      "sha256": "77f65383935c73c616ac17ea94646cda1f8fcb14823cec28b8e908028f5b7e5a",
+      "bytes": 577
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/cli_wsvt_speed_copy/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/cli_wsvt_speed_copy/report.json",
+      "sha256": "722da6fcf5a550d398bd7e2ff30ec96e93f242d508726a87236dd6ef21e31191",
+      "bytes": 1582
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/cli_wsvt_speed_copy/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/cli_wsvt_speed_copy/timing.csv",
+      "sha256": "a523fda1b02159f68d6b71efcc829bd1b252b9b21159b22a536f8729296a81eb",
+      "bytes": 580
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/native_memory/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/native_memory/report.json",
+      "sha256": "dcd6bbd6e6f75f503724afac1f9597bc15d2b7087aa025c145239a66c4909bfa",
+      "bytes": 8451
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/native_memory/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/native_memory/timing.csv",
+      "sha256": "4e8ebf987b6683884b400e0459677638921a75d97df3a67f0992e9c4c31c3ab3",
+      "bytes": 570
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/native_speed/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/native_speed/report.json",
+      "sha256": "8df95b5b7d4325e8969ea1c9c83f776f6e8f4c346b8c3f2ba34035a7a143b960",
+      "bytes": 8438
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/native_speed/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/native_speed/timing.csv",
+      "sha256": "b5a835ba05200afde377cb2ece6e7b46e90dd75af6fc2d455498bcbd9e4f5525",
+      "bytes": 568
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/native_speed_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/native_speed_pinned/report.json",
+      "sha256": "081271641c30a34b0bf7adfb20161a7b6eb23baebb601e15d23f452a1f5c6f31",
+      "bytes": 8463
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/native_speed_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/native_speed_pinned/timing.csv",
+      "sha256": "adf910030acf4e61b664976219469f40862249ac613302c86c3eca4c0e72ec6e",
+      "bytes": 570
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/original/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/original/report.json",
+      "sha256": "170e0cdfddba0c899bfa171b1d541b95815b33874db72a450cc34eb8db26cbaf",
+      "bytes": 10981
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/original/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/original/timing.csv",
+      "sha256": "c4bb41c0238b5daa76cb67a5ee295de0f43c6d54849316cadffecb6b3679beb4",
+      "bytes": 567
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/original_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/original_pinned/report.json",
+      "sha256": "e4a1b56827ba28c0d9ccf27e492dd6d7c75738f69446feaf6bb5f27c8bf7867b",
+      "bytes": 10959
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wsvt/original_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wsvt/original_pinned/timing.csv",
+      "sha256": "17bcd2ff150c827151e17b6885b9caf92bf29f8b0d8ee9137ad6b3f9bebe9125",
+      "bytes": 565
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/cli_wxst_speed_copy/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/cli_wxst_speed_copy/report.json",
+      "sha256": "7ec9059954cfa2cfb59a96a45d7f84fe767e789bef756bff0179a9a61db6f8d1",
+      "bytes": 1580
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/cli_wxst_speed_copy/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/cli_wxst_speed_copy/timing.csv",
+      "sha256": "cbd5d46d5736ab159dd17acd141a8b7dbbe1cd28f91ba828c762f5e1108c683f",
+      "bytes": 595
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/native_speed/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/native_speed/report.json",
+      "sha256": "946bc7ee827d107bf2de3eaa490b811c8ca8db9658e6cddee457ffd7bb03f8c7",
+      "bytes": 8322
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/native_speed/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/native_speed/timing.csv",
+      "sha256": "63e190b74141de6c2e1c6ebe0e297bfc15ecbf261069af9f4802962356ef91c0",
+      "bytes": 583
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/native_speed_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/native_speed_pinned/report.json",
+      "sha256": "38ea9fa3db10ebaa53ef3aafbfde8b4694512783fd01c86306b8d20aa69ca35b",
+      "bytes": 8335
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/native_speed_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/native_speed_pinned/timing.csv",
+      "sha256": "41b93d086d7267cde034164646f48bbf359cad1a0eb6756c43833797c7798675",
+      "bytes": 581
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/original/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/original/report.json",
+      "sha256": "cfbff3f179b8bbba8560b847003356d9c615d66215db5ca0528153d332d77d92",
+      "bytes": 10829
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/original/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/original/timing.csv",
+      "sha256": "39b597a9cf45c15b651d5a97898d04f21f3beb83772ea8534d7b35b2cca83c28",
+      "bytes": 583
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/original_pinned/report.json",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/original_pinned/report.json",
+      "sha256": "26f9a21c2bd34e698a567d8ab5039a4d4a64aa0a8028a4c6e439d4192e12867e",
+      "bytes": 10838
+    },
+    {
+      "path": "native/speckle/benchmarks/results/server/wxst/original_pinned/timing.csv",
+      "upstream_path": "speckle_four_editions/benchmarks/results/server/wxst/original_pinned/timing.csv",
+      "sha256": "412149ad13861e899eb187a660aa82574e4d6971aced0d2c23ef3e7dc84d26e5",
+      "bytes": 580
+    },
+    {
+      "path": "native/speckle/configs/orin_wsvt.json",
+      "upstream_path": "speckle_four_editions/configs/orin_wsvt.json",
+      "sha256": "44c091ca5d9b86bfc26a350e6f93549b94143aa6c5116058f8302120ceb4955b",
+      "bytes": 389
+    },
+    {
+      "path": "native/speckle/configs/orin_wsvt_low_memory.json",
+      "upstream_path": "speckle_four_editions/configs/orin_wsvt_low_memory.json",
+      "sha256": "5ecdc1efefd76956ee21a3d6cfcc0f7d5e550ae81b8bf7854e06db9ed2fc1e2b",
+      "bytes": 394
+    },
+    {
+      "path": "native/speckle/configs/orin_wxst.json",
+      "upstream_path": "speckle_four_editions/configs/orin_wxst.json",
+      "sha256": "b18294df96658d3001c2d278d61dc06654110900bf35a25e75b2fb31f2bf9b12",
+      "bytes": 385
+    },
+    {
+      "path": "native/speckle/configs/server_wsvt.json",
+      "upstream_path": "speckle_four_editions/configs/server_wsvt.json",
+      "sha256": "16cafe4f8043f7ea349a98959dc847033e2d2a57be206ece0b085bd2e6552044",
+      "bytes": 388
+    },
+    {
+      "path": "native/speckle/configs/server_wsvt_low_memory.json",
+      "upstream_path": "speckle_four_editions/configs/server_wsvt_low_memory.json",
+      "sha256": "4a14700066f62f1b0c88fe47073e6f1ec41240710251785030cab2a2c7687ae2",
+      "bytes": 393
+    },
+    {
+      "path": "native/speckle/configs/server_wxst.json",
+      "upstream_path": "speckle_four_editions/configs/server_wxst.json",
+      "sha256": "e375336e082d26facd867f0f539fbe61d211640d560e6855d4a48c8de370fce8",
+      "bytes": 386
+    },
+    {
+      "path": "native/speckle/cpu_cpp/original_source_manifest.json",
+      "upstream_path": "speckle_four_editions/cpu_cpp/original_source_manifest.json",
+      "sha256": "d53192dca02705ddfec58a51989ff5c3c84ea8638834f516c838da3b5b996842",
+      "bytes": 13293
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/CMakeLists.txt",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/CMakeLists.txt",
+      "sha256": "00a7d5f88a6f46959bb81c46c7eea19d3c14216f6a4a2ceaf68e2f982880826a",
+      "bytes": 10866
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/cmake/wsvtConfig.cmake.in",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/cmake/wsvtConfig.cmake.in",
+      "sha256": "ea0190deb2a1b4dcb6e3963e6478b7c43a73703e8ea33e68bd7fbcedf8fcd94e",
+      "bytes": 128
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/align_ops.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/align_ops.hpp",
+      "sha256": "6559568b455398618f1f75a264e286a24cee5f203de5765dbfac86318ccf8a29",
+      "bytes": 1047
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/aligned_alloc.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/aligned_alloc.hpp",
+      "sha256": "26b36773aa29b25496d4e254b2d4628256d15276941ebc7a7a78ab2ac56f03ba",
+      "bytes": 3635
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/common.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/common.hpp",
+      "sha256": "97d839c6866517984a94b5264b6190e65af323186fbc9f217cc31b3a12afb0ea",
+      "bytes": 9601
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/console_ops.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/console_ops.hpp",
+      "sha256": "b039b62db5fa8e58c7da44f099a0efb981c96f1e48b45f7c713df0f12e1df60c",
+      "bytes": 124
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/core.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/core.hpp",
+      "sha256": "2e0eaf0f275c51c27bb23624cbc879e43ea3a5116478111b7978a77264f1ea59",
+      "bytes": 636
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/crop_ops.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/crop_ops.hpp",
+      "sha256": "0ee7280477b2b6214b070195d168352129724617013cd111c5c515565d31b8d8",
+      "bytes": 308
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/euclidean_dist.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/euclidean_dist.hpp",
+      "sha256": "05daaab6ee8fda94e66cc1962b78ef15f3cbea0b6c517bcb797a1637da3bcb9b",
+      "bytes": 395
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/export.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/export.hpp",
+      "sha256": "cda2ced603b9f80c399b3cb933219edbcd260cb3032fe3327af6437790695fa7",
+      "bytes": 360
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/filter_ops.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/filter_ops.hpp",
+      "sha256": "b6b44c225c64963f24d261db67db125f1ba00d2b58ef08428da8b218020198dc",
+      "bytes": 377
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/image.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/image.hpp",
+      "sha256": "badb92784d0fba5f33a95b28afdbdaba27a41b2b2995e4c363f4df2d8161dc83",
+      "bytes": 6587
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/image_ops.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/image_ops.hpp",
+      "sha256": "6baf6c9b4be0bfaf69bf26a187ed30bee7def2859663780a8d714d3a94d42dd8",
+      "bytes": 872
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/io_h5.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/io_h5.hpp",
+      "sha256": "0afcc571f135847a54836e4bd6373af27faacbbb17c830366097216a26f574c6",
+      "bytes": 522
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/io_image.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/io_image.hpp",
+      "sha256": "72a6477ecefa3802e812fea4b3d0f8a22ea20ef9880f1db2215d1c140339aede",
+      "bytes": 616
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/io_json.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/io_json.hpp",
+      "sha256": "a3efdc8b8f2252156fab3c7959a6d785ac1501dc9fed73a1c2bdde21b9c412ff",
+      "bytes": 888
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/phase_recovery.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/phase_recovery.hpp",
+      "sha256": "732ca4c27486a0e8966389f796d48b50af762837d240dd729e25e2a46009465e",
+      "bytes": 202
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/pyramid.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/pyramid.hpp",
+      "sha256": "21b602359d674dce8eee4a48775e61c21413163b5d13d0998a788c2fbb6915a7",
+      "bytes": 3982
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/scalar_darkfield.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/scalar_darkfield.hpp",
+      "sha256": "6a91c01f1902b94d95637085c0c83bbce77e39897fe50fc0a77f68e22a8f34c1",
+      "bytes": 2947
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/search_pruning.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/search_pruning.hpp",
+      "sha256": "62e5a4723fbce0e83943be49196b9940b117096f2b2f289f54ffb639964fc772",
+      "bytes": 8157
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/solver_utils.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/solver_utils.hpp",
+      "sha256": "9292bef840534812fdefc1c89d49a3cd52c07bcc8091354267df15b10546d6ef",
+      "bytes": 1436
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/template_window.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/template_window.hpp",
+      "sha256": "a561f9e76d0fb2fa1ed76a34819388b96e198ee04df8f1c49adbf542e6eaf5a4",
+      "bytes": 342
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/types.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/types.hpp",
+      "sha256": "385f2e855f78407aafc3af81ff0a3e4c062ee91d222bd4fb6f99d4243e4a1fe7",
+      "bytes": 4858
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/umpa_ddf_author_fit.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/umpa_ddf_author_fit.hpp",
+      "sha256": "ae7f6016f67abf6cdffe5c24411d300581d67d49804acabf5c497a577e01b0a2",
+      "bytes": 1893
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/umpa_ddf_kernel.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/umpa_ddf_kernel.hpp",
+      "sha256": "cf712e60c5c96874e1f5f4c7c0ec7a596c78854aa8aa01503b3034adaa24c29d",
+      "bytes": 2691
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/umpa_physical_fit.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/umpa_physical_fit.hpp",
+      "sha256": "8f34cf0a9c82239739ed4b01e64b3ae6158b93db1f282a065eeea6795bda8d8d",
+      "bytes": 3614
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/wavelet_ops.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/wavelet_ops.hpp",
+      "sha256": "47eb3478b4b380139cc2bab7f1f6a91ba1462b4e3d2975ddf01e770cbc1175db",
+      "bytes": 9364
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/wsvt_pipeline.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/wsvt_pipeline.hpp",
+      "sha256": "63719112e61dc5b25993e14736b20335f28e5dfb1fc399a8a15a44cab6e82796",
+      "bytes": 14444
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/wsvt_umpa_refine.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/wsvt_umpa_refine.hpp",
+      "sha256": "f255ee9ff74621a3f6d304ad828568f30fc3a7f093d1567bff1679b500ea2e64",
+      "bytes": 2671
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/include/wsvt/wxst_pipeline.hpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/include/wsvt/wxst_pipeline.hpp",
+      "sha256": "3e99c4cc4d97f5e58a8e7349ba2fa46a0bc5fe6a86676ef8a42dab4d721c143e",
+      "bytes": 4032
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/align_ops.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/align_ops.cpp",
+      "sha256": "1d9e96924c5cf79601b823443bc8dc12f0164f052f9c7f5ca5167e9e95231ad8",
+      "bytes": 13948
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/console_ops.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/console_ops.cpp",
+      "sha256": "17833503e373c8f35ac342c440ae8234ac409b0690f691ad7dd4749ef91a149a",
+      "bytes": 964
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/core.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/core.cpp",
+      "sha256": "63b0aca42903698d913ef205a224914e46ebdefdc859a5bf78cb193f7b6eca6b",
+      "bytes": 4095
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/crop_ops.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/crop_ops.cpp",
+      "sha256": "0367402eb998e7fed4d6359f39cc859412375d69b67b4c2624b84047263e8b03",
+      "bytes": 4789
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/euclidean_dist.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/euclidean_dist.cpp",
+      "sha256": "b1245192ba98bee6da29384665ae873292f75aa45b3634e7e1a74b2e39ccf0c9",
+      "bytes": 1211
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/filter_ops.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/filter_ops.cpp",
+      "sha256": "340482478b164881f4c00c44950b75e8b17c004426ff849e3730017cb47abc4b",
+      "bytes": 3279
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/image_ops.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/image_ops.cpp",
+      "sha256": "afcbbbfdb406176022f8c370140e5560915e8736c473f1d192c52b58b4e17e77",
+      "bytes": 7101
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/io_h5.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/io_h5.cpp",
+      "sha256": "6beec188a6fc369eef819963497cd09d0a94b3e4ea7dd470cfa24e693974fe52",
+      "bytes": 6335
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/io_image.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/io_image.cpp",
+      "sha256": "50bc6c313001cfb6d317d105881d75de8b01503a4a27c3d38eb743bcfce6ddde",
+      "bytes": 6916
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/io_json.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/io_json.cpp",
+      "sha256": "1902cef706776f897fe4a9fa7f62f11c88794826d64395e8668e601d874889f3",
+      "bytes": 9342
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/main.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/main.cpp",
+      "sha256": "9eb1398992ae912efbbc59512229e4678675edce2ebe2af1cc306a757825bbe9",
+      "bytes": 47028
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/phase_recovery.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/phase_recovery.cpp",
+      "sha256": "c33a119a02117b3629a1dc90f2f756a55fbac1dee097cecd5ee720e510ea4a37",
+      "bytes": 8248
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/pyramid.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/pyramid.cpp",
+      "sha256": "79583103d7f7d323aae5565eea417b2592e968d5534881ebb121eeaef665cb32",
+      "bytes": 24079
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/scalar_darkfield.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/scalar_darkfield.cpp",
+      "sha256": "e62faa95811da43c3ce6c6ccba302fd114b9baacc2419bf8d07243cfb0d3492b",
+      "bytes": 12932
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/solver_utils.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/solver_utils.cpp",
+      "sha256": "469c74b5a015fcd02509ce532524f25bcd1aa7baabd29a3aaf7725c6b398c93d",
+      "bytes": 6465
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/template_window.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/template_window.cpp",
+      "sha256": "ab274c5822f8da97484b9affc218b1ddee20547352e317cddeb15f2820443166",
+      "bytes": 2834
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/umpa_ddf_author_c_api.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/umpa_ddf_author_c_api.cpp",
+      "sha256": "9489fcd4991ac6e37edc4892635d013ca5d7b40dd613081efa97ae11e5a40657",
+      "bytes": 5058
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/umpa_ddf_author_fit.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/umpa_ddf_author_fit.cpp",
+      "sha256": "48d7757e2957c89ea98a7456a84fb791fcca76bcfa0435e767497318b2dddeea",
+      "bytes": 5508
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/umpa_ddf_kernel.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/umpa_ddf_kernel.cpp",
+      "sha256": "e1f103619a08c535e138825b74f92913cec9b0ffebf82e1ff53b027baeb0a2a9",
+      "bytes": 12560
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/umpa_physical_fit.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/umpa_physical_fit.cpp",
+      "sha256": "8cb0cd08c41f1ba4f9af3425703177e78df4bf2a23a3b8b97b6b2b70b38a8f8a",
+      "bytes": 13541
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/wavelet_ops.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/wavelet_ops.cpp",
+      "sha256": "9fc64aed3f8d3fc94591effd18ed1736050faa9f8bddb2d3de65d5b04ee9fe5d",
+      "bytes": 43460
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/wsvt_pipeline.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/wsvt_pipeline.cpp",
+      "sha256": "064df16a4bee819940eade97bf2a513112c3527816946a1d3ecc70d01f3e8696",
+      "bytes": 155335
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/wsvt_umpa_refine.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/wsvt_umpa_refine.cpp",
+      "sha256": "18e1e0c6d9ff91f6f102f874c4aa8f8311525baa357626c6db48d1cdb1e1888a",
+      "bytes": 14645
+    },
+    {
+      "path": "native/speckle/cpu_cpp/source/src/wxst_pipeline.cpp",
+      "upstream_path": "speckle_four_editions/cpu_cpp/source/src/wxst_pipeline.cpp",
+      "sha256": "68508c61a96490089142c58e9db2fe6ab2692ac8c8b3e39f764e70b53ea30889",
+      "bytes": 39938
+    },
+    {
+      "path": "native/speckle/docs/NATIVE_API.md",
+      "upstream_path": "speckle_four_editions/docs/NATIVE_API.md",
+      "sha256": "8f87bc21ffcd2c309011893498c839cf4fdf1f32a9dcb56c21cd24779ced8270",
+      "bytes": 3269
+    },
+    {
+      "path": "native/speckle/docs/original_sources.json",
+      "upstream_path": "speckle_four_editions/docs/original_sources.json",
+      "sha256": "448905eb5b0036678b7e6081cbefca7da3b549b70bca54680f1e3677a62ce2d1",
+      "bytes": 13773
+    },
+    {
+      "path": "native/speckle/gpu_common/CMakeLists.txt",
+      "upstream_path": "speckle_four_editions/gpu_common/CMakeLists.txt",
+      "sha256": "58522b9459e5e78e1a84acfe8374c84d80dd3eb93c89a1fdd58898eb8eb20700",
+      "bytes": 1497
+    },
+    {
+      "path": "native/speckle/gpu_common/include/speckle_native.h",
+      "upstream_path": "speckle_four_editions/gpu_common/include/speckle_native.h",
+      "sha256": "f72aa9ad964adc4d40b96ecadaf1f2b4f36018af8bd7df7a709a3ec02527bae9",
+      "bytes": 1213
+    },
+    {
+      "path": "native/speckle/gpu_common/native/cached_match.cuh",
+      "upstream_path": "speckle_four_editions/gpu_common/native/cached_match.cuh",
+      "sha256": "d51f35691afdbd2f0a5e28c8fb3f4b002ba128667d5135f036790937c9fe653a",
+      "bytes": 3461
+    },
+    {
+      "path": "native/speckle/gpu_common/native/edge_kernels.cu",
+      "upstream_path": "speckle_four_editions/gpu_common/native/edge_kernels.cu",
+      "sha256": "63c88fa981db62933a729c6cdc090a68281c104940c76f5470e318a554220b61",
+      "bytes": 18229
+    },
+    {
+      "path": "native/speckle/gpu_common/native/edge_spline.cpp",
+      "upstream_path": "speckle_four_editions/gpu_common/native/edge_spline.cpp",
+      "sha256": "ad226b1f699fa80491104bb10e81fe7dcf7a46597fac8eb4e52ba8002c15c70e",
+      "bytes": 4211
+    },
+    {
+      "path": "native/speckle/gpu_common/native/features.cuh",
+      "upstream_path": "speckle_four_editions/gpu_common/native/features.cuh",
+      "sha256": "ebca2ed19926907f00b5e354f6d2ce953a5b7707fae018d9d476eac676218341",
+      "bytes": 3184
+    },
+    {
+      "path": "native/speckle/gpu_common/native/legacy_cached.cu",
+      "upstream_path": "speckle_four_editions/gpu_common/native/legacy_cached.cu",
+      "sha256": "c530b36a8c09e4a9801762510755c2d5ec72f42608d506218fd8ca834103443e",
+      "bytes": 28
+    },
+    {
+      "path": "native/speckle/gpu_common/native/legacy_match.cu",
+      "upstream_path": "speckle_four_editions/gpu_common/native/legacy_match.cu",
+      "sha256": "4563d68d83033ae09947b37609b021b6e188c7faa2e39947c98e2c15e93ffb8d",
+      "bytes": 26
+    },
+    {
+      "path": "native/speckle/gpu_common/native/legacy_optimized.cu",
+      "upstream_path": "speckle_four_editions/gpu_common/native/legacy_optimized.cu",
+      "sha256": "36a00c782b0b6bf2a7645d11299109d5c8a7d94488f9780e48b290aa475ec71e",
+      "bytes": 24
+    },
+    {
+      "path": "native/speckle/gpu_common/native/primitives.cuh",
+      "upstream_path": "speckle_four_editions/gpu_common/native/primitives.cuh",
+      "sha256": "c2129b0c49dba4e72c2d992f4548922e75080016f5fe751c35b80fde458f9f13",
+      "bytes": 14694
+    },
+    {
+      "path": "native/speckle/gpu_common/src/main.cpp",
+      "upstream_path": "speckle_four_editions/gpu_common/src/main.cpp",
+      "sha256": "05f645b70dbbc5014ce33ca498be9d3c62d3747b53496abbd9aa2ba1266c69b4",
+      "bytes": 10307
+    },
+    {
+      "path": "native/speckle/gpu_common/src/session.cu",
+      "upstream_path": "speckle_four_editions/gpu_common/src/session.cu",
+      "sha256": "71ef439b4d48537a0b60b487639141dbfc503ff9da9534628c3a9cb97b432592",
+      "bytes": 18915
+    },
+    {
+      "path": "native/speckle/gpu_discrete/CMakeLists.txt",
+      "upstream_path": "speckle_four_editions/gpu_discrete/CMakeLists.txt",
+      "sha256": "a484cab26c6a68e71c20e56f9fafd5115ea55faddba6049d88d62f5eaea255af",
+      "bytes": 250
+    },
+    {
+      "path": "native/speckle/gpu_discrete/run.sh",
+      "upstream_path": "speckle_four_editions/gpu_discrete/run.sh",
+      "sha256": "a03254eaacc585160468efe4bc7c566538f75ee38c1876a7d938279addd2254d",
+      "bytes": 284
+    },
+    {
+      "path": "native/speckle/gpu_jetson/CMakeLists.txt",
+      "upstream_path": "speckle_four_editions/gpu_jetson/CMakeLists.txt",
+      "sha256": "6e73c8ba776566fedb6e53bd3f43e0c0372bb590ed4287db99c8488e2e2ab257",
+      "bytes": 247
+    },
+    {
+      "path": "native/speckle/gpu_jetson/run.sh",
+      "upstream_path": "speckle_four_editions/gpu_jetson/run.sh",
+      "sha256": "8564ae30a4dd2ac498040fe63e876f64f6482d4afe08fdbfe4d7ef5b11d3f55d",
+      "bytes": 412
+    },
+    {
+      "path": "native/speckle/tools/build_native.py",
+      "upstream_path": "speckle_four_editions/tools/build_native.py",
+      "sha256": "39970b96e04d59469b38f65ab050b8187794a43e1c9105e38edb8d4dbe14a647",
+      "bytes": 1813
+    },
+    {
+      "path": "native/speckle/tools/convert_inputs.py",
+      "upstream_path": "speckle_four_editions/tools/convert_inputs.py",
+      "sha256": "f1314d10895e30de3d93694b379332c020a58950b67e9a01e838962612b5eb73",
+      "bytes": 1633
+    },
+    {
+      "path": "native/speckle/tools/native_api.py",
+      "upstream_path": "speckle_four_editions/tools/native_api.py",
+      "sha256": "0acf5bd70c0d6a359beda51533b4d3a2a7f9f7a1010b916e45c007fba8886b30",
+      "bytes": 3774
+    }
+  ]
+}

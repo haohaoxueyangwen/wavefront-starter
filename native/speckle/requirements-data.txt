@@ -1,0 +1,5 @@
+# Optional Python tools for one-time conversion and synthetic examples.
+# Native C++/CUDA/cuFFT execution does not use these packages.
+numpy==1.26.4
+scipy==1.13.1
+tifffile==2024.9.20

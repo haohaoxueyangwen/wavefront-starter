@@ -25,9 +25,9 @@ WXST 与 WSVT 在同一散斑前端中切换。完整设置包含搜索半窗、
 
 - **Python CPU**：随本仓库安装，完整设置传入参考求解器。
 - **C++ CPU**：选择原 `WSVT_CPP` 构建的可执行文件，或设置 `WFS_CPP_EXE`。通过原 CLI 执行，固定 `use_gpu=false`。
-- **GPU 优化版**：设置 `WFS_GPU_SOURCE` 为包含 `edge_runtime.py` 与平台原生库的目录；运行环境还需 PyTorch / CUDA。当前接入已验证的固定协议：搜索半窗10、WXST模板7×7、金字塔1、裁剪1、迭代1；WSVT必须100帧原生uint16。WXST融合 / 物化路径和CPU / GPU样条可选择。WSVT采用原运算顺序，未通过门槛的重排版本不提供。
+- **GPU 原生速度版**：浏览选择当前主机编译的 `speckle_gpu`，或设置 `WFS_GPU_EXE`；无需 PyTorch。源码随仓库在 `native/speckle/` 打包。平台可选自动 / desktop / jetson，WSVT可选 speed / low-memory，输入策略可选自动 / copy / mapped。默认速度优先，Orin WSVT默认mapped，其余copy。固定 half10、WXST7×7、原始层加一次降采样（pyramid_level=1）、cut1、I1、GPU样条、无暗场；WSVT恰好100帧。原始uint16无校正时保留类型，浮点不强制量化。Linux Ada / Orin 已验证，Windows GPU 构建未验收。完整步骤和参数见[高速散斑指南](11_speckle_fast.md)。旧 `WFS_GPU_SOURCE` 不再用于本前端。
 
-后端不可用时明确报错，不自动转用其他算法。界面找到源码不等于本机已有可执行的 CUDA 库。配置文件保存实际后端与参数，结果元数据保存来源。
+后端不可用时明确报错，不自动转用其他算法。界面找到可执行文件后，CUDA设备与原生依赖仍在实际执行时核验。每次网页任务会启动新CLI，不能把网页总耗时当作复用会话的热运行测速。配置文件保存实际后端与参数，结果元数据保存来源。
 
 ## 光栅
 
