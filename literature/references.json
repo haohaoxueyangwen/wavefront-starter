@@ -1,0 +1,83 @@
+[
+  {
+    "id": "L1",
+    "category": "全局入门",
+    "authors": "Seaberg et al. (2019)",
+    "title": "Wavefront sensing at X-ray free-electron lasers",
+    "doi": "10.1107/S1600577519005721",
+    "url": "https://journals.iucr.org/s/issues/2019/04/00/xl5031/index.html",
+    "reading_goal": "认识散斑与两种光栅测量的实验用途和取舍"
+  },
+  {
+    "id": "L2",
+    "category": "散斑基础",
+    "authors": "Zdora (2018)",
+    "title": "State of the Art of X-ray Speckle-Based Phase-Contrast and Dark-Field Imaging",
+    "doi": "10.3390/jimaging4050060",
+    "url": "https://www.mdpi.com/2313-433X/4/5/60",
+    "reading_goal": "理解近场散斑、不同采集模式、相位与暗场"
+  },
+  {
+    "id": "L3",
+    "category": "第一套实操",
+    "authors": "Hu, Wang & Sawhney (2024)",
+    "title": "Spexwavepy: an open-source Python package for X-ray wavefront sensing using speckle-based techniques",
+    "doi": "10.1107/S1600577524005861",
+    "url": "https://journals.iucr.org/s/issues/2024/05/00/xt5025/index.html",
+    "reading_goal": "论文、软件、文档、公开数据四者配套"
+  },
+  {
+    "id": "L4",
+    "category": "算法对照",
+    "authors": "Celestre et al. (2025期刊卷；2024 online)",
+    "title": "Review and experimental comparison of speckle-tracking algorithms for X-ray phase contrast imaging",
+    "doi": "10.1107/S1600577524010117",
+    "url": "https://journals.iucr.org/s/issues/2025/01/00/tv5066/index.html",
+    "reading_goal": "比较算法条件及数据量，避免只以运行速度选方法"
+  },
+  {
+    "id": "L5",
+    "category": "你的散斑工具",
+    "authors": "Qiao et al. (2020)",
+    "title": "Wavelet-transform-based speckle vector tracking method for X-ray phase imaging",
+    "doi": "10.1364/OE.404606",
+    "url": "https://doi.org/10.1364/OE.404606",
+    "reading_goal": "连接小波描述子与本机WSVT实现"
+  },
+  {
+    "id": "L6",
+    "category": "光栅路线",
+    "authors": "Liu et al. (2020)",
+    "title": "X-ray free-electron laser wavefront sensing using the fractional Talbot effect",
+    "doi": "10.1107/S1600577519017107",
+    "url": "https://journals.iucr.org/s/issues/2020/02/00/yi5084/index.html",
+    "reading_goal": "理解自成像、几何放大、条纹与相对/绝对标定"
+  },
+  {
+    "id": "L7",
+    "category": "Hartmann路线",
+    "authors": "de La Rochefoucauld et al. (2021)",
+    "title": "EUV and Hard X-ray Hartmann Wavefront Sensing for Optical Metrology, Alignment and Phase Imaging",
+    "doi": "10.3390/s21030874",
+    "url": "https://www.mdpi.com/1424-8220/21/3/874",
+    "reading_goal": "理解孔阵列、质心、参考标定和斜率重建"
+  },
+  {
+    "id": "L8",
+    "category": "进阶深度学习",
+    "authors": "Qiao et al. (2022)",
+    "title": "Real-time X-ray phase-contrast imaging using SPINNet—a speckle-based phase-contrast imaging neural network",
+    "doi": "10.1364/OPTICA.453748",
+    "url": "https://doi.org/10.1364/OPTICA.453748",
+    "reading_goal": "原始监督SPINNet与本机后续研究模型分别介绍"
+  },
+  {
+    "id": "L9",
+    "category": "进阶传统基线",
+    "authors": "De Marco et al. (2023)",
+    "title": "High-speed processing of X-ray wavefront marking data with the Unified Modulated Pattern Analysis (UMPA) model",
+    "doi": "10.1364/OE.474794",
+    "url": "https://eprints.soton.ac.uk/473889/",
+    "reading_goal": "连接透射、位移与暗场联合拟合以及工程实现"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "mode": "wsvt",
+  "energy_ev": null,
+  "pixel_size_m": null,
+  "distance_m": null,
+  "search_half_window": 3,
+  "pairs": [
+    {
+      "reference": "data/reference_000.tif",
+      "sample": "data/sample_000.tif"
+    },
+    {
+      "reference": "data/reference_001.tif",
+      "sample": "data/sample_001.tif"
+    }
+  ]
+}

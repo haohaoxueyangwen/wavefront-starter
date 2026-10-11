@@ -1,0 +1,69 @@
+[
+  {
+    "file": "src/wfs_starter/vendor/speckle/WSVT.py",
+    "source_id": "local-wsvt-reference",
+    "source_file": "WSVT.py",
+    "source_sha256": "50fba73b5c5ad542aef52a690c375cf92a15dac4ab0cf65f081a3dd0a307d26a",
+    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized."
+  },
+  {
+    "file": "src/wfs_starter/vendor/speckle/WXST.py",
+    "source_id": "local-wsvt-reference",
+    "source_file": "WXST.py",
+    "source_sha256": "0ea96b73c07bd3fb7af6042f41e11a231d5d03cad834ab3384289f5231c89ce6",
+    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized."
+  },
+  {
+    "file": "src/wfs_starter/vendor/speckle/func.py",
+    "source_id": "local-wsvt-reference",
+    "source_file": "func.py",
+    "source_sha256": "e79b05cf58e3f0883f8b35616e6a4f7dd3cc81fc42cdc6f188f4dc88eaa7302e",
+    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized."
+  },
+  {
+    "file": "src/wfs_starter/vendor/speckle/euclidean_dist.py",
+    "source_id": "local-wsvt-reference",
+    "source_file": "euclidean_dist.py",
+    "source_sha256": "57ed347dcb7f2a773d505b241ec274950cf083f63b3672e60de0b17271df395f",
+    "change": "Copyright and solver bodies retained; workstation CLI/demo entry removed; line endings normalized."
+  },
+  {
+    "file": "src/wfs_starter/vendor/grating.py",
+    "source_id": "local-grating-retriver",
+    "source_file": "grating_r.py",
+    "source_sha256": "8c26c701032cdf32902cc1003a081f1962908fbffb8da0dcc02cceace711da54",
+    "functions": [
+      "build_rect_mask",
+      "apply_rect_filter",
+      "fft_spectrum",
+      "shift_sideband_to_dc",
+      "phase_from_sideband",
+      "unwrap_phase_2d",
+      "frankot_chellappa"
+    ],
+    "change": "Only module imports/packaging changed; listed function bodies extracted verbatim."
+  },
+  {
+    "file": "src/wfs_starter/vendor/hartmann.py",
+    "source_id": "https://github.com/haohaoxueyangwen/hartmann_V2@6a6f5bb4ac04fdbb08f620797c62e3dead028fde",
+    "source_file": "displacement_methods.py",
+    "source_sha256": "6675169ec6740e34885e34764603eeaef105dee4c02d4d55fee9aacc2207f07c",
+    "functions": [
+      "compute_cells",
+      "compute_centroids",
+      "centroid_shifts"
+    ],
+    "change": "Only module imports/packaging changed; listed function bodies extracted verbatim."
+  },
+  {
+    "file": "src/wfs_starter/vendor/zernike.py",
+    "source_id": "local-wsvt-st-postprocess",
+    "source_file": "analysis_zernike.py",
+    "source_sha256": "cfe1b76f68b83c42ea2dd8cef46c7220324f46fb99cb3106aa27ed4dccbb7b53",
+    "functions": [
+      "zernike_radial",
+      "zernike"
+    ],
+    "change": "Only module imports/packaging changed; listed function bodies extracted verbatim."
+  }
+]

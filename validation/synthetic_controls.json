@@ -1,0 +1,36 @@
+{
+  "wxst": {
+    "passed": true,
+    "median_ux_px": -2.0008974522135645,
+    "median_uy_px": 0.998440756730776,
+    "median_epe_px": 0.07318563905597192,
+    "p95_epe_px": 0.15860516909480898,
+    "control": "Known rigid texture translation; output interior trimmed 5 px further."
+  },
+  "wsvt": {
+    "passed": true,
+    "median_ux_px": -1.9967000514322186,
+    "median_uy_px": 1.001218439135477,
+    "median_epe_px": 0.1192322824116176,
+    "p95_epe_px": 0.24850274992345173,
+    "control": "Known rigid texture translation; output interior trimmed 5 px further."
+  },
+  "grating": {
+    "passed": true,
+    "phase_rmse_rad": 1.3710777681940093e-13,
+    "control": "Analytic periodic carrier encoded with known phase derivatives."
+  },
+  "hartmann": {
+    "passed": true,
+    "max_displacement_error_px": 2.6563187943564897e-13,
+    "control": "Known Gaussian centroid translation in fixed isolated cells."
+  },
+  "zernike": {
+    "passed": true,
+    "max_coefficient_error_rad": 3.3306690738754696e-16,
+    "residual_rms_rad": 4.946059818757184e-16,
+    "control": "Explicit orthonormal modes with known coefficients."
+  },
+  "scope": "CPU algorithm controls on synthetic inputs; no real-data accuracy or beamline validation.",
+  "seconds": 11.0
+}

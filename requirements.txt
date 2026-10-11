@@ -1,0 +1,8 @@
+numpy==1.26.4
+scipy==1.13.1
+matplotlib==3.9.2
+PyWavelets==1.7.0
+numba==0.60.0
+h5py==3.11.0
+Pillow==10.4.0
+colorama==0.4.6

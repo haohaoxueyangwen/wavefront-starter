@@ -1,0 +1,8 @@
+{
+  "mode": "zernike",
+  "phase": "data/phase_rad.npy",
+  "phase_unit": null,
+  "center_xy_px": null,
+  "radius_px": null,
+  "terms": 15
+}

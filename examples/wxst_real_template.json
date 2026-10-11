@@ -1,0 +1,10 @@
+{
+  "mode": "wxst",
+  "energy_ev": null,
+  "pixel_size_m": null,
+  "distance_m": null,
+  "search_half_window": 3,
+  "template_half_window": 2,
+  "reference": "data/reference.npy",
+  "sample": "data/sample.npy"
+}

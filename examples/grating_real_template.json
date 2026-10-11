@@ -1,0 +1,16 @@
+{
+  "mode": "grating",
+  "reference": "data/reference.npy",
+  "sample": "data/sample.npy",
+  "band_x_center_rc": null,
+  "band_y_center_rc": null,
+  "band_x_size_rc": [
+    9,
+    9
+  ],
+  "band_y_size_rc": [
+    9,
+    9
+  ],
+  "unwrap": true
+}

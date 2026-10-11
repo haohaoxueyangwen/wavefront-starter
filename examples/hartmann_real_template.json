@@ -1,0 +1,7 @@
+{
+  "mode": "hartmann",
+  "reference": "data/reference.npy",
+  "sample": "data/sample.npy",
+  "grid_rows": null,
+  "grid_cols": null
+}

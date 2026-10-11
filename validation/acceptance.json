@@ -1,0 +1,21 @@
+{
+  "version": "synthetic-controls-v2",
+  "seed_by_case": {
+    "wxst": 20261011,
+    "wsvt": 20261012,
+    "grating": 20261013,
+    "hartmann": 20261014,
+    "zernike": 20261015
+  },
+  "wsvt_frames": 32,
+  "thresholds": {
+    "speckle_median_epe_px": 0.15,
+    "speckle_p95_epe_px": 0.5,
+    "grating_phase_rmse_rad": 0.0001,
+    "hartmann_max_epe_px": 1e-06,
+    "zernike_max_coeff_error_rad": 1e-10
+  },
+  "evaluation": "Speckle solver crop 3 px plus assessment crop 5 px; all other case controls use documented valid regions.",
+  "tests": 13,
+  "scope": "CPU synthetic controls and interface contracts; no real-data physical accuracy claim."
+}
