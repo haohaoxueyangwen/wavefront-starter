@@ -1,0 +1,10 @@
+name: 文档、例子或功能建议
+description: 指出卡在哪一步，或需要补充什么
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 哪一页、哪一步，以及期望改进
+      description: 文档问题请附页面链接；功能建议请说明输入、参数与希望得到的结果。
+    validations:
+      required: true

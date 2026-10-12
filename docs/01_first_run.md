@@ -1,5 +1,7 @@
 # 第一遍：从 CRL 实测数据到结果
 
+[文档目录](README.md) · [项目主页](../README.md)
+
 Windows 用户先按 [直接运行指南](12_windows_quickstart.md)下载完整包。开发者按 README 安装源码环境。WSVT / WXST 默认使用 BB11 金刚石 CRL 实测数据，具体来源和结果示意见 [CRL 案例](14_crl_example.md)。
 
 1. 打开散斑界面，选择 C++ CPU 和 WXST，点击“载入 CRL 实测示例”，再运行。

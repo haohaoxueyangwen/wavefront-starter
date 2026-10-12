@@ -1,5 +1,7 @@
 # 软件、示例数据与原研究仓库
 
+[文档目录](README.md) · [项目主页](../README.md)
+
 | 入口 | 用途 |
 |---|---|
 | [本仓库在线操作指南](01_first_run.md) | CRL 实测散斑与光栅 / Hartmann / Zernike 解析控制 |

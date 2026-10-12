@@ -1,5 +1,7 @@
 # 完整文献清单
 
+[文档目录](README.md) · [项目主页](../README.md)
+
 当前 34 条；元数据复查日期 2026-10-12。先看 [7 篇核心综述与理论总览](05_key_reviews.md)，再按 [学习路线](06_learning_path.md) 选读。完整作者与引文可从 [BibTeX](../literature/references.bib) / [RIS](../literature/references.ris) 导入。
 
 综述与理论总览共 10 条；L10 是书章，L12 是理论综述型研究论文，L4 兼有综述与实验比较。L7 是 Hartmann 技术总览与仪器论文，单独放在方法路线中。

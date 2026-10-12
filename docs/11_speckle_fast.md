@@ -1,4 +1,6 @@
-> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.2 Windows 完整包**即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
+> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.3 Windows 完整包** 即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
+
+[文档目录](README.md) · [项目主页](../README.md)
 
 # WSVT / WXST 高速版：从安装到处理实验数据
 
@@ -13,10 +15,10 @@
 | Linux RTX 5880 Ada | `native/speckle/gpu_discrete` | WSVT、WXST：`speed / copy` |
 | Jetson AGX Orin | `native/speckle/gpu_jetson` | WSVT：`speed / mapped`；WXST：`speed / copy` |
 | GPU 内存不足 | 同一个 GPU 程序 | WSVT 改为 `low-memory`，`chunk=16` |
-| Windows x64 | 0.6.2 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
+| Windows x64 | 0.6.3 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
 | 需要任意帧数、模板、迭代或暗场算法 | 原 CPU / Python 算法 | 先做小图，再按实际参数运行 |
 
-这里按**已测设备上可部署、返回完整七项结果的速度配置**选默认值。`speed` 是工作区策略，不能保证所有电脑、所有阶段都最快。服务器 WXST 的旧 GPU 纯求解器曾更快，新版返回完整结果更快，详见第 7 节。0.5.0 原生性能验收平台是 Linux Ada SM89、Linux Orin SM87；0.6.0 另以独立 Windows 移植层构建并在 P5000 SM61 实测。其他 Windows 显卡的检测、目标和实测范围见 Windows 指南。
+这里按 **已测设备上可部署、返回完整七项结果的速度配置** 选默认值。`speed` 是工作区策略，不能保证所有电脑、所有阶段都最快。服务器 WXST 的旧 GPU 纯求解器曾更快，新版返回完整结果更快，详见第 7 节。0.5.0 原生性能验收平台是 Linux Ada SM89、Linux Orin SM87；0.6.0 另以独立 Windows 移植层构建并在 P5000 SM61 实测。其他 Windows 显卡的检测、目标和实测范围见 Windows 指南。
 
 WSVT 是逐位置对应的时间栈，WXST 是一对图的空间模板，不能互相替换输入：
 
@@ -60,7 +62,7 @@ cmake -S native/speckle/cpu_cpp/source -B native/speckle/build_cpu \
 cmake --build native/speckle/build_cpu --target wsvt_cli -j2
 ```
 
-确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.2 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
+确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.3 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
 
 ## 3. 先使用 CRL 实测示例
 
@@ -85,7 +87,7 @@ python native/speckle/tools/convert_inputs.py --mode wsvt \
   --reference-glob '/data/reference/frame_*.tif' --out converted_wsvt
 ```
 
-转换器按**字典序**排列；用补零编号 `000…099`，先核对文件数量和对应关系。网页配对表按自然编号排序，与这个离线工具不同。转换结果有 `input_manifest.json`，原 TIFF 不改动。WXST 的每个 glob 必须只匹配一张图。离线转换器全尺寸 WSVT 入口只接受 100 帧 uint16；暗 / 平场校正后的浮点数据应自行导出 float32 NPY，不能强制转回 uint16。
+转换器按 **字典序** 排列；用补零编号 `000…099`，先核对文件数量和对应关系。网页配对表按自然编号排序，与这个离线工具不同。转换结果有 `input_manifest.json`，原 TIFF 不改动。WXST 的每个 glob 必须只匹配一张图。离线转换器全尺寸 WSVT 入口只接受 100 帧 uint16；暗 / 平场校正后的浮点数据应自行导出 float32 NPY，不能强制转回 uint16。
 
 ## 4. 跑一次，检查结果
 
@@ -123,7 +125,7 @@ bash native/speckle/gpu_jetson/run.sh --mode wsvt \
 
 ## 5. 用散斑网页操作
 
-1. 在**实际装有构建产物的主机**启动 `python -m wfs_starter ui --app speckle`。本地网页调用本机程序，不会自动 SSH 到服务器 / Orin。
+1. 在 **实际装有构建产物的主机** 启动 `python -m wfs_starter ui --app speckle`。本地网页调用本机程序，不会自动 SSH 到服务器 / Orin。
 2. 选择 WXST 或 WSVT。WXST 浏览选择两张图；WSVT 浏览选择两个文件夹，核对全部 100 行配对。选择 ROI 后两边使用同一裁块。
 3. Windows 完整包选择 CPU / GPU 后程序自动定位。Linux 构建后把 `build_desktop/bin/speckle_gpu` 或 `build_jetson/bin/speckle_gpu` 加到 PATH，或启动前设置 `WFS_GPU_EXE`；开发者也可在配置 JSON 中显式指定路径。普通界面不再要求填写 EXE。
 4. 填能量 eV、像元 m、距离 m。工作区默认 `speed`，输入策略默认自动；Orin WSVT 自动 mapped，其余 copy。GPU 编号从 0 开始。低内存只用于 WSVT。
@@ -133,7 +135,7 @@ Python / CPU 的原参数仍可修改。新版 GPU 是专项内核，固定半�
 
 网页读入无校正 uint16 WSVT 时保留原始类型；做暗 / 平场校正后按浮点处理，不量化回 uint16。显式选择 uint16 而数据已是浮点会报错。新版全尺寸实测使用 uint16，float32 WSVT 只做过小图验证。
 
-网页每次任务生成临时 NPY 并启动新 CLI，`warmup=0 / repeats=1 / reference-policy=each-pair`。因此界面总耗时包含 Python 读图、转换、进程启动、初始化和图表输出，**不能等同于下面复用会话的热运行时间**。连续采集要复用 C++ 会话和固定页输入 / 输出，见[原生 API 与所有权](../native/speckle/docs/NATIVE_API.md)。
+网页每次任务生成临时 NPY 并启动新 CLI，`warmup=0 / repeats=1 / reference-policy=each-pair`。因此界面总耗时包含 Python 读图、转换、进程启动、初始化和图表输出， **不能等同于下面复用会话的热运行时间**。连续采集要复用 C++ 会话和固定页输入 / 输出，见[原生 API 与所有权](../native/speckle/docs/NATIVE_API.md)。
 
 ## 6. 参数字典
 

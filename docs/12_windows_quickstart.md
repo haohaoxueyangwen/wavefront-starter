@@ -1,10 +1,12 @@
 # Windows：解压后直接跑 WSVT / WXST
 
-给第一次使用的同学：**不用安装 Python、Visual Studio、Anaconda 或 CUDA Toolkit，不用找 EXE，不用配置环境变量。** 程序和运行库已放在 Windows 完整包里。
+[文档目录](README.md) · [项目主页](../README.md)
+
+给第一次使用的同学： **不用安装 Python、Visual Studio、Anaconda 或 CUDA Toolkit，不用找 EXE，不用配置环境变量。** 程序和运行库已放在 Windows 完整包里。
 
 ## 1. 下载哪一个文件
 
-打开 [v0.6.2 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.2)，下载 **`wavefront-starter-0.6.2-windows-x64.zip`**。右键 ZIP → 全部提取。不要在 ZIP 预览窗口里双击启动。
+打开 [v0.6.3 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.3)，下载 **`wavefront-starter-0.6.3-windows-x64.zip`**。右键 ZIP → 全部提取。不要在 ZIP 预览窗口里双击启动。
 
 GitHub 自动生成的 `Source code (zip)` 是开发源码，不是这里说的完整运行包。
 
@@ -30,9 +32,9 @@ GitHub 自动生成的 `Source code (zip)` 是开发源码，不是这里说的�
 | NVIDIA 显卡存在，但 GPU 灰色或任务报错 | 先使用 CPU；按下方排错说明检查驱动 |
 | macOS、Linux、Windows ARM | 本 ZIP 是 Windows x64 包；Linux 源码部署看 [原生指南](11_speckle_fast.md)，其他平台没有随包二进制验收 |
 
-本包 GPU 编译包含 **SM60、61、70、75、80、86**，并附带 compute86 PTX，覆盖相应 Pascal、Volta、Turing、Ampere 架构，并给较新 GPU 提供驱动编译入口。**包含编译支持不等于每个型号都实测过**：Windows 实测是 Quadro P5000 / SM61；Ada 和 Orin 的历史证据来自 Linux。较新显卡需以本机示例是否成功为准，尤其不承诺 RTX 50 系列直接适配旧 CUDA 11.6 的 cuFFT。
+本包 GPU 编译包含 **SM60、61、70、75、80、86**，并附带 compute86 PTX，覆盖相应 Pascal、Volta、Turing、Ampere 架构，并给较新 GPU 提供驱动编译入口。 **包含编译支持不等于每个型号都实测过**：Windows 实测是 Quadro P5000 / SM61；Ada 和 Orin 的历史证据来自 Linux。较新显卡需以本机示例是否成功为准，尤其不承诺 RTX 50 系列直接适配旧 CUDA 11.6 的 cuFFT。
 
-NVIDIA 驱动属于显卡本身，不在本 ZIP 内。通常机器已有驱动；需要更新时从 [NVIDIA 官方驱动页面](https://www.nvidia.com/Download/index.aspx)按型号下载安装。**无需安装 CUDA Toolkit。**
+NVIDIA 驱动属于显卡本身，不在本 ZIP 内。通常机器已有驱动；需要更新时从 [NVIDIA 官方驱动页面](https://www.nvidia.com/Download/index.aspx)按型号下载安装。 **无需安装 CUDA Toolkit。**
 
 内存与显存取决于数据尺寸。512×512 CRL 示例用于入门与检查流程；处理 2048²×100 帧 WSVT，建议主机内存 32 GB。GPU 速度配置在历史 Linux 测试中显式分配约 6.48 GiB，低内存配置约 4.26 GiB，不包含其他程序和驱动开销。显存较紧时选“低内存”、先裁 ROI，并关闭占用显存的其他程序；这些是容量参考，不能作为所有 Windows 显卡的实测性能。
 
@@ -51,7 +53,7 @@ NVIDIA 驱动属于显卡本身，不在本 ZIP 内。通常机器已有驱动�
 
 CRL 示例标定沿用 BB11 既有重建记录，不是你新实验的参数。换数据时需一起修改这些数值。参考图、样品图、暗场、平场要来自可追溯的同一实验设置。
 
-**CPU 版**保留原界面搜索窗口、模板、扩展窗口、金字塔、小波、迭代、线程、分组和 ROI 参数。**GPU 速度版**固定搜索半窗 10、WXST 模板半窗 3（7×7）、扩展半窗 4、金字塔参数 1（两层）、cut1、迭代 1、小波开启；WSVT 必须 **100 对帧**。界面锁定这些固定项，其他资源和实验标定仍可改。帧数不同或需要其他算法参数时选 CPU；不能通过修改 JSON 让固定 GPU 内核变成另一套参数。
+**CPU 版** 保留原界面搜索窗口、模板、扩展窗口、金字塔、小波、迭代、线程、分组和 ROI 参数。 **GPU 速度版** 固定搜索半窗 10、WXST 模板半窗 3（7×7）、扩展半窗 4、金字塔参数 1（两层）、cut1、迭代 1、小波开启；WSVT 必须 **100 对帧**。界面锁定这些固定项，其他资源和实验标定仍可改。帧数不同或需要其他算法参数时选 CPU；不能通过修改 JSON 让固定 GPU 内核变成另一套参数。
 
 ## 5. 结果在哪里，怎样理解
 
@@ -69,7 +71,7 @@ CRL 示例标定沿用 BB11 既有重建记录，不是你新实验的参数。�
 
 CRL 例子使用真实透镜数据，不设“已知刚体位移”或人为精度真值。数据裁剪、标定来源、原始文件校验和重建趋势见 [CRL 实测案例](14_crl_example.md)；Windows 原算法数值行为和旧工程检查保留在 [验证说明](13_windows_validation.md)。
 
-右侧“Zernike 分解 →”会带着真实相位、rad 单位和来源打开独立波前分析界面。**当前接续不会自动填写实验能量与像元：CRL 案例需手动将光子能量设为 12.4 keV、像元设为 1.625 µm，再拖画圆瞳并运行。**新页面的 15 keV / 0.65 µm 是旧界面默认值，不能直接用于这组 CRL；输出只裁边、不缩放，像元尺寸不变。光栅、Hartmann、波前分析分别从 `start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd` 启动；这些是独立界面。随包可运行基础光栅 / Hartmann 质心和完整 Zernike。Hartmann 设计 / 旋转、曲率 / 焦点的原工程扩展仍需对应研究工程，范围与来源见各模块文档；本次 Windows 二进制验收覆盖 WSVT / WXST。
+右侧“Zernike 分解 →”会带着真实相位、rad 单位和来源打开独立波前分析界面。 **当前接续不会自动填写实验能量与像元：CRL 案例需手动将光子能量设为 12.4 keV、像元设为 1.625 µm，再拖画圆瞳并运行。** 新页面的 15 keV / 0.65 µm 是旧界面默认值，不能直接用于这组 CRL；输出只裁边、不缩放，像元尺寸不变。光栅、Hartmann、波前分析分别从 `start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd` 启动；这些是独立界面。随包可运行基础光栅 / Hartmann 质心和完整 Zernike。Hartmann 设计 / 旋转、曲率 / 焦点的原工程扩展仍需对应研究工程，范围与来源见各模块文档；本次 Windows 二进制验收覆盖 WSVT / WXST。
 
 ## 常见问题
 

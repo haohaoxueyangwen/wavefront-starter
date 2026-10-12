@@ -40,8 +40,8 @@ def main():
     parser.add_argument('--tag', required=True)
     parser.add_argument('--out', required=True)
     args = parser.parse_args()
-    if args.tag != 'v0.6.2':
-        raise ValueError('This audited repack supports only the reviewed v0.6.2 tag.')
+    if args.tag not in {'v0.6.2', 'v0.6.3'}:
+        raise ValueError('This audited repack supports only reviewed documentation tags v0.6.2 and v0.6.3.')
     root = Path(__file__).resolve().parents[1]
     out = Path(args.out).resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -66,7 +66,7 @@ def main():
             if relative.startswith(('src/', 'native/')) and not item.is_dir():
                 actual = src.read(item.filename)
                 if relative == 'src/wfs_starter/ui.py':
-                    actual = actual.replace(b'0.6.2', b'0.6.1')
+                    actual = actual.replace(version.encode('ascii'), b'0.6.1')
                 if actual != old.read(old_prefix + relative):
                     raise ValueError('Non-documentation algorithm change: ' + relative)
         with zipfile.ZipFile(windows, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as dst:

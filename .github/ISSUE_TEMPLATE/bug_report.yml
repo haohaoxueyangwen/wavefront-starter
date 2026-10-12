@@ -1,0 +1,32 @@
+name: 运行或数值问题
+description: 提供版本、算法、配置和复现步骤
+title: "[问题] "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: 包版本与系统
+      placeholder: v0.6.3，Windows 11 x64；完整包或源码
+    validations:
+      required: true
+  - type: input
+    id: backend
+    attributes:
+      label: 工具、算法、后端与设备
+      placeholder: 散斑 / WXST / C++ CPU；或 GPU及驱动、型号
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 操作步骤与期望结果
+      description: 注明CRL示例还是自己的数据、是否首次使用。
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果、报错与配置
+      description: 可附日志、配置或最小可分享数据。上传前检查本机路径与未公开实验信息。
+    validations:
+      required: true

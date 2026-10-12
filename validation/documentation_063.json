@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-12",
+  "scope": "Documentation, homepage and source distribution manifest; algorithm/runtime/data unchanged",
+  "local_documentation": {
+    "version": "0.6.3",
+    "documents": 28,
+    "local_links_checked": 268,
+    "templates": 8,
+    "references": 34,
+    "errors": []
+  },
+  "github_gfm_render": [
+    {
+      "document": "README.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    },
+    {
+      "document": "docs/README.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    },
+    {
+      "document": "docs/08_interfaces.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    },
+    {
+      "document": "docs/12_windows_quickstart.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    },
+    {
+      "document": "docs/14_crl_example.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    },
+    {
+      "document": "docs/15_grating_workflow.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    },
+    {
+      "document": "docs/16_hartmann_workflow.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    },
+    {
+      "document": "docs/17_wavefront_workflow.md",
+      "gfm_rendered": true,
+      "no_literal_strong_markers": true
+    }
+  ],
+  "regression_tests": {
+    "count": 46,
+    "result": "passed",
+    "seconds": 8.718
+  },
+  "frozen_native_sources_verified": 147,
+  "source_changes": "Only ui.py service version 0.6.2 to 0.6.3",
+  "literature_metadata_reused": "34 DOI title records verified on 2026-10-12 in documentation_062.json; reference files unchanged",
+  "sdist": {
+    "version": "0.6.3",
+    "sdist_file": "wavefront_starter-0.6.3.tar.gz",
+    "required_documentation_and_entry_files_present": [
+      "docs/README.md",
+      "docs/15_grating_workflow.md",
+      "docs/16_hartmann_workflow.md",
+      "docs/17_wavefront_workflow.md",
+      "docs/images/crl_bb11_example.png",
+      "literature/references.ris",
+      "scripts/check_documentation.py",
+      "先看这里.txt",
+      "stop_frontends.cmd",
+      "check_windows.cmd",
+      "CONTRIBUTING.md",
+      "examples/full_zernike/phase_rad.npy"
+    ],
+    "files": 177,
+    "no_host_config_or_history": true
+  },
+  "documented_commands_record": "documented_commands_063.json"
+}

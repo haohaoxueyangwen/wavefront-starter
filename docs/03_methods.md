@@ -1,5 +1,7 @@
 # 方法与物理量
 
+[文档目录](README.md) · [项目主页](../README.md)
+
 三条测量路线最终都需要建立从观测量到局部波前信息的标定关系；具体坐标、参考状态和实验几何必须单独记录。可以先阅读 [Seaberg et al. 2019](https://journals.iucr.org/s/issues/2019/04/00/xl5031/index.html) 的方法比较，以及 [Liu et al. 2020](https://journals.iucr.org/s/issues/2020/02/00/yi5084/index.html) 的 Talbot 几何关系。
 
 散斑：先追踪参考和样品图的纹理位移。WXST 在单对图中使用空间模板；WSVT 通过逐帧对应的时间向量形成描述子。教学版保留本机参考实现的方向、去均值和积分约定，未改动原算法求解函数。

@@ -1,0 +1,36 @@
+{
+  "version": "0.6.3",
+  "date": "2026-10-12",
+  "relocated_chinese_space_path": true,
+  "commands": [
+    {
+      "name": "grating-command",
+      "returncode": 0,
+      "embedded_python": true,
+      "system_only_path": true
+    },
+    {
+      "name": "hartmann-command",
+      "returncode": 0,
+      "embedded_python": true,
+      "system_only_path": true
+    },
+    {
+      "name": "full-zernike-command",
+      "returncode": 0,
+      "embedded_python": true,
+      "system_only_path": true
+    },
+    {
+      "name": "documented-launch",
+      "returncode": 0,
+      "embedded_python": true,
+      "system_only_path": true
+    }
+  ],
+  "launch_service_version": "0.6.3",
+  "four_pages_http_ok": true,
+  "windows_native_cpp_and_gpu_detected": true,
+  "owned_test_service_stopped": true,
+  "scope": "Documented command and launch checks; not a new GPU performance measurement"
+}

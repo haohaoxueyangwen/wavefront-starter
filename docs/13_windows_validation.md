@@ -1,5 +1,13 @@
 # Windows 构建、CRL 实测与历史验证
 
+[文档目录](README.md) · [项目主页](../README.md)
+
+## 主页与文档检查（0.6.3）
+
+28份主要Markdown文档、内部相对链接 / 标题锚点、八种配置与版本入口检查通过；主页和重点教程的GitHub Markdown实际渲染已检查。46项回归测试通过。光栅、Hartmann、完整50项Zernike教程命令及四个页面启动，另在中文 / 空格目录用便携Python、仅系统PATH检查。记录见 [文档检查](../validation/documentation_063.json)与 [便携命令检查](../validation/documented_commands_063.json)。
+
+本版只更新文档、分发清单和服务版本标识，算法与运行库沿用下列原验证范围，没有重新测量GPU性能或扩展物理精度结论。
+
 ## 当前 CRL 数据检查（0.6.1）
 
 Windows 二进制和随包 Python 沿用0.6.0。0.6.1 将默认散斑案例换为 BB11 金刚石 CRL 的真实100对扫描帧中央512²原值裁剪。
@@ -10,7 +18,7 @@ Windows 二进制和随包 Python 沿用0.6.0。0.6.1 将默认散斑案例换�
 - 200张原始 TIFF 的 SHA256复查未变；发布裁剪帧另带200项SHA256。原实验记录保持原样。
 - 源码版实际匿名下载 CRL ZIP、包级 SHA256、200帧哈希及第二次缓存加载已检查。Windows完整包已带数据，不需要首次联网。
 
-详见 [CRL 操作与来源](14_crl_example.md)、[执行检查](../validation/crl_bb11_windows_061.json)。0.6.2只复核并修正说明、导航和版本标识；没有更改算法、二进制、示例帧或历史数值验收结论。
+详见 [CRL 操作与来源](14_crl_example.md)、[执行检查](../validation/crl_bb11_windows_061.json)。0.6.2与0.6.3复核并完善说明、导航和版本标识；没有更改算法、二进制、示例帧或历史数值验收结论。
 
 ## 0.6.0 历史部署检查
 
@@ -23,15 +31,15 @@ Windows CPU / GPU 已编译，前端可以自动定位随包程序。下面把�
 - 算法源：WSVT_CPP `3f418aa71771e9d209af0702b742ac7e7a69aa9a`，与 0.5.0 的 147 项原始文件哈希一致。
 - CPU：MSVC 19.29，C++20，OpenMP，FFTW 3.3.5 单精度 + 线程，HDF5 1.12.1；生成 `wsvt_cli.exe`。
 - GPU：CUDA 11.6.124、cuFFT、MSVC 19.29；SM60/61/70/75/80/86 + compute86 PTX，保留 `--fmad=false`；生成 `speckle_gpu.exe` 和 `speckle_native.dll`。
-- Windows 的对齐分配、restrict 关键字、HDF5 名称长度类型、DLL 导出、内存统计和启动检测通过 `native/windows/prepare_sources.py` 应用到**构建副本**。CUDA 数值内核和原冻结目录未改。
+- Windows 的对齐分配、restrict 关键字、HDF5 名称长度类型、DLL 导出、内存统计和启动检测通过 `native/windows/prepare_sources.py` 应用到 **构建副本**。CUDA 数值内核和原冻结目录未改。
 - Python：官方 3.12.10 embeddable x64，Python Software Foundation 签名有效。所有 Python 依赖和原生运行 DLL 随 Windows ZIP 提供。
 - 组件许可证、构建副本改动、二进制哈希：[构建记录](../provenance/windows_native_build.json)、[运行组件说明](../provenance/windows-licenses/README.md)。
 
-维护者重建程序：在已配置 MSVC x64 开发环境中使用 `scripts/build_windows_native.py --help`，分别传入 HDF5、FFTW、可再分发 LLVM OpenMP 和 CUDA 的构建路径，再用 `scripts/assemble_windows_native.py` 收集运行 DLL。**这是开发流程；普通使用者下载 Windows 完整包即可。**
+维护者重建程序：在已配置 MSVC x64 开发环境中使用 `scripts/build_windows_native.py --help`，分别传入 HDF5、FFTW、可再分发 LLVM OpenMP 和 CUDA 的构建路径，再用 `scripts/assemble_windows_native.py` 收集运行 DLL。 **这是开发流程；普通使用者下载 Windows 完整包即可。**
 
 ## 实测内容
 
-Windows 实测 GPU：**Quadro P5000，SM61，驱动 582.16，约 15 GiB 显存**。其他显卡有编译目标和运行检测，但尚无本轮 Windows 数值验收。历史 Ada / Orin 性能数据仍属于 Linux，见 [原生指南](11_speckle_fast.md)。
+Windows 实测 GPU： **Quadro P5000，SM61，驱动 582.16，约 15 GiB 显存**。其他显卡有编译目标和运行检测，但尚无本轮 Windows 数值验收。历史 Ada / Orin 性能数据仍属于 Linux，见 [原生指南](11_speckle_fast.md)。
 
 64×64 合成数据，WSVT100 原始 uint16、WXST 单对 float32；half10、模板半窗3、cut1、金字塔参数1、迭代1。
 
