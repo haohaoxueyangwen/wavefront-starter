@@ -1,0 +1,25 @@
+{
+  "scope": "First-use guidance and result-metadata calibration handoff; solvers/native/runtime/data unchanged",
+  "files": {
+    "src/wfs_starter/ui.py": {
+      "baseline_061_sha256": "4e24094b1494fd5b1a30f4341b20d261b5f16df4cb64d86de3105ba11e8d72e8",
+      "reviewed_sha256": "db9efb6c8a8ead4231f4ad50fa79df6475f96297684e191f12b4f9c15670250a"
+    },
+    "src/wfs_starter/web/app.js": {
+      "baseline_061_sha256": "3b966b19c4149c69b730387586066c40a81bad69be538c64b5ad7baa29ada0a8",
+      "reviewed_sha256": "604be8d0a6f6f69e38fd7e8b4470d7b7f7bbf24f195e92886ddc58b1f532c531"
+    },
+    "src/wfs_starter/web/grating.html": {
+      "baseline_061_sha256": "1eaf98352fe7c751b9f1fa69f910ca71df29ea38ea954a5ebdc7503ae8ad57b0",
+      "reviewed_sha256": "1f0e40f86ff54da604408e5970d55b53694b0b4e7a0460220461ebac012bacf8"
+    },
+    "src/wfs_starter/web/hartmann.html": {
+      "baseline_061_sha256": "951d4c5a21b1a713f4628ac6d2a36921b5694603979f1255695b905dc27517ed",
+      "reviewed_sha256": "376128926bd0be7f90325334955cb26f7bded4ef6cfedc769e7022a532c5124f"
+    },
+    "src/wfs_starter/web/wavefront.html": {
+      "baseline_061_sha256": "0f43ea87d72b70b65e8e730c9bed5a01819f5a5c7af295414e0c8ddd20acde85",
+      "reviewed_sha256": "e28acd4b8de790e6c0324ac63a1875d4ba678f359eb74d5dffa64731e61e23e1"
+    }
+  }
+}

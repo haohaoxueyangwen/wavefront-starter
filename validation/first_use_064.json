@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-13",
+  "downloaded_release": "v0.6.3",
+  "archive_sha256": "8a32b5a2d971d99cfc2d7361b9e278aa99b7758f6b6e2bdc77f0f6a895e94e29",
+  "isolation": "Fresh anonymous download; Windows-only PATH; empty user profile/cache; only bundled runtime for GUI runs",
+  "machine": "Windows 10 x64, Quadro P5000 SM61",
+  "not_claimed": "Clean OS VM or other GPU model validation",
+  "zip_crc": "passed",
+  "crl_hashes": 200,
+  "native_source_hashes": 147,
+  "gui_jobs": [
+    {
+      "mode": "wxst",
+      "action": "run",
+      "backend": "cpp_cpu",
+      "elapsed_s": 13.7,
+      "status": "succeeded",
+      "control": null
+    },
+    {
+      "mode": "grating",
+      "action": "demo",
+      "backend": null,
+      "elapsed_s": 2.7,
+      "status": "succeeded",
+      "control": {
+        "grating": {
+          "passed": true,
+          "phase_rmse_rad": 1.3710777681940093e-13,
+          "control": "Analytic periodic carrier encoded with known phase derivatives."
+        },
+        "scope": "WSVT/WXST use real BB11 CRL data; other cases are named analytic controls. Successful execution does not establish physical accuracy.",
+        "seconds": 2.015999999945052
+      }
+    },
+    {
+      "mode": "hartmann",
+      "action": "demo",
+      "backend": null,
+      "elapsed_s": 2.9,
+      "status": "succeeded",
+      "control": {
+        "hartmann": {
+          "passed": true,
+          "max_displacement_error_px": 2.6563187943564897e-13,
+          "control": "Known Gaussian centroid translation in fixed isolated cells."
+        },
+        "scope": "WSVT/WXST use real BB11 CRL data; other cases are named analytic controls. Successful execution does not establish physical accuracy.",
+        "seconds": 2.2179999999934807
+      }
+    },
+    {
+      "mode": "zernike_full",
+      "action": "run",
+      "backend": null,
+      "elapsed_s": 16.1,
+      "status": "succeeded",
+      "control": null
+    },
+    {
+      "mode": "grating",
+      "action": "run",
+      "backend": null,
+      "elapsed_s": 2.8,
+      "status": "succeeded",
+      "control": null
+    },
+    {
+      "mode": "wxst",
+      "action": "run",
+      "backend": "native_cpp_cuda_cufft",
+      "elapsed_s": 4.7,
+      "status": "succeeded",
+      "control": null
+    },
+    {
+      "mode": "hartmann",
+      "action": "run",
+      "backend": null,
+      "elapsed_s": 3.0,
+      "status": "succeeded",
+      "control": null
+    },
+    {
+      "mode": "wsvt",
+      "action": "run",
+      "backend": "cpp_cpu",
+      "elapsed_s": 8.8,
+      "status": "succeeded",
+      "control": null
+    },
+    {
+      "mode": "wsvt",
+      "action": "run",
+      "backend": "native_cpp_cuda_cufft",
+      "elapsed_s": 5.9,
+      "status": "succeeded",
+      "control": null
+    }
+  ],
+  "browser_downloads": [
+    "wsvt_config.json",
+    "known_wavefront_coefficients.csv"
+  ],
+  "restart_history_counts": {
+    "speckle": 4,
+    "grating": 2,
+    "hartmann": 2,
+    "wavefront": 1
+  },
+  "fixes_version": "0.6.4",
+  "regression_tests": {
+    "count": 47,
+    "result": "passed"
+  },
+  "scientific_solver_runtime_data": "unchanged"
+}

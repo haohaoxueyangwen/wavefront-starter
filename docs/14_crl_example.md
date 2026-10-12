@@ -14,7 +14,7 @@
 
 ## 直接操作
 
-1. 从 [v0.6.3 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.3)下载 `wavefront-starter-0.6.3-windows-x64.zip`，全部解压。完整包已经带 CRL 数据，可离线操作。
+1. 从 [v0.6.4 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.4)下载 `wavefront-starter-0.6.4-windows-x64.zip`，全部解压。完整包已经带 CRL 数据，可离线操作。
 2. 双击 `start_speckle.cmd`，先选择 C++ CPU。
 3. 选择 WXST 或 WSVT，点击 **“载入 CRL 实测示例”**。WXST 填入第 001 对；WSVT 填入索引 001–100 的全部配对。
 4. 点击 **“运行算法”**，看位移、偏折角、相位以及结果配置。用 GPU 时切换 GPU 后再载入同一 CRL 示例。

@@ -6,7 +6,7 @@
 
 ## 第一次用：下载 → 解压 → 跑 CRL
 
-1. 在 [最新发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/latest)下载 **`wavefront-starter-0.6.3-windows-x64.zip`**，右键“全部解压”。名字带 `windows-x64` 才是完整运行包；GitHub 的 `Source code` 是开发源码。
+1. 在 [最新发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/latest)下载 **`wavefront-starter-0.6.4-windows-x64.zip`**，右键“全部解压”。名字带 `windows-x64` 才是完整运行包；GitHub 的 `Source code` 是开发源码。
 2. 双击 **`start_speckle.cmd`**，选择 **WXST → C++ CPU → 载入 CRL 实测示例 → 运行算法**。
 3. 查看位移、偏折角和相位，在“数据文件与本次配置”保存数值结果和参数。接着换成 WSVT，再载入示例，用全部100对扫描帧重建。
 
@@ -49,7 +49,7 @@ Hartmann 设计 / 动态仿真 / 旋转试验，以及自动 ROI 曲率 / 残差
 
 Windows 完整包面向 Windows 10/11 x64 的 Intel / AMD CPU。CUDA 后端需要兼容 NVIDIA 显卡与驱动；Windows 实测设备为 Quadro P5000。Linux 原生构建和 Ada / Orin 历史结果见 [高速散斑指南](docs/11_speckle_fast.md)。macOS、Windows ARM 没有本包原生二进制验收。
 
-CRL 的 CPU / GPU 对照说明本数据上的执行与实现一致性；真实透镜没有已知逐像素位移真值。光栅、Hartmann、Zernike 的独立解析控制另有明确答案。设备、数值指标和已知限制见 [Windows 验证说明](docs/13_windows_validation.md)。v0.6.3 完善主页与操作文档，算法、Windows运行库和CRL数据沿用 v0.6.1。
+CRL 的 CPU / GPU 对照说明本数据上的执行与实现一致性；真实透镜没有已知逐像素位移真值。光栅、Hartmann、Zernike 的独立解析控制另有明确答案。设备、数值指标和已知限制见 [Windows 验证说明](docs/13_windows_validation.md)。v0.6.4 完善主页与操作文档，算法、Windows运行库和CRL数据沿用 v0.6.1。
 
 ## 从源码安装
 
@@ -72,3 +72,5 @@ py -3.12 -m venv .venv
 本仓库维护教学入口、独立界面、配置与可追溯的算法桥接。高性能散斑算法在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)分别维护，完整 Hartmann 研究工程在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)维护。日常修改位置见 [代码维护](docs/09_code_maintenance.md)，版本变化见 [CHANGELOG](CHANGELOG.md)。
 
 散斑参考实现保留 UChicago Argonne 版权声明，第三方组件遵循各自许可证；本仓库没有另授予覆盖全部组件的统一新许可证。来源与组件说明见 [NOTICE](provenance/NOTICE.md)。运行包只含明确选取的 CRL 裁剪示例，不含其他实验数据、实验本、本机配置或运行历史。
+
+[首次下载与四工具复核](docs/20_first_use_validation.md)：按初学者流程验证下载、浏览数据、运行、导出和重启记录。

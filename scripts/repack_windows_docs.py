@@ -1,4 +1,4 @@
-"""Repack a docs-only release; do not rebuild or substitute native binaries.
+"""Repack reviewed documentation/UI releases without replacing native binaries.
 
 Downloads the immutable v0.6.1 Windows archive, checks its full SHA256, adds
 reviewed source from the selected Git tag, verifies preserved algorithm bytes,
@@ -40,8 +40,8 @@ def main():
     parser.add_argument('--tag', required=True)
     parser.add_argument('--out', required=True)
     args = parser.parse_args()
-    if args.tag not in {'v0.6.2', 'v0.6.3'}:
-        raise ValueError('This audited repack supports only reviewed documentation tags v0.6.2 and v0.6.3.')
+    if args.tag not in {'v0.6.2', 'v0.6.3', 'v0.6.4'}:
+        raise ValueError('This audited repack supports reviewed tags v0.6.2 through v0.6.4 only.')
     root = Path(__file__).resolve().parents[1]
     out = Path(args.out).resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -60,11 +60,25 @@ def main():
         if old.testzip() is not None or src.testzip() is not None:
             raise ValueError('Invalid baseline/source ZIP.')
         old_prefix = 'wavefront-starter-0.6.1/'
-        # All executable source remains identical except the service version.
+        # v0.6.4 changes only reviewed UI guidance and phase-input calibration.
+        # Scientific solvers and all native sources still require identical bytes.
+        overlays = {}
+        if args.tag == 'v0.6.4':
+            overlays = json.loads(src.read(prefix + 'validation/portable_overlay_064.json'))['files']
+            if set(overlays) != {'src/wfs_starter/ui.py', 'src/wfs_starter/web/app.js',
+                                 'src/wfs_starter/web/grating.html', 'src/wfs_starter/web/hartmann.html',
+                                 'src/wfs_starter/web/wavefront.html'}:
+                raise ValueError('Unexpected UI overlay scope.')
         for item in src.infolist():
             relative = item.filename[len(prefix):]
             if relative.startswith(('src/', 'native/')) and not item.is_dir():
                 actual = src.read(item.filename)
+                if relative in overlays:
+                    record = overlays[relative]
+                    if (hashlib.sha256(actual).hexdigest() != record['reviewed_sha256'] or
+                        hashlib.sha256(old.read(old_prefix + relative)).hexdigest() != record['baseline_061_sha256']):
+                        raise ValueError('Unreviewed UI overlay: ' + relative)
+                    continue
                 if relative == 'src/wfs_starter/ui.py':
                     actual = actual.replace(version.encode('ascii'), b'0.6.1')
                 if actual != old.read(old_prefix + relative):

@@ -6,7 +6,7 @@
 
 ## 1. 下载哪一个文件
 
-打开 [v0.6.3 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.3)，下载 **`wavefront-starter-0.6.3-windows-x64.zip`**。右键 ZIP → 全部提取。不要在 ZIP 预览窗口里双击启动。
+打开 [v0.6.4 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.4)，下载 **`wavefront-starter-0.6.4-windows-x64.zip`**。右键 ZIP → 全部提取。不要在 ZIP 预览窗口里双击启动。
 
 GitHub 自动生成的 `Source code (zip)` 是开发源码，不是这里说的完整运行包。
 
@@ -71,7 +71,7 @@ CRL 示例标定沿用 BB11 既有重建记录，不是你新实验的参数。�
 
 CRL 例子使用真实透镜数据，不设“已知刚体位移”或人为精度真值。数据裁剪、标定来源、原始文件校验和重建趋势见 [CRL 实测案例](14_crl_example.md)；Windows 原算法数值行为和旧工程检查保留在 [验证说明](13_windows_validation.md)。
 
-右侧“Zernike 分解 →”会带着真实相位、rad 单位和来源打开独立波前分析界面。 **当前接续不会自动填写实验能量与像元：CRL 案例需手动将光子能量设为 12.4 keV、像元设为 1.625 µm，再拖画圆瞳并运行。** 新页面的 15 keV / 0.65 µm 是旧界面默认值，不能直接用于这组 CRL；输出只裁边、不缩放，像元尺寸不变。光栅、Hartmann、波前分析分别从 `start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd` 启动；这些是独立界面。随包可运行基础光栅 / Hartmann 质心和完整 Zernike。Hartmann 设计 / 旋转、曲率 / 焦点的原工程扩展仍需对应研究工程，范围与来源见各模块文档；本次 Windows 二进制验收覆盖 WSVT / WXST。
+右侧“Zernike 分解 →”会带着真实相位、rad 单位和来源打开独立波前分析界面。 **v0.6.4 从散斑结果记录自动传递实验能量与像元：CRL 案例应显示 12.4 keV、1.625 µm；核对后拖画圆瞳并运行。** 独立打开页面的 15 keV / 0.65 µm 是旧界面默认值，不能直接用于这组 CRL；输出只裁边、不缩放，像元尺寸不变。光栅、Hartmann、波前分析分别从 `start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd` 启动；这些是独立界面。随包可运行基础光栅 / Hartmann 质心和完整 Zernike。Hartmann 设计 / 旋转、曲率 / 焦点的原工程扩展仍需对应研究工程，范围与来源见各模块文档；本次 Windows 二进制验收覆盖 WSVT / WXST。
 
 ## 常见问题
 

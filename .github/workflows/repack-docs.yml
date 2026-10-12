@@ -1,11 +1,11 @@
-name: Repack verified Windows runtime with reviewed documentation
+name: Repack verified Windows runtime with reviewed documentation and UI
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing reviewed documentation tag
+        description: Existing reviewed release tag
         required: true
-        default: v0.6.3
+        default: v0.6.4
 permissions:
   contents: write
 jobs:

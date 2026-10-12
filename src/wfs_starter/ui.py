@@ -235,10 +235,25 @@ class JobStore:
                 provenance = {'source_job':ident, 'source_mode':job['mode'],
                               'source_result':candidate['file'], 'field':'phase_rad',
                               'unit':'rad', 'shape_rc':list(phase.shape)}
-                (destination/'source.json').write_text(json.dumps(provenance, ensure_ascii=False, indent=2), encoding='utf-8')
-        return {'config':{'mode':'zernike', 'phase':str(target), 'phase_unit':'rad',
-                          'center_xy_px':None, 'radius_px':None, 'terms':15,
-                          'phase_source':provenance}, 'shape_rc':provenance['shape_rc']}
+        config = {'mode':'zernike', 'phase':str(target), 'phase_unit':'rad',
+                  'center_xy_px':None, 'radius_px':None, 'terms':15,
+                  'phase_source':provenance}
+        # Use the saved result calibration, not the currently edited GUI draft.
+        # Speckle reconstruction crops without resampling; its pixel size survives.
+        metadata_path = source.parent/'metadata.json'
+        calibration = {}
+        if job['mode'] in {'wxst', 'wsvt'} and metadata_path.is_file():
+            metadata = json.loads(metadata_path.read_text(encoding='utf-8'))
+            for source_key, target_key, scale in (
+                    ('energy_ev', 'photon_energy_kev', 1e-3),
+                    ('pixel_size_m', 'pixel_size_um', 1e6)):
+                value = metadata.get(source_key)
+                if isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) and value > 0:
+                    calibration[target_key] = value * scale
+        config.update(calibration)
+        config['phase_source']['calibration_transferred'] = calibration
+        (destination/'source.json').write_text(json.dumps(provenance, ensure_ascii=False, indent=2), encoding='utf-8')
+        return {'config':config, 'shape_rc':provenance['shape_rc']}
 
 def make_server(workspace, port=0):
     store = JobStore(workspace)
@@ -276,7 +291,7 @@ def make_server(workspace, port=0):
                         jobs = [store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]
                     from .speckle_backends import catalog
                     from .legacy_tools import source_locations
-                    self.send({'application':'wavefront-frontends','version':'0.6.3','pid':os.getpid(),'application_root':str(Path(__file__).resolve().parents[2]),'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
+                    self.send({'application':'wavefront-frontends','version':'0.6.4','pid':os.getpid(),'application_root':str(Path(__file__).resolve().parents[2]),'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
                                'legacy_sources':source_locations(),
                                'templates':load_templates(),
                                'jobs':jobs})

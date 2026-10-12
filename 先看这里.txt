@@ -1,7 +1,7 @@
-波前传感工具 Windows 使用指南（v0.6.3）
+波前传感工具 Windows 使用指南（v0.6.4）
 
-完整指南：https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.3/docs/12_windows_quickstart.md
-下载页面：https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.3
+完整指南：https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.4/docs/12_windows_quickstart.md
+下载页面：https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.4
 
 1. Windows 用户下载名字带 windows-x64.zip 的完整包，右键“全部解压”。
    不要在压缩包里启动，也不要把 GitHub 的 Source code ZIP 当成完整包。
@@ -27,7 +27,7 @@ start_wavefront.cmd（波前分析与完整 Zernike）。各界面的输入和�
 若启动失败，双击 check_windows.cmd，查看输出和生成的诊断文件。
 
 本包的数值验证与限制：
-https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.3/docs/13_windows_validation.md
+https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.4/docs/13_windows_validation.md
 
 全部文档：docs/README.md（在线或离线均可查看）
 光栅：docs/15_grating_workflow.md

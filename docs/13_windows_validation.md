@@ -2,6 +2,10 @@
 
 [文档目录](README.md) · [项目主页](../README.md)
 
+## 首次下载与标定接续（0.6.4）
+
+重新匿名下载完整包并隔离运行环境，四个GUI工具共9次运行、浏览选择、预览、下载与重启记录通过。标定接续修正加入回归，共47项通过。科学求解器、运行库与数据沿用原验证版本；详细流程和平台边界见 [首次下载复核](20_first_use_validation.md)。
+
 ## 主页与文档检查（0.6.3）
 
 28份主要Markdown文档、内部相对链接 / 标题锚点、八种配置与版本入口检查通过；主页和重点教程的GitHub Markdown实际渲染已检查。46项回归测试通过。光栅、Hartmann、完整50项Zernike教程命令及四个页面启动，另在中文 / 空格目录用便携Python、仅系统PATH检查。记录见 [文档检查](../validation/documentation_063.json)与 [便携命令检查](../validation/documented_commands_063.json)。

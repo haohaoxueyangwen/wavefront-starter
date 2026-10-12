@@ -1,4 +1,4 @@
-> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.3 Windows 完整包** 即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
+> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.4 Windows 完整包** 即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
 
 [文档目录](README.md) · [项目主页](../README.md)
 
@@ -15,7 +15,7 @@
 | Linux RTX 5880 Ada | `native/speckle/gpu_discrete` | WSVT、WXST：`speed / copy` |
 | Jetson AGX Orin | `native/speckle/gpu_jetson` | WSVT：`speed / mapped`；WXST：`speed / copy` |
 | GPU 内存不足 | 同一个 GPU 程序 | WSVT 改为 `low-memory`，`chunk=16` |
-| Windows x64 | 0.6.3 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
+| Windows x64 | 0.6.4 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
 | 需要任意帧数、模板、迭代或暗场算法 | 原 CPU / Python 算法 | 先做小图，再按实际参数运行 |
 
 这里按 **已测设备上可部署、返回完整七项结果的速度配置** 选默认值。`speed` 是工作区策略，不能保证所有电脑、所有阶段都最快。服务器 WXST 的旧 GPU 纯求解器曾更快，新版返回完整结果更快，详见第 7 节。0.5.0 原生性能验收平台是 Linux Ada SM89、Linux Orin SM87；0.6.0 另以独立 Windows 移植层构建并在 P5000 SM61 实测。其他 Windows 显卡的检测、目标和实测范围见 Windows 指南。
@@ -62,7 +62,7 @@ cmake -S native/speckle/cpu_cpp/source -B native/speckle/build_cpu \
 cmake --build native/speckle/build_cpu --target wsvt_cli -j2
 ```
 
-确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.3 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
+确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.4 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
 
 ## 3. 先使用 CRL 实测示例
 

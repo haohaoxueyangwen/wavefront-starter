@@ -91,6 +91,26 @@ class UITests(unittest.TestCase):
         self.assertEqual(before,hashlib.sha256(source.read_bytes()).hexdigest())
         self.assertEqual(store.phase_input(folder.name),handoff)
 
+    def test_speckle_handoff_uses_saved_calibration_and_records_conversion(self):
+        import numpy as np
+        store=JobStore(self.root)
+        folder=self.root/'aabbccddeeff0011'
+        (folder/'results').mkdir(parents=True)
+        np.savez(folder/'results/results.npz',phase_rad=np.ones((8,8)))
+        metadata=folder/'results/metadata.json'
+        metadata.write_text(json.dumps({'energy_ev':12400,'pixel_size_m':1.625e-6}),encoding='utf-8')
+        store.jobs[folder.name]={'id':folder.name,'mode':'wsvt','action':'run','status':'succeeded','output_dir':str(folder)}
+        config=store.phase_input(folder.name)['config']
+        self.assertAlmostEqual(config['photon_energy_kev'],12.4)
+        self.assertAlmostEqual(config['pixel_size_um'],1.625)
+        source=json.loads((folder/'results/analysis-input/source.json').read_text(encoding='utf-8'))
+        self.assertEqual(source,config['phase_source'])
+        self.assertEqual(source['calibration_transferred'],{'photon_energy_kev':12.4,'pixel_size_um':1.625})
+        metadata.write_text(json.dumps({'energy_ev':float('nan'),'pixel_size_m':-1}),encoding='utf-8')
+        config=store.phase_input(folder.name)['config']
+        self.assertNotIn('photon_energy_kev',config)
+        self.assertNotIn('pixel_size_um',config)
+
     def test_fringe_phase_and_incomplete_job_cannot_enter_zernike(self):
         import numpy as np
         store=JobStore(self.root)

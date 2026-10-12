@@ -65,3 +65,5 @@ with np.load(Path("你的结果目录") / "results.npz", allow_pickle=False) as 
 | 输出目录已存在 | 使用新的CLI输出目录，保留旧任务，不删除旧结果来强行复跑 |
 
 报问题请使用 [GitHub 问题模板](https://github.com/haohaoxueyangwen/wavefront-starter/issues/new/choose)：注明包版本、Windows/设备、算法/后端、步骤、期望和实际行为，附可分享的配置、报错或小样例。自己的数据路径、未公开数据和私人记录先检查再上传。
+
+四个窗口共用一个本机后台，同一时间只运行一个任务。另一窗口提示“已有任务在运行”时，等待完成后再点击运行；不是缺环境，也不需要重新安装。
