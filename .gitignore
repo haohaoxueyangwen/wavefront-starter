@@ -24,3 +24,6 @@ demo_data/
 LOCAL_SOURCE_MAP*
 
 wavefront-runs/
+work/
+runtime/
+16.11.60.manifest

@@ -6,4 +6,8 @@ MODES = ("wxst", "wsvt", "grating", "hartmann", "zernike", "zernike_full", "surf
 
 def load_templates():
     root = Path(__file__).with_name("configs")
-    return {mode: json.loads((root / (mode + ".json")).read_text(encoding="utf-8")) for mode in MODES}
+    templates={mode: json.loads((root / (mode + ".json")).read_text(encoding="utf-8")) for mode in MODES}
+    from .runtime_backends import status
+    if status('cpp')['available']:
+        for mode in ('wxst','wsvt'):templates[mode]['backend']='cpp'
+    return templates

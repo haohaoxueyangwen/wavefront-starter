@@ -42,8 +42,9 @@ class NativeBridge(unittest.TestCase):
                 self.assertEqual(opt['--workspace'],'speed');self.assertEqual(opt['--input-policy'],'copy')
                 self.assertEqual(opt['--warmup'],'0');self.assertEqual(opt['--repeats'],'1')
                 self.assertEqual(opt['--reference-policy'],'each-pair')
-                np.testing.assert_array_equal(np.load(opt['--sample']),a)
-                folder=Path(opt['--out']);folder.mkdir()
+                cwd=Path(kwargs['cwd'])
+                np.testing.assert_array_equal(np.load(cwd/opt['--sample']),a)
+                folder=cwd/opt['--out'];folder.mkdir()
                 for n in NAMES:np.save(folder/(n+'.npy'),np.zeros((32,32) if n=='transmission' else (12,12),np.float32))
                 (folder/'timing.csv').write_text('repeat,solver_s,api_s\n0,0.1,0.2\n')
                 (folder/'report.json').write_text(json.dumps(dict(implementation='native C++/CUDA/cuFFT',mode='wsvt',height=32,width=32,frames=100,reference_policy='each-pair',warmup=0,repeats=1)))
@@ -54,8 +55,8 @@ class NativeBridge(unittest.TestCase):
 
     def test_native_missing_does_not_use_legacy_or_cpu(self):
         from wfs_starter.native_gpu import solve
-        with patch.dict('os.environ',{'WFS_GPU_EXE':''}):
-            with self.assertRaisesRegex(ValueError,'speckle_gpu'):solve(np.zeros((32,32)),np.zeros((32,32)),config('wxst'))
+        with patch('wfs_starter.runtime_backends.executable',return_value=''):
+            with self.assertRaisesRegex(ValueError,'GPU 程序'):solve(np.zeros((32,32)),np.zeros((32,32)),config('wxst'))
 
     def test_native_picker_and_relative_executable_resolution(self):
         with tempfile.TemporaryDirectory() as temp:

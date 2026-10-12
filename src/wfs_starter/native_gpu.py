@@ -66,9 +66,10 @@ def arguments(executable, sample, reference, output, config):
     return [str(executable)] + [str(v) for key, value in options.items() for v in ('--'+key, value)]
 
 def solve(sample, reference, config):
-    raw = config.get('gpu_executable') or os.environ.get('WFS_GPU_EXE', '')
+    from .runtime_backends import executable as locate
+    raw = locate('gpu', config)
     if not raw or not Path(raw).is_file():
-        raise ValueError('请选择本机编译的 speckle_gpu，或设置 WFS_GPU_EXE。构建方法见 docs/11_speckle_fast.md。')
+        raise ValueError('未找到 GPU 程序，请使用 GitHub Release 的 Windows 完整包；没有兼容 NVIDIA 显卡时请选择 C++ CPU。')
     executable = Path(raw).resolve()
     sample, reference = input_arrays(sample, reference, config)
     with tempfile.TemporaryDirectory(prefix='wfs-native-gpu-') as temp:
@@ -76,9 +77,9 @@ def solve(sample, reference, config):
         np.save(folder/'sample.npy', sample, allow_pickle=False)
         np.save(folder/'reference.npy', reference, allow_pickle=False)
         output = folder/'result'
-        args = arguments(executable, folder/'sample.npy', folder/'reference.npy', output, config)
+        args = arguments(executable, Path('sample.npy'), Path('reference.npy'), Path('result'), config)
         # Inherit stdout/stderr so job logs contain native failures; never retry with a CPU solver.
-        subprocess.run(args, check=True, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+        subprocess.run(args, cwd=folder, check=True, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
         result = {name: np.load(output/(name+'.npy'), allow_pickle=False) for name in NAMES}
         report = json.loads((output/'report.json').read_text())
         trials = list(__import__('csv').DictReader((output/'timing.csv').open()))

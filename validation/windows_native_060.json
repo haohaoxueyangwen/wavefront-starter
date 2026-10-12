@@ -1,0 +1,1174 @@
+{
+  "hardware": "Quadro P5000, SM61, Windows x64, driver 582.16",
+  "shape": [
+    64,
+    64
+  ],
+  "cases": [
+    {
+      "mode": "wxst",
+      "backend": "cpp",
+      "case": "identity",
+      "wall_s": 0.1549401000374928,
+      "stats": {
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 4.83739199808042e-07,
+          "median": 2.0228698716096005e-09
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 6.218937755875231e-07,
+          "median": 8.479319330012558e-11
+        },
+        "darkfield_nd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.0,
+          "median": 0.0
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.143927663564682,
+          "median": 0.0003020884469151497
+        },
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.18484455347061157,
+          "median": 0.0006007526535540819
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.06496371328830719,
+          "median": -0.0002702863421291113
+        },
+        "transmission_image": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 1.0,
+          "median": 1.0
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": -0.0001393337151966989,
+        "central_median_uy_px": 0.0015613551950082183,
+        "central_max_abs_ux_px": 0.143927663564682,
+        "central_max_abs_uy_px": 0.18484455347061157
+      },
+      "metadata": {
+        "backend": "cpp_cpu",
+        "executable_sha256": "3d9188d023c69293592937940f2330b46c2a58edadec46dbb0455326e8901104",
+        "parameters": {
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "roi_size_px": 0,
+          "gpu_device": 0,
+          "use_wavelet": true
+        }
+      }
+    },
+    {
+      "mode": "wxst",
+      "backend": "cpp",
+      "case": "shift",
+      "wall_s": 0.07652539992704988,
+      "stats": {
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 1.7034055417752825e-05,
+          "median": -3.7615183856587464e-08
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 3.671121157822199e-05,
+          "median": -1.7882018710224656e-07
+        },
+        "darkfield_nd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 62.880367279052734,
+          "median": 0.0
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 6.091307640075684,
+          "median": 1.0013236999511719
+        },
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 10.0,
+          "median": -0.9989043474197388
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 2.666565418243408,
+          "median": 0.01418670266866684
+        },
+        "transmission_image": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 2.8481082916259766,
+          "median": 0.9943749904632568
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": 0.9987201690673828,
+        "central_median_uy_px": -1.0001932382583618,
+        "central_max_abs_ux_px": 1.1321253776550293,
+        "central_max_abs_uy_px": 1.1848444938659668
+      },
+      "metadata": {
+        "backend": "cpp_cpu",
+        "executable_sha256": "3d9188d023c69293592937940f2330b46c2a58edadec46dbb0455326e8901104",
+        "parameters": {
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "roi_size_px": 0,
+          "gpu_device": 0,
+          "use_wavelet": true
+        }
+      }
+    },
+    {
+      "mode": "wxst",
+      "backend": "gpu",
+      "case": "identity",
+      "wall_s": 0.5344082999508828,
+      "stats": {
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.18484453856945038,
+          "median": 0.0006007625488564372
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.1439276784658432,
+          "median": 0.00030210119439288974
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 6.218937187441043e-07,
+          "median": 8.482631957962283e-11
+        },
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 4.837392566514609e-07,
+          "median": 2.022912948262956e-09
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.06496370583772659,
+          "median": -0.0002702790079638362
+        },
+        "transmission": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 1.0,
+          "median": 1.0
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.0,
+          "median": 0.0
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": -0.0001393405837006867,
+        "central_median_uy_px": 0.0015613455325365067,
+        "central_max_abs_ux_px": 0.1439276784658432,
+        "central_max_abs_uy_px": 0.18484453856945038
+      },
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "float32",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wxst",
+          "platform": "desktop",
+          "workspace": "speed",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 1,
+          "input_u16": 0,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.001052499981597066,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.0012962999753654003,
+          "api_sample_sd_s": 0,
+          "read_s": 0.12888239999301732,
+          "constructor_s": 0.0728434999473393,
+          "save_s": 0.0027614999562501907,
+          "explicit_device_bytes": 1586340,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 136142848,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0010524999815970659",
+            "api_s": "0.0012962999753654003",
+            "reference_s": "0.00023000000510364771",
+            "sample_s": "0.00082249997649341822",
+            "download_s": "9.9199940450489521e-05"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed."
+      }
+    },
+    {
+      "mode": "wxst",
+      "backend": "gpu",
+      "case": "shift",
+      "wall_s": 0.3219381000380963,
+      "stats": {
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 10.0,
+          "median": -0.9989043474197388
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 6.091307640075684,
+          "median": 1.0013236999511719
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 3.671121157822199e-05,
+          "median": -1.7882020131310128e-07
+        },
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 1.7034055417752825e-05,
+          "median": -3.761518740930114e-08
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 2.66656494140625,
+          "median": 0.014186801388859749
+        },
+        "transmission": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 2.8481082916259766,
+          "median": 0.9943749904632568
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 62.880367279052734,
+          "median": 0.0
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": 0.9987201690673828,
+        "central_median_uy_px": -1.0001931190490723,
+        "central_max_abs_ux_px": 1.1321253776550293,
+        "central_max_abs_uy_px": 1.1848444938659668
+      },
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "float32",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wxst",
+          "platform": "desktop",
+          "workspace": "speed",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 1,
+          "input_u16": 0,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.0010300999274477363,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.0012725000269711018,
+          "api_sample_sd_s": 0,
+          "read_s": 0.14606820000335574,
+          "constructor_s": 0.07096629997249693,
+          "save_s": 0.0027091000229120255,
+          "explicit_device_bytes": 1586340,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 136343552,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0010300999274477363",
+            "api_s": "0.0012725000269711018",
+            "reference_s": "0.00022489996626973152",
+            "sample_s": "0.00080519996117800474",
+            "download_s": "0.00010870001278817654"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed."
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "cpp",
+      "case": "identity",
+      "wall_s": 0.13019080006051809,
+      "stats": {
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 8.151421297952766e-07,
+          "median": -2.4308652868398894e-09
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 7.995150212991575e-07,
+          "median": 2.845893298797364e-09
+        },
+        "darkfield_nd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.0,
+          "median": 0.0
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.24207298457622528,
+          "median": 0.00024001045676413924
+        },
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.23818884789943695,
+          "median": 0.0006588759133592248
+        },
+        "interlevel_displacement_delta": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.2530152499675751,
+          "median": 0.0873347669839859
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.0,
+          "median": 0.0
+        },
+        "normalized_peak_curvature": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 976660736.0,
+          "median": 691710528.0
+        },
+        "peak_hessian_det": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 13555.25390625,
+          "median": 6799.375
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.05830434709787369,
+          "median": -0.0003590863198041916
+        },
+        "score_margin": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 427491584.0,
+          "median": 279980064.0
+        },
+        "search_boundary_hit": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.0,
+          "median": 0.0
+        },
+        "search_geometry_valid": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 1.0,
+          "median": 1.0
+        },
+        "second_best_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 50.960968017578125,
+          "median": -33.376224517822266
+        },
+        "transmission_image": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 1.0,
+          "median": 1.0
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": 7.009281398495659e-05,
+        "central_median_uy_px": 0.0023403060622513294,
+        "central_max_abs_ux_px": 0.18925991654396057,
+        "central_max_abs_uy_px": 0.23818884789943695
+      },
+      "metadata": {
+        "backend": "cpp_cpu",
+        "executable_sha256": "3d9188d023c69293592937940f2330b46c2a58edadec46dbb0455326e8901104",
+        "parameters": {
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "roi_size_px": 0,
+          "gpu_device": 0,
+          "use_wavelet": true
+        }
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "cpp",
+      "case": "shift",
+      "wall_s": 0.1326626999070868,
+      "stats": {
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 3.702917092596181e-05,
+          "median": -1.358992705036144e-07
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 3.6481542338151485e-05,
+          "median": -4.047629431624955e-07
+        },
+        "darkfield_nd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 79.45278930664062,
+          "median": 0.0
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 10.0,
+          "median": 0.9998703002929688
+        },
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 10.0,
+          "median": -0.9977937936782837
+        },
+        "interlevel_displacement_delta": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 5.656854152679443,
+          "median": 0.10600173473358154
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 79.45278930664062,
+          "median": 0.0
+        },
+        "normalized_peak_curvature": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 976660736.0,
+          "median": 687851904.0
+        },
+        "peak_hessian_det": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 13555.25390625,
+          "median": 6723.728515625
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 2.7812788486480713,
+          "median": 0.00045850122114643455
+        },
+        "score_margin": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 427491584.0,
+          "median": 278435520.0
+        },
+        "search_boundary_hit": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 1.0,
+          "median": 0.0
+        },
+        "search_geometry_valid": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 1.0,
+          "median": 1.0
+        },
+        "second_best_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 83.34505462646484,
+          "median": -33.503273010253906
+        },
+        "transmission_image": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 2.8481082916259766,
+          "median": 0.9943749904632568
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": 0.9990308284759521,
+        "central_median_uy_px": -0.9976596832275391,
+        "central_max_abs_ux_px": 10.0,
+        "central_max_abs_uy_px": 8.0
+      },
+      "metadata": {
+        "backend": "cpp_cpu",
+        "executable_sha256": "3d9188d023c69293592937940f2330b46c2a58edadec46dbb0455326e8901104",
+        "parameters": {
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "roi_size_px": 0,
+          "gpu_device": 0,
+          "use_wavelet": true
+        }
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "gpu",
+      "case": "identity",
+      "wall_s": 0.29808360000606626,
+      "stats": {
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.23818890750408173,
+          "median": 0.0006589037366211414
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.24207299947738647,
+          "median": 0.00023998541291803122
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 7.99515248672833e-07,
+          "median": 2.8459861134422226e-09
+        },
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 8.151421866386954e-07,
+          "median": -2.4309487756113413e-09
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.05830434337258339,
+          "median": -0.0003590810811147094
+        },
+        "transmission": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 1.0,
+          "median": 1.0
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 0.0,
+          "median": 0.0
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": 7.005230145296082e-05,
+        "central_median_uy_px": 0.002340303733944893,
+        "central_max_abs_ux_px": 0.18925988674163818,
+        "central_max_abs_uy_px": 0.23818890750408173
+      },
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "uint16",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wsvt",
+          "platform": "desktop",
+          "workspace": "speed",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 100,
+          "input_u16": 1,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.0015496999258175492,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.0017528999596834183,
+          "api_sample_sd_s": 0,
+          "read_s": 0.12511309992987663,
+          "constructor_s": 0.06349390000104904,
+          "save_s": 0.002704799990169704,
+          "explicit_device_bytes": 6841108,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 136204288,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0015496999258175492",
+            "api_s": "0.0017528999596834183",
+            "reference_s": "0.00046889996156096458",
+            "sample_s": "0.0010807999642565846",
+            "download_s": "0.00010269996710121632"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed."
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "gpu",
+      "case": "shift",
+      "wall_s": 0.58371600008104,
+      "stats": {
+        "uy_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 10.0,
+          "median": -0.9977938532829285
+        },
+        "ux_px": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 10.0,
+          "median": 0.9998704195022583
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 3.6481542338151485e-05,
+          "median": -4.047630284276238e-07
+        },
+        "angle_x_rad_demeaned": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 3.702917092596181e-05,
+          "median": -1.358990999733578e-07
+        },
+        "phase_rad": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 2.7812788486480713,
+          "median": 0.0004585214192047715
+        },
+        "transmission": {
+          "shape": [
+            64,
+            64
+          ],
+          "max_abs": 2.8481082916259766,
+          "median": 0.9943749904632568
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            44,
+            44
+          ],
+          "max_abs": 79.45277404785156,
+          "median": 0.0
+        }
+      },
+      "numerical_observation": {
+        "central_median_ux_px": 0.9990308284759521,
+        "central_median_uy_px": -0.9976596832275391,
+        "central_max_abs_ux_px": 10.0,
+        "central_max_abs_uy_px": 8.0
+      },
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "uint16",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wsvt",
+          "platform": "desktop",
+          "workspace": "speed",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 100,
+          "input_u16": 1,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.0017655999399721622,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.0021120000164955854,
+          "api_sample_sd_s": 0,
+          "read_s": 0.14206260000355542,
+          "constructor_s": 0.09894119994714856,
+          "save_s": 0.003973200102336705,
+          "explicit_device_bytes": 6841108,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 136216576,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0017655999399721622",
+            "api_s": "0.0021120000164955854",
+            "reference_s": "0.00051479996182024479",
+            "sample_s": "0.0012507999781519175",
+            "download_s": "0.00019010005053132772"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed."
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "gpu",
+      "case": "low-memory-uint16",
+      "max_abs_difference_from_speed_u16": {
+        "uy_px": 0.0,
+        "ux_px": 0.0,
+        "angle_y_rad_demeaned": 0.0,
+        "angle_x_rad_demeaned": 0.0,
+        "phase_rad": 0.0,
+        "transmission": 0.0,
+        "match_score_neg_ssd": 0.0
+      },
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "uint16",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wsvt",
+          "platform": "desktop",
+          "workspace": "low-memory",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 100,
+          "input_u16": 1,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.0023958999663591385,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.002835300052538514,
+          "api_sample_sd_s": 0,
+          "read_s": 0.12093599990475923,
+          "constructor_s": 0.06408719997853041,
+          "save_s": 0.002787900040857494,
+          "explicit_device_bytes": 4471572,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 136237056,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0023958999663591385",
+            "api_s": "0.0028353000525385141",
+            "reference_s": "0.00060969998594373465",
+            "sample_s": "0.0017861999804154038",
+            "download_s": "0.00021040008869022131"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed."
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "gpu",
+      "case": "speed-float32",
+      "max_abs_difference_from_speed_u16": {
+        "uy_px": 0.0,
+        "ux_px": 0.0,
+        "angle_y_rad_demeaned": 0.0,
+        "angle_x_rad_demeaned": 0.0,
+        "phase_rad": 0.0,
+        "transmission": 0.0,
+        "match_score_neg_ssd": 0.0
+      },
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "float32",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wsvt",
+          "platform": "desktop",
+          "workspace": "speed",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 100,
+          "input_u16": 0,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.0019277000101283193,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.01082319999113679,
+          "api_sample_sd_s": 0,
+          "read_s": 0.1268955001141876,
+          "constructor_s": 0.0842789999442175,
+          "save_s": 0.003212900017388165,
+          "explicit_device_bytes": 7660308,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 138248192,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0019277000101283193",
+            "api_s": "0.010823199991136789",
+            "reference_s": "0.00066109991166740656",
+            "sample_s": "0.0012666000984609127",
+            "download_s": "0.00011779996566474438"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed."
+      }
+    }
+  ],
+  "cpu_gpu_comparison": {
+    "wxst": {
+      "angle_x_rad_demeaned": 1.8189894035458565e-12,
+      "angle_y_rad_demeaned": 3.637978807091713e-12,
+      "ux_px": 4.76837158203125e-07,
+      "uy_px": 9.5367431640625e-07,
+      "phase_rad": 4.76837158203125e-07
+    },
+    "wsvt": {
+      "angle_x_rad_demeaned": 2.955857780762017e-11,
+      "angle_y_rad_demeaned": 3.637978807091713e-12,
+      "ux_px": 8.821487426757812e-06,
+      "uy_px": 7.152557373046875e-07,
+      "match_score_neg_ssd": 1.52587890625e-05,
+      "phase_rad": 6.258487701416016e-07
+    }
+  },
+  "initial_identity_check": {
+    "criterion": "central maximum displacement <0.05 px for identical images",
+    "status": "FAILED on CPU WXST; retained rather than claiming exact zero",
+    "reason": "Original quadratic subpixel peak fitting uses asymmetric neighboring costs; exact matching center does not force zero fitted peak."
+  },
+  "scope": "Engineering output/shape/finite checks and numerical observations; does not establish physical truth or accuracy acceptance on untested GPUs."
+}

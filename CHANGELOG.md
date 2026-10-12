@@ -1,3 +1,12 @@
+# 0.6.0 — Windows ready-to-run speckle release
+
+- Bundled Windows CPU / CUDA GPU CLIs, app-local native DLLs, official portable Python 3.12.10 and pinned Python dependencies.
+- Windows-only portability overlays leave the 147 frozen native source files unchanged; build and binary hashes are recorded separately.
+- Automatic executable and GPU discovery, explicit unavailable-device reasons, CPU default, raw uint16 100-pair examples, fixed GPU controls and Chinese-path-safe native transport.
+- Four independent launchers, local diagnostic and guarded stop scripts. Full Zernike and existing algorithms remain available.
+- Chinese beginner instructions distinguish complete runtime ZIP from source code, explain unknown PCs, NVIDIA drivers, calibration, real-data pairing, outputs and troubleshooting.
+- Windows P5000 small-data CPU/GPU executions and browser runs completed; identity-fit bias remains explicitly recorded. 44 Python tests pass.
+
 # 更新记录
 
 ## 0.5.0 · 最新原生 WSVT / WXST 速度版

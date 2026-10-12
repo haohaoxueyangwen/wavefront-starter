@@ -1,0 +1,29 @@
+波前传感工具 Windows 使用指南（v0.6.0）
+
+完整指南：https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.0/docs/12_windows_quickstart.md
+下载页面：https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.0
+
+1. Windows 用户下载名字带 windows-x64.zip 的完整包，右键“全部解压”。
+   不要在压缩包里启动，也不要把 GitHub 的 Source code ZIP 当成完整包。
+2. 双击 start_speckle.cmd，浏览器会打开 WSVT / WXST 界面。
+   完整包已带 Python、CPU/GPU 程序和运行库，无需安装 Anaconda 或 CUDA Toolkit。
+3. 首次使用保持“C++ CPU”，点击“载入 CPU / GPU 示例”，再点击运行。
+   WSVT 是多帧扫描数据，WXST 是图像对；参数、输入和结果含义见完整指南。
+4. 使用自己的数据时，点击文件/文件夹选择按钮，分别选参考与样品。
+   根据实验填写像素尺寸、传播距离和光子能量，不能直接沿用教学示例的物理参数。
+5. 结果保留在 local-runs 目录；任务完成后可双击 stop_frontends.cmd 关闭后台。
+
+不知道电脑配置也可以先用 CPU。
+Intel / AMD 的普通 Windows 10/11 x64 电脑优先使用 CPU。
+GPU 加速需要兼容 NVIDIA 显卡及驱动，程序会自动探测可用性。
+AMD / Intel 显卡不支持本包 CUDA 后端，仍可使用 CPU。
+并不是所有 NVIDIA 显卡都已实测；具体支持条件、实测型号与排错见完整指南。
+若 GPU 不可用，请选择 CPU，不需要自己查找算法程序。
+
+其他独立界面：start_grating.cmd（光栅）、start_hartmann.cmd（Hartmann）、
+start_wavefront.cmd（波前分析与完整 Zernike）。各界面的输入和适用范围见指南。
+高级 Hartmann 设计/旋转模拟及部分曲面/焦点分析还依赖原研究工程，详见指南。
+若启动失败，双击 check_windows.cmd，查看输出和生成的诊断文件。
+
+本包的数值验证与限制：
+https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.0/docs/13_windows_validation.md

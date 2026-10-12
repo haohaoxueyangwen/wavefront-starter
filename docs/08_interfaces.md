@@ -1,3 +1,5 @@
+> Windows 0.6.0 已提供含 Python、依赖、CPU / GPU EXE 的完整运行包；优先按 [Windows 操作指南](12_windows_quickstart.md)启动，以下源码环境步骤供开发者使用。
+
 # 四个独立前端
 
 完成 [安装步骤](../README.md) 后，Windows 双击以下入口，或运行相应命令：
@@ -24,10 +26,10 @@ WXST 与 WSVT 在同一散斑前端中切换。完整设置包含搜索半窗、
 计算版本明确区分：
 
 - **Python CPU**：随本仓库安装，完整设置传入参考求解器。
-- **C++ CPU**：选择原 `WSVT_CPP` 构建的可执行文件，或设置 `WFS_CPP_EXE`。通过原 CLI 执行，固定 `use_gpu=false`。
-- **GPU 原生速度版**：浏览选择当前主机编译的 `speckle_gpu`，或设置 `WFS_GPU_EXE`；无需 PyTorch。源码随仓库在 `native/speckle/` 打包。平台可选自动 / desktop / jetson，WSVT可选 speed / low-memory，输入策略可选自动 / copy / mapped。默认速度优先，Orin WSVT默认mapped，其余copy。固定 half10、WXST7×7、原始层加一次降采样（pyramid_level=1）、cut1、I1、GPU样条、无暗场；WSVT恰好100帧。原始uint16无校正时保留类型，浮点不强制量化。Linux Ada / Orin 已验证，Windows GPU 构建未验收。完整步骤和参数见[高速散斑指南](11_speckle_fast.md)。旧 `WFS_GPU_SOURCE` 不再用于本前端。
+- **C++ CPU**：Windows 完整包自动使用随包程序；Linux 开发者可将程序加入 PATH，或设置 `WFS_CPP_EXE`。通过原 CLI 执行，固定 `use_gpu=false`。
+- **GPU 原生速度版**：Windows 完整包自动使用随包程序并检测设备；Linux 开发者可使用 PATH / `WFS_GPU_EXE`；无需 PyTorch。源码随仓库在 `native/speckle/` 打包。平台可选自动 / desktop / jetson，WSVT可选 speed / low-memory，输入策略可选自动 / copy / mapped。默认速度优先，Orin WSVT默认mapped，其余copy。固定 half10、WXST7×7、原始层加一次降采样（pyramid_level=1）、cut1、I1、GPU样条、无暗场；WSVT恰好100帧。原始uint16无校正时保留类型，浮点不强制量化。Linux Ada / Orin 已验证，Windows 0.6.0 已编译，并在 P5000 做小数据实测；其他显卡先以本机示例检查。完整步骤和参数见[高速散斑指南](11_speckle_fast.md)。旧 `WFS_GPU_SOURCE` 不再用于本前端。
 
-后端不可用时明确报错，不自动转用其他算法。界面找到可执行文件后，CUDA设备与原生依赖仍在实际执行时核验。每次网页任务会启动新CLI，不能把网页总耗时当作复用会话的热运行测速。配置文件保存实际后端与参数，结果元数据保存来源。
+后端不可用时明确报错，不自动转用其他算法。Windows 启动检查 CPU 运行库、CUDA 设备和 cuFFT；实际任务也保留原生错误，避免把 GPU 失败当成 CPU 成功。每次网页任务会启动新CLI，不能把网页总耗时当作复用会话的热运行测速。配置文件保存实际后端与参数，结果元数据保存来源。
 
 ## 光栅
 

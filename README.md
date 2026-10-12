@@ -4,11 +4,19 @@
 
 所有学习资料以本 GitHub 仓库为主入口：在线阅读文献导读与操作文档，克隆后生成示例数据并运行代码。面向刚开始做 X 射线波前传感的同学，原算法仓库分别维护。
 
-## 最新高速散斑版 · 0.5.0
+## Windows 直接运行 · 0.6.0
+
+给师妹直接分享本仓库链接即可。**下载 [Windows 完整运行包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.0)，全部解压，双击 `start_speckle.cmd`，选择数据、实验标定和 CPU / GPU 后运行。** Python、依赖、C++ CPU 和原生 GPU 程序均已随包提供，无需自己找 EXE、安装 Anaconda 或 CUDA Toolkit。
+
+第一次先点“载入 CPU / GPU 示例” → “运行算法”。没有兼容 NVIDIA 显卡就用 CPU；界面自动检测设备。其他显卡的支持范围、显存、驱动和排错写在 [Windows 入门指南](docs/12_windows_quickstart.md)，实际编译与测试范围见 [Windows 验证记录](docs/13_windows_validation.md)。
+
+四个独立入口：`start_speckle.cmd`（WSVT / WXST）、`start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd`（完整 Zernike 等）。`check_windows.cmd` 检查本机环境，`stop_frontends.cmd` 在任务结束后关闭后台。
+
+## 原生算法与历史性能 · 0.5.0 来源
 
 WSVT / WXST 的原生 C++ / CUDA / cuFFT 速度配置已随仓库打包：Linux Ada 与 Jetson Orin 各自提供构建 / 启动入口，无需 PyTorch。网页 GPU 入口已接入新版，默认速度优先，保留 WSVT 低内存选项；CPU 和完整 Python 参考参数继续保留。
 
-**先看 [高速散斑完整操作文档](docs/11_speckle_fast.md)**：版本选择、依赖与构建、小数据示例、100 帧配对、参数、结果单位和坐标、性能证据及排错。需要一次下载全部代码，使用 [v0.5.0 发布包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.5.0)。完整版包含本资料包全部源码；native 包只含原生部署源码与配套说明。不带实验数据或平台二进制。
+**先看 [高速散斑完整操作文档](docs/11_speckle_fast.md)**：版本选择、依赖与构建、小数据示例、100 帧配对、参数、结果单位和坐标、性能证据及排错。需要一次下载全部代码，使用 [v0.5.0 发布包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.5.0)。完整版包含本资料包全部源码；native 包只含原生部署源码与配套说明。0.5.0 是源码包；0.6.0 另外提供带 Python、依赖和原生程序的 Windows 完整运行包。实验数据不在任何发布包中。
 
 | 实测设备 | WSVT 速度配置 solver / 七项返回 | WXST solver / 七项返回 |
 |---|---:|---:|
@@ -21,6 +29,7 @@ BB11 2048²，WSVT100 uint16 / WXST单对float32，固定 half10 / cut1 / 两层
 
 | 想做什么 | 入口 |
 |---|---|
+| Windows 下载后直接操作 | [解压、选版本、选数据、运行和排错](docs/12_windows_quickstart.md) |
 | 最新 WSVT / WXST 高速版 | [安装、示例、全参数和性能证据](docs/11_speckle_fast.md) |
 | 从基础了解方向 | [学习路线](docs/06_learning_path.md) |
 | 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
@@ -39,7 +48,7 @@ BB11 2048²，WSVT100 uint16 / WXST单对float32，固定 half10 / cut1 / 两层
 | Hartmann | 同一固定网格内的参考/样品光斑 | 质心位移；有像元和传播距离后可换算偏折角 |
 | Zernike | 波前数组、圆瞳位置、输入单位 | 完整圆瞳分析5–50项、曲率、低阶去除、完整报告；保留15项教学示例 |
 
-## Windows 安装与第一遍运行
+## 从源码安装 · 开发者与非 Windows 用户
 
 仓库已公开，直接克隆到自己的电脑，在项目根目录运行。已实际验证 Python 3.12.7；包声明支持 3.11–3.12。使用独立环境，避免旧 Anaconda 中 NumPy/Numba 版本冲突。
 

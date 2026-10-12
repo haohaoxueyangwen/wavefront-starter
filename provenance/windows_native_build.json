@@ -1,0 +1,148 @@
+{
+  "source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+  "original_source_manifest": "native_speckle_050.json",
+  "toolchain": {
+    "msvc": "19.29.30159",
+    "cuda": "11.6.124",
+    "cmake": "3.31.6",
+    "ninja": "1.11.1"
+  },
+  "cpu_libraries": {
+    "HDF5": "1.12.1",
+    "FFTW": "3.3.5 official win64 DLL with combined threads",
+    "LLVM OpenMP": "18.1.8 conda-forge hc790b64_2"
+  },
+  "gpu_architectures": [
+    "sm60",
+    "sm61",
+    "sm70",
+    "sm75",
+    "sm80",
+    "sm86",
+    "compute86 PTX"
+  ],
+  "patches": [
+    {
+      "file": "cpu/include/wsvt/aligned_alloc.hpp",
+      "original_sha256": "26b36773aa29b25496d4e254b2d4628256d15276941ebc7a7a78ab2ac56f03ba",
+      "windows_sha256": "d2b4af83c014fc2701a9ed1862c111a7a012dbcb4228c1131fcf157ad37d12e1"
+    },
+    {
+      "file": "cpu/src/io_h5.cpp",
+      "original_sha256": "6beec188a6fc369eef819963497cd09d0a94b3e4ea7dd470cfa24e693974fe52",
+      "windows_sha256": "0f519065e8c8b150fd53b40e50e71a7e166afa38225384f37ea02cf2fb14ac82"
+    },
+    {
+      "file": "cpu/CMakeLists.txt",
+      "original_sha256": "00a7d5f88a6f46959bb81c46c7eea19d3c14216f6a4a2ceaf68e2f982880826a",
+      "windows_sha256": "ea97bd5b2ed8f2b1b4384616a03822f84ec158984514b4d870d3f4cefd082cde"
+    },
+    {
+      "file": "cpu/src/main.cpp",
+      "original_sha256": "9eb1398992ae912efbbc59512229e4678675edce2ebe2af1cc306a757825bbe9",
+      "windows_sha256": "3592490ff896be7705f5e3a71210ba4f7d2ea54f5cfd729318c0fc67ac69154b"
+    },
+    {
+      "file": "cpu/src/wsvt_pipeline.cpp",
+      "original_sha256": "064df16a4bee819940eade97bf2a513112c3527816946a1d3ecc70d01f3e8696",
+      "windows_sha256": "5402dcdacab826e6c4f817098e6422e0add34949013b5ab6d7b2b4b531610b7c"
+    },
+    {
+      "file": "cpu/src/wxst_pipeline.cpp",
+      "original_sha256": "68508c61a96490089142c58e9db2fe6ab2692ac8c8b3e39f764e70b53ea30889",
+      "windows_sha256": "aa8b1034a12d1780539793d2a2b1e25ea7e5ff5c292e45b1090c3c43426f5fd0"
+    },
+    {
+      "file": "cpu/include/wsvt/common.hpp",
+      "original_sha256": "97d839c6866517984a94b5264b6190e65af323186fbc9f217cc31b3a12afb0ea",
+      "windows_sha256": "41ad713779659aa4647ddc3d7c4b6991449d17ed9cebe590635a154530812d2c"
+    },
+    {
+      "file": "gpu/src/main.cpp",
+      "original_sha256": "05f645b70dbbc5014ce33ca498be9d3c62d3747b53496abbd9aa2ba1266c69b4",
+      "windows_sha256": "e7f46bdc71ea2cfcf4987856a850297083fd2d35168b515728f7a30664a54b41"
+    },
+    {
+      "file": "gpu/CMakeLists.txt",
+      "reason": "Windows MSVC flags, DLL exports, CUDA SM60/61/70/75/80/86 plus compute86 PTX, PSAPI memory receipt"
+    }
+  ],
+  "binaries": {
+    "cpu/wsvt_cli.exe": {
+      "bytes": 512512,
+      "sha256": "3d9188d023c69293592937940f2330b46c2a58edadec46dbb0455326e8901104"
+    },
+    "cpu/vcruntime140_1.dll": {
+      "bytes": 38432,
+      "sha256": "f3754fc6ec87bcf84e05f3287b5de7bd305a30a0e1db7d478cb6353600682784"
+    },
+    "cpu/vcruntime140.dll": {
+      "bytes": 98336,
+      "sha256": "270ba17bf89cc2eb6e6ce536eb78e4614ab5499f653ab7e07fe9e3d33bf3b6e3"
+    },
+    "cpu/msvcp140.dll": {
+      "bytes": 567352,
+      "sha256": "75872c426555ac8af55b5a7f6d4aea8831af74353b22612850a2bfc40e3b67e1"
+    },
+    "cpu/libfftw3f-3.dll": {
+      "bytes": 2772692,
+      "sha256": "42ca18fff35dd12890e04478bc990005b3969cb744f6843976bd436ccd7f0a4c"
+    },
+    "cpu/hdf5.dll": {
+      "bytes": 3514880,
+      "sha256": "a94f5c9ddc0db89b1e810ef7899bdfcabf3398ce349fd7237335ee7caeac85f0"
+    },
+    "cpu/zlib.dll": {
+      "bytes": 99608,
+      "sha256": "ab781e8b12674b578eb8db318f933b3d7e9b68eeb67337f259d76d3e7d722ba4"
+    },
+    "cpu/libomp.dll": {
+      "bytes": 650240,
+      "sha256": "36bac929febac250f55be342624a8ffc7aa5f43f75baf35af2ddca545158a91c"
+    },
+    "gpu/speckle_gpu.exe": {
+      "bytes": 124928,
+      "sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f"
+    },
+    "gpu/vcruntime140_1.dll": {
+      "bytes": 38432,
+      "sha256": "f3754fc6ec87bcf84e05f3287b5de7bd305a30a0e1db7d478cb6353600682784"
+    },
+    "gpu/vcruntime140.dll": {
+      "bytes": 98336,
+      "sha256": "270ba17bf89cc2eb6e6ce536eb78e4614ab5499f653ab7e07fe9e3d33bf3b6e3"
+    },
+    "gpu/msvcp140.dll": {
+      "bytes": 567352,
+      "sha256": "75872c426555ac8af55b5a7f6d4aea8831af74353b22612850a2bfc40e3b67e1"
+    },
+    "gpu/cufft64_10.dll": {
+      "bytes": 361522688,
+      "sha256": "7914b78b237a46402ecb2a980f72e043c445c37482abb2c3fa7a68ef819d2397"
+    },
+    "gpu/cudart64_110.dll": {
+      "bytes": 509440,
+      "sha256": "a011d9605d307a8abd46ba25dec10acafe39783628ca179d5f9f35ff96bac1ec"
+    },
+    "gpu/speckle_native.dll": {
+      "bytes": 2488832,
+      "sha256": "0646e1747b190316b2e00cfe5435d93c8fec96a74719daf432ba002070175c17"
+    }
+  },
+  "portable_python": {
+    "url": "https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip",
+    "sha256": "4acbed6dd1c744b0376e3b1cf57ce906f9dc9e95e68824584c8099a63025a3c3",
+    "python": "3.12.10"
+  },
+  "fftw_corresponding_source": {
+    "BUILD-MINGW64.sh": {
+      "bytes": 3033,
+      "sha256": "e06fb58aacda64093e977d1bac651006e6837ee466cc37c860b4779e91697142"
+    },
+    "fftw-3.3.5.tar.gz": {
+      "bytes": 4148447,
+      "sha256": "8ecfe1b04732ec3f5b7d279fdb8efcad536d555f9d1e8fabd027037d45ea8bcf"
+    }
+  },
+  "cuda_kernels": "Original edge_kernels.cu/session.cu bytes unchanged; Windows CLI/probe/CMake adaptations isolated in build copies."
+}

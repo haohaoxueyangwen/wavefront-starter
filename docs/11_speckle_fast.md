@@ -1,3 +1,5 @@
+> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.0 Windows 完整包**即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
+
 # WSVT / WXST 高速版：从安装到处理实验数据
 
 本资料包 0.5.0 固定使用原算法仓库提交 [`3f418aa71771e9d209af0702b742ac7e7a69aa9a`](https://github.com/haohaoxueyangwen/WSVT_CPP/tree/3f418aa71771e9d209af0702b742ac7e7a69aa9a/speckle_four_editions) 的原生 GPU 源码。调度、缓存、匹配、样条与相位 FFT 在 C++/CUDA/cuFFT 中执行，运行 GPU 可执行文件无需 Python / PyTorch。教学网页需要本仓库的 Python 环境。
@@ -11,10 +13,10 @@
 | Linux RTX 5880 Ada | `native/speckle/gpu_discrete` | WSVT、WXST：`speed / copy` |
 | Jetson AGX Orin | `native/speckle/gpu_jetson` | WSVT：`speed / mapped`；WXST：`speed / copy` |
 | GPU 内存不足 | 同一个 GPU 程序 | WSVT 改为 `low-memory`，`chunk=16` |
-| Windows / 没有可用 CUDA 构建 | `cpu_cpp/source` 或网页 Python CPU | C++ CPU 需本机编译；Python 参考版可直接安装 |
+| Windows x64 | 0.6.0 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
 | 需要任意帧数、模板、迭代或暗场算法 | 原 CPU / Python 算法 | 先做小图，再按实际参数运行 |
 
-这里按**已测设备上可部署、返回完整七项结果的速度配置**选默认值。`speed` 是工作区策略，不能保证所有电脑、所有阶段都最快。服务器 WXST 的旧 GPU 纯求解器曾更快，新版返回完整结果更快，详见第 7 节。新 GPU 版目前验收平台为 Linux Ada SM89、Linux Orin SM87；源码含 Linux 系统调用，不提供未经测试的 Windows GPU exe，也不默认支持任意 CUDA 架构。
+这里按**已测设备上可部署、返回完整七项结果的速度配置**选默认值。`speed` 是工作区策略，不能保证所有电脑、所有阶段都最快。服务器 WXST 的旧 GPU 纯求解器曾更快，新版返回完整结果更快，详见第 7 节。0.5.0 原生性能验收平台是 Linux Ada SM89、Linux Orin SM87；0.6.0 另以独立 Windows 移植层构建并在 P5000 SM61 实测。其他 Windows 显卡的检测、目标和实测范围见 Windows 指南。
 
 WSVT 是逐位置对应的时间栈，WXST 是一对图的空间模板，不能互相替换输入：
 
@@ -58,7 +60,7 @@ cmake -S native/speckle/cpu_cpp/source -B native/speckle/build_cpu \
 cmake --build native/speckle/build_cpu --target wsvt_cli -j2
 ```
 
-确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows CPU 使用本机 C++20 / OpenMP 工具链和对应 FFTW / HDF5 路径；两台 Linux 机器上的构建记录不能证明 Windows 已构建成功。
+确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.0 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
 
 ## 3. 先生成小示例
 
@@ -123,7 +125,7 @@ bash native/speckle/gpu_jetson/run.sh --mode wsvt \
 
 1. 在**实际装有构建产物的主机**启动 `python -m wfs_starter ui --app speckle`。本地网页调用本机程序，不会自动 SSH 到服务器 / Orin。
 2. 选择 WXST 或 WSVT。WXST 浏览选择两张图；WSVT 浏览选择两个文件夹，核对全部 100 行配对。选择 ROI 后两边使用同一裁块。
-3. 选择“GPU · 原生 C++ / CUDA / cuFFT 速度版”，浏览选择 `build_desktop/bin/speckle_gpu` 或 `build_jetson/bin/speckle_gpu`，或启动前设置 `WFS_GPU_EXE` 为它的绝对路径。
+3. Windows 完整包选择 CPU / GPU 后程序自动定位。Linux 构建后把 `build_desktop/bin/speckle_gpu` 或 `build_jetson/bin/speckle_gpu` 加到 PATH，或启动前设置 `WFS_GPU_EXE`；开发者也可在配置 JSON 中显式指定路径。普通界面不再要求填写 EXE。
 4. 填能量 eV、像元 m、距离 m。工作区默认 `speed`，输入策略默认自动；Orin WSVT 自动 mapped，其余 copy。GPU 编号从 0 开始。低内存只用于 WSVT。
 5. 核对固定参数，运行并查看日志与结果。导出的配置保存实际选项；结果 `metadata.json` 保留二进制 SHA256 和原生报告，`results.npz` 收齐七项结果。页面中的 `ux_px / uy_px / phase_rad / angle_*_rad_demeaned` 分别对应上述原生字段。
 
@@ -171,7 +173,7 @@ CPU / Python 的参数名和金字塔计数需按对应实现核对，不能直�
 
 新版对保留的旧 GPU 六项非相位字段一致，相位最大差≤1.53e-4rad；两台机器全输出与指定 ROI 的门槛通过。这验证迁移保存数值行为；WXST / WSVT 与 CPU 的逐点一致性及独立物理真值需单独检验。原 GPU 对 CPU 的 WXST 全图差异记录仍保留在原工程，不能因本次 GPU 对 GPU 的通过而消除。
 
-证据：[重算验证](../validation/native_package_050.json)、[每次计时与原生报告](../native/speckle/benchmarks/results/)、[推荐表](../native/speckle/benchmarks/recommended.csv)、[源码哈希](../provenance/native_speckle_050.json)、[完整原实验图与记录](https://github.com/haohaoxueyangwen/WSVT_CPP/tree/3f418aa71771e9d209af0702b742ac7e7a69aa9a/speckle_four_editions/benchmarks)。本次资料包更新没有重新运行全尺寸 GPU 实验；Windows 本机验证的是打包、网页与桥接合同。
+证据：[重算验证](../validation/native_package_050.json)、[每次计时与原生报告](../native/speckle/benchmarks/results/)、[推荐表](../native/speckle/benchmarks/recommended.csv)、[源码哈希](../provenance/native_speckle_050.json)、[完整原实验图与记录](https://github.com/haohaoxueyangwen/WSVT_CPP/tree/3f418aa71771e9d209af0702b742ac7e7a69aa9a/speckle_four_editions/benchmarks)。本次资料包更新没有重新运行全尺寸 GPU 实验；Windows 0.6.0 另外实际执行了小图 CPU / GPU 同图、平移、低内存及浮点输入，并检查了独立运行包与真实浏览器；没有补做 Windows 全尺寸性能实验。
 
 ## 8. 常见问题与升级
 
@@ -187,4 +189,4 @@ CPU / Python 的参数名和金字塔计数需按对应实现核对，不能直�
 | 跨主机路径找不到 | 本机程序只能访问本机文件；在计算主机启动入口 |
 | 相位方向 / 数值异常 | 核对样品 / 参考顺序、像元 / 距离 / 能量单位、图像坐标、ROI起点、校正与搜索范围 |
 
-升级先在原算法仓库验证新提交，再更新教学仓库固定来源与 SHA256 清单，重算时间统计并核对输出合同。不要把旧编译产物与新源码混用。GitHub Release 提供完整源码包和独立原生源码包；均不附本机 / Orin二进制、实验数据或 Python 虚拟环境。
+升级先在原算法仓库验证新提交，再更新教学仓库固定来源与 SHA256 清单，重算时间统计并核对输出合同。不要把旧编译产物与新源码混用。GitHub Release 0.6.0 提供 Windows 完整运行包（含程序和依赖）与源码包。0.5.0 原生源码和 Linux 原始记录保留；实验数据、运行历史和本机配置不随包发布。

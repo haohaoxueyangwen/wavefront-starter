@@ -31,15 +31,13 @@ def settings(config):
     return result
 
 def catalog():
-    cpp = os.environ.get('WFS_CPP_EXE', '')
-    gpu = os.environ.get('WFS_GPU_EXE', '')
+    from .runtime_backends import status
+    cpp, gpu = status('cpp'), status('gpu')
     return {
         'python': {'name': 'Python CPU · 参考算法', 'available': True, 'reason': '完整原参数'},
-        'cpp': {'name': 'C++ CPU · WSVT_CPP', 'available': bool(cpp and Path(cpp).is_file()),
-                'path': cpp, 'reason': '已指定可执行文件' if cpp and Path(cpp).is_file() else '请选择本机 wsvt_cli 可执行文件'},
+        'cpp': {'name': 'C++ CPU · WSVT_CPP', **cpp},
         'gpu': {'name': 'GPU · 原生 C++ / CUDA / cuFFT 速度版',
-                'available': bool(gpu and Path(gpu).is_file()), 'path': gpu,
-                'reason': '请选择当前主机编译的 speckle_gpu；Linux Ada / Orin 已验证，无需 PyTorch；Windows 原生构建未验收',
+                **gpu,
                 'constraints': {'search_half_window':10, 'template_half_window':3, 'extended_half_window':4,
                                 'pyramid_level':1, 'wavelet_level_cut':1, 'n_iter':1, 'use_wavelet':True},
                 'wsvt_frames':100},
@@ -52,9 +50,10 @@ def validate_backend(config):
         raise ValueError('Unknown speckle backend')
     p = settings(config)
     if backend == 'cpp':
-        executable = config.get('cpp_executable') or os.environ.get('WFS_CPP_EXE', '')
+        from .runtime_backends import executable as locate
+        executable = locate('cpp', config)
         if not executable or not Path(executable).is_file():
-            raise ValueError('C++ CPU 尚未配置：请浏览选择 wsvt_cli.exe（或 Linux wsvt_cli）。')
+            raise ValueError('未找到 C++ CPU 程序，请使用 GitHub Release 的 Windows 完整包。')
     if backend == 'gpu':
         for key, expected in catalog()['gpu']['constraints'].items():
             if key == 'template_half_window' and config['mode'] == 'wsvt':
@@ -98,14 +97,16 @@ def native_speckle(sample, reference, config):
     backend,p = validate_backend(config)
     if backend == 'cpp':
         import h5py
-        executable = Path(config.get('cpp_executable') or os.environ['WFS_CPP_EXE']).resolve()
+        from .runtime_backends import executable as locate
+        executable = Path(locate('cpp',config)).resolve()
         with tempfile.TemporaryDirectory(prefix='wfs-cpp-') as temp:
             folder = Path(temp); source = folder/'input.h5'; output = folder/'output'
             with h5py.File(source,'w') as f:
                 f['sample'] = np.asarray(sample,dtype=np.float32)
                 f['reference'] = np.asarray(reference,dtype=np.float32)
-            args = cpp_arguments(executable,source,output,config)
-            subprocess.run(args,check=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+            # Keep native I/O arguments ASCII even for Chinese Windows user/temp paths.
+            args = cpp_arguments(executable,Path('input.h5'),Path('output'),config)
+            subprocess.run(args,cwd=folder,check=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
             file = output/(config['mode'].upper()+'_result.hdf5')
             with h5py.File(file,'r') as f:
                 result = {key:np.asarray(f[key]) for key in f if f[key].ndim == 2}

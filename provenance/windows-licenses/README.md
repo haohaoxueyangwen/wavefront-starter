@@ -1,0 +1,12 @@
+# Windows runtime components
+
+The Windows release aggregates separate CPU and GPU executables, a Python runtime, and their dependencies. Their component licenses are retained here and in Python `site-packages/*.dist-info/`.
+
+- CPU `wsvt_cli.exe` links FFTW 3.3.5. The CPU executable and FFTW distribution are supplied under GNU GPL version 2 or later, with corresponding CPU sources in `native/speckle/cpu_cpp/source`, explicit Windows modifications in `native/windows/prepare_sources.py`, and the unmodified FFTW source archive plus official Windows DLL build script in `runtime/third-party-source`. `FFTW-GPL-2.0.txt` and `FFTW-COPYRIGHT.txt` retain the original terms. This is not an umbrella license for the separately aggregated GPU executable or NVIDIA DLLs.
+- HDF5 1.12.1 and zlib retain their supplied copyright notices. HDF5 source: <https://github.com/HDFGroup/hdf5/tree/hdf5-1_12_1>.
+- LLVM OpenMP 18.1.8 is the conda-forge package `hc790b64_2` (SHA256 in the build provenance). Its LLVM/OpenMP notices are in `LLVM-OpenMP`. The MSVC experimental DLL marked `debug_nonredist` is not bundled; the CPU links the redistributable LLVM `libomp.dll` instead.
+- GPU CUDA Runtime and cuFFT DLLs are NVIDIA redistributable runtime components governed by `NVIDIA-CUDA-11.6-EULA.txt`. They are used by the separately built GPU solver. CUDA compiler, SDK headers, profiling tools and GPU drivers are not redistributed in the user runtime.
+- Microsoft Visual C++ 2019 runtime DLLs come from the official Microsoft Visual Studio release manifest's x64 redistributable component. Microsoft runtime license information: <https://visualstudio.microsoft.com/license-terms/>. They are included beside each CLI rather than installing a system-wide runtime.
+- Python 3.12.10 comes from the official Windows embeddable x64 ZIP. Its executable's Authenticode signature was verified as Python Software Foundation. The bundled Python license is `runtime/python/LICENSE.txt`. Python wheels retain their own license files.
+
+Original research notices and attributions remain in `provenance/NOTICE.md` and the source files. No real experiment data, private records, model weights, credentials or host-specific runtime configuration are shipped. Example images are generated deterministically from a documented seed.

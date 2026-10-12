@@ -1,2 +1,4 @@
 # Patch context preserves the target project's original line endings.
 maintenance/legacy-gui/patches/*.patch -text
+# Preserve upstream license bytes, including vendor whitespace.
+provenance/windows-licenses/** -whitespace

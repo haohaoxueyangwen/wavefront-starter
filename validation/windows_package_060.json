@@ -1,0 +1,410 @@
+{
+  "version": "0.6.0",
+  "platform": "Windows x64",
+  "python": "3.12.10 official embeddable",
+  "boot": "Windows PowerShell 5.1 invoked packaged start_frontend.ps1 -App speckle -Port 8791 -NoBrowser",
+  "isolated_environment": "PATH contained only Windows system directories; no Anaconda, CMake, MSVC, CUDA Toolkit or native-backend overrides",
+  "relocated_root_chinese_and_spaces": true,
+  "local_runtime_config_absent": true,
+  "backends": {
+    "cpp": {
+      "name": "C++ CPU · WSVT_CPP",
+      "available": true,
+      "reason": "随包 C++ CPU 已就绪（HDF5 / FFTW / OpenMP）"
+    },
+    "gpu": {
+      "name": "GPU · 原生 C++ / CUDA / cuFFT 速度版",
+      "available": true,
+      "devices": [
+        {
+          "index": 0,
+          "name": "Quadro P5000",
+          "sm": 61,
+          "memory_bytes": 16105996288,
+          "available": true,
+          "cufft_status": 0
+        }
+      ],
+      "default_device": 0,
+      "reason": "Quadro P5000 · 15.0 GB 显存",
+      "constraints": {
+        "search_half_window": 10,
+        "template_half_window": 3,
+        "extended_half_window": 4,
+        "pyramid_level": 1,
+        "wavelet_level_cut": 1,
+        "n_iter": 1,
+        "use_wavelet": true
+      },
+      "wsvt_frames": 100
+    }
+  },
+  "frontend_jobs": [
+    {
+      "mode": "wxst",
+      "backend": "cpp",
+      "status": "succeeded",
+      "elapsed_s": 5.5,
+      "metadata": {
+        "backend": "cpp_cpu",
+        "executable_sha256": "3d9188d023c69293592937940f2330b46c2a58edadec46dbb0455326e8901104",
+        "parameters": {
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "roi_size_px": 0,
+          "gpu_device": 0,
+          "use_wavelet": true
+        },
+        "case": "wxst",
+        "energy_ev": 12400.0,
+        "pixel_size_m": 1.625e-06,
+        "distance_m": 0.4845,
+        "coordinate": "image[y,x]; displacement [ux,uy]",
+        "valid_input_crop_px": 10,
+        "config": {
+          "mode": "wxst",
+          "energy_ev": 12400,
+          "pixel_size_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "reference": "<local>/reference_000.npy",
+          "sample": "<local>/sample_000.npy",
+          "backend": "cpp",
+          "roi_size_px": 0,
+          "roi_center_xy_px": [
+            -1,
+            -1
+          ],
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "use_wavelet": true,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "cpp_executable": "",
+          "gpu_device": 0,
+          "gpu_input_dtype": "auto",
+          "gpu_executable": "",
+          "gpu_platform": "auto",
+          "gpu_workspace": "speed",
+          "gpu_input_policy": "auto",
+          "gpu_chunk": 16,
+          "metadata_note": "合成教学示例，标定值不是实验值"
+        }
+      }
+    },
+    {
+      "mode": "wxst",
+      "backend": "gpu",
+      "status": "succeeded",
+      "elapsed_s": 3.2,
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "float32",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wxst",
+          "platform": "desktop",
+          "workspace": "speed",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 1,
+          "input_u16": 0,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.001091900048777461,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.0013206999283283949,
+          "api_sample_sd_s": 0,
+          "read_s": 0.13042519998271018,
+          "constructor_s": 0.06263400008901954,
+          "save_s": 0.003738400060683489,
+          "explicit_device_bytes": 1586340,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 136269824,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0010919000487774611",
+            "api_s": "0.0013206999283283949",
+            "reference_s": "0.00026600004639476538",
+            "sample_s": "0.00082590000238269567",
+            "download_s": "8.9599983766674995e-05"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed.",
+        "case": "wxst",
+        "energy_ev": 12400.0,
+        "pixel_size_m": 1.625e-06,
+        "distance_m": 0.4845,
+        "coordinate": "image[y,x]; displacement [ux,uy]",
+        "valid_input_crop_px": 10,
+        "config": {
+          "mode": "wxst",
+          "energy_ev": 12400,
+          "pixel_size_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "reference": "<local>/reference_000.npy",
+          "sample": "<local>/sample_000.npy",
+          "backend": "gpu",
+          "roi_size_px": 0,
+          "roi_center_xy_px": [
+            -1,
+            -1
+          ],
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "use_wavelet": true,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "cpp_executable": "",
+          "gpu_device": 0,
+          "gpu_input_dtype": "auto",
+          "gpu_executable": "",
+          "gpu_platform": "auto",
+          "gpu_workspace": "speed",
+          "gpu_input_policy": "auto",
+          "gpu_chunk": 16,
+          "metadata_note": "合成教学示例，标定值不是实验值"
+        }
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "cpp",
+      "status": "succeeded",
+      "elapsed_s": 3.9,
+      "metadata": {
+        "backend": "cpp_cpu",
+        "executable_sha256": "3d9188d023c69293592937940f2330b46c2a58edadec46dbb0455326e8901104",
+        "parameters": {
+          "search_half_window": 10,
+          "template_half_window": 3,
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "roi_size_px": 0,
+          "gpu_device": 0,
+          "use_wavelet": true
+        },
+        "case": "wsvt",
+        "energy_ev": 12400.0,
+        "pixel_size_m": 1.625e-06,
+        "distance_m": 0.4845,
+        "coordinate": "image[y,x]; displacement [ux,uy]",
+        "valid_input_crop_px": 10,
+        "config": {
+          "mode": "wsvt",
+          "energy_ev": 12400,
+          "pixel_size_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "search_half_window": 10,
+          "pairs": {
+            "frame_pairs": 100,
+            "first": {
+              "reference": "<local>/reference_000.npy",
+              "sample": "<local>/sample_000.npy"
+            },
+            "last": {
+              "reference": "<local>/reference_099.npy",
+              "sample": "<local>/sample_099.npy"
+            }
+          },
+          "backend": "cpp",
+          "roi_size_px": 0,
+          "roi_center_xy_px": [
+            -1,
+            -1
+          ],
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "use_wavelet": true,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "cpp_executable": "",
+          "gpu_device": 0,
+          "gpu_input_dtype": "auto",
+          "gpu_executable": "",
+          "gpu_platform": "auto",
+          "gpu_workspace": "speed",
+          "gpu_input_policy": "auto",
+          "gpu_chunk": 16,
+          "template_half_window": 3,
+          "metadata_note": "合成教学示例，标定值不是实验值"
+        }
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "gpu",
+      "status": "succeeded",
+      "elapsed_s": 3.2,
+      "metadata": {
+        "backend": "native_cpp_cuda_cufft",
+        "packaged_source_commit": "3f418aa71771e9d209af0702b742ac7e7a69aa9a",
+        "executable_sha256": "959869d74f5faaf0d4d568c6ef671f39342c0661a33bc852239530742385fe1f",
+        "input_dtype": "uint16",
+        "runtime": {
+          "implementation": "native C++/CUDA/cuFFT",
+          "device": "Quadro P5000; SM61; integrated=0; canMapHostMemory=1",
+          "mode": "wsvt",
+          "platform": "desktop",
+          "workspace": "speed",
+          "input_policy": "copy",
+          "reference_policy": "each-pair",
+          "half": 10,
+          "coarse": 5,
+          "fine": 4,
+          "height": 64,
+          "width": 64,
+          "frames": 100,
+          "input_u16": 1,
+          "chunk": 16,
+          "warmup": 0,
+          "repeats": 1,
+          "pixel_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "energy_ev": 12400,
+          "solver_mean_s": 0.0017497999360784888,
+          "solver_sample_sd_s": 0,
+          "api_mean_s": 0.0019967000698670745,
+          "api_sample_sd_s": 0,
+          "read_s": 0.12358589994255453,
+          "constructor_s": 0.0702698000241071,
+          "save_s": 0.0034039999591186643,
+          "explicit_device_bytes": 6841108,
+          "fft_workspace_bytes": 15488,
+          "peak_rss_bytes": 136269824,
+          "scope": "Solver includes reference rebuild unless explicit cache mode; API includes seven outputs; input file read, construction, save excluded. Host buffers pinned outside timing. RSS through measured solves includes input loading and initialization. Device bytes are explicit allocations, not NVML/physical peak."
+        },
+        "trials": [
+          {
+            "repeat": "0",
+            "solver_s": "0.0017497999360784888",
+            "api_s": "0.0019967000698670745",
+            "reference_s": "0.00058140000328421593",
+            "sample_s": "0.0011683999327942729",
+            "download_s": "0.00013539998326450586"
+          }
+        ],
+        "transmission_origin_xy_px": [
+          0,
+          0
+        ],
+        "reconstruction_origin_xy_px": [
+          10,
+          10
+        ],
+        "timing_scope": "One GUI task starts a new CLI process; file conversion, startup and saving add latency. Hot-session published benchmark times do not predict GUI wall time.",
+        "phase_convention": "Preserved GPU sign and FFT convention; DPC displacement mean and phase piston removed.",
+        "case": "wsvt",
+        "energy_ev": 12400.0,
+        "pixel_size_m": 1.625e-06,
+        "distance_m": 0.4845,
+        "coordinate": "image[y,x]; displacement [ux,uy]",
+        "valid_input_crop_px": 10,
+        "config": {
+          "mode": "wsvt",
+          "energy_ev": 12400,
+          "pixel_size_m": 1.625e-06,
+          "distance_m": 0.4845,
+          "search_half_window": 10,
+          "pairs": {
+            "frame_pairs": 100,
+            "first": {
+              "reference": "<local>/reference_000.npy",
+              "sample": "<local>/sample_000.npy"
+            },
+            "last": {
+              "reference": "<local>/reference_099.npy",
+              "sample": "<local>/sample_099.npy"
+            }
+          },
+          "backend": "gpu",
+          "roi_size_px": 0,
+          "roi_center_xy_px": [
+            -1,
+            -1
+          ],
+          "extended_half_window": 4,
+          "n_cores": 2,
+          "n_group": 1,
+          "n_iter": 1,
+          "use_wavelet": true,
+          "wavelet_level_cut": 1,
+          "pyramid_level": 1,
+          "phase_cores": 2,
+          "cpp_executable": "",
+          "gpu_device": 0,
+          "gpu_input_dtype": "auto",
+          "gpu_executable": "",
+          "gpu_platform": "auto",
+          "gpu_workspace": "speed",
+          "gpu_input_policy": "auto",
+          "gpu_chunk": 16,
+          "template_half_window": 3,
+          "metadata_note": "合成教学示例，标定值不是实验值"
+        }
+      }
+    }
+  ],
+  "unit_tests": {
+    "passed": 44,
+    "failed": 0,
+    "environment": "Packaged Python 3.12.10, Windows system-only PATH, no external Python or native backend overrides",
+    "elapsed_s": 14.32
+  },
+  "frozen_original_source_files": 147,
+  "file_picker": "Real browser opened local picker in relocated Chinese directory",
+  "scope": "Native binaries, offline dependencies, relocated frontend data ingestion and output delivery. Untested GPUs are not numerically accepted.",
+  "stop_script": {
+    "same_root_idle_service": "stopped successfully, results retained",
+    "different_root_service": "refused, service PID unchanged"
+  },
+  "latest_launcher_recheck": "Windows PowerShell 5.1 startup succeeded after source refresh; CPU and GPU available"
+}

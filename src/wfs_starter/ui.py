@@ -276,7 +276,7 @@ def make_server(workspace, port=0):
                         jobs = [store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]
                     from .speckle_backends import catalog
                     from .legacy_tools import source_locations
-                    self.send({'application':'wavefront-frontends','version':'0.4.1','token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
+                    self.send({'application':'wavefront-frontends','version':'0.6.0','pid':os.getpid(),'application_root':str(Path(__file__).resolve().parents[2]),'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
                                'legacy_sources':source_locations(),
                                'templates':load_templates(),
                                'jobs':jobs})
@@ -323,6 +323,11 @@ def make_server(workspace, port=0):
                     raise ValueError('请求需要是 JSON 对象。')
                 if urlparse(self.path).path == '/api/start':
                     self.send({'id':store.start(data)},202)
+                elif urlparse(self.path).path == '/api/native-example':
+                    from .native_examples import example
+                    with store.lock:
+                        if store.active:raise RuntimeError('请先等待当前任务完成。')
+                        self.send(example(store.workspace,data['mode'],data.get('backend','cpp')))
                 elif urlparse(self.path).path == '/api/cancel':
                     store.cancel(data['id']);self.send({'ok':True})
                 elif urlparse(self.path).path == '/api/open-output':
