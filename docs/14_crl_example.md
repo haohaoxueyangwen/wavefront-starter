@@ -12,12 +12,12 @@
 
 ## 直接操作
 
-1. 从 [v0.6.1 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.1)下载 `wavefront-starter-0.6.1-windows-x64.zip`，全部解压。完整包已经带 CRL 数据，可离线操作。
+1. 从 [v0.6.2 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.2)下载 `wavefront-starter-0.6.2-windows-x64.zip`，全部解压。完整包已经带 CRL 数据，可离线操作。
 2. 双击 `start_speckle.cmd`，先选择 C++ CPU。
 3. 选择 WXST 或 WSVT，点击 **“载入 CRL 实测示例”**。WXST 填入第 001 对；WSVT 填入索引 001–100 的全部配对。
 4. 点击 **“运行算法”**，看位移、偏折角、相位以及结果配置。用 GPU 时切换 GPU 后再载入同一 CRL 示例。
 5. **“CRL · Python 参考”**按钮也载入同一份真实数据，选择 Python 参考后端，然后由你点击运行。它不会生成另一组随机图像。
-6. 点击结果中的 **“Zernike 分解 →”**分析这个真实重建相位，检查单位、能量和像元尺寸，拖画输出数组上的圆瞳。这里分析的是透镜中央裁剪区域；圆瞳不能被称为整枚透镜的完整口径。
+6. 点击结果中的 **“Zernike 分解 →”**，打开完整 Zernike。相位路径、rad 单位与来源已带入；**能量和像元当前不会自动带入，必须手动填为 12.4 keV 和 1.625 µm**，替换旧界面默认的 15 keV / 0.65 µm。点击“预览输入 / 选择区域”，拖画 492×492 输出数组上的圆瞳，核对项数和去除的径向阶数，再点击“运行算法”。这里分析的是透镜中央裁剪区域；圆瞳不代表整枚透镜的完整口径。
 
 源码用户首次加载会自动下载并校验约 79 MiB 的 CRL 数据包，保存到自己的运行目录，下次可离线使用。也可以在发布页单独下载 `crl-bb11-20231102-roi512-v1.zip`，解压为仓库下的 `example-data/crl-bb11-v1`；不用在界面手输 100 个文件名。
 

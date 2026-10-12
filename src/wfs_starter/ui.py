@@ -276,7 +276,7 @@ def make_server(workspace, port=0):
                         jobs = [store.snapshot(i) for i in sorted(store.jobs, key=lambda ident: store.jobs[ident]['started'])]
                     from .speckle_backends import catalog
                     from .legacy_tools import source_locations
-                    self.send({'application':'wavefront-frontends','version':'0.6.1','pid':os.getpid(),'application_root':str(Path(__file__).resolve().parents[2]),'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
+                    self.send({'application':'wavefront-frontends','version':'0.6.2','pid':os.getpid(),'application_root':str(Path(__file__).resolve().parents[2]),'token':token, 'workspace':str(store.workspace), 'base_dir':str(Path.cwd()), 'backends':catalog(),
                                'legacy_sources':source_locations(),
                                'templates':load_templates(),
                                'jobs':jobs})

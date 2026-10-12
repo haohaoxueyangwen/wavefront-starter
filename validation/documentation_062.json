@@ -1,0 +1,516 @@
+{
+  "version": "0.6.2",
+  "review_date": "2026-10-12",
+  "scope": "Documentation and release version identifiers. No new numerical algorithm or performance claims.",
+  "documents_reviewed": 20,
+  "relative_links_checked": 153,
+  "relative_link_errors": [],
+  "references": [
+    {
+      "id": "L1",
+      "doi": "10.1107/s1600577519005721",
+      "title": "Wavefront sensing at X-ray free-electron lasers",
+      "title_matches": true,
+      "date": [
+        [
+          2019,
+          6,
+          19
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L2",
+      "doi": "10.3390/jimaging4050060",
+      "title": "State of the Art of X-ray Speckle-Based Phase-Contrast and Dark-Field Imaging",
+      "title_matches": true,
+      "date": [
+        [
+          2018,
+          4,
+          25
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L3",
+      "doi": "10.1107/s1600577524005861",
+      "title": "<i>Spexwavepy</i>\n                    : an open-source Python package for X-ray wavefront sensing using speckle-based techniques",
+      "title_matches": true,
+      "date": [
+        [
+          2024,
+          7,
+          30
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L4",
+      "doi": "10.1107/s1600577524010117",
+      "title": "Review and experimental comparison of speckle-tracking algorithms for X-ray phase contrast imaging",
+      "title_matches": true,
+      "date": [
+        [
+          2025,
+          1,
+          1
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L5",
+      "doi": "10.1364/oe.404606",
+      "title": "Wavelet-transform-based speckle vector tracking method for X-ray phase imaging",
+      "title_matches": true,
+      "date": [
+        [
+          2020,
+          10,
+          19
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L6",
+      "doi": "10.1107/s1600577519017107",
+      "title": "X-ray free-electron laser wavefront sensing using the fractional Talbot effect",
+      "title_matches": true,
+      "date": [
+        [
+          2020,
+          2,
+          12
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L7",
+      "doi": "10.3390/s21030874",
+      "title": "EUV and Hard X-ray Hartmann Wavefront Sensing for Optical Metrology, Alignment and Phase Imaging",
+      "title_matches": true,
+      "date": [
+        [
+          2021,
+          1,
+          28
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L8",
+      "doi": "10.1364/optica.453748",
+      "title": "Real-time X-ray phase-contrast imaging using SPINNet—a speckle-based phase-contrast imaging neural network",
+      "title_matches": true,
+      "date": [
+        [
+          2022,
+          4,
+          5
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L9",
+      "doi": "10.1364/oe.474794",
+      "title": "High-speed processing of X-ray wavefront marking data with the Unified Modulated Pattern Analysis (UMPA) model",
+      "title_matches": true,
+      "date": [
+        [
+          2022,
+          12,
+          23
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L10",
+      "doi": "10.1016/bs.aiep.2021.04.002",
+      "title": "X-ray phase-contrast imaging: a broad overview of some fundamentals",
+      "title_matches": true,
+      "date": [
+        [
+          2021
+        ]
+      ],
+      "type": "book-chapter"
+    },
+    {
+      "id": "L11",
+      "doi": "10.1098/rsta.2013.0021",
+      "title": "On the evolution and relative merits of hard X-ray phase-contrast imaging methods",
+      "title_matches": true,
+      "date": [
+        [
+          2014,
+          3,
+          6
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L12",
+      "doi": "10.1107/s1600577520000491",
+      "title": "X-ray optics and beam characterization using random modulation: theory",
+      "title_matches": true,
+      "date": [
+        [
+          2020,
+          2,
+          20
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L13",
+      "doi": "10.1016/j.zemedi.2013.02.002",
+      "title": "Grating-based X-ray phase contrast for biomedical imaging applications",
+      "title_matches": true,
+      "date": [
+        [
+          2013,
+          9
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L14",
+      "doi": "10.1093/jmicro/dfx013",
+      "title": "Development toward high-resolution X-ray phase imaging",
+      "title_matches": true,
+      "date": [
+        [
+          2017,
+          4,
+          18
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L15",
+      "doi": "10.3390/photonics12030222",
+      "title": "Research Progress of Grating-Based X-Ray Phase-Contrast Imaging and Key Devices",
+      "title_matches": true,
+      "date": [
+        [
+          2025,
+          2,
+          28
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L16",
+      "doi": "10.1107/s1600577520000508",
+      "title": "X-ray optics and beam characterization using random modulation: experiments",
+      "title_matches": true,
+      "date": [
+        [
+          2020,
+          2,
+          20
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L17",
+      "doi": "10.1103/physrevlett.108.158102",
+      "title": "Two-Dimensional X-Ray Beam Phase Sensing",
+      "title_matches": true,
+      "date": [
+        [
+          2012,
+          4,
+          11
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L18",
+      "doi": "10.1063/1.3694918",
+      "title": "X-ray phase imaging with a paper analyzer",
+      "title_matches": true,
+      "date": [
+        [
+          2012,
+          3,
+          19
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L19",
+      "doi": "10.1103/physrevlett.118.203903",
+      "title": "X-ray Phase-Contrast Imaging and Metrology through Unified Modulated Pattern Analysis",
+      "title_matches": true,
+      "date": [
+        [
+          2017,
+          5,
+          18
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L20",
+      "doi": "10.1103/physreva.92.013837",
+      "title": "Near-field speckle-scanning-based x-ray imaging",
+      "title_matches": true,
+      "date": [
+        [
+          2015,
+          7,
+          22
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L21",
+      "doi": "10.1107/s1600576720005567",
+      "title": "Ptychographic X-ray speckle tracking",
+      "title_matches": true,
+      "date": [
+        [
+          2020,
+          5,
+          29
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L22",
+      "doi": "10.1063/1.1516611",
+      "title": "Differential x-ray phase contrast imaging using a shearing interferometer",
+      "title_matches": true,
+      "date": [
+        [
+          2002,
+          10,
+          21
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L23",
+      "doi": "10.1143/jjap.42.l866",
+      "title": "Demonstration of X-Ray Talbot Interferometry",
+      "title_matches": true,
+      "date": [
+        [
+          2003,
+          7,
+          15
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L24",
+      "doi": "10.1364/opex.13.006296",
+      "title": "X-ray phase imaging with a grating interferometer",
+      "title_matches": true,
+      "date": [
+        [
+          2005,
+          8,
+          8
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L25",
+      "doi": "10.1038/nphys265",
+      "title": "Phase retrieval and differential phase-contrast imaging with low-brilliance X-ray sources",
+      "title_matches": true,
+      "date": [
+        [
+          2006,
+          3,
+          26
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L26",
+      "doi": "10.1364/oe.22.009004",
+      "title": "Wavefront metrology measurements at SACLA by means of X-ray grating interferometry",
+      "title_matches": true,
+      "date": [
+        [
+          2014,
+          4,
+          7
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L27",
+      "doi": "10.1107/s1600577516017562",
+      "title": "X-ray grating interferometer for <i>in situ</i> and at-wavelength wavefront metrology",
+      "title_matches": true,
+      "date": [
+        [
+          2017,
+          1,
+          1
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L28",
+      "doi": "10.3390/s20226469",
+      "title": "Modelling of Phase Contrast Imaging with X-ray Wavefront Sensor and Partial Coherence Beams",
+      "title_matches": true,
+      "date": [
+        [
+          2020,
+          11,
+          12
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L29",
+      "doi": "10.1364/josa.66.000207",
+      "title": "Zernike polynomials and atmospheric turbulence*",
+      "title_matches": true,
+      "date": [
+        [
+          1976,
+          3,
+          1
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L30",
+      "doi": "10.1109/34.3909",
+      "title": "A method for enforcing integrability in shape from shading algorithms",
+      "title_matches": true,
+      "date": [
+        [
+          1988,
+          7
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L31",
+      "doi": "10.1364/josa.72.000156",
+      "title": "Fourier-transform method of fringe-pattern analysis for computer-based topography and interferometry",
+      "title_matches": true,
+      "date": [
+        [
+          1982,
+          1,
+          1
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L32",
+      "doi": "10.1364/ao.52.000020",
+      "title": "Fourier fringe analysis and its application to metrology of extreme physical phenomena: a review [Invited]",
+      "title_matches": true,
+      "date": [
+        [
+          2012,
+          12,
+          21
+        ]
+      ],
+      "type": "journal-article"
+    },
+    {
+      "id": "L33",
+      "doi": "10.1007/978-3-030-66329-2",
+      "title": "X-ray Phase-Contrast Imaging Using Near-Field Speckles",
+      "title_matches": true,
+      "date": [
+        [
+          2021
+        ]
+      ],
+      "type": "book"
+    },
+    {
+      "id": "L34",
+      "doi": "10.1016/j.nima.2017.07.036",
+      "title": "X-ray phase-contrast imaging",
+      "title_matches": true,
+      "date": [
+        [
+          2018,
+          1
+        ]
+      ],
+      "type": "journal-article"
+    }
+  ],
+  "original_crl_archive_unchanged": true,
+  "algorithm_sources_unchanged": true,
+  "regression": {
+    "tests": 46,
+    "result": "passed",
+    "seconds": 8.324
+  },
+  "portable_documented_commands": {
+    "startup": {
+      "version": "0.6.2",
+      "clean_system_path": true,
+      "no_local_runtime": true,
+      "cpp_available": true,
+      "gpu_available": true
+    },
+    "documented_zernike_command": {
+      "exit_code": 0,
+      "embedded_python": true,
+      "terms": 50,
+      "residual_rms_rad": 3.1908198470842033e-16,
+      "high_order_rms_rad": 0.08649887793353608
+    },
+    "checked_source_sha256": {
+      "launch_frontend.py": "1a0e379098f25aa402871e32ed163569cf401974a31ed75e71c2415731eb9b34",
+      "src/wfs_starter/ui.py": "296d54eb599551b0baddcb98ac6c52058bccf13081ce2d105fa2261467a4c819",
+      "pyproject.toml": "bcfb1f5b112aa0bebf139a22c9b6174a07a415433c1efd11fd7bfdc90b414fbb"
+    }
+  },
+  "corrections": [
+    "CRL transmission is 512x512; half10 displacement/phase is 492x492.",
+    "Zernike handoff preserves phase/unit/provenance; energy/pixel size currently require manual 12.4 keV / 1.625 um.",
+    "Current speckle examples are measured CRL data; analytic controls remain specific to other methods.",
+    "Separate Windows complete-runtime instructions from developer-only installation and Linux builds.",
+    "Eight configuration modes; full Zernike is bundled; other original-project extensions need separate projects.",
+    "Explain actual result paths and per-machine absolute input paths.",
+    "Retain old numerical records as historical evidence instead of current example instructions."
+  ]
+}

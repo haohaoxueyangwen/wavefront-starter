@@ -1,7 +1,7 @@
-波前传感工具 Windows 使用指南（v0.6.1）
+波前传感工具 Windows 使用指南（v0.6.2）
 
-完整指南：https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.1/docs/12_windows_quickstart.md
-下载页面：https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.1
+完整指南：https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.2/docs/12_windows_quickstart.md
+下载页面：https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.2
 
 1. Windows 用户下载名字带 windows-x64.zip 的完整包，右键“全部解压”。
    不要在压缩包里启动，也不要把 GitHub 的 Source code ZIP 当成完整包。
@@ -9,6 +9,7 @@
    完整包已带 Python、CPU/GPU 程序和运行库，无需安装 Anaconda 或 CUDA Toolkit。
 3. 首次使用保持“C++ CPU”，点击“载入 CRL 实测示例”，再点击运行。
    默认 BB11 CRL 例子是真实实验数据。WSVT 是100对扫描帧，WXST 是其中一对；参数、输入和结果含义见完整指南。
+   点击“Zernike 分解 →”后，手动将能量改成12.4 keV、像元改成1.625 µm，再选圆瞳运行。
 4. 使用自己的数据时，点击文件/文件夹选择按钮，分别选参考与样品。
    根据实验填写像素尺寸、传播距离和光子能量，不能直接沿用CRL历史实验参数。
 5. 结果保留在 local-runs 目录；任务完成后可双击 stop_frontends.cmd 关闭后台。
@@ -26,4 +27,4 @@ start_wavefront.cmd（波前分析与完整 Zernike）。各界面的输入和�
 若启动失败，双击 check_windows.cmd，查看输出和生成的诊断文件。
 
 本包的数值验证与限制：
-https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.1/docs/13_windows_validation.md
+https://github.com/haohaoxueyangwen/wavefront-starter/blob/v0.6.2/docs/13_windows_validation.md

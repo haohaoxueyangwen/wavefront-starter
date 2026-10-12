@@ -1,8 +1,8 @@
-> Windows 0.6.0 已提供含 Python、依赖、CPU / GPU EXE 的完整运行包；优先按 [Windows 操作指南](12_windows_quickstart.md)启动，以下源码环境步骤供开发者使用。
-
 # 四个独立前端
 
-完成 [安装步骤](../README.md) 后，Windows 双击以下入口，或运行相应命令：
+Windows 初学者先按 [Windows 操作指南](12_windows_quickstart.md)下载完整包。Python、依赖、CPU / GPU 程序与 CRL 数据已包含，无需先安装源码环境。
+
+Windows 完整包直接双击以下入口；源码用户完成 [源码安装](../README.md#从源码安装)后，再使用对应命令：
 
 | 前端 | Windows 入口 | 命令 | 页面 |
 |---|---|---|---|
@@ -27,7 +27,7 @@ WXST 与 WSVT 在同一散斑前端中切换。完整设置包含搜索半窗、
 
 - **Python CPU**：随本仓库安装，完整设置传入参考求解器。
 - **C++ CPU**：Windows 完整包自动使用随包程序；Linux 开发者可将程序加入 PATH，或设置 `WFS_CPP_EXE`。通过原 CLI 执行，固定 `use_gpu=false`。
-- **GPU 原生速度版**：Windows 完整包自动使用随包程序并检测设备；Linux 开发者可使用 PATH / `WFS_GPU_EXE`；无需 PyTorch。源码随仓库在 `native/speckle/` 打包。平台可选自动 / desktop / jetson，WSVT可选 speed / low-memory，输入策略可选自动 / copy / mapped。默认速度优先，Orin WSVT默认mapped，其余copy。固定 half10、WXST7×7、原始层加一次降采样（pyramid_level=1）、cut1、I1、GPU样条、无暗场；WSVT恰好100帧。原始uint16无校正时保留类型，浮点不强制量化。Linux Ada / Orin 已验证，Windows 0.6.0 已编译，并在 P5000 做小数据实测；其他显卡先以本机示例检查。完整步骤和参数见[高速散斑指南](11_speckle_fast.md)。旧 `WFS_GPU_SOURCE` 不再用于本前端。
+- **GPU 原生速度版**：Windows 完整包自动使用随包程序并检测设备；Linux 开发者可使用 PATH / `WFS_GPU_EXE`；无需 PyTorch。源码随仓库在 `native/speckle/` 打包。平台可选自动 / desktop / jetson，WSVT可选 speed / low-memory，输入策略可选自动 / copy / mapped。默认速度优先，Orin WSVT默认mapped，其余copy。固定 half10、WXST7×7、原始层加一次降采样（pyramid_level=1）、cut1、I1、GPU样条、无暗场；WSVT恰好100帧。原始uint16无校正时保留类型，浮点不强制量化。Linux Ada / Orin 已验证，Windows 二进制已编译；0.6.1 在 P5000 完成512² CRL 实测数据运行；其他显卡先以本机示例检查。完整步骤和参数见[高速散斑指南](11_speckle_fast.md)。旧 `WFS_GPU_SOURCE` 不再用于本前端。
 
 后端不可用时明确报错，不自动转用其他算法。Windows 启动检查 CPU 运行库、CUDA 设备和 cuFFT；实际任务也保留原生错误，避免把 GPU 失败当成 CPU 成功。每次网页任务会启动新CLI，不能把网页总耗时当作复用会话的热运行测速。配置文件保存实际后端与参数，结果元数据保存来源。
 
@@ -46,11 +46,11 @@ WXST 与 WSVT 在同一散斑前端中切换。完整设置包含搜索半窗、
 ## 波前分析
 
 - **完整 Zernike（默认）**：保留原手动圆瞳 GUI 的全部参数：像元µm、能量keV、派生波长、圆心X / Y、半径、5–50项、去除径向阶数0–10、输出目录、文件名前缀。圆瞳可拖画、移动、缩放和平移；原完整报告、整体 / 高阶 / 拟合残差 PV与RMS、Rx / Ry / 平均ROC、全部系数及五种波前图可查看，支持 TIFF / NPY / NPZ / CSV / 文本导出。源码随仓库打包，克隆后可运行。详见[原功能逐项对照](10_zernike_parity.md)。
-- **教学 Zernike**：原15项教学示例继续保留，支持rad或OPD m。散斑或有标定的光栅恢复相位可送到完整入口，保留来源和rad单位；圆瞳和物理参数需核对。
+- **教学 Zernike**：原15项教学示例继续保留，支持rad或OPD m。散斑或有标定的光栅恢复相位可送到完整入口，保留来源和rad单位；圆瞳、能量和像元需另核对。当前接续不自动填写能量和像元，CRL 案例应改为12.4 keV / 1.625 µm。
 - **高度 / 曲率与残差**：调用原 `zernike_ui.runner`，保留能量、像元µm、材料δ / 表面数、阈值方式与方向、残差重新裁剪拟合。原PDF输出保留，增加同一图的PNG预览。
 - **焦点扫描**：调用原 `focus_analysis.run_analysis`，提供图像分组数、扫描起点 / 步长、参考坐标 / 距离、暗 / 平场目录与开关、阈值、质心、ROI、形态学ROI及工作进程数。
 
-后两项选择包含 `zernike_ui` / `focus_analysis` 的原工程目录，或设置 `WFS_ANALYSIS_SOURCE`。安装附加依赖：`python -m pip install -e ".[analysis]"`。原程序的结果写入新的任务目录，输入目录保持原样。
+后两项选择包含 `zernike_ui` / `focus_analysis` 的原工程目录，或设置 `WFS_ANALYSIS_SOURCE`，并准备该原工程的依赖。**给师妹的独立包可直接使用完整手动 Zernike；这两个原工程扩展不是随包即用功能。**源码开发者可在自己的环境安装附加依赖：`python -m pip install -e ".[analysis]"`。原程序的结果写入新的任务目录，输入目录保持原样。
 
 ## 本机启动配置
 

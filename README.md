@@ -1,57 +1,52 @@
-# wavefront-starter：X 射线波前传感学习与代码入口
+# wavefront-starter：X 射线波前传感入门与工具
 
-面向刚入门的同学：先看懂输入输出，再跑通 CRL 实测数据，最后接入标定完整的实验数据。这里整理了已有研究代码的核心函数，提供统一的配置入口、五个小示例及中文操作文档。
+给刚开始做 X 射线波前传感的同学：从基础概念、重要综述，到用真实 CRL 数据跑通 WSVT / WXST，再做完整 Zernike 分析。散斑、光栅、Hartmann、波前分析各有独立界面；原算法仓库分别维护。
 
-所有学习资料以本 GitHub 仓库为主入口：在线阅读文献导读与操作文档，克隆后生成示例数据并运行代码。面向刚开始做 X 射线波前传感的同学，原算法仓库分别维护。
+## Windows 第一次使用
 
-## Windows 直接运行 · 0.6.1
+1. 打开 **[v0.6.2 发布页](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.2)**，下载 **`wavefront-starter-0.6.2-windows-x64.zip`**，右键“全部解压”。GitHub 自动生成的 `Source code (zip)` 不是完整运行包。
+2. 进入解压目录，双击 **`start_speckle.cmd`**。Python、依赖、CPU / GPU 程序与示例数据均已随包提供，无需安装 Anaconda 或 CUDA Toolkit。
+3. 先选择 **WXST、C++ CPU**，点击 **“载入 CRL 实测示例”**，再点击 **“运行算法”**。
+4. 查看位移 px、偏折角 rad、相位 rad。换成 WSVT 后重新载入示例；WXST 用第001对图，WSVT 用全部100对扫描帧。
+5. 点击 **“Zernike 分解 →”**，将新页面的能量改为 **12.4 keV**、像元改为 **1.625 µm**，预览并拖画圆瞳后运行。相位和来源会带入，能量 / 像元当前需手动填写。
 
-给师妹直接分享本仓库链接即可。**下载 [Windows 完整运行包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.1)，全部解压，双击 `start_speckle.cmd`，选择数据、实验标定和 CPU / GPU 后运行。** Python、依赖、C++ CPU 和原生 GPU 程序均已随包提供，无需自己找 EXE、安装 Anaconda 或 CUDA Toolkit。
+默认数据来自 **BB11 金刚石 CRL 真实实验**，仅裁取512×512中央区域，保留原始像素值和100对配对；完整包内含数据，可离线载入。数据身份、全景、裁剪、历史标定与结果示意见 **[CRL 实测案例](docs/14_crl_example.md)**。更换自己的实验数据时，也要更换对应的标定参数。
 
-第一次先点“载入 CRL 实测示例” → “运行算法”。默认数据是 BB11 金刚石 CRL 的真实 100 对扫描帧中央区域，不再生成随机散斑。数据来源、裁剪位置、实验历史标定和后续 Zernike 操作见 [CRL 实测案例](docs/14_crl_example.md)。没有兼容 NVIDIA 显卡就用 CPU；界面自动检测设备。其他显卡的支持范围、显存、驱动和排错写在 [Windows 入门指南](docs/12_windows_quickstart.md)，实际编译与测试范围见 [Windows 验证记录](docs/13_windows_validation.md)。
+不知道电脑配置也可以先用CPU。兼容的NVIDIA显卡与驱动由程序检测；GPU不可用就用CPU。支持范围、驱动、内存和排错见 **[Windows 操作指南](docs/12_windows_quickstart.md)**。不要把某一台设备的测速当作所有电脑的性能。
 
-四个独立入口：`start_speckle.cmd`（WSVT / WXST）、`start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd`（完整 Zernike 等）。`check_windows.cmd` 检查本机环境，`stop_frontends.cmd` 在任务结束后关闭后台。
+## 四个操作入口
 
-## 原生算法与历史性能 · 0.5.0 来源
-
-WSVT / WXST 的原生 C++ / CUDA / cuFFT 速度配置已随仓库打包：Linux Ada 与 Jetson Orin 各自提供构建 / 启动入口，无需 PyTorch。网页 GPU 入口已接入新版，默认速度优先，保留 WSVT 低内存选项；CPU 和完整 Python 参考参数继续保留。
-
-**先看 [高速散斑完整操作文档](docs/11_speckle_fast.md)**：版本选择、依赖与构建、小数据示例、100 帧配对、参数、结果单位和坐标、性能证据及排错。需要一次下载全部代码，使用 [v0.5.0 发布包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.5.0)。完整版包含本资料包全部源码；native 包只含原生部署源码与配套说明。0.5.0 是源码包；0.6.0 另外提供带 Python、依赖和原生程序的 Windows 完整运行包。0.6.1 Windows 完整包及独立 CRL 数据 ZIP 另含明确选取的 BB11 中央裁剪示例，其他实验数据与记录不分发。
-
-| 实测设备 | WSVT 速度配置 solver / 七项返回 | WXST solver / 七项返回 |
-|---|---:|---:|
-| RTX5880 Ada | 0.161 / 0.165 s | 0.056 / 0.064 s |
-| AGX Orin64GB | 1.191 / 1.195 s | 0.596 / 0.610 s |
-
-BB11 2048²，WSVT100 uint16 / WXST单对float32，固定 half10 / cut1 / 两层 / I1 / 无暗场；预热1次、正式5次、每对重建参考。以上不含文件IO、初始化和网页图表开销。服务器 WXST 纯求解器并非旧 GPU 对照中最快；推荐配置按完整结果返回和部署选取。均值±SD、完整对照和源码哈希见操作文档。
-
-## 先从这里开始
-
-| 想做什么 | 入口 |
-|---|---|
-| Windows 下载后直接操作 | [解压、选版本、选数据、运行和排错](docs/12_windows_quickstart.md) |
-| CRL 透镜实测示例 | [数据身份、裁剪、运行、结果和 Zernike](docs/14_crl_example.md) |
-| 最新 WSVT / WXST 高速版 | [安装、示例、全参数和性能证据](docs/11_speckle_fast.md) |
-| 从基础了解方向 | [学习路线](docs/06_learning_path.md) |
-| 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
-| 找完整文献 | [34 条分类文献与专著](docs/04_reading.md) / [BibTeX、RIS](literature/) |
-| 用网页界面操作 | [四个独立前端：启动与界面指南](docs/08_interfaces.md) |
-| 找唯一代码入口和清理记录 | [代码维护说明](docs/09_code_maintenance.md) |
-| 跑通第一套数据 | [五案例操作指南](docs/01_first_run.md) |
-| 换成自己的实验数据 | [数据、单位与标定要求](docs/02_real_data.md) |
-| 找公开实验数据和原研究代码 | [软件与数据入口](docs/07_resources.md) |
-
-| 模块 | 输入 | 输出 / 范围 |
+| 功能 | 双击入口 | 随包可直接使用 |
 |---|---|---|
-| WXST | 一对参考/样品散斑图 | 空间模板追踪，位移 px、去均值偏折角 rad、相位 rad |
-| WSVT | 逐帧对应的参考/样品栈 | 时间向量追踪；默认 CRL 实测示例 100 对帧 |
-| 光栅 | 一对图像、两个人工确认的频域边带 | 差分条纹相位；有显式标定系数后才能积分波前 |
-| Hartmann | 同一固定网格内的参考/样品光斑 | 质心位移；有像元和传播距离后可换算偏折角 |
-| Zernike | 波前数组、圆瞳位置、输入单位 | 完整圆瞳分析5–50项、曲率、低阶去除、完整报告；保留15项教学示例 |
+| 散斑 | `start_speckle.cmd` | WSVT / WXST，C++ CPU、原生 GPU、Python参考 |
+| 光栅 | `start_grating.cmd` | 频域边带选择、差分条纹相位；有显式标定后积分波前 |
+| Hartmann | `start_hartmann.cmd` | 固定网格光斑质心、位移及标定后的偏折角 |
+| 波前分析 | `start_wavefront.cmd` | 完整手动圆瞳 Zernike，5–50项、低阶去除、曲率、报告与数值导出 |
 
-## 从源码安装 · 开发者与非 Windows 用户
+文件与文件夹通过“浏览…”选择。每次运行创建新的结果目录，默认在解压目录的 `local-runs/`；不覆盖输入实验数据。任务结束后双击 `stop_frontends.cmd`关闭后台。启动异常时双击 `check_windows.cmd`生成诊断记录。
 
-仓库已公开，直接克隆到自己的电脑，在项目根目录运行。已实际验证 Python 3.12.7；包声明支持 3.11–3.12。使用独立环境，避免旧 Anaconda 中 NumPy/Numba 版本冲突。
+Hartmann设计 / 旋转仿真、自动ROI曲率 / 残差、焦点扫描是原研究工程扩展，需要另外准备对应工程与依赖。完整手动Zernike已经随包提供。详见 [界面指南](docs/08_interfaces.md)与 [Zernike完整功能对照](docs/10_zernike_parity.md)。
+
+## 学习资料与操作文档
+
+| 要做什么 | 先看 |
+|---|---|
+| 第一次下载和运行 | [Windows 指南](docs/12_windows_quickstart.md) → [CRL 实测案例](docs/14_crl_example.md) |
+| 从物理概念开始 | [方法与物理量](docs/03_methods.md)、[学习路线](docs/06_learning_path.md) |
+| 先读重要综述 | [7篇核心综述与理论总览](docs/05_key_reviews.md) |
+| 查完整文献或导入Zotero | [34条分类文献与专著](docs/04_reading.md)、[BibTeX / RIS](literature/README.md) |
+| 换成自己的实验数据 | [数据、坐标、单位和标定](docs/02_real_data.md)、[配置模板](examples/README.md) |
+| 查看全参数或部署Linux原生算法 | [高速散斑指南](docs/11_speckle_fast.md) |
+| 分析真实相位或跑已知Zernike控制 | [完整 Zernike](docs/10_zernike_parity.md) |
+| 找软件和公开实验数据 | [资源导航](docs/07_resources.md) |
+| 查代码维护及来源 | [维护说明](docs/09_code_maintenance.md)、[来源声明](provenance/NOTICE.md) |
+| 查已测试的设备与数值范围 | [Windows 验证记录](docs/13_windows_validation.md) |
+
+文献元数据于2026-10-12复查，共34条，含10条综述、综述型研究论文或理论总览。导读说明每篇适合解决的问题；论文全文通过出版社、作者机构库或预印本入口取得。
+
+## 从源码安装
+
+这一节供开发者使用。Windows初学者按前面的完整包路线即可。源码环境使用Python3.11–3.12，建议独立环境；已分别验证开发环境3.12.7与完整包3.12.10。Windows PowerShell在项目根目录执行：
 
 ```powershell
 git clone https://github.com/haohaoxueyangwen/wavefront-starter.git
@@ -60,61 +55,33 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
 .\.venv\Scripts\python.exe -m pip install --no-deps --no-build-isolation -e .
 .\.venv\Scripts\python.exe -m wfs_starter check-env
-.\.venv\Scripts\python.exe -m wfs_starter demo --output outputs\first_demo
+.\.venv\Scripts\python.exe -m wfs_starter ui --app speckle
 ```
 
-如果系统没有 `py`，将创建虚拟环境的 `py -3.12 -m venv .venv` 一行替换为已安装的 Python 3.12 的 `python -m venv .venv`。每次输出目录必须是新目录，程序不会覆盖已有结果。
+没有 `py`时，用已安装的Python3.12执行 `python -m venv .venv`。Linux/macOS用 `python3.12 -m venv .venv`，后续解释器路径改为 `.venv/bin/python`。
 
-Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `.venv/bin/python`。
+**克隆源码不会附带Windows运行库或自动编译原生程序。**源码环境可用Python参考算法；C++ / GPU开发部署按 [原生指南](docs/11_speckle_fast.md)构建。macOS、Windows ARM没有本包原生二进制验收。源码版首次载入CRL需联网下载约79 MiB数据，程序校验后缓存；也可按CRL指南预先放入数据ZIP。
 
-## 用网页界面操作
-
-完成上面的安装后运行：
+命令行示例：
 
 ```powershell
-.\.venv\Scripts\python.exe -m wfs_starter ui
+.\.venv\Scripts\python.exe -m wfs_starter demo --case wxst --output outputs\crl_first
+.\.venv\Scripts\python.exe -m wfs_starter run outputs\crl_first\wxst\config.json --output outputs\wxst_rerun
+.\.venv\Scripts\python.exe -m wfs_starter demo --case grating --output outputs\grating_first
 ```
 
-浏览器显示四个独立入口：散斑（WSVT / WXST）、光栅、Hartmann、波前分析。Windows 可直接双击 `start_speckle.cmd`、`start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd`。每个前端单独保存参数和历史；文件、目录通过浏览按钮选择。散斑参数包含小波、金字塔、迭代、线程和 ROI，可明确选择 Python CPU、C++ CPU 或指定的 GPU 优化版。原 Hartmann 设计 / 仿真和原曲率 / 焦点流程通过原工程桥接，配置方法见界面指南。网页在本机运行；GitHub 页面提供资料和代码。
-
-完整操作见 [界面指南](docs/08_interfaces.md)，已有研究界面的本次增量修复见 [维护记录](maintenance/legacy-gui/README.md)。
-
-## 单独跑一个示例或接入配置
+每次输出使用新目录。散斑demo使用真实CRL数据，优先选可用C++ CPU，否则用Python参考；光栅、Hartmann、教学Zernike是各自有明确解析答案的控制。结果结构见 [第一遍操作](docs/01_first_run.md)。需要源码回归检查时，设置UTF-8后执行：
 
 ```powershell
-.\.venv\Scripts\python.exe -m wfs_starter demo --case grating --output outputs\grating_demo
-.\.venv\Scripts\python.exe -m wfs_starter run outputs\first_demo\wxst\config.json --output outputs\wxst_rerun
+$env:PYTHONUTF8='1'
+$env:PYTHONIOENCODING='utf-8'
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-`demo` 的散斑案例读取 BB11 CRL 实测数据，首次按需下载并校验；其他方法保留有明确解析答案的控制。配置和结果写到新目录。CRL 来源及实际操作见 [实测案例](docs/14_crl_example.md)。
-
-## 仓库导航
-
-| 文件 | 用途 |
-|---|---|
-| [docs/01_first_run.md](docs/01_first_run.md) | 示例步骤、结果检查、失败排查 |
-| [docs/02_real_data.md](docs/02_real_data.md) | 数据组织、单位、坐标、几何与标定要求 |
-| [docs/03_methods.md](docs/03_methods.md) | 四类方法的物理量与算法边界 |
-| [docs/04_reading.md](docs/04_reading.md) | 34 条分类文献、正式出版信息与阅读用途 |
-| [docs/05_key_reviews.md](docs/05_key_reviews.md) | 7 篇核心综述与理论总览的中文导读 |
-| [docs/06_learning_path.md](docs/06_learning_path.md) | 从基础到接入实验数据 |
-| [docs/07_resources.md](docs/07_resources.md) | 配套软件、公开实验数据与原仓库 |
-| [docs/10_zernike_parity.md](docs/10_zernike_parity.md) | 原 Zernike 两套界面逐项对照、完整参数与已知波前示例 |
-| [native/speckle/](native/speckle/PACKAGE_GUIDE.md) | 固定来源的 C++ CPU / CUDA GPU 部署源码与原始计时 |
-| [examples/](examples/) | 实验配置模板，标定项为 null，必须先填写 |
-| [src/wfs_starter/core.py](src/wfs_starter/core.py) | 新的教学接口和输入检查 |
-| [src/wfs_starter/vendor/](src/wfs_starter/vendor/) | 从已有代码提取的核心实现 |
-| [provenance/](provenance/) | 原文件哈希、第三方声明和整理方式 |
-| [validation/](validation/) | 通过与失败的合成测试记录、验收门槛 |
-
 ## 与原研究仓库的关系
 
-高性能 C++ 算法维护在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)，历史完整 Hartmann 仿真与恢复维护在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)。本仓库提供学习示例、四个独立前端及原研究算法桥接；科研参数、冻结性能结果、深度学习训练与动态多脉冲研究仍在原工程中维护。
+高性能算法维护在 [WSVT_CPP](https://github.com/haohaoxueyangwen/WSVT_CPP)，完整Hartmann研究工程维护在 [hartmann_V2](https://github.com/haohaoxueyangwen/hartmann_V2)。这里提供入门资料、独立界面、可追溯的固定算法来源与桥接；历史Linux Ada / Orin性能证据和固定源码哈希见高速散斑指南。
 
-0.4.1：四个独立前端，波前分析默认提供原完整 Zernike（5–50 项、径向低阶去除、曲率、完整报告与 TIFF），手动算法随仓库打包；[完整示例与功能对照](docs/10_zernike_parity.md)。接口、合成案例和原曲率 / 焦点流程的检查见 [独立前端验证](validation/independent_frontends.json)。C++ / CUDA 的执行需要对应平台构建产物；安装网页界面不会自动生成原生算法库。
+Windows CPU / GPU已在P5000运行CRL数据；这是该设备上的执行与跨后端对照，不给实测透镜编造精度真值。其他NVIDIA显卡应先跑随包例子。0.6.2更新说明与版本标识，算法、Windows二进制和CRL数据沿用0.6.1。
 
-散斑参考实现保留 UChicago Argonne 的版权声明。教学整理为本地修改版，来源与变更见 [NOTICE](provenance/NOTICE.md)。其他提取函数来自作者已有代码；本次未另外授予整个仓库新的开源许可证。
-
-
-文献更新于 2026-10-11：34 条文献与专著，其中 10 条为综述、综述型研究论文或理论总览。DOI 与元数据已核对，完整作者引文可导入 Zotero。仓库已公开，可直接把 GitHub 链接发给师妹。
+散斑参考实现保留UChicago Argonne版权声明，第三方组件保留各自许可证；来源见 [NOTICE](provenance/NOTICE.md)。本仓库没有另授予统一覆盖全部组件的新开源许可证。完整包仅含明确选取的CRL裁剪示例，不分发其他实验数据、实验本、运行历史或本机配置。

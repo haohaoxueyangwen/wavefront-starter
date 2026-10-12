@@ -23,7 +23,7 @@
 |---|---|
 | 浏览器布局与操作 | [web/](../src/wfs_starter/web/) |
 | 任务与结果接续 | [ui.py](../src/wfs_starter/ui.py) |
-| 七种运行模式的配置模板 | [configs/](../src/wfs_starter/configs/) |
+| 八种运行模式的配置模板 | [configs/](../src/wfs_starter/configs/) |
 | 配置读取 | [config_templates.py](../src/wfs_starter/config_templates.py) |
 | 输入检查、单位与算法调度 | [core.py](../src/wfs_starter/core.py) |
 | CPU / GPU 原生桥接 | [speckle_backends.py](../src/wfs_starter/speckle_backends.py) |

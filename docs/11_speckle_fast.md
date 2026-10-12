@@ -1,4 +1,4 @@
-> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.1 Windows 完整包**即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
+> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.2 Windows 完整包**即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
 
 # WSVT / WXST 高速版：从安装到处理实验数据
 
@@ -13,7 +13,7 @@
 | Linux RTX 5880 Ada | `native/speckle/gpu_discrete` | WSVT、WXST：`speed / copy` |
 | Jetson AGX Orin | `native/speckle/gpu_jetson` | WSVT：`speed / mapped`；WXST：`speed / copy` |
 | GPU 内存不足 | 同一个 GPU 程序 | WSVT 改为 `low-memory`，`chunk=16` |
-| Windows x64 | 0.6.1 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
+| Windows x64 | 0.6.2 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
 | 需要任意帧数、模板、迭代或暗场算法 | 原 CPU / Python 算法 | 先做小图，再按实际参数运行 |
 
 这里按**已测设备上可部署、返回完整七项结果的速度配置**选默认值。`speed` 是工作区策略，不能保证所有电脑、所有阶段都最快。服务器 WXST 的旧 GPU 纯求解器曾更快，新版返回完整结果更快，详见第 7 节。0.5.0 原生性能验收平台是 Linux Ada SM89、Linux Orin SM87；0.6.0 另以独立 Windows 移植层构建并在 P5000 SM61 实测。其他 Windows 显卡的检测、目标和实测范围见 Windows 指南。
@@ -60,7 +60,7 @@ cmake -S native/speckle/cpu_cpp/source -B native/speckle/build_cpu \
 cmake --build native/speckle/build_cpu --target wsvt_cli -j2
 ```
 
-确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.1 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
+确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.2 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
 
 ## 3. 先使用 CRL 实测示例
 
@@ -89,7 +89,7 @@ python native/speckle/tools/convert_inputs.py --mode wsvt \
 
 ## 4. 跑一次，检查结果
 
-下面的物理量是**合成示例的几何设置**。实验时必须替换为真实能量、有效像元和传播距离。每次输出选新目录，程序拒绝覆盖已有目录。
+下面的数值沿用 **BB11 CRL 的历史重建标定**：12.4 keV、1.625 µm、0.4845 m。换用自己的实验时必须填写对应能量、有效像元和距离，不能直接沿用。每次输出选新目录，程序拒绝覆盖已有目录。
 
 ```bash
 bash native/speckle/gpu_discrete/run.sh --mode wxst \
@@ -171,7 +171,7 @@ CPU / Python 的参数名和金字塔计数需按对应实现核对，不能直�
 
 服务器 WXST：旧 pageable GPU 纯求解器 0.047337s，新 CLI 0.056215s；完整返回从 0.077971s 到 0.064156s。同主机不同缓冲 / 输出所有权策略的对照保留在[原始报告](../native/speckle/benchmarks/RESULTS.md)，不把这些变化全部归因于 C++ 或内核加速。表格不含文件读写、初始化、固定页分配，不能和 Windows 网页墙钟或不同参数的旧 CPU 时间直接作倍数比较。
 
-新版对保留的旧 GPU 六项非相位字段一致，相位最大差≤1.53e-4rad；两台机器全输出与指定 ROI 的门槛通过。这验证迁移保存数值行为；WXST / WSVT 与 CPU 的逐点一致性及独立物理真值需单独检验。原 GPU 对 CPU 的 WXST 全图差异记录仍保留在原工程，不能因本次 GPU 对 GPU 的通过而消除。
+新版对保留的旧 GPU 六项非相位字段一致，相位最大差≤1.53e-4rad；两台机器全输出与指定 ROI 的门槛通过。这验证迁移保存数值行为；这份历史 Linux GPU 对 GPU 记录没有给出 CPU 一致性或独立物理真值。Windows 512² CRL 的 CPU / GPU 对照另见 [当前实测案例](14_crl_example.md)。原 GPU 对 CPU 的 WXST 全图差异记录仍保留在原工程，不能因本次 GPU 对 GPU 的通过而消除。
 
 证据：[重算验证](../validation/native_package_050.json)、[每次计时与原生报告](../native/speckle/benchmarks/results/)、[推荐表](../native/speckle/benchmarks/recommended.csv)、[源码哈希](../provenance/native_speckle_050.json)、[完整原实验图与记录](https://github.com/haohaoxueyangwen/WSVT_CPP/tree/3f418aa71771e9d209af0702b742ac7e7a69aa9a/speckle_four_editions/benchmarks)。本次资料包更新没有重新运行全尺寸 GPU 实验；Windows 0.6.0 另外实际执行了小图 CPU / GPU 同图、平移、低内存及浮点输入，并检查了独立运行包与真实浏览器；没有补做 Windows 全尺寸性能实验。
 
@@ -189,4 +189,4 @@ CPU / Python 的参数名和金字塔计数需按对应实现核对，不能直�
 | 跨主机路径找不到 | 本机程序只能访问本机文件；在计算主机启动入口 |
 | 相位方向 / 数值异常 | 核对样品 / 参考顺序、像元 / 距离 / 能量单位、图像坐标、ROI起点、校正与搜索范围 |
 
-升级先在原算法仓库验证新提交，再更新教学仓库固定来源与 SHA256 清单，重算时间统计并核对输出合同。不要把旧编译产物与新源码混用。GitHub Release 0.6.0 提供 Windows 完整运行包（含程序和依赖）与源码包。0.5.0 原生源码和 Linux 原始记录保留；实验数据、运行历史和本机配置不随包发布。
+升级先在原算法仓库验证新提交，再更新教学仓库固定来源与 SHA256 清单，重算时间统计并核对输出合同。不要把旧编译产物与新源码混用。最新版 [GitHub Release](https://github.com/haohaoxueyangwen/wavefront-starter/releases/latest)提供 Windows 完整运行包（含程序、依赖和选定的 CRL 裁剪数据）与源码包。0.5.0 原生源码和 Linux 原始记录保留；其他实验数据、实验本、运行历史和本机配置不随包发布。
