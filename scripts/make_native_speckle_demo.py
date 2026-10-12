@@ -1,18 +1,17 @@
-"""Generate tiny deterministic native-ingress examples; never launch a solver."""
+"""Export the real BB11 CRL example as native-ingress NPZ files; no solver run."""
 from pathlib import Path
 import argparse
 import hashlib
 import json
 import numpy as np
-from scipy.ndimage import gaussian_filter, shift
+from wfs_starter.native_examples import dataset
 
 def generate(output):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
-    rng = np.random.default_rng(20261012)
-    reference = np.stack([gaussian_filter(rng.random((64, 64)), .7) for _ in range(100)])
-    reference = np.ascontiguousarray(np.rint(reference*30000+1000), dtype=np.uint16)
-    sample = np.stack([shift(frame, (-1, 1), order=0, mode='reflect') for frame in reference])
+    folder, source = dataset(output)
+    reference = np.stack([np.load(folder/f'reference_{i:03}.npy',allow_pickle=False) for i in range(1,101)])
+    sample = np.stack([np.load(folder/f'sample_{i:03}.npy',allow_pickle=False) for i in range(1,101)])
     inputs = {'wsvt': (sample, reference), 'wxst': (sample[0].astype(np.float32), reference[0].astype(np.float32))}
     records = {}
     for mode, (sam, ref) in inputs.items():
@@ -20,9 +19,8 @@ def generate(output):
         records[mode] = {key: dict(shape=list(a.shape), dtype=str(a.dtype),
                                   sha256=hashlib.sha256(memoryview(a).cast('B')).hexdigest())
                          for key, a in (('sample', sam), ('reference', ref))}
-    manifest = dict(seed=20261012, image_transform_shift_yx_px=[-1, 1], boundary='reflect',
-                    geometry=dict(pixel_m=1.625e-6, distance_m=.4845, energy_ev=12400),
-                    purpose='Synthetic input/axis exercise; not experimental or physical-accuracy acceptance.', inputs=records)
+    manifest = dict(dataset_id=source['dataset_id'],crop_y0_y1_x0_x1=source['crop_y0_y1_x0_x1'],
+                    geometry=source['calibration'],purpose='Real CRL acquisition; no synthetic displacement truth.',inputs=records)
     (output/'manifest.json').write_text(json.dumps(manifest, indent=2)+'\n', encoding='utf-8')
     return manifest
 

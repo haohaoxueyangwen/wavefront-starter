@@ -40,6 +40,6 @@ Windows 实测 GPU：**Quadro P5000，SM61，驱动 582.16，约 15 GiB 显存**
 
 ## 分发检查
 
-Windows ZIP 不含本机 `.local_runtime.json`、实验数组、实验记录、运行历史或原目录清理备份。CPU / GPU EXE、运行 DLL、Python、依赖、源码、中文文档和第三方来源说明同时提供。真实例子由按钮按固定 seed 生成到自己的结果目录。
+0.6.0 Windows ZIP 不含本机 `.local_runtime.json`、实验数组、实验记录、运行历史或原目录清理备份。CPU / GPU EXE、运行 DLL、Python、依赖、源码、中文文档和第三方来源说明同时提供。当时的工程示例由按钮按固定 seed 生成。0.6.1 已改为随包 BB11 CRL 实测中央裁剪，另见 [真实数据案例](14_crl_example.md)；本页及旧JSON继续保存0.6.0的原始验证事实。
 
 发布页提供 SHA256SUMS；发布后另以匿名下载校验 ZIP 与记录的哈希。完整运行包与源码包分别命名，防止第一次使用的人下载错包。

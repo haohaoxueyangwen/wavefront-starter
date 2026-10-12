@@ -20,11 +20,39 @@ class RuntimeBackends(unittest.TestCase):
             data=probe('mock.exe',1)
         self.assertFalse(data['available']);self.assertIn('CPU',data['reason'])
 
-    def test_example_pairs_are_raw_u16_and_can_be_loaded_again(self):
+    def test_example_uses_real_dataset_pair_order_and_recorded_calibration(self):
         with tempfile.TemporaryDirectory() as temp:
-            a=example(temp,'wsvt','cpp');pairs=a['config']['pairs'];self.assertEqual(len(pairs),100)
-            frame=np.load(pairs[0]['reference']);self.assertEqual(frame.dtype,np.uint16);self.assertEqual(frame.shape,(64,64))
-            b=example(temp,'wxst','cpp');self.assertEqual(b['config']['sample'],pairs[0]['sample'])
-            self.assertEqual(a['config']['backend'],'cpp')
+            folder=Path(temp)
+            manifest={'calibration':{'energy_ev':12400,'pixel_size_m':1.625e-6,'distance_m':.4845},'crop_y0_y1_x0_x1':[686,1198,714,1226]}
+            with patch('wfs_starter.native_examples.dataset',return_value=(folder,manifest)):
+                a=example(temp,'wsvt','cpp');pairs=a['config']['pairs']
+                b=example(temp,'wxst','python')
+            self.assertEqual(len(pairs),100)
+            self.assertEqual(Path(pairs[0]['reference']).name,'reference_001.npy')
+            self.assertEqual(Path(pairs[-1]['sample']).name,'sample_100.npy')
+            self.assertEqual(b['config']['sample'],pairs[0]['sample'])
+            self.assertEqual(a['config']['energy_ev'],12400)
+            self.assertEqual(a['config']['example_crop_y0_y1_x0_x1'],[686,1198,714,1226])
+            self.assertIn('BB11',a['config']['metadata_note'])
+            self.assertEqual(b['config']['backend'],'python')
+
+    def test_invalid_crl_cache_never_generates_random_replacement(self):
+        from wfs_starter.native_examples import dataset
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);folder=root/'example-data/crl-bb11-v1';folder.mkdir(parents=True)
+            (folder/'manifest.json').write_text('{"dataset_id":"other-data"}')
+            with patch('wfs_starter.native_examples.ROOT',root),patch('wfs_starter.native_examples.urllib.request.urlopen') as download:
+                with self.assertRaises(ValueError):dataset(root/'workspace')
+                download.assert_not_called()
+            self.assertEqual(len(list(folder.iterdir())),1)
+
+    def test_crl_pixel_changes_are_detected(self):
+        from wfs_starter.native_examples import verify,DATASET_ID
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);files=[{'file':f'{role}_{i:03}.npy','sha256':'0'*64} for role in ('reference','sample') for i in range(1,101)]
+            manifest={'dataset_id':DATASET_ID,'frames':100,'shape_yx':[512,512],'files':files}
+            (root/'manifest.json').write_text(json.dumps(manifest))
+            (root/files[0]['file']).write_bytes(b'changed pixels')
+            with self.assertRaisesRegex(ValueError,'reference_001'):verify(root)
 
 if __name__=='__main__':unittest.main()

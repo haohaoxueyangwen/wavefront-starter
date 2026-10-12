@@ -1,4 +1,4 @@
-> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.0 Windows 完整包**即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
+> Windows 用户先看 [解压直接运行指南](12_windows_quickstart.md)，下载 **0.6.1 Windows 完整包**即可使用随包 CPU / GPU。以下 Linux 性能、原生构建和开发命令保留为高级说明；Windows 的实际构建和验收另见 [验证记录](13_windows_validation.md)。
 
 # WSVT / WXST 高速版：从安装到处理实验数据
 
@@ -13,7 +13,7 @@
 | Linux RTX 5880 Ada | `native/speckle/gpu_discrete` | WSVT、WXST：`speed / copy` |
 | Jetson AGX Orin | `native/speckle/gpu_jetson` | WSVT：`speed / mapped`；WXST：`speed / copy` |
 | GPU 内存不足 | 同一个 GPU 程序 | WSVT 改为 `low-memory`，`chunk=16` |
-| Windows x64 | 0.6.0 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
+| Windows x64 | 0.6.1 Windows 完整运行包 | CPU / GPU 程序自动定位；没有兼容 NVIDIA GPU 时使用 CPU |
 | 需要任意帧数、模板、迭代或暗场算法 | 原 CPU / Python 算法 | 先做小图，再按实际参数运行 |
 
 这里按**已测设备上可部署、返回完整七项结果的速度配置**选默认值。`speed` 是工作区策略，不能保证所有电脑、所有阶段都最快。服务器 WXST 的旧 GPU 纯求解器曾更快，新版返回完整结果更快，详见第 7 节。0.5.0 原生性能验收平台是 Linux Ada SM89、Linux Orin SM87；0.6.0 另以独立 Windows 移植层构建并在 P5000 SM61 实测。其他 Windows 显卡的检测、目标和实测范围见 Windows 指南。
@@ -60,11 +60,11 @@ cmake -S native/speckle/cpu_cpp/source -B native/speckle/build_cpu \
 cmake --build native/speckle/build_cpu --target wsvt_cli -j2
 ```
 
-确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.0 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
+确认构建输出含 `HDF5 enabled`、`FFTW3 (single precision) enabled`、`FFTW3 threading support enabled`。CMake 有慢速 DFT 兜底，缺少 FFTW 时即使构建成功也不适合处理大图。Windows 用户使用已经编译的 0.6.1 完整运行包；开发者重建 Windows 程序的方法与实际验证记录另见 docs/13_windows_validation.md。
 
-## 3. 先生成小示例
+## 3. 先使用 CRL 实测示例
 
-下面只生成合成数据，不启动 GPU；不会读取实验目录。
+前端直接点击“载入 CRL 实测示例”。下列开发命令导出同一 BB11 实测数据的 NPZ 输入，不启动 GPU，不修改原实验目录。源码版首次使用会下载发布的 CRL 数据包。
 
 ```bash
 python scripts/make_native_speckle_demo.py --out demo_data/native_small
@@ -74,7 +74,7 @@ python native/speckle/tools/convert_inputs.py --mode wsvt \
   --npz demo_data/native_small/wsvt.npz --out demo_data/native_small/wsvt_npy
 ```
 
-示例为 64²、固定种子；WSVT 为 100 帧 uint16；WXST 为 float32。样品图相对参考图在数组上向右 1 像素、向上 1 像素平移，生成方式和输入哈希写入 `manifest.json`。这是检查输入、方向和输出的练习，不是新的精度验收数据集。移位边界应避开；偏折角和相位先去掉均值，因此常量图像位移不会产生可恢复的绝对倾斜波前。
+示例是 BB11 金刚石 CRL 的真实 512² 中央裁剪；WSVT 保留全部 100 对 uint16 帧，WXST 使用第 001 对的 float32 表示，灰度值不变。来源、裁剪位置和历史标定见 [CRL 实测案例](14_crl_example.md)，输入哈希写入 manifest。没有给实测图像添加位移。
 
 用真实实验 TIFF 时，一次性转换（需 `numpy`、`tifffile`）：
 

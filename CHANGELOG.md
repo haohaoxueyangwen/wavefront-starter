@@ -1,3 +1,10 @@
+# 0.6.1 — CRL 实测数据作为默认散斑示例
+
+- CPU、GPU、Python 参考和 CLI 散斑 demo 均使用 BB11 金刚石 CRL 的100对真实扫描帧，512²原值裁剪。
+- Windows 完整包内含数据，源码版首次自动下载并校验；保留原始 TIFF 与裁剪帧 SHA256。
+- 增加真实数据全景、位移/相位案例、历史标定来源与 Zernike 操作；旧随机纹理仅保留历史验证记录。
+- 原算法、二进制和原始实验目录保持不变。
+
 # 0.6.0 — Windows ready-to-run speckle release
 
 - Bundled Windows CPU / CUDA GPU CLIs, app-local native DLLs, official portable Python 3.12.10 and pinned Python dependencies.

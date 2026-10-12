@@ -21,7 +21,7 @@ def main():
         try:
             with urlopen(origin+'/api/session',timeout=8) as response:session=json.load(response)
             if session.get('application')!='wavefront-frontends':raise RuntimeError('端口被另一服务占用，请用 --port 选择其他端口。')
-            if session.get('version')!='0.6.0':raise RuntimeError('检测到旧版后台仍在运行。请关闭旧版启动窗口或运行 stop_frontends.cmd，再重新启动新版。')
+            if session.get('version')!='0.6.1':raise RuntimeError('检测到旧版后台仍在运行。请关闭旧版启动窗口或运行 stop_frontends.cmd，再重新启动新版。')
             if Path(session.get('application_root','')).resolve()!=root:raise RuntimeError('另一份目录的波前工具后台正在运行。请先用该目录的 stop_frontends.cmd 停止，再打开这一份。')
             return True
         except (OSError,ValueError):return False

@@ -1,14 +1,14 @@
 # wavefront-starter：X 射线波前传感学习与代码入口
 
-面向刚入门的同学：先看懂输入输出，再跑通已知答案的合成数据，最后接入标定完整的实验数据。这里整理了已有研究代码的核心函数，提供统一的配置入口、五个小示例及中文操作文档。
+面向刚入门的同学：先看懂输入输出，再跑通 CRL 实测数据，最后接入标定完整的实验数据。这里整理了已有研究代码的核心函数，提供统一的配置入口、五个小示例及中文操作文档。
 
 所有学习资料以本 GitHub 仓库为主入口：在线阅读文献导读与操作文档，克隆后生成示例数据并运行代码。面向刚开始做 X 射线波前传感的同学，原算法仓库分别维护。
 
-## Windows 直接运行 · 0.6.0
+## Windows 直接运行 · 0.6.1
 
-给师妹直接分享本仓库链接即可。**下载 [Windows 完整运行包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.0)，全部解压，双击 `start_speckle.cmd`，选择数据、实验标定和 CPU / GPU 后运行。** Python、依赖、C++ CPU 和原生 GPU 程序均已随包提供，无需自己找 EXE、安装 Anaconda 或 CUDA Toolkit。
+给师妹直接分享本仓库链接即可。**下载 [Windows 完整运行包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.6.1)，全部解压，双击 `start_speckle.cmd`，选择数据、实验标定和 CPU / GPU 后运行。** Python、依赖、C++ CPU 和原生 GPU 程序均已随包提供，无需自己找 EXE、安装 Anaconda 或 CUDA Toolkit。
 
-第一次先点“载入 CPU / GPU 示例” → “运行算法”。没有兼容 NVIDIA 显卡就用 CPU；界面自动检测设备。其他显卡的支持范围、显存、驱动和排错写在 [Windows 入门指南](docs/12_windows_quickstart.md)，实际编译与测试范围见 [Windows 验证记录](docs/13_windows_validation.md)。
+第一次先点“载入 CRL 实测示例” → “运行算法”。默认数据是 BB11 金刚石 CRL 的真实 100 对扫描帧中央区域，不再生成随机散斑。数据来源、裁剪位置、实验历史标定和后续 Zernike 操作见 [CRL 实测案例](docs/14_crl_example.md)。没有兼容 NVIDIA 显卡就用 CPU；界面自动检测设备。其他显卡的支持范围、显存、驱动和排错写在 [Windows 入门指南](docs/12_windows_quickstart.md)，实际编译与测试范围见 [Windows 验证记录](docs/13_windows_validation.md)。
 
 四个独立入口：`start_speckle.cmd`（WSVT / WXST）、`start_grating.cmd`、`start_hartmann.cmd`、`start_wavefront.cmd`（完整 Zernike 等）。`check_windows.cmd` 检查本机环境，`stop_frontends.cmd` 在任务结束后关闭后台。
 
@@ -16,7 +16,7 @@
 
 WSVT / WXST 的原生 C++ / CUDA / cuFFT 速度配置已随仓库打包：Linux Ada 与 Jetson Orin 各自提供构建 / 启动入口，无需 PyTorch。网页 GPU 入口已接入新版，默认速度优先，保留 WSVT 低内存选项；CPU 和完整 Python 参考参数继续保留。
 
-**先看 [高速散斑完整操作文档](docs/11_speckle_fast.md)**：版本选择、依赖与构建、小数据示例、100 帧配对、参数、结果单位和坐标、性能证据及排错。需要一次下载全部代码，使用 [v0.5.0 发布包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.5.0)。完整版包含本资料包全部源码；native 包只含原生部署源码与配套说明。0.5.0 是源码包；0.6.0 另外提供带 Python、依赖和原生程序的 Windows 完整运行包。实验数据不在任何发布包中。
+**先看 [高速散斑完整操作文档](docs/11_speckle_fast.md)**：版本选择、依赖与构建、小数据示例、100 帧配对、参数、结果单位和坐标、性能证据及排错。需要一次下载全部代码，使用 [v0.5.0 发布包](https://github.com/haohaoxueyangwen/wavefront-starter/releases/tag/v0.5.0)。完整版包含本资料包全部源码；native 包只含原生部署源码与配套说明。0.5.0 是源码包；0.6.0 另外提供带 Python、依赖和原生程序的 Windows 完整运行包。0.6.1 Windows 完整包及独立 CRL 数据 ZIP 另含明确选取的 BB11 中央裁剪示例，其他实验数据与记录不分发。
 
 | 实测设备 | WSVT 速度配置 solver / 七项返回 | WXST solver / 七项返回 |
 |---|---:|---:|
@@ -30,6 +30,7 @@ BB11 2048²，WSVT100 uint16 / WXST单对float32，固定 half10 / cut1 / 两层
 | 想做什么 | 入口 |
 |---|---|
 | Windows 下载后直接操作 | [解压、选版本、选数据、运行和排错](docs/12_windows_quickstart.md) |
+| CRL 透镜实测示例 | [数据身份、裁剪、运行、结果和 Zernike](docs/14_crl_example.md) |
 | 最新 WSVT / WXST 高速版 | [安装、示例、全参数和性能证据](docs/11_speckle_fast.md) |
 | 从基础了解方向 | [学习路线](docs/06_learning_path.md) |
 | 先读几篇重要综述 | [7 篇核心综述与理论总览](docs/05_key_reviews.md) |
@@ -43,7 +44,7 @@ BB11 2048²，WSVT100 uint16 / WXST单对float32，固定 half10 / cut1 / 两层
 | 模块 | 输入 | 输出 / 范围 |
 |---|---|---|
 | WXST | 一对参考/样品散斑图 | 空间模板追踪，位移 px、去均值偏折角 rad、相位 rad |
-| WSVT | 逐帧对应的参考/样品栈 | 时间向量追踪；教学示例 32 帧 |
+| WSVT | 逐帧对应的参考/样品栈 | 时间向量追踪；默认 CRL 实测示例 100 对帧 |
 | 光栅 | 一对图像、两个人工确认的频域边带 | 差分条纹相位；有显式标定系数后才能积分波前 |
 | Hartmann | 同一固定网格内的参考/样品光斑 | 质心位移；有像元和传播距离后可换算偏折角 |
 | Zernike | 波前数组、圆瞳位置、输入单位 | 完整圆瞳分析5–50项、曲率、低阶去除、完整报告；保留15项教学示例 |
@@ -86,7 +87,7 @@ Linux/macOS 使用 `python3.12 -m venv .venv`，后续将解释器路径换成 `
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-`demo` 会生成输入、配置、已知答案和结果，克隆后即可使用。每种案例的种子固定，单独运行与 `all` 产生相同输入；无需寻找另外的资料包。真实实验数据入口见 [软件与数据](docs/07_resources.md)。
+`demo` 的散斑案例读取 BB11 CRL 实测数据，首次按需下载并校验；其他方法保留有明确解析答案的控制。配置和结果写到新目录。CRL 来源及实际操作见 [实测案例](docs/14_crl_example.md)。
 
 ## 仓库导航
 

@@ -1,0 +1,1436 @@
+{
+  "dataset_id": "crl-bb11-20231102-roi512-v1",
+  "experiment": "20231102CRL/BB11/scan_speckle",
+  "sample": {
+    "material": "Diamond",
+    "nominal_radius_um": 500,
+    "source": "20231102CRL_notebook.docx"
+  },
+  "frames": 100,
+  "original_shape_yx": [
+    2048,
+    2048
+  ],
+  "shape_yx": [
+    512,
+    512
+  ],
+  "dtype": "uint16",
+  "crop_y0_y1_x0_x1": [
+    686,
+    1198,
+    714,
+    1226
+  ],
+  "processing": "Exact integer-pixel crop only; no interpolation, smoothing, normalization or synthetic displacement.",
+  "calibration": {
+    "energy_ev": 12400.0,
+    "pixel_size_m": 1.625e-06,
+    "distance_m": 0.4845,
+    "source": "Historical BB11 WSVT_result.json / WXST_result.json",
+    "status": "Recorded reconstruction settings; effective-distance geometry not independently recalibrated here."
+  },
+  "frame_pairing": "Identical acquisition index 001..100; WXST uses pair 001; WSVT uses all 100 pairs.",
+  "files": [
+    {
+      "file": "reference_001.npy",
+      "sha256": "b9fee1c49b9d697659f4531464d2ce7c4a4e3b473e9b541ef4495710732b01dd",
+      "original_file": "ref_1_00001.tif",
+      "original_sha256": "c317963e02fd94ef43d9967354f10739a69377fdb9b661a2e0a7b2b0aa6c1bd0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_001.npy",
+      "sha256": "603a21e920912e5ff08295223ee344b9133688e1c6f4739a10061c156bf5e6fb",
+      "original_file": "sample_1_00001.tif",
+      "original_sha256": "b269ed5982d60339f61d46a6d8c9b4aec35a5ec433234989e908b6d1bf67003d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_002.npy",
+      "sha256": "e4687071846f55cd4486e92a8039bb534f2b7a1bb4ea5ef2234a4539b198bedd",
+      "original_file": "ref_1_00002.tif",
+      "original_sha256": "c7a5bb1e7ed77a09305b730bcbb4bd21203598514d764c298835341a350a13f2",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_002.npy",
+      "sha256": "1b5f4ef033005dbd15abaf24b8fae400d8585c1473de6774512f63b5050d9236",
+      "original_file": "sample_1_00002.tif",
+      "original_sha256": "07487eaa995b6f7140763cd87e4623ebd677c2b4e8609b16ddcc38f6efedd2a1",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_003.npy",
+      "sha256": "7b7f0155a72fbd95d194e371f8eba9a3364e7a9a25475e935d2b8e1c92d97031",
+      "original_file": "ref_1_00003.tif",
+      "original_sha256": "7b17d8647efe9f4f6f1dc17b2d1cd3de05f094877816cb20e9af7e647340ae75",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_003.npy",
+      "sha256": "ce6912da959a1c8e8d8f2bd6a3e74c96a8b2fbd520970d0ef7419ba49d17d86e",
+      "original_file": "sample_1_00003.tif",
+      "original_sha256": "93265486f18bc527d0d79e6d65f411cdbf19a8f5e74f6f2f67560945d995c2b0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_004.npy",
+      "sha256": "1d72364670703a2048955c7e5f5682986eaf2c2429c0a2a0c0abf7f9ec077df6",
+      "original_file": "ref_1_00004.tif",
+      "original_sha256": "da886406766eb66a81435899710b09662965f6217d5fc768947a099f80ce26d6",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_004.npy",
+      "sha256": "1abc4f2bb27629eb8116d0cd1bd2d032d04338a867795d2df3cc86aa756e389b",
+      "original_file": "sample_1_00004.tif",
+      "original_sha256": "fec630fc8b6be6f227a630a87338bb745ae9e8d39de6a21a41f417a524137f30",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_005.npy",
+      "sha256": "806974052cdd5343fcf75e338720b3a96969421c6d2273b416e9cd711dbb7b20",
+      "original_file": "ref_1_00005.tif",
+      "original_sha256": "5e0594506ffa4011a593af9c2f4d9dd4c786363ad4445a1f54cf08bd2caeb5a8",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_005.npy",
+      "sha256": "2aa1add0b38777c29fb59b0b3f723aff4aed069042c99f4646206749b991267c",
+      "original_file": "sample_1_00005.tif",
+      "original_sha256": "8581f8f96aa20352ae11a8bfcb7beaff79b6fe3b15dfbd01dfb688060cbb2b91",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_006.npy",
+      "sha256": "4349aa659ac0e73969ff2fa1a7ecaeed57ce12e4e789bdb09948de3ccf3e96c1",
+      "original_file": "ref_1_00006.tif",
+      "original_sha256": "625d4db4e08385cc7d36c48e6b20c0223fa3884f54a257249dd38f7696957888",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_006.npy",
+      "sha256": "c5bda6d7bd92104d0ac8bff3925470cebedebcc5ebe1783dea3446822e3bd44d",
+      "original_file": "sample_1_00006.tif",
+      "original_sha256": "9de773980fea68ad1b03172ad33e5b468aea3b64bc5a6c530ec6c02709677f6a",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_007.npy",
+      "sha256": "4bade000ca9eba0f30f7f8d72198899b00191c7cfde936e135f0ed5cb556c168",
+      "original_file": "ref_1_00007.tif",
+      "original_sha256": "dd3045eaae4c6a26f53e49807487372d55cf87cbddeeccea00cc69345b73f112",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_007.npy",
+      "sha256": "eaad7051d9509d10e8c4070454542b2774993ccd52ab3b270604fd9e64deb583",
+      "original_file": "sample_1_00007.tif",
+      "original_sha256": "af56ef01818d4abb274d2bb5a9f2ff6452c854ed60abfbad67fd95965388ec58",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_008.npy",
+      "sha256": "4aa04f2ebd1a7fa8e9e49f42fb629eecd12037fd722ff9d426d6d4522407919c",
+      "original_file": "ref_1_00008.tif",
+      "original_sha256": "2435df54fba09282b80dd447436273d3542452c5c323ed71a919d119f2d8a3e4",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_008.npy",
+      "sha256": "15c6a38ea089f9e7955301d29a855014141b369d647350606eb798645471f3d3",
+      "original_file": "sample_1_00008.tif",
+      "original_sha256": "72b2918817bf8d90910b4452347eb2e6e4dae29b755db582b7fcf93f9ae34845",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_009.npy",
+      "sha256": "023f3501f490c62b3e36d2d848877ec722dbbe9ba0fcbd3f89cbb8e52b0ac460",
+      "original_file": "ref_1_00009.tif",
+      "original_sha256": "f22675521ac5b45dff0b371b0ffef631b07795f94dfe6463bb89c4afb34fcad6",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_009.npy",
+      "sha256": "f0a2f5432830c8d0cd99e8cdc5c8df45ff3004005c0ed0c7942306830b9c6429",
+      "original_file": "sample_1_00009.tif",
+      "original_sha256": "929811eb3ec5591622dd3b145bf342b6a316af721be907818253a60311e3d6ec",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_010.npy",
+      "sha256": "f07142050dfef0112de9a097aea3c8928abec10cfba169febae0c39e771ce5ac",
+      "original_file": "ref_1_00010.tif",
+      "original_sha256": "085a6a9b095f9f2549702433522db966bbf3b01666904a28631988d0f53e4125",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_010.npy",
+      "sha256": "9272492aea81912ecea07c355251fcff49c31fa691d5e86a02d117de9774521f",
+      "original_file": "sample_1_00010.tif",
+      "original_sha256": "7aa4cdfd81f57df2fd0f43afdc6785f9411496beac27e5f8f9d89318df378d45",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_011.npy",
+      "sha256": "3f48a7dac2741aaa82f550d9d33fc25d7340e85a17caf83410bd3939d5f6e0bf",
+      "original_file": "ref_1_00011.tif",
+      "original_sha256": "0185659dd41f10ba1ca940a5ce2598bfc885c3890913cd4b13e80eebfe13cd42",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_011.npy",
+      "sha256": "fc8872c7258aac450fe9cedc0cad4eb8ac7ee7ff1f32f246cc83f7d3b209cd07",
+      "original_file": "sample_1_00011.tif",
+      "original_sha256": "f507373de02e450672c2e395f190d952494bab9baedd371ad3ab14bc6863829a",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_012.npy",
+      "sha256": "773d67f914ae85beee3c406c29438de21e250afa5dd9aaeb7ea2e36b6fe3f20c",
+      "original_file": "ref_1_00012.tif",
+      "original_sha256": "fd7910dcf5c9546f519a2fa7ddb976965ad7fa9de97e5e132266d7387f0874ed",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_012.npy",
+      "sha256": "0a05521903151f146ca42790c31a5b6d9ba4fe6f5eac03c7e71bb1bfa1975af4",
+      "original_file": "sample_1_00012.tif",
+      "original_sha256": "620650943e9008df5d7511e36d74fc689e65043317d0310c7b8ed6a6075b07c6",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_013.npy",
+      "sha256": "670bfaffcb837a0595397f098d1a05078c994dd60304897257802676661085a8",
+      "original_file": "ref_1_00013.tif",
+      "original_sha256": "228b8657ce30852c035d494a82819e23427a4641759bd9e2b29cc8063ba2a8e3",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_013.npy",
+      "sha256": "33a0cd3850b48cc09db6b90f09f9910c666b6457fcfe7e50452fbb668772433e",
+      "original_file": "sample_1_00013.tif",
+      "original_sha256": "e192e2986c6158be64e5cb19ede8efcd6f810f8a08002d8f028fb02a58cf3210",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_014.npy",
+      "sha256": "78b3f1d410fb84485172fb31ca9caa046e63e2dea24667db0e0a14f33b2d5db1",
+      "original_file": "ref_1_00014.tif",
+      "original_sha256": "809026deff01fcdcedc973c245a39bde93be404cb253e047c26ba86302fe1d66",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_014.npy",
+      "sha256": "5424676da63e3e1400dabc54cf494cc6549dc870e815b68b27eede4030f38753",
+      "original_file": "sample_1_00014.tif",
+      "original_sha256": "7ba6578f792b6b308f2534abfdd470ff2603efbe600862277545aa0a02e206d9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_015.npy",
+      "sha256": "d1e92879c4df3cf8c67a3019c2e0b2f081e5e03b706678bf90a8d1be8f1445fe",
+      "original_file": "ref_1_00015.tif",
+      "original_sha256": "3ccfb0fac74778b7aaded4edaa6e2d19a003c91e576070d1105621ec7d185cc9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_015.npy",
+      "sha256": "948c9d8e4f1a54a6e72e4931d67b2c2795be6fb9f73941fd160e361e294ed2c5",
+      "original_file": "sample_1_00015.tif",
+      "original_sha256": "51dc60da6003a39f8beb5623de03fe6eb588460a3efa0593c9a3a563bdc15f49",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_016.npy",
+      "sha256": "3921a200a41124917e9706eca3c789a5f6ac5802b2156d9bcfefacc6c101e27a",
+      "original_file": "ref_1_00016.tif",
+      "original_sha256": "06027352a7777ebcde519c772c5bf44ecb34a10f35ed263b52a9a4f621cc8593",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_016.npy",
+      "sha256": "6e36d6366b1039a0a140e39d4f7a9ab7049281f47ff66917c145df640bb03ed3",
+      "original_file": "sample_1_00016.tif",
+      "original_sha256": "fa67dae9c67c3afff45bfe923efce6c55ad598757450e9839edf1617a641506c",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_017.npy",
+      "sha256": "0260678f210a761a725d7ab855436ad4e72c20fcd8e10376253d89ca92fb1771",
+      "original_file": "ref_1_00017.tif",
+      "original_sha256": "7b4dcf482c65031392609275448243405bf93071ea55bfbdb7b8055dd159f9d7",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_017.npy",
+      "sha256": "166ae9775f76d4c085ee71f645a7b6ea920cf9f672c1c3e6c481003c74562e40",
+      "original_file": "sample_1_00017.tif",
+      "original_sha256": "e847661e7326f0377560eb781b3f959fc519cbbb720bd63390db04f9e058f10e",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_018.npy",
+      "sha256": "f14f7ac23ac82cf255dc2ff25f5124056c24b26e8d93df2854991f0eaa7f30cd",
+      "original_file": "ref_1_00018.tif",
+      "original_sha256": "c9764668a3855c6760bd2720cc7c36bbafdec91f0929eed640703208e39de239",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_018.npy",
+      "sha256": "59d374334d96b5d7b67ff1d32a7d59b8f6d1b60c88c42ebf989c6a48c44e7370",
+      "original_file": "sample_1_00018.tif",
+      "original_sha256": "6056449c3e738407a34b26c25113401321269ca4832b56af9dfa2e202aedf7bc",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_019.npy",
+      "sha256": "341dde6c510488f52ca9b6e65c2924b098cadce8bbc3cd105f17190930f3f75f",
+      "original_file": "ref_1_00019.tif",
+      "original_sha256": "aa2c301a0b9ea5299fa61a90d2e868f1e8956ab43d637b170fbf004fe139a485",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_019.npy",
+      "sha256": "d6499b7952034ff6592dd555c84f3ad019b81ae73b69d3eb382f74257a7193ba",
+      "original_file": "sample_1_00019.tif",
+      "original_sha256": "a2aea320e358455bfddccddfed74245284571246fed458115d5fbb86e2e12e6e",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_020.npy",
+      "sha256": "f2a7ebcd8597552793e07a3a4a1b76aa53ddeee1ec31fa6501fef5c6c5594c1b",
+      "original_file": "ref_1_00020.tif",
+      "original_sha256": "d4bc0e8a0ed05ed79c4eedf8333d87c2a8a87b664320c93f6181700113909180",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_020.npy",
+      "sha256": "617e990598ea8426f28d4d5c49dfd4234779e6a42105282ab97807cf83902b25",
+      "original_file": "sample_1_00020.tif",
+      "original_sha256": "d61c38ed9f4f272e4673d3a9a9044ee95abfdbf40ab36b344ff89b8c982ab5a1",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_021.npy",
+      "sha256": "92fd0b9b6071f1a4dc7a18fdaa90ec61dc66badf101f1e69051cf59ca30ef22a",
+      "original_file": "ref_1_00021.tif",
+      "original_sha256": "85984eac2db59fba4757d09d59083f142b2fa5e1b173e2a2d6e756618efeba1b",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_021.npy",
+      "sha256": "ecb6c7bc3aa392cf7788f5bb24d102c2b612249771291c9b8b280e1334c73291",
+      "original_file": "sample_1_00021.tif",
+      "original_sha256": "7b723f6a349a5f498aa1132e48d98141547c44d35ca6f5d8a10ccf04dbb6dfdb",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_022.npy",
+      "sha256": "1ad6adf176ac554482cf077ae3bc0addd7ff0b6538480cccd2d10c6553e47d39",
+      "original_file": "ref_1_00022.tif",
+      "original_sha256": "be7df5c5aaceff44cd74d434b82174ecb4774acc287a7a4898908eff32730473",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_022.npy",
+      "sha256": "30db4a51c83d4d4043c1fe4c062308dccda5e1b9475202173fce2d3bfff6371a",
+      "original_file": "sample_1_00022.tif",
+      "original_sha256": "068ec35a04a77a1d01a220f50eb03b735193834ddd854e719573b916dfaec8a4",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_023.npy",
+      "sha256": "7a9219c9c5b88292c604e95eae13bef80d689e1affe9a5e87776beb4493a7e77",
+      "original_file": "ref_1_00023.tif",
+      "original_sha256": "30e41ef0ec70e3b7c910ca72a4067d14c407e7019507c99a78f98cd32aca5df1",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_023.npy",
+      "sha256": "3d66fcf1e1e895198e376d33c3839155c12124608c3158d55a30f3c0c60af451",
+      "original_file": "sample_1_00023.tif",
+      "original_sha256": "d1f3b1ccdc8679034ab4be6604d4fda23a3064f37bc4bf536c87b105f521b9c2",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_024.npy",
+      "sha256": "4dc4f6424722beeacf5985b275655654deb6f66b861060f7a1e775bdef663ce9",
+      "original_file": "ref_1_00024.tif",
+      "original_sha256": "b2a19b29f8084dc64dbe8f1178809bc60cb7859376a372530a701dc02a2bbde0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_024.npy",
+      "sha256": "9097aee8b8155270b2888ea1a0da870f3ef7d63ba9cf8893b83d4a4ae9949328",
+      "original_file": "sample_1_00024.tif",
+      "original_sha256": "09bdf720df34d3e8ca0b784d45f96108ce3d52109c939d1ff3ae5eecbf21bd65",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_025.npy",
+      "sha256": "349ef6dea8106ec9ba55fac2b0af97d3457b174e6ee14cb7526936eec9a06115",
+      "original_file": "ref_1_00025.tif",
+      "original_sha256": "3f5d2ab024a22af879d65e8a03598fb50041a6747632781ba82a1086cf777b95",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_025.npy",
+      "sha256": "282d866e6e583e4efffe60c77890d04f91328daf231908454f0ce00edd4a24e1",
+      "original_file": "sample_1_00025.tif",
+      "original_sha256": "78a420defd1141dcd9934732d78304667cf09a37f4a32af72dc5a68357eeffe8",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_026.npy",
+      "sha256": "10c8a0905525843b9456aadc132f49ea4cb9b1ef315a46ab2589918ed8c2a1dd",
+      "original_file": "ref_1_00026.tif",
+      "original_sha256": "5ae40714889aa0caf20b859f5c716be05af7d8ba1cff3413d89c92d06d5cef4d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_026.npy",
+      "sha256": "137cdc6456d9bc6b94b7ab9baa284a36f43002030cfb7b08a9d26399aee33cd1",
+      "original_file": "sample_1_00026.tif",
+      "original_sha256": "e3b06bfc3d2d996d033507ab5707120240eb9de8ed29c073d748ca26022dea38",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_027.npy",
+      "sha256": "fa6c8dcf7dcc50a949221e8f29e74b186e828cf31f310930cd6ded167d40c4c3",
+      "original_file": "ref_1_00027.tif",
+      "original_sha256": "b991db8589898eb9065398c8a45505db20b7d9aa7d12e48bdfbe4f00fc669c2f",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_027.npy",
+      "sha256": "3502b518a410600f99d2e3366ef0e41968cb1a5e337e709339ec7164a7565df6",
+      "original_file": "sample_1_00027.tif",
+      "original_sha256": "de060c376304e1d4b08ab93de755819d3485a8e18cc72a858be52820612ff004",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_028.npy",
+      "sha256": "8c738eb92bdf5d0d718b3ab32cf1f4aa671375d1bea71f87c938b2f55feeb325",
+      "original_file": "ref_1_00028.tif",
+      "original_sha256": "7ebc5632b442737c198b9557919e3d426826c2deb58b6e6967af86e440bc5173",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_028.npy",
+      "sha256": "0fcadea0149af89a096c1b80bf26975d6c4b64801b9ee0baebaaece7ce0ffe61",
+      "original_file": "sample_1_00028.tif",
+      "original_sha256": "f9a9765940536e5767e95f6871f84463c91539a263bc9d791ab661bbd6fbfcbd",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_029.npy",
+      "sha256": "60e548d1c9a14095409a15c0d883d874774066fc13fec29e8e118d14c94564c0",
+      "original_file": "ref_1_00029.tif",
+      "original_sha256": "5ae3fd8f8ce5db01601e39a54053c261426129f18517341558fb946621b16173",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_029.npy",
+      "sha256": "6996c99807472e5cef5dabd3681a64fdf8538c528a60fc8d50f69afff7140b54",
+      "original_file": "sample_1_00029.tif",
+      "original_sha256": "36a8b7c8ef1f728ba753e8682ac04c5dc98fda1925101eb5d96f040d2309ed53",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_030.npy",
+      "sha256": "7551f924289e7966867a2452157d47f897339272f437c5d047903b200bbecbdc",
+      "original_file": "ref_1_00030.tif",
+      "original_sha256": "9c1bdce701b68ee9de3d11a07d93972751cdc92ddbbccdc5b39c3da508367a0f",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_030.npy",
+      "sha256": "90cdfce9518a33513a252b208642132637c23ccf04b63624dfa01924887f028a",
+      "original_file": "sample_1_00030.tif",
+      "original_sha256": "8a18fa3e180d4791b6cfc3fa6a7a852ab02ebf2da840a230de705954665e9ef8",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_031.npy",
+      "sha256": "c32c9d22608eea403745d0d9447186649a0cf18d6a777febbb1337729fc9a0e8",
+      "original_file": "ref_1_00031.tif",
+      "original_sha256": "dd5e5a167b7dcc8c2c277bb44cd1a5b90b98badc0a6cbab87a86a1bc76a81219",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_031.npy",
+      "sha256": "2f242e0b440c6a73fba36fa9c4486eec10b88ba3ec512707d8b48633be2fcfa8",
+      "original_file": "sample_1_00031.tif",
+      "original_sha256": "b428164a34c7ec48b8d4ebd9f89764e325a87f2135d6a316668929f6caebd241",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_032.npy",
+      "sha256": "023ddaeea1b49ffa90e9a2d42ca1bbe266067206c2315e5357eb48f932ee8cb3",
+      "original_file": "ref_1_00032.tif",
+      "original_sha256": "498d275e6d96c130ae127f6e069a71fe4590019579a387f281a54f04153375c9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_032.npy",
+      "sha256": "154e854a516a825345c7c1f3ae77fc0e40e7f81c1e547470980bf9f25fb16b16",
+      "original_file": "sample_1_00032.tif",
+      "original_sha256": "fb21fa6e6fa73521b609e990c05ed1cf2e78eb87fd52984ae7dd1de8bcc328b9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_033.npy",
+      "sha256": "09f12253e018d5e9d184a76c3f275a8ff466730ce4264fbfaad1423d2b62d811",
+      "original_file": "ref_1_00033.tif",
+      "original_sha256": "544e925491532be6b7eb525eb45d1204ab2c8b947275901daf91259b501684d5",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_033.npy",
+      "sha256": "d1409ebbd70bc210083e7ffccb255fe35f251b03084876b33626a4b1e2a8e142",
+      "original_file": "sample_1_00033.tif",
+      "original_sha256": "bec7547423ce9f038f1df40dc9971d707eb45f768403e3bb8f812753612e7340",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_034.npy",
+      "sha256": "51743ec98624ec207d83da272453b0a9549b52cfe241a30e597bb1990ba7a3a9",
+      "original_file": "ref_1_00034.tif",
+      "original_sha256": "47a8b832340745a54e047ffad656debb9aa7f95a3b43338f8e6ad1d2d432661d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_034.npy",
+      "sha256": "1b8a88e9b24cd4a731ccade2f25993c365622431da02cd5bbc35beda9b8ca1ce",
+      "original_file": "sample_1_00034.tif",
+      "original_sha256": "eec29b894413adfda43b8579ec7fee538ff7e1d17aa1cd91ccb349a8392789e0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_035.npy",
+      "sha256": "c9ad2ef7080b278dd03649bdfb520d0f06cd897ea380e36c63f5355889af83b8",
+      "original_file": "ref_1_00035.tif",
+      "original_sha256": "fa0f63b9cdc6ed60170c8cad8e0ccbf074f4aea41da8980425623916cee11f12",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_035.npy",
+      "sha256": "f2734aaf336e2b2dcf403899e75e4fef37d892b653d5df6a1eadfef2b0f951f5",
+      "original_file": "sample_1_00035.tif",
+      "original_sha256": "9696fc770156ad499b4258ff9b7b538813fe1b30e241e9a21ad842dad8c8c693",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_036.npy",
+      "sha256": "7288e25357d390bf988126fa8879007c7c4a57798546942d5fe5a97df8f39984",
+      "original_file": "ref_1_00036.tif",
+      "original_sha256": "88db0cf78ca4bad4e0ef1c144c2703ec5efa3e398ddd77243900fbbabc2cf997",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_036.npy",
+      "sha256": "a6101f45aeaae1c6cd8197fd5753ea1b8a8d2a496f0207aaff6f50d2e3fdf4d4",
+      "original_file": "sample_1_00036.tif",
+      "original_sha256": "04bf2d75a15b9db2715e9d4c70476ed3540af45048a4ddfa94af866e8855b9b7",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_037.npy",
+      "sha256": "faaac022ee575292ee9ae554190c4676e78de2de23152e81d0114c6fc9b2c7fd",
+      "original_file": "ref_1_00037.tif",
+      "original_sha256": "b5a923378033c6f78133ea129f22bf5b5e097a6092c346e3b1f925eb8ff2a98d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_037.npy",
+      "sha256": "15c36868e6dffaa617c40f7b873972ab2268487d5003b614b7986f9e00e8fae9",
+      "original_file": "sample_1_00037.tif",
+      "original_sha256": "75a77a09440bb54676f4bfc25d70517d2c62f060e21cf21868cdd7f999095c20",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_038.npy",
+      "sha256": "bdeddaac7e63e5cdb1ac9fee81922b1097b780aa526c942701a97a33432287a9",
+      "original_file": "ref_1_00038.tif",
+      "original_sha256": "9da10af4405f2301d9f58b6e7d588c7e18440513f0c3267afbded1aa5ef169ff",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_038.npy",
+      "sha256": "2455060c4e56e6063c0c12f5c95a4915113af61ef8fc35e6d3e1191509fa9518",
+      "original_file": "sample_1_00038.tif",
+      "original_sha256": "12a4af11159fc5336c9c3c7cbc3a1143d139e19267a7bdea9f9eee0c35357472",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_039.npy",
+      "sha256": "04301676965d517b09bdc5f239f7c72c121fdeaf2bc5783ca55bf66d1cbfdb0c",
+      "original_file": "ref_1_00039.tif",
+      "original_sha256": "c8dc162273fb2b65a32f90ee85a259d54d943eef5a9105af0719d2f87663d32e",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_039.npy",
+      "sha256": "a0657adf7b4134845b9338799f66bf7fbf46199a04cc4a98f7e65629b5342ea3",
+      "original_file": "sample_1_00039.tif",
+      "original_sha256": "ffec4f05b4f45512eb7f8b42802d6b6ea51bd6b3715e935332c29cf7e2327420",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_040.npy",
+      "sha256": "dff3673cfb85477c4472a03af6f45d763e0b4c2ea7b1d96e58ef4961147103d8",
+      "original_file": "ref_1_00040.tif",
+      "original_sha256": "7d005faed83517bcc66d0806ab31c0410832ae9e2a66d2be669aeac93c2f52ef",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_040.npy",
+      "sha256": "9d45c62456250e3d103844dc1468be80fe82661796c8c1aeeb5b07fa1ae0c8f9",
+      "original_file": "sample_1_00040.tif",
+      "original_sha256": "4637b768531d53394210f44ea73baf9937e0cb106a44c1be9e55047d68ad3a7a",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_041.npy",
+      "sha256": "a7b94ee49295120cfc6281f738b4304ae76efa6849b8d881c5763fa24271f78b",
+      "original_file": "ref_1_00041.tif",
+      "original_sha256": "276989b6b2e63316f2980060e573fc8b315dd6ab0c7cc96767916b85bfe259b3",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_041.npy",
+      "sha256": "762883d23c3b6353e473eec32be24da40580988e3f6bf5b69b651c90ffd5a5f2",
+      "original_file": "sample_1_00041.tif",
+      "original_sha256": "2afa11650f0ec7f3cb5a94201ba8e53bf4740374e21ca9bbdded6f9546ce5398",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_042.npy",
+      "sha256": "bea8969b7afd9230f5c441ef83c6b4446b376af2c566ff9f27c1bc7cd7a0ea1e",
+      "original_file": "ref_1_00042.tif",
+      "original_sha256": "d386fbbe35b939c78588036674dee71a66b26b110978f4d6791b288e13176f4a",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_042.npy",
+      "sha256": "c7c406fde9873f155b17413325a42f43dc27a51aea3c27d469b90d07e55acff4",
+      "original_file": "sample_1_00042.tif",
+      "original_sha256": "b53c64930dfe73bfc02520b4094e8d51173e9a6cbd7f8173900ef31a77fccef7",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_043.npy",
+      "sha256": "95b125c2a1444f38a15d3f0f8b4e9c51367e0a1b5b498d5b46c08a300642e1aa",
+      "original_file": "ref_1_00043.tif",
+      "original_sha256": "772dc1005d0a73436e98fd75146fd8f7a8f8f5168ae71cb86b91903775c1cd05",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_043.npy",
+      "sha256": "4c030ad827743c652136e99cdf4d76d6416c3bdeaca3454bd7006e5c456b5651",
+      "original_file": "sample_1_00043.tif",
+      "original_sha256": "9dfc9160f7205dc2a2d7b930314ee55fa39fe7740c7ccbff24ba4621a4aa0705",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_044.npy",
+      "sha256": "b8fa9cc06a35b700082add312014d338374a3ace3a00dff2aca2bcf13d7899f5",
+      "original_file": "ref_1_00044.tif",
+      "original_sha256": "7fb54588fc0fc114204b815de17836a8e7dfe741016e24b20c9a80669fb35770",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_044.npy",
+      "sha256": "75b650896b9b6b428dfcd21598f6d258860cedd2aacd543eda14282decc940ef",
+      "original_file": "sample_1_00044.tif",
+      "original_sha256": "78ff742f2df95a557c9db02621a68822d3a067d6cd4129f7732300d85428ea12",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_045.npy",
+      "sha256": "92d1cb7eebe3cf575ee5e14d1296f3ed8999ab72892f1bde8908f481eba33fcd",
+      "original_file": "ref_1_00045.tif",
+      "original_sha256": "1a8e9f1ec3303cf91cf7e767970fc400c3658885730bdfddff7e094cae2d3047",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_045.npy",
+      "sha256": "d1febcc1e3bfd467e1d77e6eb1747e8645f08b7bc2b750a80fe5fe23dde5967b",
+      "original_file": "sample_1_00045.tif",
+      "original_sha256": "337b79781e66815c1c2ad1cf4dd4b2bcc2afceef5d219b49698dec484c85d0f7",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_046.npy",
+      "sha256": "b660633f59cd24ea5d97199e2056bd07010637eb37b5394f3fbd3bb9708e3358",
+      "original_file": "ref_1_00046.tif",
+      "original_sha256": "ec14bddcf176150954acb8a4a5d722f3712de562303cfd37e8f058eb06541358",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_046.npy",
+      "sha256": "8ec010cd13760045f4addde0982ac38bf57fbc20710f5e04c1742744d2e1af1d",
+      "original_file": "sample_1_00046.tif",
+      "original_sha256": "7688a402270310aed255f83eb519efc4902ff5f5be7c498c406cccd4383c16ef",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_047.npy",
+      "sha256": "349e1596cd77951f568a3d866814fb504bfb1e80d81b1c411b8ded15765605e6",
+      "original_file": "ref_1_00047.tif",
+      "original_sha256": "f2a170e3b93329dcaac7c647fed22f0cd851982c1df92b3318e8b4d9a000b7b3",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_047.npy",
+      "sha256": "c545cc4d1185c546cf50a3da9638489cffff1fd5af2f136c947dbfebe1531a83",
+      "original_file": "sample_1_00047.tif",
+      "original_sha256": "ac34ef548f749dc4c076b4894161989d7fbef2d43ffa1ef3e1379b6e422e1091",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_048.npy",
+      "sha256": "91e68514fcba47e30fcc67ae272e2cf38e0f26e89eb113bc404e51237c2cd94c",
+      "original_file": "ref_1_00048.tif",
+      "original_sha256": "00c6cc11d0d2c041cbd9e05c58627f3c93f9c915862a82f81419644ae431cad9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_048.npy",
+      "sha256": "6e8551810e19de96fbce5574abcd3347712eeca362ab0684c21a93b4e90c5ed2",
+      "original_file": "sample_1_00048.tif",
+      "original_sha256": "e3a965d0090a39a57afd5e17fecdb57a1f8906192c7f060eefbe52c2e830d9f7",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_049.npy",
+      "sha256": "ad659852b7bdf1b59cf6ce15734baf01de44a988ec37a9523d20901b90f9d86b",
+      "original_file": "ref_1_00049.tif",
+      "original_sha256": "20a92a4f2f03bc1362f10f8d4834514dafd524a8e86ee179dab0b62c074b7296",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_049.npy",
+      "sha256": "b1e40c60cd37aa422b66a372a39136d219ea27b04042ce6be7fdbfe80fd732f6",
+      "original_file": "sample_1_00049.tif",
+      "original_sha256": "6280bc6c26d7e5099e89dce5e98d1a73d6ad9014f47c9e256eec9a141ecbb54e",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_050.npy",
+      "sha256": "cc618d99894664095f5dba02302663cf520fed71bb621412df7fd1fca2b83530",
+      "original_file": "ref_1_00050.tif",
+      "original_sha256": "07fca1021cca3e37d00cadc3767cbf5e3f1d1089de2ccdaa1761b1d966a3b7ab",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_050.npy",
+      "sha256": "439a106e853614b1a3af02a7c9317e0290784ea0358641a85ab385073c72e9e3",
+      "original_file": "sample_1_00050.tif",
+      "original_sha256": "f7dc6d19c971ee6fb3b43f9b0360547f3afd5500aeebecbd9344a2889b38eb64",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_051.npy",
+      "sha256": "b48818ac4ac05458fa83db544c0467c8700555ce5addd5e4efb059e6bb540db7",
+      "original_file": "ref_1_00051.tif",
+      "original_sha256": "7473d6428161c51d10e333b5968a16f2bfb2557496cd0067bae869b667dfd882",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_051.npy",
+      "sha256": "df285fb51c9a1408bb1ace6eb418f0e740ef605d573ad9d81debda66e6ed7bc7",
+      "original_file": "sample_1_00051.tif",
+      "original_sha256": "8738b65caf188b43e91427747fe3caab07b8ae064ab929cb7ce9581c8602f3a7",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_052.npy",
+      "sha256": "691935e4f36a3841b2462fb1b78dbcd719e679134530e79da403cd14e967ddbf",
+      "original_file": "ref_1_00052.tif",
+      "original_sha256": "40c326d4a1d473c3e48acee153ece4ca3bca0657a2e11e0d92fd33d41a4265e0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_052.npy",
+      "sha256": "0d0d409bedd226be42137d37d48da09f0d7187e62474ca7601da75326be59ec2",
+      "original_file": "sample_1_00052.tif",
+      "original_sha256": "bf19de1cb73916290975e9b191ee731b8003bb6d39eef3875cce0f5334a332a3",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_053.npy",
+      "sha256": "3b9abda20fc7be8324c6d9bcc34181e408e58404658eb5af7e5593eb4dbdb955",
+      "original_file": "ref_1_00053.tif",
+      "original_sha256": "7b1498565c05bdac70b9894d15a3dcd7527a9896a6b8f00b9b30fbc1724eec3d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_053.npy",
+      "sha256": "c1020539a68fde3053d7ade7bb6b8f3da013be97b29d1c7138051f07c94ffea8",
+      "original_file": "sample_1_00053.tif",
+      "original_sha256": "1d251217d64b5b1d65ace6504d1e8a3a90df8de4534d58ebf1cb1e1b0cb5f86c",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_054.npy",
+      "sha256": "b9c29ddaf31a40b6cff54981facf77483d3bd385113fcd7c10b1b1cf6faeb96e",
+      "original_file": "ref_1_00054.tif",
+      "original_sha256": "a49488a7bae6f970f52fcd38affae919c19bd978b970dc5e5bac147bc6687ba1",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_054.npy",
+      "sha256": "37f787f0bf28fc82742e9706762dcbfa4fa2d1a04b227737ca50498527aa21e1",
+      "original_file": "sample_1_00054.tif",
+      "original_sha256": "a081a96266847713b82091571766f0364c728621d92fe9dbcb61078e20341cdb",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_055.npy",
+      "sha256": "b7390a7448f3f0d22ee16dcde7d5fbdd14330f57545fbce29e3e4877d8e2a2aa",
+      "original_file": "ref_1_00055.tif",
+      "original_sha256": "1d3544f2e55f83be8a3a5f54caa594ef6f2c04e1914e0df7accc10366dfc1193",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_055.npy",
+      "sha256": "c4ff61a4efaedb83ca5f633f544812e6a7da3b9b1dba425c8cc7ee6c3018ba1a",
+      "original_file": "sample_1_00055.tif",
+      "original_sha256": "9650ccdfd9723465b9ed35aadcc69352fbba104bcefb96157c773e1b4c807fed",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_056.npy",
+      "sha256": "f923d7ef137f3b9db41fde749be4e6774cc6a3e97bb6de0f9f363839133e1f13",
+      "original_file": "ref_1_00056.tif",
+      "original_sha256": "a71d7f9f704a5ce14ca35f2d820b8ac846b274c644bd26247057560b55dc84e2",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_056.npy",
+      "sha256": "cfc43df78ccd786a8d46bd6e9e45764e95311853c19e6c81abebd4c13f8359c4",
+      "original_file": "sample_1_00056.tif",
+      "original_sha256": "8b16128f0cf284307bac0bf898fdd63934e9c612ac73b793a793a2e9f1b8fe25",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_057.npy",
+      "sha256": "070d19070a6065a91aba55a25399de847cc26f0775c236de807cbb2ffe8ff489",
+      "original_file": "ref_1_00057.tif",
+      "original_sha256": "dd06010bd4a0932bb1690ff8b02dd22583155405725676f882c186b4fbfedd18",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_057.npy",
+      "sha256": "6594cc4d767cbe9c2aff14993e78bb97e1c1959d654dc7e23ec86d373d876bed",
+      "original_file": "sample_1_00057.tif",
+      "original_sha256": "85073ddafd5cae377d9828123b05b43bf1e0591a3b14579f9a381277e185158e",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_058.npy",
+      "sha256": "f4e5d6e02b852dc1cec31c9c44850839ce0c68e2e35184dd6a61aa895134f8a9",
+      "original_file": "ref_1_00058.tif",
+      "original_sha256": "a12f72e2fcf122b0bface83cf164ba7ba612e8160df3045137f29248c350c6ad",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_058.npy",
+      "sha256": "89744e4d9d1dbdd5e4d0c1fbf9b7f53cbeb47f43e14297ef699b6103e474ccd4",
+      "original_file": "sample_1_00058.tif",
+      "original_sha256": "4654b4b3b3a9e14c77b019f0bd598d0c1840157875bc62af243ccd68e76fc787",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_059.npy",
+      "sha256": "498a0ae5df510978c8b1f9074ad689633ae360a7836a2056810a2f5c6994d0ad",
+      "original_file": "ref_1_00059.tif",
+      "original_sha256": "e9e5e091c0c962bd16ef2dc254cb2cd801091a3f3944830dd93baba7e0e60cb2",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_059.npy",
+      "sha256": "f3e6c23f53cb79f0ac0b5396158bb85e4ad4e6be2774f4b91cda17d3d47e6e49",
+      "original_file": "sample_1_00059.tif",
+      "original_sha256": "e78d71c95a81c49107f5950ae9acf79c295ca5bb4715841aaf89a8a05849d847",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_060.npy",
+      "sha256": "0b0d51837e1d3f2926e6b6989409f3c9e3e1f963c592c230aeaa1e9337c63c32",
+      "original_file": "ref_1_00060.tif",
+      "original_sha256": "aa7efd3fb45f960fb2dbb4ee21cf4d37dd04ff52815c6f96a0c096d213e075aa",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_060.npy",
+      "sha256": "d2300d1c63bc9aa6e0b7e76a0db6171fc8057dd1aa42e45027a03425f004daab",
+      "original_file": "sample_1_00060.tif",
+      "original_sha256": "a3cb7ac2b0efbc7b42cb6cc2ac53b2491e61360174827193f4d7c56d3ccebef6",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_061.npy",
+      "sha256": "a64a353af682a87014d1e6b278124c602ce534b9dcf0a8245f3e238df705cb68",
+      "original_file": "ref_1_00061.tif",
+      "original_sha256": "1b8386600b273aceca460a0061063fdfc520ca95734d3d950756d09defa38b7b",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_061.npy",
+      "sha256": "d57d75f9c66045b514e498f2570d6458cb7a46f29ec4d06fcdbb36818aea37f5",
+      "original_file": "sample_1_00061.tif",
+      "original_sha256": "b53aec6ff2bef08b99c58f42a92d9fe13bf683e2f07230965fe16ce0b909b642",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_062.npy",
+      "sha256": "ec036751d27eaa6169375c7df02d1305b20edfb765fe27383bcdb49b33adbae4",
+      "original_file": "ref_1_00062.tif",
+      "original_sha256": "f5b5f24c5fb175614e9f15d980d040f975aa0672cfbf102d8393ad23419aa630",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_062.npy",
+      "sha256": "864ce87a498af37506d632ec7a37a65232d6e3424470127ea8af2e53838b3175",
+      "original_file": "sample_1_00062.tif",
+      "original_sha256": "003caca5ec047191427589910b2046a3dfcd2a4d971353e75fd936051ab1f002",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_063.npy",
+      "sha256": "8da9f9b3cf19c4f36cfe691c4ad8d0de3d5be77419b9896d326fbc3cfe3447da",
+      "original_file": "ref_1_00063.tif",
+      "original_sha256": "da66ab1bb0922f07a23a54b80800ed8395e3940e833723ba5d6a80873c9375e5",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_063.npy",
+      "sha256": "cf42d3b0a7e9eb360dfd0eb80276f130c8c0c876ec43a80520cfaaa12f794588",
+      "original_file": "sample_1_00063.tif",
+      "original_sha256": "5d9fe780a81f93c727e7acc950857a130d2c55e87d993b7f057f100f6098b8a9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_064.npy",
+      "sha256": "a5ffee7fc4c7b641eb32b00d0da13a5b2bc963e0865b20685c4e9ab6132b9a76",
+      "original_file": "ref_1_00064.tif",
+      "original_sha256": "522b2a7a9a15fa4d0e69fd21252f0d64158ada684db48497ab631ec4b9641931",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_064.npy",
+      "sha256": "4bd7174b98301ec7c77cc568f6604578c36500c48187ccd55264627604829192",
+      "original_file": "sample_1_00064.tif",
+      "original_sha256": "d4d0d733f0d0b970b1f740a26260593c3719161abaeb4fe6773ece1543d1a519",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_065.npy",
+      "sha256": "3d21405e1ed17a5a76294582e1697e8f75e3eaf6dd57a48354126ca45edf456a",
+      "original_file": "ref_1_00065.tif",
+      "original_sha256": "437022fa162cca62a4f3fbe83db4cb51c6b1b88428682679206d959251f9cf1d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_065.npy",
+      "sha256": "47bfdf39559aa99e2ecb649243867c14002603c5732ab7f78c5b088203a58104",
+      "original_file": "sample_1_00065.tif",
+      "original_sha256": "679ec3502f6750dd91141c7561c985ba433c282d8b5a9bfd42dd40076606ca0f",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_066.npy",
+      "sha256": "1ab2ce2df621fad01541888e5ecff3cd0dbb1e098f873708912a90e9e6690be5",
+      "original_file": "ref_1_00066.tif",
+      "original_sha256": "d563e12a5ac4dc13f58828ca97e9d47bc8642175897d59004021a57ac8f52093",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_066.npy",
+      "sha256": "cacc54e58ad316fb946ee2029648a1466a9763b8fdd9b28fe54c9db4316d7302",
+      "original_file": "sample_1_00066.tif",
+      "original_sha256": "13c53a710ca22602378758c9cb5426fe53cf2fa3f6b6273bb32af46148c837d0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_067.npy",
+      "sha256": "f40565af67dd8a1555410354662083163545c8bd9fa619f047eab626566ee220",
+      "original_file": "ref_1_00067.tif",
+      "original_sha256": "e49189e96f4fa3bdec4c68a90921765aef8e08c8508595a77410b03df13e1a60",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_067.npy",
+      "sha256": "6600acf30574e41de74254c5ce2cd48952acf46c627b4bec72c372e1e63f4ddc",
+      "original_file": "sample_1_00067.tif",
+      "original_sha256": "ea43167928eeaaec43dce312e7fac904c26158713c0ab6acad85828b796a3e46",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_068.npy",
+      "sha256": "1f8d901a18a5ae90a87f16a10d6092998d5f4818bf61db3c29fd4e1a027a7847",
+      "original_file": "ref_1_00068.tif",
+      "original_sha256": "7885f76537e18192b7c7051f00f28ae3e2d1e7c9595570da9ab3ff1a64e4b402",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_068.npy",
+      "sha256": "d838ab505906d7ed7b0508706058fd631a1868ed35297561b00f6f11521cad45",
+      "original_file": "sample_1_00068.tif",
+      "original_sha256": "08dfd212f5ad4fde3bee975f2dd98c72343cf16d8653c72751e4214cca77f1c4",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_069.npy",
+      "sha256": "7347c806e304af5f02e55ff60ea010b72271505e7d5261acc95bfe34510d98e5",
+      "original_file": "ref_1_00069.tif",
+      "original_sha256": "8fc27ebffd8cde5a7acdf04dcec72295a28827791cdec9aee25aa1e0d806be48",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_069.npy",
+      "sha256": "147c8611f80790571dc0b7fff30e2c8219554844b0f04dfa7bc64433bba0b7c2",
+      "original_file": "sample_1_00069.tif",
+      "original_sha256": "66fd934c268c153267883db26a5ac7b262eb7871316f624c1e6d3421d623ff6d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_070.npy",
+      "sha256": "b331ea27a5461136df0c0659dcb1690fef32b6cb615836f7ec361fa0fc3f478d",
+      "original_file": "ref_1_00070.tif",
+      "original_sha256": "4d938b305d8a8ee9b65bdaa66400e93157e9ce4436e171153aab405524b5724f",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_070.npy",
+      "sha256": "f63758497896c3bebca2fe12f2d7f3d6d632c683271fb02a911ff1b61dcf014d",
+      "original_file": "sample_1_00070.tif",
+      "original_sha256": "987a1287d0402b90b4e93a6bebeb09a6833f60038513d35edc788ed8b6f841c8",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_071.npy",
+      "sha256": "80f1c776c831190db509957f8659ed16423a3a9846a004f230184a6ff683295e",
+      "original_file": "ref_1_00071.tif",
+      "original_sha256": "25bd3463a166e67a8a69944c74591ef79b2cc93b6e5c1059c9a957a041f529ed",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_071.npy",
+      "sha256": "f920af4ccd7b7b98b279ad49492013b4c07ace65c030b9938038c23db951bf14",
+      "original_file": "sample_1_00071.tif",
+      "original_sha256": "0524b57911c35b25f2c5ab2bd1b58f0eb126059e55ad2010c06e1085f33341b9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_072.npy",
+      "sha256": "fee5fb1af93df78d4cd1d529d19b6f815d553546fc7880c88a70e130bba4f7cc",
+      "original_file": "ref_1_00072.tif",
+      "original_sha256": "723c12bdb5a3f319ce68a674b4b946d362b8d738f18035d12c9fb306662207ea",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_072.npy",
+      "sha256": "b7f06d3ddc1dc2dd8ecfe75da3a64fc40c122989aff6878fa746f3c858172bc3",
+      "original_file": "sample_1_00072.tif",
+      "original_sha256": "2abed5b06e008c7e864eedd3b60bfefe8b2c5dfbf0341791bfbe74e08e5b3363",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_073.npy",
+      "sha256": "c1181f05e5381aee178367d213ed4f07c6d1a5305174fe1e157210a57a511abb",
+      "original_file": "ref_1_00073.tif",
+      "original_sha256": "92e5a2fd705e68b7e613c7df2365df23f889010b6b095c77d7c4bd46b7899760",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_073.npy",
+      "sha256": "335b777d11b0a0e5b261f2399dfc44110daf27452b9a6ff83296a59aa698ab78",
+      "original_file": "sample_1_00073.tif",
+      "original_sha256": "3574f713eff468fe8b7fbc9eddc54a752f76257f6e1123f172b2b00cdf71852d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_074.npy",
+      "sha256": "efa688879bb0b327cf5cbb27eb821223b69f60937178879e63a358e61b37ee6a",
+      "original_file": "ref_1_00074.tif",
+      "original_sha256": "4f194492f023ddf37b956e1846b0e005477904fed649e3f36285cbc15b454832",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_074.npy",
+      "sha256": "872d1332fbbe58fb7b232a67873deac7222d03f9ea35062aacc6cf25d78a0891",
+      "original_file": "sample_1_00074.tif",
+      "original_sha256": "5d45fc1d831c6031827535e406ea357c062c405bfc87c83fd5ba29f6d3c431ed",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_075.npy",
+      "sha256": "87d2d620ea1c1c5b3932d261b8f9dd17b25163ac60215c0ad3a40ac0f44bcf52",
+      "original_file": "ref_1_00075.tif",
+      "original_sha256": "dba632a12692bfdafd8aa0a5de28fd81ada19064de0eb7deea03e6975f519939",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_075.npy",
+      "sha256": "c70ec3433207529f08e2b5b8931f08d9113d595b823a734b5f39b0029739c01d",
+      "original_file": "sample_1_00075.tif",
+      "original_sha256": "be3b7d07e5ce56431ba00e5d65d503b1532bf5e292fd576b4e335f7d1ce23623",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_076.npy",
+      "sha256": "bf9204c42a52634def640846bd36000fd165fc3aec810b639b8e64227683f1a1",
+      "original_file": "ref_1_00076.tif",
+      "original_sha256": "def2cd6f90b3770e569fa72af2c375d68882015935462d4dbfb5e2220cbb57da",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_076.npy",
+      "sha256": "8469394738ff677e51eb3d2bfdc8650f752fa930f3415264ab8752a3d9fd82b4",
+      "original_file": "sample_1_00076.tif",
+      "original_sha256": "b14013f856c99f6ea0e92d7f0bed92c8a4160db1bdb2189fbcfef4f623a095e1",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_077.npy",
+      "sha256": "7254ed365eb4a0f3b47659bcdd2bb43bc437172bc1c07b400a740a7b82491943",
+      "original_file": "ref_1_00077.tif",
+      "original_sha256": "f85b811386cb767303d811387d34e7769538a4989e7dd17a1c0d103e535d2b5d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_077.npy",
+      "sha256": "5a95fbe5365f55eb974eee7961e4da89bb7d5c8c0dd53e96f40943494e5affcb",
+      "original_file": "sample_1_00077.tif",
+      "original_sha256": "f2a47bfee00da07be1a1eadf776cb1d41edca4c6c2667be61289665148418d64",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_078.npy",
+      "sha256": "40c392a87a851f5b8ac2a48f4a55e4ffbdd27b8f709e84cb2665026cceee3e33",
+      "original_file": "ref_1_00078.tif",
+      "original_sha256": "bd6e07f0b45a22a26b37b1fc0ee3e2a886f63c0f84f3481ff9de6c1fb7c5622d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_078.npy",
+      "sha256": "897c7d204f25a0b6db02eb46cef4dc02f08966de6df6e52670f4c19c076cc6d9",
+      "original_file": "sample_1_00078.tif",
+      "original_sha256": "abcf7573be12e2b0a36c01f1d564699656d6b2c3ebbfcfc00245da7cb6dbf442",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_079.npy",
+      "sha256": "22cb10faa7da59b1403e15eb042081a33813cbe3217b9ea46bf684fbd4983402",
+      "original_file": "ref_1_00079.tif",
+      "original_sha256": "b4d995adb4b277a6e3c5e3387b7601184635cfc144616e437c3b7ef9e89645e0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_079.npy",
+      "sha256": "54dc7f8ddddf0b0eb501421cd8604b15b7646c60b340a85cc223f36e2df46809",
+      "original_file": "sample_1_00079.tif",
+      "original_sha256": "15ad2929a685dcea3dac244e0ceae9a85aabd6653108dea86c77379e0fe870e4",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_080.npy",
+      "sha256": "5bf97e81b7a6af3d34f7850d6ffb3302b804e0a87768e63a0b98b45283642c7e",
+      "original_file": "ref_1_00080.tif",
+      "original_sha256": "293d7cace12b2a13f7522517bca61f0c2f638463e3db6a9aa6574596f46d5ec0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_080.npy",
+      "sha256": "1600ce7195e99201ff549e0011631d0339462282c2b9bbb2abb5229f919ae2c4",
+      "original_file": "sample_1_00080.tif",
+      "original_sha256": "b712424650bc9fbc05fa2000b3e535ca15905619a12b7bd871006b654116e33b",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_081.npy",
+      "sha256": "4bd77c5f8528312f961db47b7f7836f7bdc94de4f188829a9a8aa1bba4f36279",
+      "original_file": "ref_1_00081.tif",
+      "original_sha256": "20b440603991b4bf1acc5e797d75aa51219aedeb814e35a2abdb7383e289fa2f",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_081.npy",
+      "sha256": "732b6868c3919180f054996b4d4685e60e40a4f4c30444275449749e0d4d7a75",
+      "original_file": "sample_1_00081.tif",
+      "original_sha256": "84ea5ff91309465da375898eef158b53fbac7e9ac76934350558859e4be88dbe",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_082.npy",
+      "sha256": "98f5f42af4fe244f30912f552eb0f1bc3d259e6caecdc650e075992bb031e1e8",
+      "original_file": "ref_1_00082.tif",
+      "original_sha256": "73df098ae85efcf8f4c35de94a840e06f428cb219eef802349aac6dbc2843610",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_082.npy",
+      "sha256": "222f2c4310110ad3b7ffbf667044b28950fbeb343093cb0b4d8a923791f82ff0",
+      "original_file": "sample_1_00082.tif",
+      "original_sha256": "c0f4815327d45c920b5959f9dc5c6ddb668f98499ade75793174a97996c52809",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_083.npy",
+      "sha256": "19a5e809ba2e9ce3b307ae52e1fb4c9bc11e6cb7941ad7f5d866dae050716e96",
+      "original_file": "ref_1_00083.tif",
+      "original_sha256": "e70306e53c456b34bbeb85ca2f7bdbb7d9a700b57c82c6facf45fa36c779f6f1",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_083.npy",
+      "sha256": "7d2ee01f24a91244c03dc12b57db5739a1a3c0776a677488c51c3eed19bfbc0a",
+      "original_file": "sample_1_00083.tif",
+      "original_sha256": "ff5f1993c20448556a0f96a2e572a0e63c0d12d9c7b4a6747baf0bb62f5cd1aa",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_084.npy",
+      "sha256": "7fdd2b5998ae588171df1aeee97d7aca35227a57bbaf659049dd582efb6e7498",
+      "original_file": "ref_1_00084.tif",
+      "original_sha256": "b4079ca4a1aeb8ad1e6a213c6d3cdb7ad7913adfde7a974e0d92f3d46881dcb1",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_084.npy",
+      "sha256": "b3d7cd4094fe45cb7425e7afa80d8e855e4482ebeb411982ad348b7ab4e53f06",
+      "original_file": "sample_1_00084.tif",
+      "original_sha256": "533d671a858b69b9e82ace77870d899d4f07436048fea979eb34142756a8e48c",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_085.npy",
+      "sha256": "77347443b3d3ef70cfa13e1412b6c83afcf874988329aee49d79b1a2ec312bc8",
+      "original_file": "ref_1_00085.tif",
+      "original_sha256": "27c24d6989823fb82371cbfb21f4c1e9729d17561be4c484bd0b808da0661a95",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_085.npy",
+      "sha256": "d30a17d72de201c6e94d0ccfa1ba8fc716d899f0c45dc03235785bcd7a8c97a9",
+      "original_file": "sample_1_00085.tif",
+      "original_sha256": "e9619709218a7614047dbd7d1bec53f90e6814afaa9babf2230678abce6fcc5b",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_086.npy",
+      "sha256": "a50ce2003a42f03093ce2d7727f4158a1f52a536dd820baa222d121e0700240a",
+      "original_file": "ref_1_00086.tif",
+      "original_sha256": "d60855257dc537b8b8b64a926aacea6b82a31c361f8a6c4c5ae6695d61301335",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_086.npy",
+      "sha256": "215d39505f3f6fa4e2f807909b80a22a7b9bed19fed3c1daa82ba58078d64fcb",
+      "original_file": "sample_1_00086.tif",
+      "original_sha256": "488e527924eb7320a6d2d4360eff98b57c160a72573e5485052a000ad7fc6f4f",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_087.npy",
+      "sha256": "fb4717c2f7d5828cd36739fba823a150f34880021170465d5a9d7635866f84a7",
+      "original_file": "ref_1_00087.tif",
+      "original_sha256": "bd8695294597041fb5d4f185cc078b718d5d7f09b5b18c7d4a8a318a44bcab07",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_087.npy",
+      "sha256": "69eb58cc720fa65b7c070d6c892c40699797b127d468e561ee88140dc7039a15",
+      "original_file": "sample_1_00087.tif",
+      "original_sha256": "47416cf7821dbe88d197a588cd0c9ee1ec39f48aa9621ac282dcd2f3fbbd8707",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_088.npy",
+      "sha256": "5b858d64f6d6a30d41ed98086d835e0176e1f8650b9c010b4168b595e41133e7",
+      "original_file": "ref_1_00088.tif",
+      "original_sha256": "27573e7baf56bb8511eaa8eabc6fef66beaf5b7dbb4d3a25f527939ead5e1e55",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_088.npy",
+      "sha256": "a4cdd4f4126f42d2a7530f81b09f3fd5b50dcb9bfedbd9e19a233f7d7dab440b",
+      "original_file": "sample_1_00088.tif",
+      "original_sha256": "e1e824db16ad2b4c325baf1bc4acde96f96a9ac4b8a5968c263bf0864d995173",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_089.npy",
+      "sha256": "c4ffb218502553b8054b737df67673cc9cbc0649f4fd04b1142fe81f78ad906e",
+      "original_file": "ref_1_00089.tif",
+      "original_sha256": "b114d143de50fdd1b3b2c05ba9fe58e5212d64007bb221f473fe898ba2b211c6",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_089.npy",
+      "sha256": "792b18e7741abcb5d0f6eb4323acf9780330004cc67609fc7cfc7fae6f3012dd",
+      "original_file": "sample_1_00089.tif",
+      "original_sha256": "d2091e8e0c26c2584b971f054ef752951a7e3d9d43505656661df81caf161d7c",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_090.npy",
+      "sha256": "e0f6a75f00551318622dc32d7f0ce506a03b061b5350a89ca906974cc4b15ee7",
+      "original_file": "ref_1_00090.tif",
+      "original_sha256": "28690c57e2970cd841dfd3fe442e38f5ebbd059d47cbf669d4b1ff5984208db6",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_090.npy",
+      "sha256": "f21867c88f68cc8f6456e16d3e3ef147df2011d60a1dad2636c1ace354484aa0",
+      "original_file": "sample_1_00090.tif",
+      "original_sha256": "bd50907c055fb79a5ab85f95c13e7039c0bc67564eb4f5e41947e9e1857856f9",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_091.npy",
+      "sha256": "baa3d6bded11815297ff47b91fe1466230f89b386b268e8af50f710f6907f45e",
+      "original_file": "ref_1_00091.tif",
+      "original_sha256": "c3a22f83e9c3616d7ff34d20c554e445819bccbefc527df3f2f36e73851a560b",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_091.npy",
+      "sha256": "0c936ea368252f3a0ea8140f6cbcb43cf564cf2fe34209f5f9ac62c0cc2ef9fc",
+      "original_file": "sample_1_00091.tif",
+      "original_sha256": "4025f8cdc0984069ab69474a1a64bd69c56341837992cdf5a1fc5e2c3f67032b",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_092.npy",
+      "sha256": "7e66376a7faa5700c43ebf274963fd4826eba24fbba45efd32ddda621c85fa83",
+      "original_file": "ref_1_00092.tif",
+      "original_sha256": "d344b377fd4843d67d65d851a71384cf0fe183d28a55cd0105985468a49714fd",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_092.npy",
+      "sha256": "48e4e838f79f46fed735aa97eb7f0c827bf0f009f6c9652ebfec8e7637227edc",
+      "original_file": "sample_1_00092.tif",
+      "original_sha256": "947b25d2c6d71f9fed2a12e160c24d608ae597a849e427d84287d0b454e1b980",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_093.npy",
+      "sha256": "04e9e36ab246e2ec6664c29e0d0b744a8d08e4ea3bacfb144715fe5e1f6708e8",
+      "original_file": "ref_1_00093.tif",
+      "original_sha256": "25533bc0b24aafcad8a621dcb601679fc7a5a893774aeffb6a2196faf26a0ec3",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_093.npy",
+      "sha256": "45842792aaae0bcb5b916d145f1b5048f9b117b0094aa441ac6a261394d8f5f1",
+      "original_file": "sample_1_00093.tif",
+      "original_sha256": "e251fb78ceb7945fd6fd41d520292f6f1d0d4fc4e19ee87baa051e8400b3ab28",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_094.npy",
+      "sha256": "7bf25fd5ee76705aa4af9884a80dd4673b921699855b10ed583430431ec9e0e6",
+      "original_file": "ref_1_00094.tif",
+      "original_sha256": "69b02c2762a1b5e964b99653dc6c93b77b54e00a77697e506bc1aaf5f599cd9f",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_094.npy",
+      "sha256": "425c92222bc5ccca5f29e8563a8687c43895a1229c3f83c51025f61f2bfabfba",
+      "original_file": "sample_1_00094.tif",
+      "original_sha256": "b16dd6f81fa628408cc50b7b16c92cba92bf94350ebf1cae5a5fd7d834c7c1cb",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_095.npy",
+      "sha256": "fdeb8c3060d676e9b66156a831e6842cf84b18dc874b377556557ab9661f7e8f",
+      "original_file": "ref_1_00095.tif",
+      "original_sha256": "b8c106bb641578e22121889cd2e19e6fb87762e1a998d65e63cb0ffbb51ea017",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_095.npy",
+      "sha256": "03e3513575474a30c09b0ce548ac71cd22ad411a6840b7db6bbcd85dd7fd0eeb",
+      "original_file": "sample_1_00095.tif",
+      "original_sha256": "43029e5879c4437a51ab92360ca0736fb77752e7e1cc8102f9b390534b022251",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_096.npy",
+      "sha256": "541a6344e52684eed6c55f17251412db766b5687211a9e71315199b3c3e7d389",
+      "original_file": "ref_1_00096.tif",
+      "original_sha256": "f0f8ef86897b8790ebb849425b22e6ae4cff44cedabda6e14ea8821afd581651",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_096.npy",
+      "sha256": "a005e044107fc82b3ba46712f6e986c68ae7f56cf949af8ef6a32e12287acefe",
+      "original_file": "sample_1_00096.tif",
+      "original_sha256": "c9b1f8b31fe9b27f73740d97b7b14a4f1caa06c08503d4976e90a62fcdfb5f75",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_097.npy",
+      "sha256": "330747c5228ee22f3813753a104566d258a15117c00d256afafa1bcf67bf6af8",
+      "original_file": "ref_1_00097.tif",
+      "original_sha256": "e1786f060e353d82c9188c5d461c10b5429efdbcfeca53beedd153311c486c36",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_097.npy",
+      "sha256": "0ee018fe7664fa1c6d651b28ba06380c16cdc710e4c768272da1e80acbf79fda",
+      "original_file": "sample_1_00097.tif",
+      "original_sha256": "18e9060e0b7d8d335605f48553e3d702bea1177c165c2a747cd5a7133b185ea0",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_098.npy",
+      "sha256": "ad81a275b52c70c377a47375015e4d4d3350ab8992cee009337662d5ce52900e",
+      "original_file": "ref_1_00098.tif",
+      "original_sha256": "d05e9e3194f37ca2fe532e1ed51b50864ffdc1fc243f3ff2b5dcf2e563074a96",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_098.npy",
+      "sha256": "7e82dd7b9045bb215e9d7d1fe2aafc063efe9dfcc466a6bb0b6cf93cdc227c64",
+      "original_file": "sample_1_00098.tif",
+      "original_sha256": "9a4fbfaef670621645dc88b43696f7e93d3be1a1974a52c432481482026f683d",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_099.npy",
+      "sha256": "e82126263db3bb9d2b40625105dc9e8142e2d105b131aa7182b67c6302a537a1",
+      "original_file": "ref_1_00099.tif",
+      "original_sha256": "c3bb3b46a3f518f7a72f4a825573591cb426d5618efe64c3cdfc2b20f1b25d35",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_099.npy",
+      "sha256": "2383c45a984e7abdfeb34bae2ad65f5f5e2a49242b280812315fd73704c692de",
+      "original_file": "sample_1_00099.tif",
+      "original_sha256": "0466f713662a953dc51224208fdca8312e973fc07a01e44e5c3d5af272e58b79",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "reference_100.npy",
+      "sha256": "63693fccde6e9f7613ddff729a8ab81bb75379706385e77b81de1508c5629061",
+      "original_file": "ref_1_00100.tif",
+      "original_sha256": "d31d32c32e82a447214738e20314506a6f035958a7ef9701cf3dcb3169fc9f6c",
+      "original_bytes": 8389439
+    },
+    {
+      "file": "sample_100.npy",
+      "sha256": "2b2ef0593fcca1c940908195686d8873a2da9a063af3a672a86edd46f171c880",
+      "original_file": "sample_1_00100.tif",
+      "original_sha256": "c475ac2f6c6da634c3173f460f9256fbd05693dcb112040c64b2b5ae92a97382",
+      "original_bytes": 8389439
+    }
+  ]
+}

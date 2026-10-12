@@ -76,7 +76,7 @@ def main():
     p=argparse.ArgumentParser(description='Wavefront sensing teaching tools: preserved solvers with explicit configuration.')
     sub=p.add_subparsers(dest='command',required=True)
     r=sub.add_parser('run',help='Run a JSON configuration on grayscale TIFF/NPY input.');r.add_argument('config');r.add_argument('--output',required=True)
-    d=sub.add_parser('demo',help='Generate and process known synthetic controls; no real experiment data.');d.add_argument('--output',required=True);d.add_argument('--case',choices=['all','wxst','wsvt','grating','hartmann','zernike'],default='all')
+    d=sub.add_parser('demo',help='Run real CRL speckle examples and analytic controls for other methods.');d.add_argument('--output',required=True);d.add_argument('--case',choices=['all','wxst','wsvt','grating','hartmann','zernike'],default='all')
     sub.add_parser('check-env',help='Import every dependency and report versions.')
     u=sub.add_parser('ui',help='Open one of four independent local frontends.')
     u.add_argument('--port',type=int,default=8790)

@@ -1,0 +1,423 @@
+{
+  "dataset_id": "crl-bb11-20231102-roi512-v1",
+  "crop": [
+    686,
+    1198,
+    714,
+    1226
+  ],
+  "originals_preserved": true,
+  "cases": [
+    {
+      "mode": "wxst",
+      "backend": "cpp",
+      "wall_s": 0.8096188000636175,
+      "stats": {
+        "angle_x_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -3.485061461105943e-05,
+          "max": 3.222885061404668e-05,
+          "rms": 5.091718708642616e-06
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -3.33141433657147e-05,
+          "max": 3.37653182214126e-05,
+          "rms": 5.376017434009353e-06
+        },
+        "darkfield_nd": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -92.25104522705078,
+          "max": -0.657936155796051,
+          "rms": 15.327437428847357
+        },
+        "ux_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -10.0,
+          "max": 10.0,
+          "rms": 1.5676204875475723
+        },
+        "uy_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -10.0,
+          "max": 10.0,
+          "rms": 1.6042908346851692
+        },
+        "phase_rad": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -73.8921890258789,
+          "max": 132.93006896972656,
+          "rms": 41.94582482600216
+        },
+        "transmission_image": {
+          "shape": [
+            512,
+            512
+          ],
+          "min": 0.36883750557899475,
+          "max": 1.4684137105941772,
+          "rms": 0.8332502056404197
+        }
+      }
+    },
+    {
+      "mode": "wxst",
+      "backend": "gpu",
+      "wall_s": 0.41028369998093694,
+      "stats": {
+        "uy_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -10.0,
+          "max": 10.0,
+          "rms": 1.6042908316798863
+        },
+        "ux_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -10.0,
+          "max": 10.0,
+          "rms": 1.5676204632183015
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -3.33141433657147e-05,
+          "max": 3.37653182214126e-05,
+          "rms": 5.376017422780292e-06
+        },
+        "angle_x_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -3.485061461105943e-05,
+          "max": 3.222885061404668e-05,
+          "rms": 5.091718636155557e-06
+        },
+        "phase_rad": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -73.89216613769531,
+          "max": 132.93006896972656,
+          "rms": 41.94581591018413
+        },
+        "transmission": {
+          "shape": [
+            512,
+            512
+          ],
+          "min": 0.36883750557899475,
+          "max": 1.4684137105941772,
+          "rms": 0.8332502056404197
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -92.25103759765625,
+          "max": -0.6579362154006958,
+          "rms": 15.327437431536
+        }
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "cpp",
+      "wall_s": 2.505097800050862,
+      "stats": {
+        "angle_x_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -2.122982550645247e-05,
+          "max": 1.901785253721755e-05,
+          "rms": 4.598983256028794e-06
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -1.9951083231717348e-05,
+          "max": 1.9184864868293516e-05,
+          "rms": 4.614170021409232e-06
+        },
+        "darkfield_nd": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -71.07765197753906,
+          "max": -0.44402721524238586,
+          "rms": 6.456329444981749
+        },
+        "ux_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -6.0,
+          "max": 6.0,
+          "rms": 1.410297737103495
+        },
+        "uy_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -6.0,
+          "max": 5.6685333251953125,
+          "rms": 1.376696432195501
+        },
+        "interlevel_displacement_delta": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": 0.001352027989923954,
+          "max": 5.656854152679443,
+          "rms": 0.5117935272126068
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -71.07765197753906,
+          "max": -0.44402721524238586,
+          "rms": 6.456329444981749
+        },
+        "normalized_peak_curvature": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": 0.0,
+          "max": 16.746700286865234,
+          "rms": 3.0997461519503045
+        },
+        "peak_hessian_det": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -269.815673828125,
+          "max": 2818.492431640625,
+          "rms": 267.947104589461
+        },
+        "phase_rad": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -65.41222381591797,
+          "max": 131.92794799804688,
+          "rms": 42.02182024360245
+        },
+        "score_margin": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": 1.1877135648319381e-06,
+          "max": 6.5573835372924805,
+          "rms": 0.6885712863459831
+        },
+        "search_boundary_hit": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": 0.0,
+          "max": 1.0,
+          "rms": 0.006741107297470325
+        },
+        "search_geometry_valid": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": 0.0,
+          "max": 1.0,
+          "rms": 0.9998595314126276
+        },
+        "second_best_score_neg_ssd": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -72.30184936523438,
+          "max": -1.0248792171478271,
+          "rms": 8.675787128786856
+        },
+        "transmission_image": {
+          "shape": [
+            512,
+            512
+          ],
+          "min": 0.36883750557899475,
+          "max": 1.4684137105941772,
+          "rms": 0.8332502056404197
+        }
+      }
+    },
+    {
+      "mode": "wsvt",
+      "backend": "gpu",
+      "wall_s": 0.9430785001022741,
+      "stats": {
+        "uy_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -6.0,
+          "max": 5.6685333251953125,
+          "rms": 1.3766964348960011
+        },
+        "ux_px": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -6.0,
+          "max": 6.0,
+          "rms": 1.410297736549098
+        },
+        "angle_y_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -1.9951083231717348e-05,
+          "max": 1.9184864868293516e-05,
+          "rms": 4.614170030524645e-06
+        },
+        "angle_x_rad_demeaned": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -2.122982550645247e-05,
+          "max": 1.901785253721755e-05,
+          "rms": 4.598983254583207e-06
+        },
+        "phase_rad": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -65.41221618652344,
+          "max": 131.92791748046875,
+          "rms": 42.021813596305975
+        },
+        "transmission": {
+          "shape": [
+            512,
+            512
+          ],
+          "min": 0.36883750557899475,
+          "max": 1.4684137105941772,
+          "rms": 0.8332502056404197
+        },
+        "match_score_neg_ssd": {
+          "shape": [
+            492,
+            492
+          ],
+          "min": -71.07765197753906,
+          "max": -0.44402727484703064,
+          "rms": 6.456329448736164
+        }
+      }
+    }
+  ],
+  "cpu_gpu_max_abs_difference": {
+    "wxst": {
+      "ux_px": 0.002646923065185547,
+      "uy_px": 0.00021600723266601562,
+      "phase_rad": 0.000213623046875
+    },
+    "wsvt": {
+      "ux_px": 0.0002999305725097656,
+      "uy_px": 9.632110595703125e-05,
+      "phase_rad": 7.62939453125e-05
+    }
+  },
+  "frontend_portable_jobs": [
+    {
+      "mode": "wxst",
+      "backend": "cpp",
+      "elapsed_s": 5.1,
+      "status": "succeeded",
+      "frames": 1
+    },
+    {
+      "mode": "wxst",
+      "backend": "gpu",
+      "elapsed_s": 4.1,
+      "status": "succeeded",
+      "frames": 1
+    },
+    {
+      "mode": "wsvt",
+      "backend": "cpp",
+      "elapsed_s": 8.6,
+      "status": "succeeded",
+      "frames": 100
+    },
+    {
+      "mode": "wsvt",
+      "backend": "gpu",
+      "elapsed_s": 5.4,
+      "status": "succeeded",
+      "frames": 100
+    }
+  ],
+  "portable_environment": "Packaged Python 3.12.10 and native DLLs in relocated Chinese/space directory; Windows system-only PATH, no external backend overrides",
+  "unit_tests": {
+    "passed": 46,
+    "failed": 0,
+    "portable_elapsed_s": 10.291
+  },
+  "python_reference_wxst": {
+    "status": "succeeded",
+    "input_shape": [
+      512,
+      512
+    ],
+    "solver_reported_total_s": 23.788318,
+    "runtime": "Packaged Python 3.12.10"
+  },
+  "source_cache_install": "Full real-data archive extracted and hashes verified in fresh Chinese/space cache; second load reused the same data",
+  "original_tiff_sha256_rechecked": 200
+}

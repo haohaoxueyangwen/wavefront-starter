@@ -1,40 +1,29 @@
-"""Small deterministic algorithm controls, not simulated beamline experiments."""
+"""Real CRL speckle examples and named analytic controls for other methods."""
 from __future__ import annotations
 import json,time
 from pathlib import Path
 import numpy as np
-from scipy.ndimage import gaussian_filter
-from .core import speckle,grating,hartmann,zernike_fit,save_results,MODES
+from .core import grating,hartmann,zernike_fit,save_results,MODES
 
 def run_demos(output,case='all'):
     root=Path(output)
     if root.exists():raise FileExistsError('Choose a new demo directory.')
     root.mkdir(parents=True)
     report={};start=time.monotonic()
-    for index,kind in enumerate(['wxst','wsvt','grating','hartmann','zernike']):
+    for kind in ['wxst','wsvt','grating','hartmann','zernike']:
         if case not in {'all',kind}:continue
-        rng=np.random.default_rng(20261011+index)
         folder=root/kind;folder.mkdir();data=folder/'data';data.mkdir()
         if kind in {'wxst','wsvt'}:
-            count=1 if kind=='wxst' else 32
-            ref=np.stack([gaussian_filter(rng.random((48,48)),.65)+.2 for _ in range(count)])
-            sam=np.roll(ref,(1,-2),axis=(-2,-1))
-            config=dict(mode=kind,energy_ev=14000,pixel_size_m=.65e-6,distance_m=.5,search_half_window=3,template_half_window=2,
-                        metadata_note='Synthetic texture translated by ux=-2, uy=+1 px; geometry is illustrative, not an experiment record.')
-            if kind=='wxst':
-                sam,ref=sam[0],ref[0];np.save(data/'reference.npy',ref);np.save(data/'sample.npy',sam)
-                config.update(reference='data/reference.npy',sample='data/sample.npy')
-            else:
-                config['pairs']=[]
-                for i in range(count):
-                    np.save(data/f'ref_{i:02d}.npy',ref[i]);np.save(data/f'sample_{i:02d}.npy',sam[i])
-                    config['pairs'].append(dict(reference=f'data/ref_{i:02d}.npy',sample=f'data/sample_{i:02d}.npy'))
-            arrays,meta=speckle(sam,ref,config)
-            # Search border is already cropped by the solver; assess a declared interior.
-            ux=arrays['ux_px'][5:-5,5:-5];uy=arrays['uy_px'][5:-5,5:-5]
-            epe=np.hypot(ux+2,uy-1)
-            metrics=dict(median_ux_px=float(np.median(ux)),median_uy_px=float(np.median(uy)),median_epe_px=float(np.median(epe)),p95_epe_px=float(np.percentile(epe,95)),control='Known rigid texture translation; output interior trimmed 5 px further.')
-            passed=metrics['median_epe_px']<.15 and metrics['p95_epe_px']<.5
+            from .native_examples import example
+            from .runtime_backends import status
+            from .cli import run_config
+            backend='cpp' if status('cpp')['available'] else 'python'
+            config=example(root,kind,backend)['config']
+            (folder/'config.json').write_text(json.dumps(config,ensure_ascii=False,indent=2),encoding='utf-8')
+            run_config(folder/'config.json',folder/'results')
+            report[kind]=dict(passed=True,dataset=config['example_dataset_id'],backend=backend,
+                scope='Real CRL execution and output delivery; no known-displacement truth or synthetic EPE criterion.')
+            continue
         elif kind=='grating':
             n=128;yy,xx=np.indices((n,n));k=2*np.pi/n
             phase=.2*np.sin(k*xx)+.1*np.cos(k*yy)
@@ -70,8 +59,8 @@ def run_demos(output,case='all'):
         meta['config']=config;meta['synthetic_control_metrics']=metrics
         save_results(folder/'results',arrays,meta)
         report[kind]=dict(passed=bool(passed),**metrics)
-    report['scope']='CPU algorithm controls on synthetic inputs; no real-data accuracy or beamline validation.'
+    report['scope']='WSVT/WXST use real BB11 CRL data; other cases are named analytic controls. Successful execution does not establish physical accuracy.'
     report['seconds']=time.monotonic()-start
     (root/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2))
-    if not all(v['passed'] for v in report.values() if isinstance(v,dict)):raise ValueError('One or more synthetic controls failed; keep report and inspect.')
+    if not all(v['passed'] for v in report.values() if isinstance(v,dict)):raise ValueError('One or more examples failed; keep report and inspect.')
