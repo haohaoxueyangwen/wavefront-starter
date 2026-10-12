@@ -55,7 +55,7 @@ $env:PYTHONIOENCODING='utf-8'
 
 源码包从已提交标签 `git archive` 生成；Windows包在同一标签源码外加运行库及CRL数据。更新README、Windows说明、`先看这里.txt`、CHANGELOG、包版本、服务版本和启动版本检查，检查后再建立新标签，不覆盖旧发布文件。
 
-纯文档发布可用 [repack-docs 工作流](../.github/workflows/repack-docs.yml)：先为允许的已检查标签建立草稿Release，手动启动工作流。它调用 [重打包脚本](../scripts/repack_windows_docs.py)，只接受已登记的标签，验证固定v0.6.1基线ZIP SHA256、所有算法源码不变、147个冻结源码及200个CRL裁剪哈希，复用原运行库；上传到草稿，不自行发布。
+已登记的文档 / UI 修正发布可用 [repack-docs 工作流](../.github/workflows/repack-docs.yml)：先为允许的已检查标签建立草稿Release，手动启动工作流。它调用 [重打包脚本](../scripts/repack_windows_docs.py)，只接受已登记的标签，验证固定v0.6.1基线ZIP SHA256、科学求解器源码不变；v0.6.4仅允许哈希清单中的5个UI文件，核对修改前后哈希；同时核对147个冻结源码及200个CRL裁剪哈希，复用原运行库；上传到草稿，不自行发布。
 
 维护者应检查工作流成功、源码标签、`release_receipt.json`、三个ZIP和 `SHA256SUMS.txt`，再发布草稿，并匿名下载核对文件。算法 / 二进制修改不能使用纯文档重打包冒充新构建，需要新的平台构建和执行记录。Windows运行库来源、许可证与构建证据见 [验证说明](13_windows_validation.md)和 [provenance/](../provenance/)。
 

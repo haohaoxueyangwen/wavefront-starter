@@ -11,7 +11,7 @@
 | 3：散斑主线 | L17/L18 → L12/L16 → L5；选型时读 L4 | 单独跑 WXST 与 WSVT | 说明单对空间模板与多帧时间栈的区别，读懂 ux/uy 的符号与有效区域 |
 | 4：光栅主线 | L13/L32 → L31 → L6/L27 | 按 [光栅操作](15_grating_workflow.md)跑例子，核对边带配置 | 画出解调链，区分条纹相位与标定后的波前相位 |
 | 5：Hartmann | L7 → L28 | 按 [Hartmann操作](16_hartmann_workflow.md)跑固定网格 Gaussian 光斑例子 | 说明参考点、质心、位移、距离与偏折角的关系 |
-| 6：后处理 | L29、L30、[Zernike操作](17_wavefront_workflow.md) | 将 CRL 相位送入完整 Zernike，填写12.4 keV / 1.625 µm；另跑已知解析波前 | 记录瞳心、半径、(n,m)、单位；区分 RMS、PV 和拟合残差 |
+| 6：后处理 | L29、L30、[Zernike操作](17_wavefront_workflow.md) | 将 CRL 相位送入完整 Zernike，核对12.4 keV / 1.625 µm；另跑已知解析波前 | 记录瞳心、半径、(n,m)、单位；区分 RMS、PV 和拟合残差 |
 | 7：第一组实验数据 | docs/02_real_data.md、L3 | 选择少量帧或小 ROI，填写模板 | 原始数据身份、几何记录、配置、结果与独立误差/重复性报告 |
 
 进阶阶段再读 L19/L9 的 UMPA、L21 的 PXST、L8 的 SPINNet，并转向原算法仓库开展对应任务。

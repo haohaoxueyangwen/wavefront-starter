@@ -74,7 +74,7 @@ Windows 完整包：双击 `start_wavefront.cmd`，点击“导入配置”，�
 .\.venv\Scripts\python.exe launch_frontend.py --app wavefront
 ```
 
-每次输出使用新目录。完整入口接收相位 rad；若只有 OPD，先按实际光子能量转换。要分析 CRL 实测相位，请按 [CRL 接续步骤](14_crl_example.md)将能量改为12.4 keV、像元改为1.625 µm。
+每次输出使用新目录。完整入口接收相位 rad；若只有 OPD，先按实际光子能量转换。要分析 CRL 实测相位，请按 [CRL 接续步骤](14_crl_example.md)核对能量为12.4 keV、像元为1.625 µm；自行导入时手动填写。
 
 浏览器里导入 `examples/full_zernike/config.json`，数据目录选择该示例文件夹；或通过本机文件浏览直接选择 `phase_rad.npy`。示例为 64×64 的已知解析波前，圆心 `[31.5,31.5]`、半径 28、50 项、去除径向阶数 0–2。`expected.json` 包含已知系数、预期高阶 RMS 和输入哈希，完全不包含实验数据。
 
