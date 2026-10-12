@@ -1,0 +1,30 @@
+name: Repack verified Windows runtime with reviewed documentation
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing reviewed documentation tag
+        required: true
+        default: v0.6.2
+permissions:
+  contents: write
+jobs:
+  repack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Require a draft release
+        run: test "$(gh api "repos/$GH_REPO/releases/tags/$RELEASE_TAG" --jq .draft)" = true
+      - name: Reuse hash-verified runtime and data; audit new source
+        run: python3 scripts/repack_windows_docs.py --tag "$RELEASE_TAG" --out release
+      - name: Upload to draft only
+        run: |
+          gh release upload "$RELEASE_TAG" release/* --clobber
+          cat release/release_receipt.json >> "$GITHUB_STEP_SUMMARY"
